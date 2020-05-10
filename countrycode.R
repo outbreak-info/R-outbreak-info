@@ -31,7 +31,7 @@ getCountryData <- function(location_names){
     dataurl <- paste0(api.url, "query?q=location_id:(",location.ids,")&sort=date&size=1000&fetch_all=true")
     dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
     resp <- fromJSON(dataurl, flatten=TRUE)
-    scroll.id <- resp$`_scroll_id`
+    scroll.id <- resp$'_scroll_id'
     results[[length(results) + 1]] <- resp$hits
     success <- resp$success
   }

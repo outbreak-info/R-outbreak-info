@@ -2,11 +2,11 @@ library(rgdal)
 library(tidyverse)
 library(jsonlite)
 
-country_shp <- readOGR(dsn = "Downloads/ne_10m_admin_0_countries","ne_10m_admin_0_countries")
+country_shp <- readOGR(dsn="Downloads/ne_10m_admin_0_countries","ne_10m_admin_0_countries")
 country_df=country_shp@data
-county_shp <- readOGR(dsn= "Downloads/tl_2019_us_county", "tl_2019_us_county")
+county_shp <- readOGR(dsn="Downloads/tl_2019_us_county", "tl_2019_us_county")
 county_df=county_shp@data
-state_shp <- readOGR("Downloads/ne_10m_admin_1_states_provinces", "ne_10m_admin_1_states_provinces")
+state_shp <- readOGR(dsn="Downloads/ne_10m_admin_1_states_provinces", "ne_10m_admin_1_states_provinces")
 state_df=state_shp@data
 
 getLocationCode <- function(locationnames){
@@ -25,9 +25,9 @@ getLocationCode <- function(locationnames){
     if (i %in% county_df$NAMELSAD){
       sfips=as.character(droplevels(county_df$STATEFP[county_df$NAMELSAD==i]))
       cfips=as.character(droplevels(county_df$COUNTYFP[county_df$NAMELSAD==i]))
+      fipsval=paste0(sfips,cfips)
       sfipsname=paste0("US", sfips)
       iso3=levels(as.factor(as.character(state_df$iso_3166_2[state_df$code_local==sfipsname])))
-      fipsval=paste0(sfips,cfips)
       countryname=as.character(droplevels(state_df$gu_a3[state_df$iso_3166_2==iso3]))
       countyiso3val=paste0(countryname, "_", iso3, "_", fipsval)
       iso3codes=c(iso3codes, countyiso3val)

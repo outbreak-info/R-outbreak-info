@@ -1,64 +1,71 @@
-library(rgdal)
+library(sf)
 library(jsonlite)
 library(ggplot2)
 
-country_shp <- readOGR(dsn="Downloads/ne_10m_admin_0_countries","ne_10m_admin_0_countries")
-country_df=country_shp@data
-county_shp <- readOGR(dsn="Downloads/tl_2019_us_county", "tl_2019_us_county")
-county_df=county_shp@data
-state_shp <- readOGR(dsn="Downloads/ne_10m_admin_1_states_provinces", "ne_10m_admin_1_states_provinces")
-state_df=state_shp@data
-metro_shp <- readOGR(dsn="Downloads/cb_2018_us_cbsa_500k", "cb_2018_us_cbsa_500k")
-metro_df=metro_shp@data
+country_shp <- st_read(dsn="Downloads/ne_10m_admin_0_countries", "ne_10m_admin_0_countries")
+state_shp <- st_read(dsn="Downloads/ne_10m_admin_1_states_provinces", "ne_10m_admin_1_states_provinces")
+metro_shp <- st_read(dsn="Downloads/cb_2018_us_cbsa_500k", "cb_2018_us_cbsa_500k")
+county_shp <- st_read(dsn="Downloads/tl_2019_us_county", "tl_2019_us_county")
 
-getLocationCode <- function(locationnames){
+getExactNames <- function(loc_search){
+  exact_names=c()
+  loc_of_interest=c()
+  for (i in loc_search){
+    country_match = as.character(droplevels(subset(country_shp$ADMIN, grepl(paste(i, collapse= "|"), country_shp$ADMIN))))
+    state_match = as.character(droplevels(subset(state_shp$name, grepl(paste(i, collapse= "|"), state_shp$name))))
+    county_match = as.character(droplevels(subset(county_shp$NAMELSAD, grepl(paste(i, collapse= "|"), county_shp$NAMELSAD))))
+    metro_match = as.character(droplevels(subset(metro_shp$NAME, grepl(paste(i, collapse= "|"), metro_shp$NAME))))
+    exact_names=c(exact_names, country_match, state_match, county_match, metro_match)
+  }
+  for (i in exact_names){
+    print(i)
+    loc_sel <- (readline("Is this a location of interest? (Y/N): "))
+    if ((loc_sel == "Y")|(loc_sel == "y")){
+      loc_of_interest = c(loc_of_interest, i)
+    }
+  }
+  return(loc_of_interest)
+}
+#search function
+#can't know which state a county is in (for counties that share names)
+
+getLocationCode <- function(location_names){
+  exact_loc = getExactNames(location_names)
   iso3codes=c()
-  for (i in locationnames){
-    if (i %in% country_df$ADMIN){
-      countryiso3val=as.character(droplevels(country_df$ADM0_A3[country_df$ADMIN==i]))
+  for (i in exact_loc){
+    if (i %in% country_shp$ADMIN){
+      countryiso3val=as.character(droplevels(country_shp$ADM0_A3[country_shp$ADMIN==i]))
       iso3codes=c(iso3codes, countryiso3val)
     }
-    if (i %in% state_df$name){
-      iso3=levels(as.factor(as.character(state_df$iso_3166_2[state_df$name==i])))
-      countryname=as.character(droplevels(state_df$gu_a3[state_df$iso_3166_2==iso3]))
+    if (i %in% state_shp$name){
+      iso3=levels(as.factor(as.character(state_shp$iso_3166_2[state_shp$name==i])))
+      countryname=as.character(droplevels(state_shp$gu_a3[state_shp$iso_3166_2==iso3]))
       stateiso3val=paste0(countryname, "_", iso3)
       iso3codes=c(iso3codes, stateiso3val)
     }
-    if (i %in% county_df$NAMELSAD){
-      sfips=as.character(droplevels(county_df$STATEFP[county_df$NAMELSAD==i]))
-      cfips=as.character(droplevels(county_df$COUNTYFP[county_df$NAMELSAD==i]))
+    if (i %in% county_shp$NAMELSAD){
+      sfips=as.character(droplevels(county_shp$STATEFP[county_shp$NAMELSAD==i]))
+      cfips=as.character(droplevels(county_shp$COUNTYFP[county_shp$NAMELSAD==i]))
       fipsval=paste0(sfips,cfips)
       sfipsname=paste0("US", sfips)
-      iso3=levels(as.factor(as.character(state_df$iso_3166_2[state_df$code_local==sfipsname])))
-      countryname=as.character(droplevels(state_df$gu_a3[state_df$iso_3166_2==iso3]))
+      iso3=levels(as.factor(as.character(state_shp$iso_3166_2[state_shp$code_local==sfipsname])))
+      countryname=as.character(droplevels(state_shp$gu_a3[state_shp$iso_3166_2==iso3]))
       countyiso3val=paste0(countryname, "_", iso3, "_", fipsval)
       iso3codes=c(iso3codes, countyiso3val)
     }
-    if (i %in% metro_df$NAME){
-      mfips=as.character(droplevels(metro_df$CBSAFP[metro_df$NAME==i]))
+    if (i %in% metro_shp$NAME){
+      mfips=as.character(droplevels(metro_shp$CBSAFP[metro_shp$NAME==i]))
       metroiso3val=paste0("METRO_", mfips)
       iso3codes=c(iso3codes, metroiso3val)
     }
   }
-  if (length(iso3codes)<length(locationnames)){
-    print("One or more of the locations was not found")
-  }
-  if (length(iso3codes)>length(locationnames)){
-    print("One or more of the locations is found more than once")
-  }
-return(iso3codes)
+  return(iso3codes)
 }
-#must enter [county name] County
-
-#testing
-getLocationCode(c("India", "Virginia", "San Diego County"))
-getLocationCode(c("Berkeley County", "Arizona"))
-getLocationCode(c("Rusia", "Hawaii County"))
 
 api.url <- "https://api.outbreak.info/v1/"
 
-getLocationData <- function(location_names){
-  locations=getLocationCode(location_names)
+getLocationData <- function(loc_names){
+  locations=getLocationCode(loc_names)
   scroll.id <- NULL
   location.ids <- paste0("%22", paste(locations, collapse="%22%20OR%20%22"), "%22")
   results <- list()
@@ -75,7 +82,23 @@ getLocationData <- function(location_names){
   return(hits);
 }
 
-#test
-df <- getLocationData(c("India", "Virginia", "San Diego County"))
+plotDeaths <- function(locs){
+  df <- getLocationData(locs)
+  df$date=as.Date(df$date, "%Y-%m-%d")
+  ggplot(df, aes(date, dead, color=location_id, group = location_id)) + geom_line() + scale_x_date(date_breaks = "1 week") + theme(axis.text.x = element_text(angle = 90, hjust = 1))
+}
+
+plotCases <- function(locs){
+  df <- getLocationData(locs)
+  df$date=as.Date(df$date, "%Y-%m-%d")
+  ggplot(df, aes(date, confirmed, color=location_id, group = location_id)) + geom_line() + scale_x_date(date_breaks = "1 week") + theme(axis.text.x = element_text(angle = 90, hjust = 1))
+}
+
+###upload shapefiles to git
+
+
+
+
+
 
 

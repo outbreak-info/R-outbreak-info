@@ -94,8 +94,6 @@ plotCases <- function(locs){
   ggplot(df, aes(date, confirmed, color=location_id, group = location_id)) + geom_line() + scale_x_date(date_breaks = "1 week") + theme(axis.text.x = element_text(angle = 90, hjust = 1))
 }
 
-###upload shapefiles to git
-
 
 
 

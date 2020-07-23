@@ -1,0 +1,6 @@
+import("jsonlite")
+import("ggplot2")
+exportPattern("getISO3")
+exportPattern("searchLocations")
+exportPattern("getLocationData")
+exportPattern("getAdmn2ByState")

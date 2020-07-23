@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1592861650626.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "64A1F668",
+    "lastKnownWriteTime" : 1592866414,
+    "last_content_update" : 1592866414,
+    "path" : "~/packages/outbreak.info/man/getExactNames.Rd",
+    "project_path" : "man/getExactNames.Rd",
+    "properties" : {
+        "cursorPosition" : "12,14",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_doc"
+}

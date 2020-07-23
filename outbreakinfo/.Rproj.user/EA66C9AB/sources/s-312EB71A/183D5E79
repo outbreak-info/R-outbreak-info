@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1592860005712.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "183D5E79",
+    "lastKnownWriteTime" : 1592866367,
+    "last_content_update" : 1592866370097,
+    "path" : "~/packages/outbreak.info/R/getExactNames.R",
+    "project_path" : "R/getExactNames.R",
+    "properties" : {
+        "cursorPosition" : "6,28",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

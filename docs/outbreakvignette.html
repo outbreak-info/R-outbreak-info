@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2020-07-16" />
+<meta name="date" content="2020-07-23" />
 
 <title>outbreak.info R package</title>
 
@@ -363,7 +363,7 @@ summary {
 
 
 <h1 class="title toc-ignore">outbreak.info R package</h1>
-<h4 class="date">July 16, 2020</h4>
+<h4 class="date">July 23, 2020</h4>
 
 </div>
 
@@ -390,7 +390,7 @@ print(iso3)</code></pre>
 <p><strong>Usage:</strong></p>
 <pre class="r"><code>getLocationData(location_names)</code></pre>
 <p><strong>Arguments:</strong></p>
-<p>location_names: a <code>vector</code> or <code>list</code> of location (World Bank region, country, state/province, metropolitan area, countya) name(s)</p>
+<p>location_names: a <code>vector</code> or <code>list</code> of location (World Bank region, country, state/province, metropolitan area, county) name(s)</p>
 <p><strong>Example:</strong></p>
 <pre class="r"><code>df=getLocationData(c(&quot;Texas&quot;, &quot;Brazil&quot;, &quot;San Diego County&quot;))
 head(df)</code></pre>
@@ -599,7 +599,7 @@ head(df)</code></pre>
 <p><strong>Usage:</strong></p>
 <pre class="r"><code>getExactNames(locations_to_search, admin_level)</code></pre>
 <p><strong>Arguments:</strong></p>
-<p>locations_to_search: a <code>vector</code> or <code>list</code> of name(s) of location(s) at the same administrative level</p>
+<p>locations_to_search: a <code>vector</code> or <code>list</code> of location (World Bank region, country, state/province, metropolitan area, county) name(s) at the same administrative level</p>
 <p>admin_level: an <code>integer</code> representing an administrative level (World Bank regions = -1, countries = 0, states/provinces = 1, metropolitan areas = 1.5, counties = 2)</p>
 <p><strong>Example:</strong></p>
 <pre class="r"><code>names=searchLocations(c(&quot;California&quot;, &quot;Florida&quot;, &quot;Texas&quot;), admin_level=1)
@@ -642,12 +642,12 @@ print(unique(countydf$name))</code></pre>
 <div id="plotcovid" class="section level4">
 <h4><strong>plotCovid</strong></h4>
 <p><strong>Description:</strong></p>
-<p>Plot a metric of interest using up-to-date COVID-19 cases using data from <a href="https://outbreak.info/">outbreak.info</a> for given location(s) (World Bank region, country, state/province, metropolitan area, county)</p>
+<p>Plot a metric of interest using up-to-date COVID-19 data using data from <a href="https://outbreak.info/">outbreak.info</a> for location(s) of interest (World Bank region, country, state/province, metropolitan area, county)</p>
 <p><strong>Usage:</strong></p>
 <pre class="r"><code>plotCovid(locations, key)</code></pre>
 <p><strong>Arguments:</strong></p>
-<p>location: a <code>vector</code> or <code>list</code> of location name(s) of interest</p>
-<p>key: metric to plot (ex. confirmed, dead_per_100k)</p>
+<p>location: a <code>vector</code> or <code>list</code> of location name(s)</p>
+<p>key: metric to plot</p>
 <p><strong>Example:</strong></p>
 <pre class="r"><code>p=plotCovid(c(&quot;Texas&quot;, &quot;Brazil&quot;, &quot;San Diego County&quot;), &quot;confirmed_per_100k&quot;)
 show(p)</code></pre>

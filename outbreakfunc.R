@@ -3,7 +3,7 @@ library(ggplot2)
 
 api.url <- "https://api.outbreak.info/v1/"
 
-getExactLocations <- function(locations_to_search){
+getISO3 <- function(locations_to_search){
   locs_of_interest=c()
   scroll.id <- NULL
   location.ids <- paste0("(name:%22", paste(locations_to_search, collapse="%22%20OR%20name:%22"), "%22)")
@@ -18,10 +18,18 @@ getExactLocations <- function(locations_to_search){
     results[[length(results) + 1]] <- resp$hits
     success <- resp$success
   }
-  hits <- rbind_pages(results)
-  df=(hits)
-  locs_of_interest=df$location_id
-  if (length(locs_of_interest)!=length(locations_to_search)){
+  t <- try(rbind_pages(results), silent=T)
+  if("try-error" %in% class(t)){
+    error=T
+  }else{
+    hits <- rbind_pages(results)
+    df=(hits)
+    locs_of_interest=df$location_id
+  }
+  if (length(locs_of_interest)==length(locations_to_search)){
+    return(locs_of_interest)
+  }
+  if (length(locs_of_interest)!=length(locations_to_search)||error==T){
     locations=c()
     locs_of_interest=c()
     for (i in locations_to_search){
@@ -39,6 +47,7 @@ getExactLocations <- function(locations_to_search){
     success <- NULL
     while(is.null(success)){
       dataurl <- paste0(api.url, "query?q=",location.ids,"%20AND%20mostRecent:true&fields=name,location_id,state_name&fetch_all=true")
+      dataurl <- gsub(" ", "+", dataurl)
       dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
       resp <- fromJSON(dataurl, flatten=TRUE)
       scroll.id <- resp$'_scroll_id'
@@ -67,10 +76,10 @@ getExactLocations <- function(locations_to_search){
   return(locs_of_interest)
 }
 
-getExactNames <- function(locations_to_search, admin_level){
+searchLocations <- function(locations_to_search, admin_level){
   locs_of_interest=c()
   scroll.id <- NULL
-  location.ids <- paste0("(name:", paste(locations_to_search, collapse="%20OR%20name:"), ")")
+  location.ids <- paste0("(name:%22", paste(locations_to_search, collapse="%22%20OR%20name:%22"), "%22)")
   results <- list()
   success <- NULL
   while(is.null(success)){
@@ -82,10 +91,18 @@ getExactNames <- function(locations_to_search, admin_level){
     results[[length(results) + 1]] <- resp$hits
     success <- resp$success
   }
-  hits <- rbind_pages(results)
-  df=hits
-  locs_of_interest=df$name
-  if (length(locs_of_interest)!=length(locations_to_search)){
+  t <- try(rbind_pages(results), silent=T)
+  if("try-error" %in% class(t)){
+    error=T
+  }else{
+    hits <- rbind_pages(results)
+    df=(hits)
+    locs_of_interest=df$location_id
+  }
+  if (length(locs_of_interest)==length(locations_to_search)){
+    return(df$name)
+  }
+  if ((length(locs_of_interest)!=length(locations_to_search))|error==T){
     locations=c()
     locs_of_interest=c()
     for (i in locations_to_search){
@@ -103,6 +120,7 @@ getExactNames <- function(locations_to_search, admin_level){
     success <- NULL
     while(is.null(success)){
       dataurl <- paste0(api.url, "query?q=admin_level:", admin_level, "%20AND%20(",location.ids,")%20AND%20mostRecent:true&fields=name,location_id,state_name&fetch_all=true")
+      dataurl <- gsub(" ", "+", dataurl)
       dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
       resp <- fromJSON(dataurl, flatten=TRUE)
       scroll.id <- resp$'_scroll_id'
@@ -111,6 +129,7 @@ getExactNames <- function(locations_to_search, admin_level){
     }
     hits <- rbind_pages(results)
     df=hits
+    df$name=apply(cbind(df$name, df$state_name), 1, function(x) paste(x[!is.na(x)], collapse = ", "))
     for (i in df$name){
       print(i)
       loc_sel <- readline("Is this a location of interest? (Y/N): ")
@@ -130,8 +149,8 @@ getExactNames <- function(locations_to_search, admin_level){
   return(locs_of_interest)
 }
 
-getLocationCodes <- function(loc_names, admin_level){
-  locations=getExactNames(loc_names, admin_level)
+getLocationCodes <- function(location_names, admin_level){
+  locations <- searchLocations(location_names, admin_level)
   scroll.id <- NULL
   location.ids <- paste0("%22", paste(locations, collapse="%22%20OR%20%22"), "%22")
   results <- list()
@@ -151,15 +170,14 @@ getLocationCodes <- function(loc_names, admin_level){
   return(iso3)
 }
 
-getLocationData <- function(loc_names){
-  locations=getExactLocations(loc_names)
+getLocationData <- function(location_names){
+  locations <- getISO3(location_names)
   scroll.id <- NULL
   location.ids <- paste0("%22", paste(locations, collapse="%22%20OR%20%22"), "%22")
   results <- list()
   success <- NULL
   while(is.null(success)){
     dataurl <- paste0(api.url, "query?q=location_id:(",location.ids,")&sort=date&size=1000&fetch_all=true")
-    dataurl <- gsub(" ", "+", dataurl)
     dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
     resp <- fromJSON(dataurl, flatten=TRUE)
     scroll.id <- resp$'_scroll_id'
@@ -170,8 +188,8 @@ getLocationData <- function(loc_names){
   return(hits);
 }
 
-getAdmn2Data <- function(states_of_interest){
-  locations=getExactNames(states_of_interest, admin_level=1)
+getAdmn2ByState <- function(states){
+  locations <- searchLocations(states, admin_level=1)
   scroll.id <- NULL
   results <- list()
   location.ids <- paste0("%22", paste(locations, collapse="%22%20OR%20%22"), "%22")
@@ -189,32 +207,61 @@ getAdmn2Data <- function(states_of_interest){
   return(hits);
 }
 
-plotDeaths <- function(locs){
-  df <- getLocationData(locs)
-  df$date=as.Date(df$date, "%Y-%m-%d")
-  ggplot(df, aes(date, dead, color=name, group = name)) + geom_line() + scale_x_date(date_breaks = "1 week") + theme(axis.text.x = element_text(angle = 90, hjust = 1))
+getAdmn2ByCountry <- function(){
+  scroll.id <- NULL
+  results <- list()
+  success <- NULL
+  while(is.null(success)){
+    dataurl <- "https://api.outbreak.info/covid19/query?q=country_name:%22United%20States%20of%20America%22%20AND%20admin_level:2&fetch_all=true"
+    dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
+    resp <- fromJSON(dataurl, flatten=TRUE)
+    scroll.id <- resp$'_scroll_id'
+    results[[length(results) + 1]] <- resp$hits
+    success <- resp$success
+  }
+  hits <- rbind_pages(results)
+  return(hits)
 }
 
-plotCases <- function(locs){
-  df <- getLocationData(locs)
-  df$date=as.Date(df$date, "%Y-%m-%d")
-  ggplot(df, aes(date, confirmed, color=name, group = name)) + geom_line() + scale_x_date(date_breaks = "1 week") + theme(axis.text.x = element_text(angle = 90, hjust = 1))
+getAdmn1ByCountry <- function(countries){
+  locations <- searchLocations(countries, admin_level=0)
+  scroll.id <- NULL
+  results <- list()
+  location.ids <- paste0("%22", paste(locations, collapse="%22%20OR%20%22"), "%22")
+  success <- NULL
+  while(is.null(success)){
+    dataurl <- paste0(api.url, "query?q=country_name:(",location.ids,")&fetch_all=true&sort=-date&admin_level=1")
+    dataurl <- gsub(" ", "+", dataurl)
+    dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
+    resp <- fromJSON(dataurl, flatten=TRUE)
+    scroll.id <- resp$'_scroll_id'
+    results[[length(results) + 1]] <- resp$hits
+    success <- resp$success
+  }
+  hits <- rbind_pages(results)
+  return(hits)
 }
 
-plotCasesPer100k <- function(locs){
-  df <- getLocationData(locs)
-  df$date=as.Date(df$date, "%Y-%m-%d")
-  ggplot(df, aes(date, confirmed_per_100k, color=name, group = name)) + geom_line() + scale_x_date(date_breaks = "1 week") + theme(axis.text.x = element_text(angle = 90, hjust = 1))
+getMetroByCountry <- function(){
+  scroll.id <- NULL
+  results <- list()
+  success <- NULL
+  while(is.null(success)){
+    dataurl <- "https://api.outbreak.info/covid19/query?q=country_name:%22United%20States%20of%20America%22%20AND%20admin_level:1.5&fetch_all=true"
+    dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
+    resp <- fromJSON(dataurl, flatten=TRUE)
+    scroll.id <- resp$'_scroll_id'
+    results[[length(results) + 1]] <- resp$hits
+    success <- resp$success
+  }
+  hits <- rbind_pages(results)
+  return(hits)
 }
 
-plotDeathsPer100k <- function(locs){
-  df <- getLocationData(locs)
+plotCovid <- function(locations, key){
+  df <- getLocationData(locations)
   df$date=as.Date(df$date, "%Y-%m-%d")
-  ggplot(df, aes(date, dead_per_100k, color=name, group = name)) + geom_line() + scale_x_date(date_breaks = "1 week") + theme(axis.text.x = element_text(angle = 90, hjust = 1))
+  p=ggplot(df, aes(date, get(key), color=name, group = name)) + geom_line() + scale_x_date(date_breaks = "1 week") + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + labs(y=key)
 }
-
-
-
-
 
 

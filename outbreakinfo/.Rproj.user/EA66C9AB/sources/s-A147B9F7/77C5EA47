@@ -1,25 +1,25 @@
 {
     "collab_server" : "",
     "contents" : "",
-    "created" : 1595525817780.000,
+    "created" : 1592861181341.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
     "hash" : "0",
-    "id" : "EAE9575E",
-    "lastKnownWriteTime" : 1595527971,
-    "last_content_update" : 1595527971300,
-    "path" : "~/packages/outbreakinfo/DESCRIPTION",
-    "project_path" : "DESCRIPTION",
+    "id" : "77C5EA47",
+    "lastKnownWriteTime" : 1595538400,
+    "last_content_update" : 1595538400,
+    "path" : "~/packages/outbreakinfo/NAMESPACE",
+    "project_path" : "NAMESPACE",
     "properties" : {
-        "cursorPosition" : "9,15",
+        "cursorPosition" : "0,28",
         "scrollLine" : "0"
     },
     "read_only" : false,
     "read_only_alternatives" : [
     ],
-    "relative_order" : 1,
+    "relative_order" : 4,
     "source_on_save" : false,
     "source_window" : "",
-    "type" : "dcf"
+    "type" : "r_namespace"
 }

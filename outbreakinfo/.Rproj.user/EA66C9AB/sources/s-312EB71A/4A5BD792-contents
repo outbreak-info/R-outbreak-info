@@ -1,3 +1,0 @@
-.onLoad <- function(libname, pkgname){
-  api.url <- "https://api.outbreak.info/v1/"
-}

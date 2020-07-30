@@ -19,4 +19,5 @@ plotCovid <- function(locations, key){
   df <- getLocationData(locations)
   df$date=as.Date(df$date, "%Y-%m-%d")
   p=ggplot(df, aes(date, get(key), color=name, group = name)) + geom_line() + scale_x_date(date_breaks = "1 week") + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + labs(y=key)
+  return(p)
 }

@@ -1,25 +1,25 @@
 {
     "collab_server" : "",
     "contents" : "",
-    "created" : 1595537158671.000,
+    "created" : 1592866523428.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
     "hash" : "0",
-    "id" : "EA929585",
-    "lastKnownWriteTime" : 1595537751,
-    "last_content_update" : 1595537751715,
-    "path" : "~/packages/outbreakinfo/R/getAdmn1ByCountry.R",
-    "project_path" : "R/getAdmn1ByCountry.R",
+    "id" : "4A5BD792",
+    "lastKnownWriteTime" : 1595531650,
+    "last_content_update" : 1595531650,
+    "path" : "~/packages/outbreakinfo/R/zzz.R",
+    "project_path" : "R/zzz.R",
     "properties" : {
-        "cursorPosition" : "4,3",
+        "cursorPosition" : "3,0",
         "scrollLine" : "0",
         "tempName" : "Untitled1"
     },
     "read_only" : false,
     "read_only_alternatives" : [
     ],
-    "relative_order" : 10,
+    "relative_order" : 5,
     "source_on_save" : false,
     "source_window" : "",
     "type" : "r_source"

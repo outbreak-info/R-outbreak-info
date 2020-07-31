@@ -12,6 +12,8 @@
     "path" : null,
     "project_path" : null,
     "properties" : {
+        "cursorPosition" : "0,0",
+        "scrollLine" : "0",
         "tempName" : "Untitled1"
     },
     "read_only" : false,

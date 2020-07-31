@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1596172726839.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1722623389",
+    "id" : "3D256DEE",
+    "lastKnownWriteTime" : 1596172845,
+    "last_content_update" : 1596172845737,
+    "path" : "~/packages/outbreakinfo/R/getAdmn1ByCountry.R",
+    "project_path" : "R/getAdmn1ByCountry.R",
+    "properties" : {
+        "cursorPosition" : "31,1",
+        "scrollLine" : "11",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

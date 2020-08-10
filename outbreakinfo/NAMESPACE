@@ -3,6 +3,7 @@
 export(getAdmn1ByCountry)
 export(getAdmn2ByCountry)
 export(getAdmn2ByState)
+export(getCountryByRegion)
 export(getISO3)
 export(getLocationData)
 export(getMetroByCountry)

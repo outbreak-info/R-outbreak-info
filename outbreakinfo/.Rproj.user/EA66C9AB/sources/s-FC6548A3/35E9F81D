@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1597078045235.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3615855160",
+    "id" : "35E9F81D",
+    "lastKnownWriteTime" : 1597078073,
+    "last_content_update" : 1597078073184,
+    "path" : "~/packages/outbreakinfo/R/getISO3.R",
+    "project_path" : "R/getISO3.R",
+    "properties" : {
+        "cursorPosition" : "102,1",
+        "scrollLine" : "83"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

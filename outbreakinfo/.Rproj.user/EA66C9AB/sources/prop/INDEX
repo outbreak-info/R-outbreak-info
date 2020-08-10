@@ -1,4 +1,5 @@
 ~%2FDownloads%2Foutbreakfunc.R="DE789715"
+~%2Fcovid%2FREADME.md="8D7B6A98"
 ~%2Fpackages%2Foutbreak.info%2FDESCRIPTION="2F89C2C2"
 ~%2Fpackages%2Foutbreak.info%2FNAMESPACE="A431F0AD"
 ~%2Fpackages%2Foutbreak.info%2FR%2FgetExactNames.R="9C317BB1"
@@ -12,6 +13,7 @@
 ~%2Fpackages%2Foutbreakinfo%2FR%2FgetAdmn1ByCountry.R="A7FDBE4"
 ~%2Fpackages%2Foutbreakinfo%2FR%2FgetAdmn2ByCountry.R="CFAA7A3"
 ~%2Fpackages%2Foutbreakinfo%2FR%2FgetAdmn2ByState.R="390AC7D5"
+~%2Fpackages%2Foutbreakinfo%2FR%2FgetCountryByRegion.R="158F46CD"
 ~%2Fpackages%2Foutbreakinfo%2FR%2FgetExactNames.R="C2F351EE"
 ~%2Fpackages%2Foutbreakinfo%2FR%2FgetISO3.R="A8720FD8"
 ~%2Fpackages%2Foutbreakinfo%2FR%2FgetLocationData.R="6E12DF52"

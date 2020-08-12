@@ -14,6 +14,7 @@
 
 getCountryByRegion <- function(wb_regions){
   locations <- searchLocations(wb_regions, admin_level=-1)
+  locations <- gsub("&", "%26", locations)
   scroll.id <- NULL
   results <- list()
   location.ids <- paste0("%22", paste(locations, collapse="%22%20OR%20%22"), "%22")

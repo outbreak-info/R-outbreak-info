@@ -5,14 +5,14 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "1740845546",
+    "hash" : "0",
     "id" : "25C62C10",
-    "lastKnownWriteTime" : 1596764126,
-    "last_content_update" : 1596764127683,
+    "lastKnownWriteTime" : 1597205956,
+    "last_content_update" : 1597205958399,
     "path" : "~/packages/outbreakinfo/DESCRIPTION",
     "project_path" : "DESCRIPTION",
     "properties" : {
-        "cursorPosition" : "7,19",
+        "cursorPosition" : "11,28",
         "scrollLine" : "0"
     },
     "read_only" : false,

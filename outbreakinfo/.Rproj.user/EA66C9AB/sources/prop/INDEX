@@ -1,3 +1,5 @@
+~%2FDownloads%2Flabmeeting_demo.R="32953619"
+~%2FDownloads%2Flocationcode_old.R="87D55016"
 ~%2FDownloads%2Foutbreakfunc.R="DE789715"
 ~%2Fcovid%2FREADME.md="8D7B6A98"
 ~%2Fpackages%2Foutbreak.info%2FDESCRIPTION="2F89C2C2"
@@ -19,6 +21,7 @@
 ~%2Fpackages%2Foutbreakinfo%2FR%2FgetLocationData.R="6E12DF52"
 ~%2Fpackages%2Foutbreakinfo%2FR%2FgetMetroByCountry.R="E0A2CA23"
 ~%2Fpackages%2Foutbreakinfo%2FR%2FplotCovid.R="CAC6FFE4"
+~%2Fpackages%2Foutbreakinfo%2FR%2FprintAPIFields.R="CA071417"
 ~%2Fpackages%2Foutbreakinfo%2FR%2FsearchLocations.R="6F10E540"
 ~%2Fpackages%2Foutbreakinfo%2FR%2Fzzz.R="A73B1BFA"
 ~%2Fpackages%2Foutbreakinfo%2Fman%2FgetExactNames.Rd="833686E8"

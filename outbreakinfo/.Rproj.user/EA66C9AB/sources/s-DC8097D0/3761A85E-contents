@@ -1,16 +1,16 @@
-#' @title Get epidemiological data from outbreak.info
+#' @title Retrieve epidemiological data from outbreak.info
 #'
-#' @description Get epidemiological data from outbreak.info according to user specifications
+#' @description Retrieve up-to-date epidemiological data from outbreak.info according to user specifications
 #'
-#' @param name: a location name
-#' @param location_id: an ISO3 code representing a location
-#' @param wb_region: World Bank region name
-#' @param country_name: country name
-#' @param state_name: state name
+#' @param name: vector of location names
+#' @param location_id: vector of ISO3 code representing locations
+#' @param wb_region: World Bank region name(s)
+#' @param country_name: country name(s)
+#' @param state_name: state name(s)
 #' @param admin_level: an integer representing an administrative level (World Bank regions = -1, countries = 0, states/provinces = 1, metropolitan areas = 1.5, counties = 2)
-#' @param date: date (YYYY-MM-DD)
+#' @param date: date(s) (YYYY-MM-DD)
 #' @param mostRecent: T/F
-#' @param fields: API fields to include in results
+#' @param fields: vector of API fields to include in results
 #' @param sort: parameter to sort results by
 #' @param size: size
 #'

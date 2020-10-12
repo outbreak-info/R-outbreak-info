@@ -2,7 +2,7 @@
 % Please edit documentation in R/getEpiData.R
 \name{getEpiData}
 \alias{getEpiData}
-\title{Get epidemiological data from outbreak.info}
+\title{Retrieve epidemiological data from outbreak.info}
 \usage{
 getEpiData(
   name = NULL,
@@ -19,23 +19,23 @@ getEpiData(
 )
 }
 \arguments{
-\item{name:}{a location name}
+\item{name:}{vector of location names}
 
-\item{location_id:}{an ISO3 code representing a location}
+\item{location_id:}{vector of ISO3 code representing locations}
 
-\item{wb_region:}{World Bank region name}
+\item{wb_region:}{World Bank region name(s)}
 
-\item{country_name:}{country name}
+\item{country_name:}{country name(s)}
 
-\item{state_name:}{state name}
+\item{state_name:}{state name(s)}
 
 \item{admin_level:}{an integer representing an administrative level (World Bank regions = -1, countries = 0, states/provinces = 1, metropolitan areas = 1.5, counties = 2)}
 
-\item{date:}{date (YYYY-MM-DD)}
+\item{date:}{date(s) (YYYY-MM-DD)}
 
 \item{mostRecent:}{T/F}
 
-\item{fields:}{API fields to include in results}
+\item{fields:}{vector of API fields to include in results}
 
 \item{sort:}{parameter to sort results by}
 
@@ -45,7 +45,7 @@ getEpiData(
 dataframe
 }
 \description{
-Get epidemiological data from outbreak.info according to user specifications
+Retrieve up-to-date epidemiological data from outbreak.info according to user specifications
 }
 \examples{
 getEpiData(name="United States of America", date=2020-07-01, mostRecent=T)

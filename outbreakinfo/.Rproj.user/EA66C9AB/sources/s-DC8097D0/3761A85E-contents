@@ -22,6 +22,7 @@
 #' @export
 #' @import jsonlite
 #'
+
 getEpiData <- function(name=NULL, location_id=NULL, wb_region=NULL, country_name=NULL, state_name=NULL, admin_level=NULL, date=NULL, mostRecent=NULL, fields=NULL, sort=NULL, size=NULL){
   q <- c()
   if(!is.null(name)){
@@ -50,6 +51,8 @@ getEpiData <- function(name=NULL, location_id=NULL, wb_region=NULL, country_name
   if(!is.null(mostRecent)){
     q <- c(q, paste0("%20AND%20", "mostRecent:", paste(mostRecent)))
   }
+  q <- paste(q, sep="", collapse = "")
+  q <- gsub("&", "%26", q)
   if(!is.null(fields)){
     q <- c(q, paste0("&fields=", paste(fields, collapse=",")))
   }
@@ -62,7 +65,6 @@ getEpiData <- function(name=NULL, location_id=NULL, wb_region=NULL, country_name
   q <- paste(q, sep="", collapse = "")
   q <- paste0(q, "&fetch_all=true")
   q <- gsub(" ", "+", q)
-  q <- gsub("&", "%26", q)
 
   scroll.id <- NULL
   results <- list()

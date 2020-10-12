@@ -7,13 +7,13 @@
     "folds" : "",
     "hash" : "0",
     "id" : "3761A85E",
-    "lastKnownWriteTime" : 1602538477,
-    "last_content_update" : 1602538477524,
+    "lastKnownWriteTime" : 1602542862,
+    "last_content_update" : 1602542862154,
     "path" : "~/packages/outbreakinfo/R/getEpiData.R",
     "project_path" : "R/getEpiData.R",
     "properties" : {
-        "cursorPosition" : "79,1",
-        "scrollLine" : "60",
+        "cursorPosition" : "33,26",
+        "scrollLine" : "16",
         "tempName" : "Untitled1"
     },
     "read_only" : false,

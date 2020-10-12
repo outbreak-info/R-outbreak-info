@@ -1,25 +1,25 @@
 {
     "collab_server" : "",
     "contents" : "",
-    "created" : 1597078110476.000,
+    "created" : 1602537242566.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
     "hash" : "0",
-    "id" : "2DEF6C0B",
-    "lastKnownWriteTime" : 1597078123,
-    "last_content_update" : 1597078123478,
-    "path" : "~/packages/outbreakinfo/R/searchLocations.R",
-    "project_path" : "R/searchLocations.R",
+    "id" : "10DE52ED",
+    "lastKnownWriteTime" : 1602537246,
+    "last_content_update" : 1602537246873,
+    "path" : "~/packages/outbreakinfo/R/getAdmn2ByCountry.R",
+    "project_path" : "R/getAdmn2ByCountry.R",
     "properties" : {
-        "cursorPosition" : "6,2",
+        "cursorPosition" : "17,0",
         "scrollLine" : "0",
         "tempName" : "Untitled1"
     },
     "read_only" : false,
     "read_only_alternatives" : [
     ],
-    "relative_order" : 5,
+    "relative_order" : 7,
     "source_on_save" : false,
     "source_window" : "",
     "type" : "r_source"

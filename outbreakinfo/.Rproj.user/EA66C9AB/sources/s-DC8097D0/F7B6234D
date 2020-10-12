@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1602537272111.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "F7B6234D",
+    "lastKnownWriteTime" : 1602537275,
+    "last_content_update" : 1602537275614,
+    "path" : "~/packages/outbreakinfo/R/getMetroByCountry.R",
+    "project_path" : "R/getMetroByCountry.R",
+    "properties" : {
+        "cursorPosition" : "15,1",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 9,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

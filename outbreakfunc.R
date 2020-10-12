@@ -224,6 +224,7 @@ getEpiData <- function(name=NULL, location_id=NULL, wb_region=NULL, country_name
   q <- paste(q, sep="", collapse = "")
   q <- paste0(q, "&fetch_all=true")
   q <- gsub(" ", "+", q)
+  q <- gsub("&", "%26", q)
 
   scroll.id <- NULL
   results <- list()

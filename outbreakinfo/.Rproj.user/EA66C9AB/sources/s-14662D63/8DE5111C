@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1602998731780.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "8DE5111C",
+    "lastKnownWriteTime" : 1602998737,
+    "last_content_update" : 1602998737749,
+    "path" : "~/packages/outbreakinfo/R/searchLocations.R",
+    "project_path" : "R/searchLocations.R",
+    "properties" : {
+        "cursorPosition" : "108,0",
+        "scrollLine" : "0",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

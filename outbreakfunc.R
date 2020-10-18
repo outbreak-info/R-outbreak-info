@@ -95,6 +95,10 @@ getISO3 <- function(locations_to_search){
 }
 
 searchLocations <- function(locations_to_search, admin_level){
+  if (missing(admin_level)){
+    print("Administrative level not specified")
+    return(NULL)
+  }
   locs_of_interest=c()
   locs_not_found=c()
   for (i in locations_to_search){
@@ -294,5 +298,4 @@ printAPIFields <- function(){
                 check.names = F)
   return(df)
 }
-
 

@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1602998399802.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1886184261",
+    "id" : "C36BD048",
+    "lastKnownWriteTime" : 1602998406,
+    "last_content_update" : 1602998406054,
+    "path" : "~/packages/outbreakinfo/R/plotCovid.R",
+    "project_path" : "R/plotCovid.R",
+    "properties" : {
+        "cursorPosition" : "26,1",
+        "scrollLine" : "6",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -243,6 +243,7 @@ getEpiData <- function(name=NULL, location_id=NULL, wb_region=NULL, country_name
     success <- resp$success
   }
   hits <- rbind_pages(results)
+  hits$date=as.Date(hits$date, "%Y-%m-%d")
   return(hits)
 }
 

@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1602999040428.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "1C9DEB4D",
+    "lastKnownWriteTime" : 1602999047,
+    "last_content_update" : 1602999047135,
+    "path" : "~/packages/outbreakinfo/R/getEpiData.R",
+    "project_path" : "R/getEpiData.R",
+    "properties" : {
+        "cursorPosition" : "83,0",
+        "scrollLine" : "62",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

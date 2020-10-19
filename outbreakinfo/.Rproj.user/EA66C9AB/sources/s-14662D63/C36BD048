@@ -5,15 +5,15 @@
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
-    "hash" : "1886184261",
+    "hash" : "0",
     "id" : "C36BD048",
     "lastKnownWriteTime" : 1602998406,
     "last_content_update" : 1602998406054,
     "path" : "~/packages/outbreakinfo/R/plotCovid.R",
     "project_path" : "R/plotCovid.R",
     "properties" : {
-        "cursorPosition" : "26,1",
-        "scrollLine" : "6",
+        "cursorPosition" : "11,10",
+        "scrollLine" : "0",
         "tempName" : "Untitled1"
     },
     "read_only" : false,

@@ -250,6 +250,10 @@ getEpiData <- function(name=NULL, location_id=NULL, wb_region=NULL, country_name
 
 getAdmn2ByState <- function(states){
   locations <- searchLocations(states, admin_level = 1)
+  if (is.null(locations)){
+    print("No states selected")
+    return(NULL)
+  }
   data <- getEpiData(country_name = locations, admin_level = 2)
   return(data)
 }
@@ -261,6 +265,10 @@ getAdmn2ByCountry <- function(states){
 
 getAdmn1ByCountry <- function(countries){
   locations <- searchLocations(countries, admin_level = 0)
+  if (is.null(locations)){
+    print("No countries selected")
+    return(NULL)
+  }
   data <- getEpiData(country_name = locations, admin_level = 1)
   return(data)
 }
@@ -277,9 +285,14 @@ getMetroByCountry <- function(){
 
 getCountryByRegion <- function(wb_regions){
   locations <- searchLocations(wb_regions, admin_level = -1)
+  if (is.null(locations)){
+    print("No regions selected")
+    return(NULL)
+  }
   data <- getEpiData(wb_region = location, admin_level = 0)
   return(data)
 }
+
 
 plotCovid <- function(locations, key){
   location_codes <- getISO3(locations)

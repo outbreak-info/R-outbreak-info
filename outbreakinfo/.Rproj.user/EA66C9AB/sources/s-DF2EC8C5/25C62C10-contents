@@ -1,10 +1,10 @@
 Package: outbreakinfo
 Type: Package
 Title: Outbreak.info R Client
-Version: 0.1.0
+Version: 0.2.0
 Author: Manar Alkuzweny
 Maintainer: Manar Alkuzweny <manaralkuzweny@gmail.com>
-Description: This package gets up-to-date COVID-19 data from outbreak.info.
+Description: This package retrieves up-to-date COVID-19 data from outbreak.info.
 License: GNU GPL v3
 Encoding: UTF-8
 LazyData: FALSE

@@ -3,7 +3,7 @@
 #' @description Plot a metric of interest using up-to-date COVID-19 data from outbreak.info for location(s) of interest (World Bank region, country, state/province, metropolitan area, county).
 #'
 #'@param locations: a vector or list of location names
-#'@param key: metric to plot
+#'@param variable: metric to plot
 #'
 #' @return ggplot2 object
 #'
@@ -15,13 +15,13 @@
 #' @import ggplot2
 
 
-plotCovid <- function(locations, key){
+plotCovid <- function(locations, variable){
   location_codes <- getISO3(locations)
   df <- getEpiData(location_id=location_codes)
   if (!(key %in% colnames(df))){
     print(paste(key, "is not a valid API field"))
     return(NULL)
   }
-  p=ggplot(df, aes(date, get(key), color=name, group=name)) + geom_line() + scale_x_date(date_breaks = "1 week") + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + labs(y=key)
+  p=ggplot(df, aes(date, get(variable), color=name, group=name)) + geom_line() + scale_x_date(date_breaks = "1 month") + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + labs(y=key)
   return(p)
 }

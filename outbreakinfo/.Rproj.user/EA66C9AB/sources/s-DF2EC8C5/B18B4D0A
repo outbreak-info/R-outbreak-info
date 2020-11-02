@@ -7,12 +7,12 @@
     "folds" : "",
     "hash" : "0",
     "id" : "B18B4D0A",
-    "lastKnownWriteTime" : 1602537422,
-    "last_content_update" : 1602537422721,
+    "lastKnownWriteTime" : 1604360507,
+    "last_content_update" : 1604360507789,
     "path" : "~/packages/outbreakinfo/R/plotCovid.R",
     "project_path" : "R/plotCovid.R",
     "properties" : {
-        "cursorPosition" : "10,47",
+        "cursorPosition" : "8,2",
         "scrollLine" : "0",
         "tempName" : "Untitled1"
     },

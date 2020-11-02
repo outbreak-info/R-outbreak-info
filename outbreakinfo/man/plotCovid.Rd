@@ -4,12 +4,12 @@
 \alias{plotCovid}
 \title{Plot COVID-19 data of interest}
 \usage{
-plotCovid(locations, key)
+plotCovid(locations, variable)
 }
 \arguments{
 \item{locations:}{a vector or list of location names}
 
-\item{key:}{metric to plot}
+\item{variable:}{metric to plot}
 }
 \value{
 ggplot2 object

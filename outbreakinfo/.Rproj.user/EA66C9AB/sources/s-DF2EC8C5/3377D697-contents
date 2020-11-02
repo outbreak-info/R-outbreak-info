@@ -13,7 +13,11 @@
 #' @import jsonlite
 
 getAdmn2ByState <- function(states){
-  locations <- searchLocations(states, admin_level=1)
+  locations <- searchLocations(states, admin_level = 1)
+  if (is.null(locations)){
+    print("No states selected")
+    return(NULL)
+  }
   data <- getEpiData(country_name = locations, admin_level = 2)
   return(data)
 }

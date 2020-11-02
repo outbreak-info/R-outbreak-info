@@ -6,6 +6,7 @@
 /Users/manar/packages/outbreakinfo/R/getAdmn1ByCountry.R="769F5676"
 /Users/manar/packages/outbreakinfo/R/getAdmn2ByCountry.R="16E2019A"
 /Users/manar/packages/outbreakinfo/R/getAdmn2ByState.R="73DAF87F"
+/Users/manar/packages/outbreakinfo/R/getByAdmnLevel.R="5E1A4319"
 /Users/manar/packages/outbreakinfo/R/getCountryByRegion.R="758DE999"
 /Users/manar/packages/outbreakinfo/R/getEpiData.R="1C8AE973"
 /Users/manar/packages/outbreakinfo/R/getISO3.R="BC9BE258"

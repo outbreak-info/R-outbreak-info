@@ -16,6 +16,7 @@
 ~%2Fpackages%2Foutbreakinfo%2FR%2FgetAdmn1ByCountry.R="A7FDBE4"
 ~%2Fpackages%2Foutbreakinfo%2FR%2FgetAdmn2ByCountry.R="CFAA7A3"
 ~%2Fpackages%2Foutbreakinfo%2FR%2FgetAdmn2ByState.R="390AC7D5"
+~%2Fpackages%2Foutbreakinfo%2FR%2FgetByAdmnLevel.R="5DEEE4B3"
 ~%2Fpackages%2Foutbreakinfo%2FR%2FgetCountryByRegion.R="158F46CD"
 ~%2Fpackages%2Foutbreakinfo%2FR%2FgetEpiData.R="22BE9DC7"
 ~%2Fpackages%2Foutbreakinfo%2FR%2FgetExactNames.R="C2F351EE"

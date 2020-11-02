@@ -302,6 +302,11 @@ getCountryByRegion <- function(wb_regions){
   return(data)
 }
 
+getByAdmnLevel <- function(admin_level){
+  data <- getEpiData(admin_level = admin_level)
+  return(data)
+}
+
 plotCovid <- function(locations, key){
   location_codes <- getISO3(locations)
   df <- getEpiData(location_id=location_codes)

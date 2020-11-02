@@ -1,25 +1,25 @@
 {
     "collab_server" : "",
     "contents" : "",
-    "created" : 1602998731780.000,
+    "created" : 1602537418445.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
     "hash" : "0",
-    "id" : "8DE5111C",
-    "lastKnownWriteTime" : 1602998737,
-    "last_content_update" : 1602998737749,
-    "path" : "~/packages/outbreakinfo/R/searchLocations.R",
-    "project_path" : "R/searchLocations.R",
+    "id" : "B18B4D0A",
+    "lastKnownWriteTime" : 1602537422,
+    "last_content_update" : 1602537422721,
+    "path" : "~/packages/outbreakinfo/R/plotCovid.R",
+    "project_path" : "R/plotCovid.R",
     "properties" : {
-        "cursorPosition" : "108,0",
+        "cursorPosition" : "10,47",
         "scrollLine" : "0",
         "tempName" : "Untitled1"
     },
     "read_only" : false,
     "read_only_alternatives" : [
     ],
-    "relative_order" : 3,
+    "relative_order" : 12,
     "source_on_save" : false,
     "source_window" : "",
     "type" : "r_source"

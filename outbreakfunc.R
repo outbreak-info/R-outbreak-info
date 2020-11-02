@@ -55,7 +55,7 @@ getISO3 <- function(locations_to_search){
       results <- list()
       success <- NULL
       while(is.null(success)){
-        dataurl <- paste0(api.url, "query?q=",location.ids,"%20AND%20mostRecent:true&fields=name,location_id,state_name&fetch_all=true")
+        dataurl <- paste0(api.url, "query?q=",location.ids,"%20AND%20mostRecent:true&fields=name,location_id,state_name,admin_level&fetch_all=true")
         dataurl <- gsub(" ", "+", dataurl)
         dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
         resp <- fromJSON(dataurl, flatten=TRUE)
@@ -71,12 +71,18 @@ getISO3 <- function(locations_to_search){
         hits <- rbind_pages(results)
         df=(hits)
         df$name=apply(cbind(df$name, df$state_name), 1, function(x) paste(x[!is.na(x)], collapse = ", "))
+        df$admin_level[df$admin_level == "-1"] <- "World Bank Region"
+        df$admin_level[df$admin_level == "0"] <- "country"
+        df$admin_level[df$admin_level == "1"] <- "state/province"
+        df$admin_level[df$admin_level == "1.5"] <- "metropolitan area"
+        df$admin_level[df$admin_level == "2"] <- "county"
+        df$fullname <- paste0(df$name, " (", df$admin_level, ")")
       }
-      for (i in df$name){
+      for (i in df$fullname){
         print(i)
         loc_sel <- readline("Is this a location of interest? (Y/N): ")
         if ((loc_sel == "Y")|(loc_sel == "y")){
-          locs_of_interest = c(locs_of_interest, df$location_id[df$name==i])
+          locs_of_interest = c(locs_of_interest, df$location_id[df$fullname==i])
           break
         }
         if ((loc_sel != "Y")&(loc_sel != "y")&(loc_sel != "N")&(loc_sel != "n")){
@@ -84,7 +90,7 @@ getISO3 <- function(locations_to_search){
           print(i)
           loc_sel <- readline("Is this a location of interest? (Y/N): ")
           if ((loc_sel == "Y")|(loc_sel == "y")){
-            locs_of_interest = c(locs_of_interest, df$location_id[df$name==i])
+            locs_of_interest = c(locs_of_interest, df$location_id[df$fullname==i])
             break
           }
         }
@@ -230,7 +236,7 @@ getEpiData <- function(name=NULL, location_id=NULL, wb_region=NULL, country_name
   q <- paste(q, sep="", collapse = "")
   q <- paste0(q, "&fetch_all=true")
   q <- gsub(" ", "+", q)
-
+  
   scroll.id <- NULL
   results <- list()
   success <- NULL
@@ -245,7 +251,9 @@ getEpiData <- function(name=NULL, location_id=NULL, wb_region=NULL, country_name
     success <- resp$success
   }
   hits <- rbind_pages(results)
-  hits$date=as.Date(hits$date, "%Y-%m-%d")
+  if ("date" %in% colnames(hits)){
+    hits$date=as.Date(hits$date, "%Y-%m-%d")
+  }
   return(hits)
 }
 
@@ -294,7 +302,6 @@ getCountryByRegion <- function(wb_regions){
   return(data)
 }
 
-
 plotCovid <- function(locations, key){
   location_codes <- getISO3(locations)
   df <- getEpiData(location_id=location_codes)
@@ -313,4 +320,8 @@ printAPIFields <- function(){
                 check.names = F)
   return(df)
 }
+
+
+
+
 

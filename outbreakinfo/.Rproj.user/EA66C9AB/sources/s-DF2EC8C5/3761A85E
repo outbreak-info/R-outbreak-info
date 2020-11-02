@@ -1,25 +1,25 @@
 {
     "collab_server" : "",
     "contents" : "",
-    "created" : 1602998399802.000,
+    "created" : 1602536477192.000,
     "dirty" : false,
     "encoding" : "UTF-8",
     "folds" : "",
     "hash" : "0",
-    "id" : "C36BD048",
-    "lastKnownWriteTime" : 1602998406,
-    "last_content_update" : 1602998406054,
-    "path" : "~/packages/outbreakinfo/R/plotCovid.R",
-    "project_path" : "R/plotCovid.R",
+    "id" : "3761A85E",
+    "lastKnownWriteTime" : 1603747714,
+    "last_content_update" : 1603747714,
+    "path" : "~/packages/outbreakinfo/R/getEpiData.R",
+    "project_path" : "R/getEpiData.R",
     "properties" : {
-        "cursorPosition" : "11,10",
+        "cursorPosition" : "12,39",
         "scrollLine" : "0",
         "tempName" : "Untitled1"
     },
     "read_only" : false,
     "read_only_alternatives" : [
     ],
-    "relative_order" : 2,
+    "relative_order" : 5,
     "source_on_save" : false,
     "source_window" : "",
     "type" : "r_source"

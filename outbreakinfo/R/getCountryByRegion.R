@@ -18,6 +18,6 @@ getCountryByRegion <- function(wb_regions){
     print("No regions selected")
     return(NULL)
   }
-  data <- getEpiData(wb_region = location, admin_level = 0)
+  data <- getEpiData(wb_region = locations, admin_level = 0)
   return(data)
 }

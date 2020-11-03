@@ -2,7 +2,7 @@ library(jsonlite)
 library(ggplot2)
 library(readr)
 
-api.url <- "https://api.outbreak.info/v1/"
+api.url <- "https://api.outbreak.info/covid19/"
 
 getISO3 <- function(locations_to_search){
   locs_of_interest=c()
@@ -220,7 +220,7 @@ getEpiData <- function(name=NULL, location_id=NULL, wb_region=NULL, country_name
   q <- paste(q, sep="", collapse = "")
   q <- substr(q, 1, nchar(q)-9)
   if(!is.null(mostRecent)){
-    q <- c(q, paste0("%20AND%20", "mostRecent:", paste(mostRecent)))
+    q <- c(q, paste0("%20AND%20", "mostRecent:", tolower(mostRecent)))
   }
   q <- paste(q, sep="", collapse = "")
   q <- gsub("&", "%26", q)
@@ -250,7 +250,11 @@ getEpiData <- function(name=NULL, location_id=NULL, wb_region=NULL, country_name
     cat("\r", length(results), "records retrieved")
     success <- resp$success
   }
-  hits <- rbind_pages(results)
+  if(length(results) > 1){
+    hits <- rbind_pages(results)
+  }else{
+    hits <- data.frame(results)
+  }
   if ("date" %in% colnames(hits)){
     hits$date=as.Date(hits$date, "%Y-%m-%d")
   }
@@ -298,7 +302,7 @@ getCountryByRegion <- function(wb_regions){
     print("No regions selected")
     return(NULL)
   }
-  data <- getEpiData(wb_region = location, admin_level = 0)
+  data <- getEpiData(wb_region = locations, admin_level = 0)
   return(data)
 }
 
@@ -326,7 +330,6 @@ printAPIFields <- function(){
   return(df)
 }
 
-
-
+india_df$geometry.coordinates
 
 

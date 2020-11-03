@@ -48,6 +48,6 @@ dataframe
 Retrieve up-to-date epidemiological data from outbreak.info according to user specifications
 }
 \examples{
-getEpiData(name="United States of America", date=2020-07-01, mostRecent=T)
+getEpiData(name="United States of America", date="2020-07-01")
 
 }

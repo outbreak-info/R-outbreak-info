@@ -18,10 +18,11 @@
 plotCovid <- function(locations, variable){
   location_codes <- getISO3(locations)
   df <- getEpiData(location_id=location_codes)
-  if (!(key %in% colnames(df))){
-    print(paste(key, "is not a valid API field"))
+  if (!(variable %in% colnames(df))){
+    print(paste(variable, "is not a valid API field"))
     return(NULL)
   }
-  p=ggplot(df, aes(date, get(variable), color=name, group=name)) + geom_line() + scale_x_date(date_breaks = "1 month") + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + labs(y=key)
+  p=ggplot(df, aes(date, get(variable), color=name, group=name)) + geom_line() + scale_x_date(date_breaks = "1 month") + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + labs(y=variable)
   return(p)
 }
+

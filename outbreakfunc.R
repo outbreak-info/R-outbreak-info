@@ -314,13 +314,14 @@ getByAdmnLevel <- function(admin_level){
 plotCovid <- function(locations, variable){
   location_codes <- getISO3(locations)
   df <- getEpiData(location_id=location_codes)
-  if (!(key %in% colnames(df))){
-    print(paste(key, "is not a valid API field"))
+  if (!(variable %in% colnames(df))){
+    print(paste(variable, "is not a valid API field"))
     return(NULL)
   }
-  p=ggplot(df, aes(date, get(variable), color=name, group=name)) + geom_line() + scale_x_date(date_breaks = "1 month") + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + labs(y=key)
+  p=ggplot(df, aes(date, get(variable), color=name, group=name)) + geom_line() + scale_x_date(date_breaks = "1 month") + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + labs(y=variable)
   return(p)
 }
+
 
 printAPIFields <- function(){
   df=data.frame("API Field"=c("admin_level", "cbsa", "confirmed", "confirmed_doublingRate", "confirmed_firstDate", "confirmed_newToday", "confirmed_numIncrease", "confirmed_pctIncrease", "confirmed_per_100k", "confirmed_rolling", "confirmed_rolling_14days_ago", "confirmed_rolling_14days_ago_diff", "confirmed_rolling_per_100k", "country_gdp_per_capita", "country_iso3", "country_name", "country_population", "date", "daysSince100Cases", "daysSince10Deaths", "daysSince50Deaths", "dead", "dead_doublingRate", "dead_firstDate", "dead_newToday", "dead_numIncrease", "dead_pctIncrease", "dead_per_100k", "dead_rolling", "dead_rolling_14days_ago", "dead_rolling_14days_ago_diff", "dead_rolling_per_100k", "first_dead-first_confirmed", "gdp_last_updated", "gdp_per_capita", "iso3", "lat", "location_id", "long", "mostRecent", "name", "num_subnational", "population", "recovered", "recovered_doublingRate", "recovered_firstDate", "recovered_newToday", "recovered_numIncrease", "recovered_pctIncrease", "recovered_per_100k", "recovered_rolling", "recovered_rolling_14days_ago", "recovered_rolling_14days_ago_diff", "recovered_rolling_per_100k", "state_iso3", "state_name", "sub_parts", "testing_*", "wb_region"),

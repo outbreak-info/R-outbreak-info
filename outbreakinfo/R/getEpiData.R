@@ -17,7 +17,7 @@
 #' @return dataframe
 #'
 #' @examples
-#' getEpiData(name="United States of America", date=2020-07-01, mostRecent=T)
+#' getEpiData(name="United States of America", date="2020-07-01")
 #'
 #' @export
 #' @import jsonlite
@@ -80,7 +80,11 @@ getEpiData <- function(name=NULL, location_id=NULL, wb_region=NULL, country_name
         cat("\r", length(results), "records retrieved")
         success <- resp$success
     }
-    hits <- rbind_pages(results)
+    if(length(results) > 1){
+        hits <- rbind_pages(results)
+    } else {
+        hits <- data.frame(results)
+    }
     hits$date=as.Date(hits$date, "%Y-%m-%d")
     return(hits)
 }

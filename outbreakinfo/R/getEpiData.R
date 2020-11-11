@@ -41,7 +41,7 @@ getEpiData <- function(name=NULL, location_id=NULL, wb_region=NULL, country_name
     q <- c(q, paste0("(state_name:%22", paste(state_name, collapse="%22%20OR%20state_name:%22"), "%22)%20AND%20"))
   }
   if(!is.null(admin_level)){
-    q <- c(q, paste0("(admin_level:", paste(admin_level, collapse="%20OR%20admin_level:"), ")%20AND%20"))
+    q <- c(q, paste0("(admin_level:%22", paste(admin_level, collapse="%22%20OR%20admin_level:%22"), "%22)%20AND%20"))
   }
   if(!is.null(date)){
     q <- c(q, paste0("(date:%22", paste(date, collapse="%22%20OR%20date:%22"), "%22)%20AND%20"))
@@ -72,7 +72,6 @@ getEpiData <- function(name=NULL, location_id=NULL, wb_region=NULL, country_name
   print("Retrieving data...")
   while(is.null(success)){
     dataurl <- paste0(api.url, "query?q=", q)
-    print(dataurl)
     dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
     resp <- fromJSON(dataurl, flatten=TRUE)
     scroll.id <- resp$'_scroll_id'
@@ -85,6 +84,8 @@ getEpiData <- function(name=NULL, location_id=NULL, wb_region=NULL, country_name
   }else{
     hits <- data.frame(results)
   }
-  hits$date=as.Date(hits$date, "%Y-%m-%d")
+  if ("date" %in% colnames(hits)){
+    hits$date=as.Date(hits$date, "%Y-%m-%d")
+  }
   return(hits)
 }

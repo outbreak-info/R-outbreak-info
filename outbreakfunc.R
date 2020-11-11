@@ -212,7 +212,7 @@ getEpiData <- function(name=NULL, location_id=NULL, wb_region=NULL, country_name
     q <- c(q, paste0("(state_name:%22", paste(state_name, collapse="%22%20OR%20state_name:%22"), "%22)%20AND%20"))
   }
   if(!is.null(admin_level)){
-    q <- c(q, paste0("(admin_level:", paste(admin_level, collapse="%20OR%20admin_level:"), ")%20AND%20"))
+    q <- c(q, paste0("(admin_level:%22", paste(admin_level, collapse="%22%20OR%20admin_level:%22"), "%22)%20AND%20"))
   }
   if(!is.null(date)){
     q <- c(q, paste0("(date:%22", paste(date, collapse="%22%20OR%20date:%22"), "%22)%20AND%20"))
@@ -260,6 +260,8 @@ getEpiData <- function(name=NULL, location_id=NULL, wb_region=NULL, country_name
   }
   return(hits)
 }
+#check data types for getEpiData parameters (make sure they're right by testing!) (#24)
+#add progress bar by using resp$total (#20)
 
 getAdmn2ByState <- function(states){
   locations <- searchLocations(states, admin_level = 1)
@@ -270,6 +272,7 @@ getAdmn2ByState <- function(states){
   data <- getEpiData(country_name = locations, admin_level = 2)
   return(data)
 }
+#use state name as a parameter in getEpiData (#16)
 
 getAdmn2ByCountry <- function(states){
   data <- getEpiData(country_name = "United States of America", admin_level = 2)

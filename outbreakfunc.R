@@ -270,14 +270,13 @@ getEpiData <- function(name=NULL, location_id=NULL, wb_region=NULL, country_name
 }
 #add progress bar by using resp$total (#20)
 
-
 getAdmn2ByState <- function(states){
   locations <- searchLocations(states, admin_level = 1)
   if (is.null(locations)){
     print("No states selected")
     return(NULL)
   }
-  data <- getEpiData(country_name = locations, admin_level = 2)
+  data <- getEpiData(state_name = locations, admin_level = 2)
   return(data)
 }
 #use state name as a parameter (#16)

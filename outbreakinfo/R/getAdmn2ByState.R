@@ -18,6 +18,6 @@ getAdmn2ByState <- function(states){
     print("No states selected")
     return(NULL)
   }
-  data <- getEpiData(country_name = locations, admin_level = 2)
+  data <- getEpiData(state_name = locations, admin_level = 2)
   return(data)
 }

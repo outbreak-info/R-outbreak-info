@@ -44,12 +44,20 @@ getEpiData <- function(name=NULL, location_id=NULL, wb_region=NULL, country_name
     q <- c(q, paste0("(admin_level:%22", paste(admin_level, collapse="%22%20OR%20admin_level:%22"), "%22)%20AND%20"))
   }
   if(!is.null(date)){
-    q <- c(q, paste0("(date:%22", paste(date, collapse="%22%20OR%20date:%22"), "%22)%20AND%20"))
+    if (!is.character(date)){
+      stop("Date must be in string format")
+    }else{
+      q <- c(q, paste0("(date:%22", paste(date, collapse="%22%20OR%20date:%22"), "%22)%20AND%20"))
+    }
   }
   q <- paste(q, sep="", collapse = "")
   q <- substr(q, 1, nchar(q)-9)
   if(!is.null(mostRecent)){
-    q <- c(q, paste0("%20AND%20", "mostRecent:", tolower(mostRecent)))
+    if (!is.logical(mostRecent)){
+      stop("mostRecent must be in Boolean format")
+    }else{
+      q <- c(q, paste0("%20AND%20", "mostRecent:", tolower(mostRecent)))
+    }
   }
   q <- paste(q, sep="", collapse = "")
   q <- gsub("&", "%26", q)

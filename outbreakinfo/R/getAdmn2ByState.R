@@ -15,8 +15,7 @@
 getAdmn2ByState <- function(states){
   locations <- searchLocations(states, admin_level = 1)
   if (is.null(locations)){
-    print("No states selected")
-    return(NULL)
+    stop("No states selected")
   }
   data <- getEpiData(state_name = locations, admin_level = 2)
   return(data)

@@ -273,13 +273,11 @@ getEpiData <- function(name=NULL, location_id=NULL, wb_region=NULL, country_name
 getAdmn2ByState <- function(states){
   locations <- searchLocations(states, admin_level = 1)
   if (is.null(locations)){
-    print("No states selected")
-    return(NULL)
+    stop("No states selected")
   }
   data <- getEpiData(state_name = locations, admin_level = 2)
   return(data)
 }
-#use state name as a parameter (#16)
 
 getAdmn2ByCountry <- function(states){
   data <- getEpiData(country_name = "United States of America", admin_level = 2)
@@ -289,8 +287,7 @@ getAdmn2ByCountry <- function(states){
 getAdmn1ByCountry <- function(countries){
   locations <- searchLocations(countries, admin_level = 0)
   if (is.null(locations)){
-    print("No countries selected")
-    return(NULL)
+    stop("No countries selected")
   }
   data <- getEpiData(country_name = locations, admin_level = 1)
   return(data)
@@ -309,8 +306,7 @@ getMetroByCountry <- function(){
 getCountryByRegion <- function(wb_regions){
   locations <- searchLocations(wb_regions, admin_level = -1)
   if (is.null(locations)){
-    print("No regions selected")
-    return(NULL)
+    stop("No regions selected")
   }
   data <- getEpiData(wb_region = locations, admin_level = 0)
   return(data)

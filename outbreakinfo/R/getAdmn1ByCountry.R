@@ -16,8 +16,7 @@
 getAdmn1ByCountry <- function(countries){
   locations <- searchLocations(countries, admin_level = 0)
   if (is.null(locations)){
-    print("No countries selected")
-    return(NULL)
+    stop("No countries selected")
   }
   data <- getEpiData(country_name = locations, admin_level = 1)
   return(data)

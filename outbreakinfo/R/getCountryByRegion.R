@@ -15,8 +15,7 @@
 getCountryByRegion <- function(wb_regions){
   locations <- searchLocations(wb_regions, admin_level = -1)
   if (is.null(locations)){
-    print("No regions selected")
-    return(NULL)
+    stop("No regions selected")
   }
   data <- getEpiData(wb_region = locations, admin_level = 0)
   return(data)

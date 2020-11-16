@@ -11,3 +11,5 @@ LazyData: FALSE
 Imports: 
     jsonlite, ggplot2, readr
 RoxygenNote: 7.1.0
+Suggests: 
+    testthat

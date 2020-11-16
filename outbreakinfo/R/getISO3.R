@@ -18,6 +18,7 @@ getISO3 <- function(locations_to_search){
   for (i in locations_to_search){
     scroll.id <- NULL
     location.ids <- paste0("(name:%22", paste(i, collapse="%22%20OR%20name:%22"), "%22)")
+    location.ids <- gsub("&", "%26", location.ids)
     results <- list()
     success <- NULL
     while(is.null(success)){
@@ -60,6 +61,7 @@ getISO3 <- function(locations_to_search){
     for (i in 1:length(locations)){
       scroll.id <- NULL
       location.ids <- paste0("(name:", paste(locations[i], collapse="%20OR%20name:"), ")")
+      location.ids <- gsub("&", "%26", location.ids)
       results <- list()
       success <- NULL
       while(is.null(success)){

@@ -10,6 +10,7 @@ getISO3 <- function(locations_to_search){
   for (i in locations_to_search){
     scroll.id <- NULL
     location.ids <- paste0("(name:%22", paste(i, collapse="%22%20OR%20name:%22"), "%22)")
+    location.ids <- gsub("&", "%26", location.ids)
     results <- list()
     success <- NULL
     while(is.null(success)){
@@ -52,6 +53,7 @@ getISO3 <- function(locations_to_search){
     for (i in 1:length(locations)){
       scroll.id <- NULL
       location.ids <- paste0("(name:", paste(locations[i], collapse="%20OR%20name:"), ")")
+      location.ids <- gsub("&", "%26", location.ids)
       results <- list()
       success <- NULL
       while(is.null(success)){
@@ -110,6 +112,7 @@ searchLocations <- function(locations_to_search, admin_level){
   for (i in locations_to_search){
     scroll.id <- NULL
     location.ids <- paste0("(name:%22", paste(i, collapse="%22%20OR%20name:%22"), "%22)")
+    location.ids <- gsub("&", "%26", location.ids)
     results <- list()
     success <- NULL
     while(is.null(success)){
@@ -152,6 +155,7 @@ searchLocations <- function(locations_to_search, admin_level){
     for (i in 1:length(locations)){
       scroll.id <- NULL
       location.ids <- paste0("(name:", paste(locations[i], collapse="%20OR%20name:"), ")")
+      location.ids <- gsub("&", "%26", location.ids)
       results <- list()
       success <- NULL
       while(is.null(success)){
@@ -327,7 +331,7 @@ plotCovid <- function(locations, variable){
   p=ggplot(df, aes(date, get(variable), color=name, group=name)) + geom_line() + scale_x_date(date_breaks = "1 month") + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + labs(y=variable)
   return(p)
 }
-
+#update error message using stop()
 
 printAPIFields <- function(){
   df=data.frame("API Field"=c("admin_level", "cbsa", "confirmed", "confirmed_doublingRate", "confirmed_firstDate", "confirmed_newToday", "confirmed_numIncrease", "confirmed_pctIncrease", "confirmed_per_100k", "confirmed_rolling", "confirmed_rolling_14days_ago", "confirmed_rolling_14days_ago_diff", "confirmed_rolling_per_100k", "country_gdp_per_capita", "country_iso3", "country_name", "country_population", "date", "daysSince100Cases", "daysSince10Deaths", "daysSince50Deaths", "dead", "dead_doublingRate", "dead_firstDate", "dead_newToday", "dead_numIncrease", "dead_pctIncrease", "dead_per_100k", "dead_rolling", "dead_rolling_14days_ago", "dead_rolling_14days_ago_diff", "dead_rolling_per_100k", "first_dead-first_confirmed", "gdp_last_updated", "gdp_per_capita", "iso3", "lat", "location_id", "long", "mostRecent", "name", "num_subnational", "population", "recovered", "recovered_doublingRate", "recovered_firstDate", "recovered_newToday", "recovered_numIncrease", "recovered_pctIncrease", "recovered_per_100k", "recovered_rolling", "recovered_rolling_14days_ago", "recovered_rolling_14days_ago_diff", "recovered_rolling_per_100k", "state_iso3", "state_name", "sub_parts", "testing_*", "wb_region"),
@@ -336,6 +340,7 @@ printAPIFields <- function(){
                 check.names = F)
   return(df)
 }
+
 
 
 

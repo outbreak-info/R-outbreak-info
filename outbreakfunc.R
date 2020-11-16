@@ -321,6 +321,9 @@ getByAdmnLevel <- function(admin_level){
 }
 
 plotCovid <- function(locations, variable){
+  if (missing(variable)){
+    stop("Variable to plot not specified")
+  }
   location_codes <- getISO3(locations)
   df <- getEpiData(location_id=location_codes)
   if (!(variable %in% colnames(df))){
@@ -340,6 +343,6 @@ printAPIFields <- function(){
   return(df)
 }
 
-
-
+p <- plotCovid("San Diego County")
+class(p)
 

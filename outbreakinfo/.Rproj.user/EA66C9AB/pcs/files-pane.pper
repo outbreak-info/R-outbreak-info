@@ -1,5 +1,5 @@
 {
-    "path" : "~/packages/outbreakinfo/R",
+    "path" : "~/packages/outbreakinfo/tests/testthat",
     "sortOrder" : [
         {
             "ascending" : true,

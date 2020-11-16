@@ -31,4 +31,5 @@
 ~%2Fpackages%2Foutbreakinfo%2Fman%2FgetExactNames.Rd="833686E8"
 ~%2Fpackages%2Foutbreakinfo%2Fman%2FgetISO3.Rd="A9FFA304"
 ~%2Fpackages%2Foutbreakinfo%2Ftests%2Ftestthat%2Ftest-getISO3.R="C97EC76A"
+~%2Fpackages%2Foutbreakinfo%2Ftests%2Ftestthat%2Ftest-searchLocations.R="75CC63E"
 ~%2Fpackages%2Foutbreakinfo%2Ftests%2Ftestthat.R="CFCCE560"

@@ -1,9 +1,0 @@
-{
-    "path" : "~/packages/outbreakinfo/tests/testthat",
-    "sortOrder" : [
-        {
-            "ascending" : true,
-            "columnIndex" : 2
-        }
-    ]
-}

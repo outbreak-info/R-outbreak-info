@@ -273,6 +273,12 @@ getEpiData <- function(name=NULL, location_id=NULL, wb_region=NULL, country_name
 }
 #add progress bar by using resp$total (#20)
 
+getLocationData <- function(location_names, ...){
+  location_codes <- getISO3(location_names)
+  data <- getEpiData(location_id=location_codes, ...)
+  return(data)
+}
+
 getAdmn2ByState <- function(states){
   locations <- searchLocations(states, admin_level = 1)
   if (is.null(locations)){
@@ -343,6 +349,10 @@ printAPIFields <- function(){
   return(df)
 }
 
-p <- plotCovid("San Diego County")
-class(p)
+
+
+
+
+
+
 

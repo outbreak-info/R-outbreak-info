@@ -279,50 +279,50 @@ getLocationData <- function(location_names, ...){
   return(data)
 }
 
-getAdmn2ByState <- function(states){
+getAdmn2ByState <- function(states, ...){
   locations <- searchLocations(states, admin_level = 1)
   if (is.null(locations)){
     stop("No states selected")
   }
-  data <- getEpiData(state_name = locations, admin_level = 2)
+  data <- getEpiData(state_name = locations, admin_level = 2, ...)
   return(data)
 }
 
-getAdmn2ByCountry <- function(){
-  data <- getEpiData(country_name = "United States of America", admin_level = 2)
+getAdmn2ByCountry <- function(...){
+  data <- getEpiData(country_name = "United States of America", admin_level = 2, ...)
   return(data)
 }
 
-getAdmn1ByCountry <- function(countries){
+getAdmn1ByCountry <- function(countries, ...){
   locations <- searchLocations(countries, admin_level = 0)
   if (is.null(locations)){
     stop("No countries selected")
   }
-  data <- getEpiData(country_name = locations, admin_level = 1)
+  data <- getEpiData(country_name = locations, admin_level = 1, ...)
   return(data)
 }
 
-getAdmn0 <- function(){
-  data <- getEpiData(admin_level = 0)
+getAdmn0 <- function(...){
+  data <- getEpiData(admin_level = 0, ...)
   return(data)
 }
 
-getMetroByCountry <- function(){
-  data <- getEpiData(country_name = "United States of America", admin_level = 1.5)
+getMetroByCountry <- function(...){
+  data <- getEpiData(country_name = "United States of America", admin_level = 1.5, ...)
   return(data)
 }
 
-getCountryByRegion <- function(wb_regions){
+getCountryByRegion <- function(wb_regions, ...){
   locations <- searchLocations(wb_regions, admin_level = -1)
   if (is.null(locations)){
     stop("No regions selected")
   }
-  data <- getEpiData(wb_region = locations, admin_level = 0)
+  data <- getEpiData(wb_region = locations, admin_level = 0, ...)
   return(data)
 }
 
-getByAdmnLevel <- function(admin_level){
-  data <- getEpiData(admin_level = admin_level)
+getByAdmnLevel <- function(admin_level, ...){
+  data <- getEpiData(admin_level = admin_level, ...)
   return(data)
 }
 

@@ -4,7 +4,7 @@
 \alias{getByAdmnLevel}
 \title{Retrieve COVID-19 data for all locations at an administrative level.}
 \usage{
-getByAdmnLevel(admin_level)
+getByAdmnLevel(admin_level, ...)
 }
 \arguments{
 \item{admin_level:}{an integer representing an administrative level (World Bank regions = -1, countries = 0, states/provinces = 1, metropolitan areas = 1.5, counties = 2)}

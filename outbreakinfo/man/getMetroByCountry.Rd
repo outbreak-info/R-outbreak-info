@@ -4,7 +4,7 @@
 \alias{getMetroByCountry}
 \title{Retrieve COVID-19 data for all metropolitan areas in the US.}
 \usage{
-getMetroByCountry()
+getMetroByCountry(...)
 }
 \value{
 dataframe

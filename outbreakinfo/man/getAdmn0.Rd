@@ -4,7 +4,7 @@
 \alias{getAdmn0}
 \title{Retrieve COVID-19 data for all countries}
 \usage{
-getAdmn0()
+getAdmn0(...)
 }
 \value{
 dataframe

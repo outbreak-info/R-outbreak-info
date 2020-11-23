@@ -12,7 +12,7 @@
 #' @export
 #' @import jsonlite
 
-getByAdmnLevel <- function(admin_level){
-  data <- getEpiData(admin_level = admin_level)
+getByAdmnLevel <- function(admin_level, ...){
+  data <- getEpiData(admin_level = admin_level, ...)
   return(data)
 }

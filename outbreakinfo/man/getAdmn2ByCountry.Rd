@@ -4,7 +4,7 @@
 \alias{getAdmn2ByCountry}
 \title{Retrieve COVID-19 data for all counties in the US.}
 \usage{
-getAdmn2ByCountry()
+getAdmn2ByCountry(...)
 }
 \value{
 dataframe

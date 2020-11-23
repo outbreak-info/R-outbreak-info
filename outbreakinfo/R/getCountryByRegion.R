@@ -12,11 +12,11 @@
 #' @export
 #' @import jsonlite
 
-getCountryByRegion <- function(wb_regions){
+getCountryByRegion <- function(wb_regions, ...){
   locations <- searchLocations(wb_regions, admin_level = -1)
   if (is.null(locations)){
     stop("No regions selected")
   }
-  data <- getEpiData(wb_region = locations, admin_level = 0)
+  data <- getEpiData(wb_region = locations, admin_level = 0, ...)
   return(data)
 }

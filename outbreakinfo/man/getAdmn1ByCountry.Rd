@@ -4,7 +4,7 @@
 \alias{getAdmn1ByCountry}
 \title{Retrieve COVID-19 data for states/provinces in a country or countries}
 \usage{
-getAdmn1ByCountry(countries)
+getAdmn1ByCountry(countries, ...)
 }
 \arguments{
 \item{countries:}{vector or list of country name(s)}

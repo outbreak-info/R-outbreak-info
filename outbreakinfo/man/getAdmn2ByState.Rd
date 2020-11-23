@@ -4,7 +4,7 @@
 \alias{getAdmn2ByState}
 \title{Retrieve COVID-19 data for counties in a state(s)}
 \usage{
-getAdmn2ByState(states)
+getAdmn2ByState(states, ...)
 }
 \arguments{
 \item{states:}{vector or list of state name(s)}

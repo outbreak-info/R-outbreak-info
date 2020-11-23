@@ -10,7 +10,7 @@
 #' @export
 #' @import jsonlite
 
-getAdmn0 <- function(){
-  data <- getEpiData(admin_level = 0)
+getAdmn0 <- function(...){
+  data <- getEpiData(admin_level = 0, ...)
   return(data)
 }

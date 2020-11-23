@@ -10,7 +10,7 @@
 #' @export
 #' @import jsonlite
 
-getAdmn2ByCountry <- function(){
-  data <- getEpiData(country_name = "United States of America", admin_level = 2)
+getAdmn2ByCountry <- function(...){
+  data <- getEpiData(country_name = "United States of America", admin_level = 2, ...)
   return(data)
 }

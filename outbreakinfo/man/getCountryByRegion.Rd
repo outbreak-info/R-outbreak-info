@@ -4,7 +4,7 @@
 \alias{getCountryByRegion}
 \title{Retrieve COVID-19 data for countries in a World Bank region(s)}
 \usage{
-getCountryByRegion(wb_regions)
+getCountryByRegion(wb_regions, ...)
 }
 \arguments{
 \item{wb_regions:}{vector or list of World Bank region(s)}

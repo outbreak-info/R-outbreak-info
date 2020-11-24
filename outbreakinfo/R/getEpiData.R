@@ -74,19 +74,25 @@ getEpiData <- function(name=NULL, location_id=NULL, wb_region=NULL, country_name
   q <- paste0(q, "&fetch_all=true")
   q <- gsub(" ", "+", q)
 
+  dataurl <- paste0(api.url, "query?q=", q)
+  resp <- fromJSON(dataurl, flatten=TRUE)
+  max <- resp$total
+
   scroll.id <- NULL
   results <- list()
   success <- NULL
-  print("Retrieving data...")
+  pb <- txtProgressBar(1, max, style=3)
   while(is.null(success)){
     dataurl <- paste0(api.url, "query?q=", q)
     dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
     resp <- fromJSON(dataurl, flatten=TRUE)
     scroll.id <- resp$'_scroll_id'
     results[[length(results) + 1]] <- resp$hits
-    cat("\r", length(results), "records retrieved")
+    update <- length(results)*1000
+    setTxtProgressBar(pb, update)
     success <- resp$success
   }
+  close(pb)
   if(length(results) > 1){
     hits <- rbind_pages(results)
   }else{

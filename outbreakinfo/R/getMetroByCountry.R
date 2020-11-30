@@ -9,6 +9,7 @@
 #'
 #' @export
 #' @import jsonlite
+#' @import progress
 
 getMetroByCountry <- function(...){
   data <- getEpiData(country_name = "United States of America", admin_level = 1.5, ...)

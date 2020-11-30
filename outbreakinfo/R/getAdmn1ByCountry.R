@@ -12,6 +12,7 @@
 #'
 #' @export
 #' @import jsonlite
+#' @import progress
 
 getAdmn1ByCountry <- function(countries, ...){
   locations <- searchLocations(countries, admin_level = 0)

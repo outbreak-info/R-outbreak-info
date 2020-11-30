@@ -11,6 +11,7 @@
 #'
 #' @export
 #' @import jsonlite
+#' @import progress
 
 getCountryByRegion <- function(wb_regions, ...){
   locations <- searchLocations(wb_regions, admin_level = -1)

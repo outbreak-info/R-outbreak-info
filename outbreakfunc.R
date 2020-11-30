@@ -1,6 +1,7 @@
 library(jsonlite)
 library(ggplot2)
 library(readr)
+library(progress)
 
 api.url <- "https://api.outbreak.info/covid19/"
 
@@ -197,7 +198,7 @@ searchLocations <- function(locations_to_search, admin_level){
   return(locs_of_interest)
 }
 
-getEpiData <- function(name=NULL, location_id=NULL, wb_region=NULL, country_name=NULL, state_name=NULL, admin_level=NULL, date=NULL, mostRecent=NULL, fields=NULL, sort=NULL, size=NULL){
+getEpiData <- function(name=NULL, location_id=NULL, wb_region=NULL, country_name=NULL, state_name=NULL, admin_level=NULL, date=NULL, mostRecent=NULL, fields=NULL, sort=NULL, size=1000){
   q <- c()
   if(!is.null(name)){
     q <- c(q, paste0("(name:%22", paste(name, collapse="%22%20OR%20name:%22"), "%22)%20AND%20"))
@@ -241,9 +242,8 @@ getEpiData <- function(name=NULL, location_id=NULL, wb_region=NULL, country_name
   if(!is.null(sort)){
     q <- c(q, paste0("&sort=", paste(sort)))
   }
-  if(!is.null(size)){
-    q <- c(q, paste0("&size=", paste(size)))
-  }
+  
+  q <- c(q, paste0("&size=", paste(size)))
   q <- paste(q, sep="", collapse = "")
   q <- paste0(q, "&fetch_all=true")
   q <- gsub(" ", "+", q)
@@ -255,18 +255,24 @@ getEpiData <- function(name=NULL, location_id=NULL, wb_region=NULL, country_name
   scroll.id <- NULL
   results <- list()
   success <- NULL
-  pb <- txtProgressBar(1, max, style=3)
+  pb <- progress_bar$new(
+    format = "  downloading [:bar] :percent eta: :eta",
+    total = max, clear = FALSE, width= 60)
+  pb$tick(0)
   while(is.null(success)){
     dataurl <- paste0(api.url, "query?q=", q)
     dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
     resp <- fromJSON(dataurl, flatten=TRUE)
     scroll.id <- resp$'_scroll_id'
     results[[length(results) + 1]] <- resp$hits
-    update <- length(results)*1000
-    setTxtProgressBar(pb, update)
     success <- resp$success
+    if (is.null(success)){
+      pb$tick(size)
+    }else{
+      pb$finished <- T
+    }
   }
-  close(pb)
+  pb$terminate()
   if(length(results) > 1){
     hits <- rbind_pages(results)
   }else{
@@ -277,8 +283,6 @@ getEpiData <- function(name=NULL, location_id=NULL, wb_region=NULL, country_name
   }
   return(hits)
 }
-#add progress bar by using resp$total (#20)
-
 
 getLocationData <- function(location_names, ...){
   location_codes <- getISO3(location_names)

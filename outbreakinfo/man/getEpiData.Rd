@@ -15,7 +15,7 @@ getEpiData(
   mostRecent = NULL,
   fields = NULL,
   sort = NULL,
-  size = NULL
+  size = 1000
 )
 }
 \arguments{

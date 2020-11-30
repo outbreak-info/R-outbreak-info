@@ -9,6 +9,7 @@
 #'
 #' @export
 #' @import jsonlite
+#' @import progress
 
 getAdmn2ByCountry <- function(...){
   data <- getEpiData(country_name = "United States of America", admin_level = 2, ...)

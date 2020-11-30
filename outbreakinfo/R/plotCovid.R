@@ -13,6 +13,7 @@
 #'
 #' @export
 #' @import ggplot2
+#' @import progress
 
 
 plotCovid <- function(locations, variable){

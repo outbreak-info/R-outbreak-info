@@ -280,9 +280,11 @@ getEpiData <- function(name=NULL, location_id=NULL, wb_region=NULL, country_name
   }
   if ("date" %in% colnames(hits)){
     hits$date=as.Date(hits$date, "%Y-%m-%d")
+    hits <- hits[order(as.Date(hits$date, format = "%Y-%m-%d")),]
   }
   return(hits)
 }
+#update getEpiData in package --> included sorting for dates
 
 getLocationData <- function(location_names, ...){
   location_codes <- getISO3(location_names)
@@ -360,10 +362,124 @@ printAPIFields <- function(){
   return(df)
 }
 
+####genome functions
 
+getGenomicData <- function(query_url, location=NULL, cumulative=NULL, pangolin_lineage=NULL, mutations=NULL, ndays=NULL, frequency=NULL, subadmin=NULL){
+  genomic_url <- "https://api.outbreak.info/genomics/"
+  
+  q <- c()
+  
+  q <- c(q, paste0(query_url), "?")
+  
+  if(!is.null(location)){
+    location <- getISO3(location)
+    q <- c(q, paste0("location_id=", location, "&"))
+  }
+  if(!is.null(cumulative)){
+    if (!is.logical(cumulative)){
+      stop("cumulative must be in Boolean format")
+    }else{
+      q <- c(q, paste0("cumulative=", tolower(cumulative)))
+    }
+  }
+  if(!is.null(subadmin)){
+    if (!is.logical(subadmin)){
+      stop("subadmin must be in Boolean format")
+    }else{
+      q <- c(q, paste0("subadmin=", tolower(subadmin)))
+    }
+  }
+  if(!is.null(pangolin_lineage)){
+    q <- c(q, paste0("pangolin_lineage=", pangolin_lineage, "&"))
+  }
+  if(!is.null(mutations)){
+    mutations <- paste(mutations, collapse=",")
+    q <- c(q, paste0("mutations=", mutations, "&"))
+  }
+  if(!is.null(ndays)){
+    q <- c(q, paste0("ndays=", ndays, "&"))
+  }g
+  if(!is.null(frequency)){
+    q <- c(q, paste0("frequency=", frequency, "&"))
+  }
+  q <- c(q, paste0("size=", size, "&"))
+  q <- paste(q, sep="", collapse = "")
+  q <- sub("&$", "", q)
+  
+  dataurl <- paste0(genomic_url, q)
+  
+  scroll.id <- NULL
+  results <- list()
+  success <- NULL
+  while(is.null(success)){
+    dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
+    resp <- fromJSON(dataurl, flatten=TRUE)
+    results[[length(results) + 1]] <- resp$results
+    scroll.id <- resp$'_scroll_id'
+    success <- resp$success
+  }
+  
+  hits <- rbind_pages(results)
+  hits$date=as.Date(hits$date, "%Y-%m-%d")
+  hits <- hits[order(as.Date(hits$date, format = "%Y-%m-%d")),]
+  return(hits)
+}
 
+getSeqCounts <- function(location, cumulative, subadmin){
+  df <- getGenomicData(query_url="sequence-count", location = location, cumulative = cumulative, subadmin = subadmin)
+  return(df)
+}
 
+getGlobalPrevalence <- function(pangolin_lineage, mutations, cumulative){
+  df <- getGenomicData(query_url="global-prevalence", pangolin_lineage = pangolin_lineage, mutations = mutations, cumulative = cumulative)
+  return(df)
+}
 
+getPrevalenceByLocation <- function(pangolin_lineage, location, mutations, cumulative){
+  df <- getGenomicData(query_url="prevalence-by-location", pangolin_lineage = pangolin_lineage, location = location, mutations = mutations, cumulative = cumulative)
+  return(df)
+}
 
+plotPrevalenceByLocation <- function(pangolin_lineage, location, mutations, cumulative){
+  df <- getGenomicData(query_url="prevalence-by-location", pangolin_lineage = pangolin_lineage, location = location, mutations = mutations, cumulative = cumulative)
+  p <- ggplot(data=df, aes(x=date, y=proportion)) + geom_line()
+  p <- p + geom_ribbon(aes(ymin=proportion_ci_lower, ymax=proportion_ci_upper), alpha=0.2)
+  return(p)
+}
+
+getCumulativeBySubadmin <- function(pangolin_lineage, location, mutations, ndays){
+  df <- getGenomicData(query_url="lineage-by-sub-admin-most-recent", pangolin_lineage = pangolin_lineage, location = location, mutations = mutations, ndays = ndays)
+  return(df)
+}
+
+getCollectionDateByLocation <- function(pangolin_lineage, location, mutations){
+  df <- getGenomicData(query_url="most-recent-collection-date-by-location", pangolin_lineage = pangolin_lineage, location = location, mutations = mutations)
+  return(df)
+}
+
+getMutationDetails <- function(mutations){
+  df <- getGenomicData(query_url="mutation-details", mutations = mutations)
+  return(df)
+}
+
+getMutAcrossLineage <- function(mutations, location){
+  df <- getGenomicData(query_url="mutations-by-lineage", mutations = mutations, location = location)
+  return(df)
+}
+
+getMutAcrossLineage <- function(mutations, location){
+  df <- getGenomicData(query_url="mutations-by-lineage", mutations = mutations, location = location)
+  return(df)
+}
+
+getMutByLineage <- function(pangolin_lineage, threshold=0.8){
+  df <- getGenomicData(query_url="lineage-mutations", pangolin_lineage = pangolin_lineage, threshold = threshold)
+  return(df)
+}
+
+#dailylag
+#submissiondate
+#matchbywildcard
+#add fuzzy match for lin/mut? ex searchLin/searchMut
 
 

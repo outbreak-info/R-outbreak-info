@@ -364,7 +364,7 @@ printAPIFields <- function(){
 
 ####genome functions
 
-getGenomicData <- function(query_url, location=NULL, cumulative=NULL, pangolin_lineage=NULL, mutations=NULL, ndays=NULL, frequency=NULL, subadmin=NULL){
+getGenomicData <- function(query_url, location=NULL, cumulative=NULL, pangolin_lineage=NULL, mutations=NULL, ndays=NULL, frequency=NULL, subadmin=NULL, other_threshold=NULL, nday_threshold=NULL, other_exclude=NULL){
   genomic_url <- "https://api.outbreak.info/genomics/"
   
   q <- c()
@@ -398,10 +398,21 @@ getGenomicData <- function(query_url, location=NULL, cumulative=NULL, pangolin_l
   }
   if(!is.null(ndays)){
     q <- c(q, paste0("ndays=", ndays, "&"))
-  }g
+  }
   if(!is.null(frequency)){
     q <- c(q, paste0("frequency=", frequency, "&"))
   }
+  if(!is.null(other_threshold)){
+    q <- c(q, paste0("other_threshold=", other_threshold, "&"))
+  }
+  if(!is.null(nday_threshold)){
+    q <- c(q, paste0("nday_threshold=", nday_threshold, "&"))
+  }
+  if(!is.null(other_exclude)){
+    other_exclude <- paste(other_exclude, collapse=",")
+    q <- c(q, paste0("other_exclude=", other_exclude, "&"))
+  }
+  
   q <- c(q, paste0("size=", size, "&"))
   q <- paste(q, sep="", collapse = "")
   q <- sub("&$", "", q)
@@ -424,6 +435,8 @@ getGenomicData <- function(query_url, location=NULL, cumulative=NULL, pangolin_l
   hits <- hits[order(as.Date(hits$date, format = "%Y-%m-%d")),]
   return(hits)
 }
+#make some fields required depending on endpoint/function
+
 
 getSeqCounts <- function(location, cumulative, subadmin){
   df <- getGenomicData(query_url="sequence-count", location = location, cumulative = cumulative, subadmin = subadmin)
@@ -457,6 +470,21 @@ getCollectionDateByLocation <- function(pangolin_lineage, location, mutations){
   return(df)
 }
 
+getSubmissionDateByLocation <- function(pangolin_lineage, location, mutations){
+  df <- getGenomicData(query_url="most-recent-submission-date-by-location", pangolin_lineage = pangolin_lineage, location = location, mutations = mutations)
+  return(df)
+}
+
+getLag <- function(location){
+  df <- getGenomicData(query_url="collection-submission", location = location)
+  return(df)
+}
+
+getMutDetails <- function(mutations){
+  df <- getGenomicData(query_url="mutation-details", mutations = mutations)
+  return(df)
+}
+
 getMutationDetails <- function(mutations){
   df <- getGenomicData(query_url="mutation-details", mutations = mutations)
   return(df)
@@ -477,9 +505,9 @@ getMutByLineage <- function(pangolin_lineage, threshold=0.8){
   return(df)
 }
 
-#dailylag
-#submissiondate
-#matchbywildcard
-#add fuzzy match for lin/mut? ex searchLin/searchMut
+getAllLineagesByLoc <- function(location, other_threshold=0.05, nday_threshold=10, ndays=180, other_exclude, cumulative){
+  df <- getGenomicData(query_url="prevalence-by-location-all-lineages", location = location, other_threshold = other_threshold, nday_threshold = nday_threshold, ndays = ndays, other_exclude = other_exclude, cumulative = cumulative)
+  return(df)
+}
 
-
+#added 6, 7, 10, 15

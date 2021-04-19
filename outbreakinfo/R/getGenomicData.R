@@ -1,0 +1,80 @@
+#' @title Retrieve data from api.outbreak.info/genomics
+#'
+#' @description Retrieve up-to-date COVID-19 genomic data from outbreak.info
+#'
+#'
+#' @export
+#' @import jsonlite
+
+
+getGenomicData <- function(query_url, location=NULL, cumulative=NULL, pangolin_lineage=NULL, mutations=NULL, ndays=NULL, frequency=NULL, subadmin=NULL, other_threshold=NULL, nday_threshold=NULL, other_exclude=NULL){
+  genomic_url <- "https://api.outbreak.info/genomics/"
+
+  q <- c()
+
+  q <- c(q, paste0(query_url), "?")
+
+  if(!is.null(location)){
+    location <- getISO3(location)
+    q <- c(q, paste0("location_id=", location, "&"))
+  }
+  if(!is.null(cumulative)){
+    if (!is.logical(cumulative)){
+      stop("cumulative must be in Boolean format")
+    }else{
+      q <- c(q, paste0("cumulative=", tolower(cumulative)))
+    }
+  }
+  if(!is.null(subadmin)){
+    if (!is.logical(subadmin)){
+      stop("subadmin must be in Boolean format")
+    }else{
+      q <- c(q, paste0("subadmin=", tolower(subadmin)))
+    }
+  }
+  if(!is.null(pangolin_lineage)){
+    q <- c(q, paste0("pangolin_lineage=", pangolin_lineage, "&"))
+  }
+  if(!is.null(mutations)){
+    mutations <- paste(mutations, collapse=",")
+    q <- c(q, paste0("mutations=", mutations, "&"))
+  }
+  if(!is.null(ndays)){
+    q <- c(q, paste0("ndays=", ndays, "&"))
+  }
+  if(!is.null(frequency)){
+    q <- c(q, paste0("frequency=", frequency, "&"))
+  }
+  if(!is.null(other_threshold)){
+    q <- c(q, paste0("other_threshold=", other_threshold, "&"))
+  }
+  if(!is.null(nday_threshold)){
+    q <- c(q, paste0("nday_threshold=", nday_threshold, "&"))
+  }
+  if(!is.null(other_exclude)){
+    other_exclude <- paste(other_exclude, collapse=",")
+    q <- c(q, paste0("other_exclude=", other_exclude, "&"))
+  }
+
+  q <- c(q, paste0("size=", size, "&"))
+  q <- paste(q, sep="", collapse = "")
+  q <- sub("&$", "", q)
+
+  dataurl <- paste0(genomic_url, q)
+
+  scroll.id <- NULL
+  results <- list()
+  success <- NULL
+  while(is.null(success)){
+    dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
+    resp <- fromJSON(dataurl, flatten=TRUE)
+    results[[length(results) + 1]] <- resp$results
+    scroll.id <- resp$'_scroll_id'
+    success <- resp$success
+  }
+
+  hits <- rbind_pages(results)
+  hits$date=as.Date(hits$date, "%Y-%m-%d")
+  hits <- hits[order(as.Date(hits$date, format = "%Y-%m-%d")),]
+  return(hits)
+}

@@ -485,23 +485,13 @@ getMutDetails <- function(mutations){
   return(df)
 }
 
-getMutationDetails <- function(mutations){
-  df <- getGenomicData(query_url="mutation-details", mutations = mutations)
-  return(df)
-}
-
 getMutAcrossLineage <- function(mutations, location){
   df <- getGenomicData(query_url="mutations-by-lineage", mutations = mutations, location = location)
   return(df)
 }
 
-getMutAcrossLineage <- function(mutations, location){
-  df <- getGenomicData(query_url="mutations-by-lineage", mutations = mutations, location = location)
-  return(df)
-}
-
-getMutByLineage <- function(pangolin_lineage, threshold=0.8){
-  df <- getGenomicData(query_url="lineage-mutations", pangolin_lineage = pangolin_lineage, threshold = threshold)
+getMutByLineage <- function(pangolin_lineage, frequency=0.8){
+  df <- getGenomicData(query_url="lineage-mutations", pangolin_lineage = pangolin_lineage, frequency = frequency)
   return(df)
 }
 

@@ -4,7 +4,7 @@
 \alias{getGlobalPrevalence}
 \title{Retrieve global daily prevalence of a lineage}
 \usage{
-getGlobalPrevalence(pangolin_lineage, mutations, cumulative)
+getGlobalPrevalence(pangolin_lineage, mutations = NULL, cumulative = NULL)
 }
 \description{
 Retrieves the global daily prevalence of a PANGO lineage

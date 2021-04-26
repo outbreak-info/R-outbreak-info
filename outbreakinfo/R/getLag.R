@@ -6,7 +6,7 @@
 #' @export
 #' @import jsonlite
 
-getLag <- function(location){
+getLag <- function(location=NULL){
   df <- getGenomicData(query_url="collection-submission", location = location)
   return(df)
 }

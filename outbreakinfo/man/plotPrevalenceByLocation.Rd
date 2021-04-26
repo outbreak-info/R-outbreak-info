@@ -4,7 +4,12 @@
 \alias{plotPrevalenceByLocation}
 \title{Plot daily prevalence of a lineage by location}
 \usage{
-plotPrevalenceByLocation(pangolin_lineage, location, mutations, cumulative)
+plotPrevalenceByLocation(
+  pangolin_lineage,
+  location,
+  mutations = NULL,
+  cumulative = NULL
+)
 }
 \description{
 Plots the daily prevalence of a PANGO lineage by location

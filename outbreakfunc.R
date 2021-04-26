@@ -435,44 +435,44 @@ getGenomicData <- function(query_url, location=NULL, cumulative=NULL, pangolin_l
   return(hits)
 }
 
-getSeqCounts <- function(location, cumulative, subadmin){
+getSeqCounts <- function(location=NULL, cumulative=NULL, subadmin=NULL){
   df <- getGenomicData(query_url="sequence-count", location = location, cumulative = cumulative, subadmin = subadmin)
   return(df)
 }
 
-getGlobalPrevalence <- function(pangolin_lineage, mutations, cumulative){
+getGlobalPrevalence <- function(pangolin_lineage, mutations=NULL, cumulative=NULL){
   df <- getGenomicData(query_url="global-prevalence", pangolin_lineage = pangolin_lineage, mutations = mutations, cumulative = cumulative)
   return(df)
 }
 
-getPrevalenceByLocation <- function(pangolin_lineage, location, mutations, cumulative){
+getPrevalenceByLocation <- function(pangolin_lineage, location, mutations=NULL, cumulative=NULL){
   df <- getGenomicData(query_url="prevalence-by-location", pangolin_lineage = pangolin_lineage, location = location, mutations = mutations, cumulative = cumulative)
   return(df)
 }
 
-plotPrevalenceByLocation <- function(pangolin_lineage, location, mutations, cumulative){
+plotPrevalenceByLocation <- function(pangolin_lineage, location, mutations=NULL, cumulative=NULL){
   df <- getGenomicData(query_url="prevalence-by-location", pangolin_lineage = pangolin_lineage, location = location, mutations = mutations, cumulative = cumulative)
   p <- ggplot(data=df, aes(x=date, y=proportion)) + geom_line()
   p <- p + geom_ribbon(aes(ymin=proportion_ci_lower, ymax=proportion_ci_upper), alpha=0.2)
   return(p)
 }
 
-getCumulativeBySubadmin <- function(pangolin_lineage, location, mutations, ndays){
+getCumulativeBySubadmin <- function(pangolin_lineage, location=NULL, mutations=NULL, ndays=NULL){
   df <- getGenomicData(query_url="lineage-by-sub-admin-most-recent", pangolin_lineage = pangolin_lineage, location = location, mutations = mutations, ndays = ndays)
   return(df)
 }
 
-getCollectionDateByLocation <- function(pangolin_lineage, location, mutations){
+getCollectionDateByLocation <- function(pangolin_lineage, location=NULL, mutations=NULL){
   df <- getGenomicData(query_url="most-recent-collection-date-by-location", pangolin_lineage = pangolin_lineage, location = location, mutations = mutations)
   return(df)
 }
 
-getSubmissionDateByLocation <- function(pangolin_lineage, location, mutations){
+getSubmissionDateByLocation <- function(pangolin_lineage, location=NULL, mutations=NULL){
   df <- getGenomicData(query_url="most-recent-submission-date-by-location", pangolin_lineage = pangolin_lineage, location = location, mutations = mutations)
   return(df)
 }
 
-getLag <- function(location){
+getLag <- function(location=NULL){
   df <- getGenomicData(query_url="collection-submission", location = location)
   return(df)
 }
@@ -482,7 +482,7 @@ getMutDetails <- function(mutations){
   return(df)
 }
 
-getMutAcrossLineage <- function(mutations, location){
+getMutAcrossLineage <- function(mutations, location=NULL){
   df <- getGenomicData(query_url="mutations-by-lineage", mutations = mutations, location = location)
   return(df)
 }
@@ -492,7 +492,7 @@ getMutByLineage <- function(pangolin_lineage, frequency=0.8){
   return(df)
 }
 
-getAllLineagesByLoc <- function(location, other_threshold=0.05, nday_threshold=10, ndays=180, other_exclude, cumulative){
+getAllLineagesByLoc <- function(location, other_threshold=0.05, nday_threshold=10, ndays=180, other_exclude=NULL, cumulative=F){
   df <- getGenomicData(query_url="prevalence-by-location-all-lineages", location = location, other_threshold = other_threshold, nday_threshold = nday_threshold, ndays = ndays, other_exclude = other_exclude, cumulative = cumulative)
   return(df)
 }

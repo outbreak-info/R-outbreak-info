@@ -4,7 +4,7 @@
 \alias{getLag}
 \title{Retrieve lag between collection and submission by location}
 \usage{
-getLag(location)
+getLag(location = NULL)
 }
 \description{
 Retrieve daily lag between collection and submission by location

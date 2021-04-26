@@ -4,7 +4,11 @@
 \alias{getSubmissionDateByLocation}
 \title{Retrieve most recent submission date by location}
 \usage{
-getSubmissionDateByLocation(pangolin_lineage, location, mutations)
+getSubmissionDateByLocation(
+  pangolin_lineage,
+  location = NULL,
+  mutations = NULL
+)
 }
 \description{
 Retrieve most recent submission date by location

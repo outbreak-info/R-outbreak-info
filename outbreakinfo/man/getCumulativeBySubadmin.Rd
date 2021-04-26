@@ -4,7 +4,12 @@
 \alias{getCumulativeBySubadmin}
 \title{Retrieve cumulative prevalence of a lineage}
 \usage{
-getCumulativeBySubadmin(pangolin_lineage, location, mutations, ndays)
+getCumulativeBySubadmin(
+  pangolin_lineage,
+  location = NULL,
+  mutations = NULL,
+  ndays = NULL
+)
 }
 \description{
 Retrieve cumulative prevalence of a PANGO lineage by the immediate administrative level of a location

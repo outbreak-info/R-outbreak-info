@@ -7,7 +7,7 @@
 #' @import jsonlite
 
 
-getMutAcrossLineage <- function(mutations, location){
+getMutAcrossLineage <- function(mutations, location=NULL){
   df <- getGenomicData(query_url="mutations-by-lineage", mutations = mutations, location = location)
   return(df)
 }

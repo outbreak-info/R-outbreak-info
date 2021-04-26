@@ -4,7 +4,7 @@
 \alias{getMutAcrossLineage}
 \title{Retrieve prevalence of mutation across lineages by location}
 \usage{
-getMutAcrossLineage(mutations, location)
+getMutAcrossLineage(mutations, location = NULL)
 }
 \description{
 Retrieve prevalence of specified mutation across all lineages by location

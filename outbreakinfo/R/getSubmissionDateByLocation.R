@@ -6,7 +6,7 @@
 #' @export
 #' @import jsonlite
 
-getSubmissionDateByLocation <- function(pangolin_lineage, location, mutations){
+getSubmissionDateByLocation <- function(pangolin_lineage, location=NULL, mutations=NULL){
   df <- getGenomicData(query_url="most-recent-submission-date-by-location", pangolin_lineage = pangolin_lineage, location = location, mutations = mutations)
   return(df)
 }

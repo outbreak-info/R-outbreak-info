@@ -4,7 +4,11 @@
 \alias{getCollectionDateByLocation}
 \title{Retrieve most recent collection date by location}
 \usage{
-getCollectionDateByLocation(pangolin_lineage, location, mutations)
+getCollectionDateByLocation(
+  pangolin_lineage,
+  location = NULL,
+  mutations = NULL
+)
 }
 \description{
 Retrieve most recent collection date by location

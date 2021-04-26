@@ -9,8 +9,8 @@ getAllLineagesByLoc(
   other_threshold = 0.05,
   nday_threshold = 10,
   ndays = 180,
-  other_exclude,
-  cumulative
+  other_exclude = NULL,
+  cumulative = F
 )
 }
 \description{

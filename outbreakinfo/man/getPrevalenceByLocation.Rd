@@ -4,7 +4,12 @@
 \alias{getPrevalenceByLocation}
 \title{Retrieve daily prevalence of a lineage by location}
 \usage{
-getPrevalenceByLocation(pangolin_lineage, location, mutations, cumulative)
+getPrevalenceByLocation(
+  pangolin_lineage,
+  location,
+  mutations = NULL,
+  cumulative = NULL
+)
 }
 \description{
 Retrieves the daily prevalence of a PANGO lineage by location

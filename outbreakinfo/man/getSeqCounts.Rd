@@ -4,7 +4,7 @@
 \alias{getSeqCounts}
 \title{Retrieve sequence count data}
 \usage{
-getSeqCounts(location, cumulative, subadmin)
+getSeqCounts(location = NULL, cumulative = NULL, subadmin = NULL)
 }
 \description{
 Retrieves number of sequences per day by location from outbreak.info

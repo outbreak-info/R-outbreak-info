@@ -7,7 +7,7 @@
 #' @import jsonlite
 
 
-getSeqCounts <- function(location, cumulative, subadmin){
+getSeqCounts <- function(location=NULL, cumulative=NULL, subadmin=NULL){
   df <- getGenomicData(query_url="sequence-count", location = location, cumulative = cumulative, subadmin = subadmin)
   return(df)
 }

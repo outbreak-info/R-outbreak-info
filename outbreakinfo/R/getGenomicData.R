@@ -71,8 +71,11 @@ getGenomicData <- function(query_url, location=NULL, cumulative=NULL, pangolin_l
     scroll.id <- resp$'_scroll_id'
     success <- resp$success
   }
-
-  hits <- rbind_pages(results)
+  if (length(results) > 1){
+    hits <- rbind_pages(results)
+  }else{
+    hits <- data.frame(results)
+  }
   if ("date" %in% colnames(hits)){
     hits$date=as.Date(hits$date, "%Y-%m-%d")
     hits <- hits[order(as.Date(hits$date, format = "%Y-%m-%d")),]

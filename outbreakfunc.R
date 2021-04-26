@@ -428,8 +428,11 @@ getGenomicData <- function(query_url, location=NULL, cumulative=NULL, pangolin_l
     scroll.id <- resp$'_scroll_id'
     success <- resp$success
   }
-  
-  hits <- rbind_pages(results)
+  if (length(results) > 1){
+    hits <- rbind_pages(results)
+  }else{
+  hits <- data.frame(results)
+  }
   if ("date" %in% colnames(hits)){
     hits$date=as.Date(hits$date, "%Y-%m-%d")
     hits <- hits[order(as.Date(hits$date, format = "%Y-%m-%d")),]
@@ -464,39 +467,44 @@ getCumulativeBySubadmin <- function(pangolin_lineage, location=NULL, mutations=N
   return(df)
 }
 
+#1
 getCollectionDateByLocation <- function(pangolin_lineage, location=NULL, mutations=NULL){
   df <- getGenomicData(query_url="most-recent-collection-date-by-location", pangolin_lineage = pangolin_lineage, location = location, mutations = mutations)
   return(df)
 }
 
+#2
 getSubmissionDateByLocation <- function(pangolin_lineage, location=NULL, mutations=NULL){
   df <- getGenomicData(query_url="most-recent-submission-date-by-location", pangolin_lineage = pangolin_lineage, location = location, mutations = mutations)
   return(df)
 }
 
+#3
 getLag <- function(location=NULL){
   df <- getGenomicData(query_url="collection-submission", location = location)
   return(df)
 }
 
+#4
 getMutDetails <- function(mutations){
   df <- getGenomicData(query_url="mutation-details", mutations = mutations)
   return(df)
 }
 
+#5
 getMutAcrossLineage <- function(mutations, location=NULL){
   df <- getGenomicData(query_url="mutations-by-lineage", mutations = mutations, location = location)
   return(df)
 }
 
+#6
 getMutByLineage <- function(pangolin_lineage, frequency=0.8){
   df <- getGenomicData(query_url="lineage-mutations", pangolin_lineage = pangolin_lineage, frequency = frequency)
   return(df)
 }
 
+#7
 getAllLineagesByLoc <- function(location, other_threshold=0.05, nday_threshold=10, ndays=180, other_exclude=NULL, cumulative=F){
   df <- getGenomicData(query_url="prevalence-by-location-all-lineages", location = location, other_threshold = other_threshold, nday_threshold = nday_threshold, ndays = ndays, other_exclude = other_exclude, cumulative = cumulative)
   return(df)
 }
-
-#added 6, 7, 10, 15

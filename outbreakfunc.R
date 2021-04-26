@@ -379,14 +379,14 @@ getGenomicData <- function(query_url, location=NULL, cumulative=NULL, pangolin_l
     if (!is.logical(cumulative)){
       stop("cumulative must be in Boolean format")
     }else{
-      q <- c(q, paste0("cumulative=", tolower(cumulative)))
+      q <- c(q, paste0("cumulative=", tolower(cumulative)), "&")
     }
   }
   if(!is.null(subadmin)){
     if (!is.logical(subadmin)){
       stop("subadmin must be in Boolean format")
     }else{
-      q <- c(q, paste0("subadmin=", tolower(subadmin)))
+      q <- c(q, paste0("subadmin=", tolower(subadmin)), "&")
     }
   }
   if(!is.null(pangolin_lineage)){
@@ -430,8 +430,10 @@ getGenomicData <- function(query_url, location=NULL, cumulative=NULL, pangolin_l
   }
   
   hits <- rbind_pages(results)
-  hits$date=as.Date(hits$date, "%Y-%m-%d")
-  hits <- hits[order(as.Date(hits$date, format = "%Y-%m-%d")),]
+  if ("date" %in% colnames(hits)){
+    hits$date=as.Date(hits$date, "%Y-%m-%d")
+    hits <- hits[order(as.Date(hits$date, format = "%Y-%m-%d")),]
+  }
   return(hits)
 }
 

@@ -413,7 +413,6 @@ getGenomicData <- function(query_url, location=NULL, cumulative=NULL, pangolin_l
     q <- c(q, paste0("other_exclude=", other_exclude, "&"))
   }
   
-  q <- c(q, paste0("size=", size, "&"))
   q <- paste(q, sep="", collapse = "")
   q <- sub("&$", "", q)
   
@@ -435,8 +434,6 @@ getGenomicData <- function(query_url, location=NULL, cumulative=NULL, pangolin_l
   hits <- hits[order(as.Date(hits$date, format = "%Y-%m-%d")),]
   return(hits)
 }
-#make some fields required depending on endpoint/function
-
 
 getSeqCounts <- function(location, cumulative, subadmin){
   df <- getGenomicData(query_url="sequence-count", location = location, cumulative = cumulative, subadmin = subadmin)

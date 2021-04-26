@@ -56,7 +56,6 @@ getGenomicData <- function(query_url, location=NULL, cumulative=NULL, pangolin_l
     q <- c(q, paste0("other_exclude=", other_exclude, "&"))
   }
 
-  q <- c(q, paste0("size=", size, "&"))
   q <- paste(q, sep="", collapse = "")
   q <- sub("&$", "", q)
 

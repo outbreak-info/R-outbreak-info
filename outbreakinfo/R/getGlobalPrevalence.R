@@ -2,6 +2,14 @@
 #'
 #' @description Retrieves the global daily prevalence of a PANGO lineage
 #'
+#'@param pangolin_lineage: PANGO lineage name
+#'@param mutations: (optional) a `vector` of mutation(s)
+#'@param cumulative: (optional) `Boolean` (T/F), T returns cumulative global prevalence since first day of detection
+#'
+#'@return dataframe
+#'
+#'@examples
+#'getGlobalPrevalence(pangolin_lineage = "B.1.1.7", mutations = "S:E484K")
 #'
 #' @export
 #' @import jsonlite

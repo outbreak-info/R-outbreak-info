@@ -1,7 +1,12 @@
 #' @title Retrieve data from api.outbreak.info/genomics
 #'
-#' @description Retrieve up-to-date COVID-19 genomic data from outbreak.info
+#' @description Retrieves up-to-date COVID-19 genomic data from outbreak.info according to user specifications.
 #'
+#'
+#' @return dataframe
+#'
+#' @examples
+#' getGenomicData(query_url="prevalence-by-location", location="United Kingdom", pangolin_lineage = "B.1.1.7")
 #'
 #' @export
 #' @import jsonlite

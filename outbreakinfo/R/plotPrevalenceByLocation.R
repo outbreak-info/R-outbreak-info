@@ -2,6 +2,16 @@
 #'
 #' @description Plots the daily prevalence of a PANGO lineage by location
 #'
+#'@param pangolin_lineage: PANGO lineage name
+#'@param location: a location name
+#'@param mutations: (optional) a `vector` of mutation(s)
+#'@param cumulative: (optional) `Boolean` (T/F), T returns cumulative prevalence since first day of detection
+#'
+#'@return ggplot2 object
+#'
+#'@examples
+#'plotPrevalenceByLocation(pangolin_lineage = "P.1", location = "Brazil")
+#'
 #'
 #' @export
 #' @import jsonlite

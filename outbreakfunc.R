@@ -565,44 +565,37 @@ getCumulativeBySubadmin <- function(pangolin_lineage, location=NULL, mutations=N
   return(df)
 }
 
-#1 -- done
 getCollectionDateByLocation <- function(pangolin_lineage, location=NULL, mutations=NULL){
   df <- getGenomicData(query_url="most-recent-collection-date-by-location", pangolin_lineage = pangolin_lineage, location = location, mutations = mutations)
   return(df)
 }
 
-#2 -- done
 getSubmissionDateByLocation <- function(pangolin_lineage, location=NULL, mutations=NULL){
   df <- getGenomicData(query_url="most-recent-submission-date-by-location", pangolin_lineage = pangolin_lineage, location = location, mutations = mutations)
   return(df)
 }
 
-#3 -- done
 getLag <- function(location=NULL){
   df <- getGenomicData(query_url="collection-submission", location = location)
   return(df)
 }
 
-#4 -- done
-getMutDetails <- function(mutations){
+getMutationDetails <- function(mutations){
   df <- getGenomicData(query_url="mutation-details", mutations = mutations)
   return(df)
 }
 
-#5 -- done
-getMutAcrossLineage <- function(mutations, location=NULL){
+getMutationAcrossLineage <- function(mutations, location=NULL){
   df <- getGenomicData(query_url="mutations-by-lineage", mutations = mutations, location = location)
   return(df)
 }
 
-#6 -- done
-getMutByLineage <- function(pangolin_lineage, frequency=0.8){
+getMutationsByLineage <- function(pangolin_lineage, frequency=0.8){
   df <- getGenomicData(query_url="lineage-mutations", pangolin_lineage = pangolin_lineage, frequency = frequency)
   return(df)
 }
 
-#7
-getAllLineagesByLoc <- function(location, other_threshold=0.05, nday_threshold=10, ndays=180, other_exclude=NULL, cumulative=F){
+getAllLineagesByLocation <- function(location, other_threshold=0.05, nday_threshold=10, ndays=180, other_exclude=NULL, cumulative=F){
   df <- getGenomicData(query_url="prevalence-by-location-all-lineages", location = location, other_threshold = other_threshold, nday_threshold = nday_threshold, ndays = ndays, other_exclude = other_exclude, cumulative = cumulative)
   return(df)
 }

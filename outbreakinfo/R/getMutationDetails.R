@@ -7,12 +7,12 @@
 #'@return dataframe
 #'
 #'@examples
-#'getMutDetails(mutations=c("S:E484K", "S:N501Y"))
+#'getMutationDetails(mutations=c("S:E484K", "S:N501Y"))
 #'
 #' @export
 #' @import jsonlite
 
-getMutDetails <- function(mutations){
+getMutationDetails <- function(mutations){
   df <- getGenomicData(query_url="mutation-details", mutations = mutations)
   return(df)
 }

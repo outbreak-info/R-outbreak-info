@@ -18,6 +18,13 @@ getGenomicData(
   other_exclude = NULL
 )
 }
+\value{
+dataframe
+}
 \description{
-Retrieve up-to-date COVID-19 genomic data from outbreak.info
+Retrieves up-to-date COVID-19 genomic data from outbreak.info according to user specifications.
+}
+\examples{
+getGenomicData(query_url="prevalence-by-location", location="United Kingdom", pangolin_lineage = "B.1.1.7")
+
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/getSubmissionDateByLocation.R
 \name{getSubmissionDateByLocation}
 \alias{getSubmissionDateByLocation}
-\title{Retrieve most recent submission date by location}
+\title{Retrieve most recent submission date}
 \usage{
 getSubmissionDateByLocation(
   pangolin_lineage,
@@ -10,6 +10,20 @@ getSubmissionDateByLocation(
   mutations = NULL
 )
 }
+\arguments{
+\item{pangolin_lineage:}{PANGO lineage name}
+
+\item{location:}{(optional) a location name (if not specified, submission date at the global level returned)}
+
+\item{mutations:}{(optional) a `vector` of mutation(s)}
+}
+\value{
+dataframe
+}
 \description{
 Retrieve most recent submission date by location
+}
+\examples{
+getSubmissionDateByLocation(pangolin_lineage="B.1.1.7", location="California")
+
 }

@@ -362,7 +362,105 @@ printAPIFields <- function(){
   return(df)
 }
 
-####genome functions
+####genome functions#####
+
+getISO3_genomic <- function(locations_to_search){
+  loc_url <- "https://api.outbreak.info/genomics/location?"
+  locs_of_interest=c()
+  locs_not_found=c()
+  for (i in locations_to_search){
+    scroll.id <- NULL
+    location.ids <- paste0("name=", paste(i))
+    location.ids <- gsub("&", "%26", location.ids)
+    results <- list()
+    success <- NULL
+    while(is.null(success)){
+      dataurl <- paste0(loc_url, location.ids)
+      dataurl <- gsub(" ", "+", dataurl)
+      dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
+      resp <- fromJSON(dataurl, flatten=TRUE)
+      results[[length(results) + 1]] <- resp$results
+      scroll.id <- resp$'_scroll_id'
+      success <- resp$success
+    }
+    t <- try(rbind_pages(results), silent=T)
+    if("try-error" %in% class(t)){
+      error=T
+      locs_not_found = c(locs_not_found, i)
+    }else{
+      hits <- rbind_pages(results)
+      df=(hits)
+      if (nrow(df)==1){
+        locs_of_interest=c(locs_of_interest, df$id)
+      }else{
+        locs_not_found=c(locs_not_found, i)
+      }
+    }
+  }
+  if (length(locs_of_interest)==length(locations_to_search)){
+    return(locs_of_interest)
+  }
+  if (length(locs_of_interest)!=length(locations_to_search)){
+    locations=c()
+    for (i in locs_not_found){
+      if (grepl(" ", i, fixed=TRUE)==T){
+        locs=paste0("*",i,"*")
+        locs=gsub(" ", "*", locs, fixed=TRUE)
+      }else{
+        locs=paste0("*",i,"*")
+      }
+      locations=c(locations, locs)
+    }
+    for (i in 1:length(locations)){
+      scroll.id <- NULL
+      location.ids <- paste0("name=", paste(locations[i]))
+      location.ids <- gsub("&", "%26", location.ids)
+      results <- list()
+      success <- NULL
+      while(is.null(success)){
+        dataurl <- paste0(loc_url, location.ids)
+        dataurl <- gsub(" ", "+", dataurl)
+        dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
+        resp <- fromJSON(dataurl, flatten=TRUE)
+        results[[length(results) + 1]] <- resp$results
+        scroll.id <- resp$'_scroll_id'
+        success <- resp$success
+      }
+      t2 <- try(rbind_pages(results), silent=T)
+      if("try-error" %in% class(t2)){
+        print(paste(locs_not_found[i], "not found. Please check spelling."))
+        next
+      }else{
+        hits <- rbind_pages(results)
+        df=(hits)
+        df$admin_level[df$admin_level == "-1"] <- "World Bank Region"
+        df$admin_level[df$admin_level == "0"] <- "country"
+        df$admin_level[df$admin_level == "1"] <- "state/province"
+        df$admin_level[df$admin_level == "1.5"] <- "metropolitan area"
+        df$admin_level[df$admin_level == "2"] <- "county"
+        df$full <- paste0(df$label, " (", df$admin_level, ")")
+      }
+      for (i in df$full){
+        print(i)
+        loc_sel <- readline("Is this a location of interest? (Y/N): ")
+        if ((loc_sel == "Y")|(loc_sel == "y")){
+          locs_of_interest = c(locs_of_interest, df$id[df$full==i])
+          break
+        }
+        if ((loc_sel != "Y")&(loc_sel != "y")&(loc_sel != "N")&(loc_sel != "n")){
+          print("Expected input is Y or N")
+          print(i)
+          loc_sel <- readline("Is this a location of interest? (Y/N): ")
+          if ((loc_sel == "Y")|(loc_sel == "y")){
+            locs_of_interest = c(locs_of_interest, df$id[df$full==i])
+            break
+          }
+        }
+      }
+    }
+  }
+  return(locs_of_interest)
+}
 
 getGenomicData <- function(query_url, location=NULL, cumulative=NULL, pangolin_lineage=NULL, mutations=NULL, ndays=NULL, frequency=NULL, subadmin=NULL, other_threshold=NULL, nday_threshold=NULL, other_exclude=NULL){
   genomic_url <- "https://api.outbreak.info/genomics/"
@@ -372,7 +470,7 @@ getGenomicData <- function(query_url, location=NULL, cumulative=NULL, pangolin_l
   q <- c(q, paste0(query_url), "?")
   
   if(!is.null(location)){
-    location <- getISO3(location)
+    location <- getISO3_genomic(location)
     q <- c(q, paste0("location_id=", location, "&"))
   }
   if(!is.null(cumulative)){
@@ -431,7 +529,7 @@ getGenomicData <- function(query_url, location=NULL, cumulative=NULL, pangolin_l
   if (length(results) > 1){
     hits <- rbind_pages(results)
   }else{
-  hits <- data.frame(results)
+    hits <- data.frame(results)
   }
   if ("date" %in% colnames(hits)){
     hits$date=as.Date(hits$date, "%Y-%m-%d")
@@ -467,37 +565,37 @@ getCumulativeBySubadmin <- function(pangolin_lineage, location=NULL, mutations=N
   return(df)
 }
 
-#1
+#1 -- done
 getCollectionDateByLocation <- function(pangolin_lineage, location=NULL, mutations=NULL){
   df <- getGenomicData(query_url="most-recent-collection-date-by-location", pangolin_lineage = pangolin_lineage, location = location, mutations = mutations)
   return(df)
 }
 
-#2
+#2 -- done
 getSubmissionDateByLocation <- function(pangolin_lineage, location=NULL, mutations=NULL){
   df <- getGenomicData(query_url="most-recent-submission-date-by-location", pangolin_lineage = pangolin_lineage, location = location, mutations = mutations)
   return(df)
 }
 
-#3
+#3 -- done
 getLag <- function(location=NULL){
   df <- getGenomicData(query_url="collection-submission", location = location)
   return(df)
 }
 
-#4
+#4 -- done
 getMutDetails <- function(mutations){
   df <- getGenomicData(query_url="mutation-details", mutations = mutations)
   return(df)
 }
 
-#5
+#5 -- done
 getMutAcrossLineage <- function(mutations, location=NULL){
   df <- getGenomicData(query_url="mutations-by-lineage", mutations = mutations, location = location)
   return(df)
 }
 
-#6
+#6 -- done
 getMutByLineage <- function(pangolin_lineage, frequency=0.8){
   df <- getGenomicData(query_url="lineage-mutations", pangolin_lineage = pangolin_lineage, frequency = frequency)
   return(df)

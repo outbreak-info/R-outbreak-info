@@ -6,6 +6,18 @@
 \usage{
 getMutByLineage(pangolin_lineage, frequency = 0.8)
 }
+\arguments{
+\item{pangolin_lineage:}{PANGO lineage name}
+
+\item{frequency:}{a number between 0 and 1 specifying the frequency threshold above which to return mutations (default=0.8)}
+}
+\value{
+dataframe
+}
 \description{
-Retrieve mutations in a specified lineage above an optional frequency threshold
+Retrieve mutations in a specified lineage above a threshold
+}
+\examples{
+getMutByLineage(pangolin_lineage="P.1", frequency=0.8)
+
 }

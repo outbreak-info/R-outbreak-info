@@ -6,6 +6,18 @@
 \usage{
 getMutAcrossLineage(mutations, location = NULL)
 }
+\arguments{
+\item{mutations:}{a `vector` of mutation(s)}
+
+\item{location:}{(optional) a location name (if not specified, prevalence globally returned)}
+}
+\value{
+dataframe
+}
 \description{
 Retrieve prevalence of specified mutation across all lineages by location
+}
+\examples{
+getMutAcrossLineage(mutations="S:N501Y", location="United States of America")
+
 }

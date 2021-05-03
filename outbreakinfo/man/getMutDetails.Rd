@@ -6,6 +6,16 @@
 \usage{
 getMutDetails(mutations)
 }
+\arguments{
+\item{mutations:}{a `vector` of mutation(s)}
+}
+\value{
+dataframe
+}
 \description{
 Retrieve details of specified mutation(s)
+}
+\examples{
+getMutDetails(mutations=c("S:E484K", "S:N501Y"))
+
 }

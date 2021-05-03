@@ -11,6 +11,23 @@ getCumulativeBySubadmin(
   ndays = NULL
 )
 }
+\arguments{
+\item{pangolin_lineage:}{PANGO lineage name}
+
+\item{location:}{(optional) a location name (if not specified, cumulative prevalence at the country level globally returned)}
+
+\item{mutations:}{(optional) a `vector` of mutation(s)}
+
+\item{ndays:}{(optional) an `integer` specifying number of days from current date to calculative cumuative counts (if not specified, no limit on window)}
+}
+\value{
+dataframe
+}
 \description{
 Retrieve cumulative prevalence of a PANGO lineage by the immediate administrative level of a location
+}
+\examples{
+getCumulativeBySubadmin(pangolin_lineage="B.1.1.7", location="California")
+
+
 }

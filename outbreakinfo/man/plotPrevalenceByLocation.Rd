@@ -11,6 +11,23 @@ plotPrevalenceByLocation(
   cumulative = NULL
 )
 }
+\arguments{
+\item{pangolin_lineage:}{PANGO lineage name}
+
+\item{location:}{a location name}
+
+\item{mutations:}{(optional) a `vector` of mutation(s)}
+
+\item{cumulative:}{(optional) `Boolean` (T/F), T returns cumulative prevalence since first day of detection}
+}
+\value{
+ggplot2 object
+}
 \description{
 Plots the daily prevalence of a PANGO lineage by location
+}
+\examples{
+plotPrevalenceByLocation(pangolin_lineage = "P.1", location = "Brazil")
+
+
 }

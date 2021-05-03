@@ -11,6 +11,22 @@ getPrevalenceByLocation(
   cumulative = NULL
 )
 }
+\arguments{
+\item{pangolin_lineage:}{PANGO lineage name}
+
+\item{location:}{a location name}
+
+\item{mutations:}{(optional) a `vector` of mutation(s)}
+
+\item{cumulative:}{(optional) `Boolean` (T/F), T returns cumulative prevalence since first day of detection}
+}
+\value{
+dataframe
+}
 \description{
 Retrieves the daily prevalence of a PANGO lineage by location
+}
+\examples{
+getPrevalenceByLocation(pangolin_lineage = "P.1", location = "Brazil")
+
 }

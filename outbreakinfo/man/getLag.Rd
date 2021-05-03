@@ -2,10 +2,20 @@
 % Please edit documentation in R/getLag.R
 \name{getLag}
 \alias{getLag}
-\title{Retrieve lag between collection and submission by location}
+\title{Retrieve lag between collection and submission}
 \usage{
 getLag(location = NULL)
 }
+\arguments{
+\item{location:}{(optional) a location name (if not specified, daily lag globally returned)}
+}
+\value{
+dataframe
+}
 \description{
 Retrieve daily lag between collection and submission by location
+}
+\examples{
+getLag(location="California")
+
 }

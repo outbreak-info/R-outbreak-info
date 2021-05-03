@@ -2,7 +2,7 @@
 % Please edit documentation in R/getCollectionDateByLocation.R
 \name{getCollectionDateByLocation}
 \alias{getCollectionDateByLocation}
-\title{Retrieve most recent collection date by location}
+\title{Retrieve most recent collection date}
 \usage{
 getCollectionDateByLocation(
   pangolin_lineage,
@@ -10,6 +10,20 @@ getCollectionDateByLocation(
   mutations = NULL
 )
 }
+\arguments{
+\item{pangolin_lineage:}{PANGO lineage name}
+
+\item{location:}{(optional) a location name (if not specified, collection date at the global level returned)}
+
+\item{mutations:}{(optional) a `vector` of mutation(s)}
+}
+\value{
+dataframe
+}
 \description{
 Retrieve most recent collection date by location
+}
+\examples{
+getCollectionDateByLocation(pangolin_lineage="B.1.1.7", location="California")
+
 }

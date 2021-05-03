@@ -6,6 +6,20 @@
 \usage{
 getGlobalPrevalence(pangolin_lineage, mutations = NULL, cumulative = NULL)
 }
+\arguments{
+\item{pangolin_lineage:}{PANGO lineage name}
+
+\item{mutations:}{(optional) a `vector` of mutation(s)}
+
+\item{cumulative:}{(optional) `Boolean` (T/F), T returns cumulative global prevalence since first day of detection}
+}
+\value{
+dataframe
+}
 \description{
 Retrieves the global daily prevalence of a PANGO lineage
+}
+\examples{
+getGlobalPrevalence(pangolin_lineage = "B.1.1.7", mutations = "S:E484K")
+
 }

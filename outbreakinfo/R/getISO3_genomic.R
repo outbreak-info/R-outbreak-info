@@ -11,6 +11,7 @@
 #'
 #' @export
 #' @import jsonlite
+#' @import plyr
 
 
 getISO3_genomic <- function(locations_to_search){

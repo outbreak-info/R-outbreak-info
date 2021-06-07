@@ -2,6 +2,7 @@ library(jsonlite)
 library(ggplot2)
 library(readr)
 library(progress)
+library(plyr)
 
 api.url <- "https://api.outbreak.info/covid19/"
 
@@ -605,7 +606,3 @@ plotAllLineagesByLocation <- function(location, other_threshold=0.05, nday_thres
   p <- ggplot(df, aes(x=date, y=prevalence_rolling, group=lineage, fill=lineage)) + geom_area()
   return(p)
 }
-
-
-
-

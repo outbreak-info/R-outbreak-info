@@ -8,7 +8,8 @@ plotPrevalenceByLocation(
   pangolin_lineage,
   location,
   mutations = NULL,
-  cumulative = NULL
+  cumulative = NULL,
+  include_title = F
 )
 }
 \arguments{
@@ -19,6 +20,8 @@ plotPrevalenceByLocation(
 \item{mutations:}{(optional) a `vector` of mutation(s)}
 
 \item{cumulative:}{(optional) `Boolean` (T/F), T returns cumulative prevalence since first day of detection}
+
+\item{include_title:}{`Boolean` (T/F), T returns plot with title, F returns plot without title (default=F)}
 }
 \value{
 ggplot2 object

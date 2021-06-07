@@ -9,7 +9,7 @@ License: GNU GPL v3
 Encoding: UTF-8
 LazyData: FALSE
 Imports: 
-    jsonlite, ggplot2, readr, progress, plyr
+    jsonlite, ggplot2, readr, progress, plyr, stringr
 RoxygenNote: 7.1.0
 Suggests: 
     testthat

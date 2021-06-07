@@ -17,6 +17,7 @@
 #' @export
 #' @import jsonlite
 #' @import ggplot2
+#' @import stringr
 
 
 plotPrevalenceByLocation <- function(pangolin_lineage, location, mutations=NULL, cumulative=NULL, include_title=F){

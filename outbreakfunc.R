@@ -3,6 +3,7 @@ library(ggplot2)
 library(readr)
 library(progress)
 library(plyr)
+library(stringr)
 
 api.url <- "https://api.outbreak.info/covid19/"
 
@@ -559,7 +560,7 @@ plotPrevalenceByLocation <- function(pangolin_lineage, location, mutations=NULL,
   p <- ggplot(data=df, aes(x=date, y=proportion)) + geom_line() + scale_y_continuous(labels = scales::percent, name="percentage")
   p <- p + geom_ribbon(aes(ymin=proportion_ci_lower, ymax=proportion_ci_upper), alpha=0.2)
   if (include_title == T){
-    p <- p + ggtitle(paste0("Prevalence of ", pangolin_lineage, " in ", location))
+    p <- p + ggtitle(paste0("Prevalence of ", toupper(pangolin_lineage), " in ", stringr::str_to_title(location)))
   }
   return(p)
 }

@@ -10,7 +10,8 @@ plotAllLineagesByLocation(
   nday_threshold = 10,
   ndays = 180,
   other_exclude = NULL,
-  cumulative = F
+  cumulative = F,
+  include_title = F
 )
 }
 \arguments{
@@ -25,6 +26,8 @@ plotAllLineagesByLocation(
 \item{other_exclude:}{(optional) lineage(s) that are NOT to be included under "Other" even if the conditions specified by the three thresholds above are met}
 
 \item{cumulative:}{`Boolean` (T/F), T returns cumulative prevalence of lineages (default=F)}
+
+\item{include_title:}{`Boolean` (T/F), T returns plot with title, F returns plot without title (default=F)}
 }
 \value{
 ggplot2 object

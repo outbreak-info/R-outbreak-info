@@ -14,5 +14,8 @@
 
 getLag <- function(location=NULL){
   df <- getGenomicData(query_url="collection-submission", location = location)
+  df$date_collected <- as.Date(df$date_collected, "%Y-%m-%d")
+  df$date_submitted <- as.Date(df$date_submitted, "%Y-%m-%d")
+  df$lag <- df$date_submitted - df$date_collected
   return(df)
 }

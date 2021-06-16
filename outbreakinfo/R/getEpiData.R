@@ -75,7 +75,12 @@ getEpiData <- function(name=NULL, location_id=NULL, wb_region=NULL, country_name
   q <- gsub(" ", "+", q)
 
   dataurl <- paste0(api.url, "query?q=", q)
-  resp <- fromJSON(dataurl, flatten=TRUE)
+  t <- try(fromJSON(dataurl, flatten=TRUE), silent=T)
+  if(grepl("Error in open.connection(con, \"rb\")", t[1], fixed=T)){
+    stop("Could not connect to API. Check internet connection and try again.")
+  }else{
+    resp <- fromJSON(dataurl, flatten=TRUE)
+  }
   max <- resp$total
 
   scroll.id <- NULL
@@ -88,14 +93,19 @@ getEpiData <- function(name=NULL, location_id=NULL, wb_region=NULL, country_name
   while(is.null(success)){
     dataurl <- paste0(api.url, "query?q=", q)
     dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
-    resp <- fromJSON(dataurl, flatten=TRUE)
-    scroll.id <- resp$'_scroll_id'
-    results[[length(results) + 1]] <- resp$hits
-    success <- resp$success
-    if (is.null(success)){
-      pb$tick(size)
+    t <- try(fromJSON(dataurl, flatten=TRUE), silent=T)
+    if(grepl("Error in open.connection(con, \"rb\")", t[1], fixed=T)){
+      stop("Could not connect to API. Check internet connection and try again.")
     }else{
-      pb$finished <- T
+      resp <- fromJSON(dataurl, flatten=TRUE)
+      scroll.id <- resp$'_scroll_id'
+      results[[length(results) + 1]] <- resp$hits
+      success <- resp$success
+      if (is.null(success)){
+        pb$tick(size)
+      }else{
+        pb$finished <- T
+      }
     }
   }
   pb$terminate()
@@ -106,6 +116,7 @@ getEpiData <- function(name=NULL, location_id=NULL, wb_region=NULL, country_name
   }
   if ("date" %in% colnames(hits)){
     hits$date=as.Date(hits$date, "%Y-%m-%d")
+    hits <- hits[order(as.Date(hits$date, format = "%Y-%m-%d")),]
   }
   return(hits)
 }

@@ -25,10 +25,15 @@ getISO3 <- function(locations_to_search){
       dataurl <- paste0(api.url, "query?q=",location.ids,"%20AND%20mostRecent:true&fields=name,location_id,state_name&fetch_all=true")
       dataurl <- gsub(" ", "+", dataurl)
       dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
-      resp <- fromJSON(dataurl, flatten=TRUE)
-      scroll.id <- resp$'_scroll_id'
-      results[[length(results) + 1]] <- resp$hits
-      success <- resp$success
+      t <- try(fromJSON(dataurl, flatten=TRUE), silent=T)
+      if(grepl("Error in open.connection(con, \"rb\")", t[1], fixed=T)){
+        stop("Could not connect to API. Check internet connection and try again.")
+      }else{
+        resp <- fromJSON(dataurl, flatten=TRUE)
+        scroll.id <- resp$'_scroll_id'
+        results[[length(results) + 1]] <- resp$hits
+        success <- resp$success
+      }
     }
     t <- try(rbind_pages(results), silent=T)
     if("try-error" %in% class(t)){
@@ -68,10 +73,15 @@ getISO3 <- function(locations_to_search){
         dataurl <- paste0(api.url, "query?q=",location.ids,"%20AND%20mostRecent:true&fields=name,location_id,state_name,admin_level&fetch_all=true")
         dataurl <- gsub(" ", "+", dataurl)
         dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
-        resp <- fromJSON(dataurl, flatten=TRUE)
-        scroll.id <- resp$'_scroll_id'
-        results[[length(results) + 1]] <- resp$hits
-        success <- resp$success
+        t <- try(fromJSON(dataurl, flatten=TRUE), silent=T)
+        if(grepl("Error in open.connection(con, \"rb\")", t[1], fixed=T)){
+          stop("Could not connect to API. Check internet connection and try again.")
+        }else{
+          resp <- fromJSON(dataurl, flatten=TRUE)
+          scroll.id <- resp$'_scroll_id'
+          results[[length(results) + 1]] <- resp$hits
+          success <- resp$success
+        }
       }
       t2 <- try(rbind_pages(results), silent=T)
       if("try-error" %in% class(t2)){

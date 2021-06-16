@@ -71,10 +71,15 @@ getGenomicData <- function(query_url, location=NULL, cumulative=NULL, pangolin_l
   success <- NULL
   while(is.null(success)){
     dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
-    resp <- fromJSON(dataurl, flatten=TRUE)
-    results[[length(results) + 1]] <- resp$results
-    scroll.id <- resp$'_scroll_id'
-    success <- resp$success
+    t <- try(fromJSON(dataurl, flatten=TRUE), silent=T)
+    if(grepl("Error in open.connection(con, \"rb\")", t[1], fixed=T)){
+      stop("Could not connect to API. Check internet connection and try again.")
+    }else{
+      resp <- fromJSON(dataurl, flatten=TRUE)
+      results[[length(results) + 1]] <- resp$results
+      scroll.id <- resp$'_scroll_id'
+      success <- resp$success
+    }
   }
   if (length(results) > 1){
     hits <- rbind_pages(results)
@@ -86,4 +91,26 @@ getGenomicData <- function(query_url, location=NULL, cumulative=NULL, pangolin_l
     hits <- hits[order(as.Date(hits$date, format = "%Y-%m-%d")),]
   }
   return(hits)
+}
+
+dataurl <- "https://api.outbreak.info/genomics/prevalence-by-location?=mutations=S:N501Y&location_id=USA_US-CA"
+scroll.id <- NULL
+results <- list()
+success <- NULL
+while(is.null(success)){
+  dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
+  t <- try(fromJSON(dataurl, flatten=TRUE), silent=T)
+  if(grepl("Error in open.connection(con, \"rb\")", t[1], fixed=T)){
+    stop("Could not connect to API. Check internet connection and try again.")
+  }else{
+    resp <- fromJSON(dataurl, flatten=TRUE)
+    results[[length(results) + 1]] <- resp$results
+    scroll.id <- resp$'_scroll_id'
+    success <- resp$success
+  }
+}
+if (length(results) > 1){
+  hits <- rbind_pages(results)
+}else{
+  hits <- data.frame(results)
 }

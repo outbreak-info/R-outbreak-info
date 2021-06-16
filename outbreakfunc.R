@@ -20,10 +20,15 @@ getISO3 <- function(locations_to_search){
       dataurl <- paste0(api.url, "query?q=",location.ids,"%20AND%20mostRecent:true&fields=name,location_id,state_name&fetch_all=true")
       dataurl <- gsub(" ", "+", dataurl)
       dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
+      t <- try(fromJSON(dataurl, flatten=TRUE), silent=T)
+      if(grepl("Error in open.connection(con, \"rb\")", t[1], fixed=T)){
+        stop("Could not connect to API. Check internet connection and try again.")
+      }else{
       resp <- fromJSON(dataurl, flatten=TRUE)
       scroll.id <- resp$'_scroll_id'
       results[[length(results) + 1]] <- resp$hits
       success <- resp$success
+      }
     }
     t <- try(rbind_pages(results), silent=T)
     if("try-error" %in% class(t)){
@@ -63,10 +68,15 @@ getISO3 <- function(locations_to_search){
         dataurl <- paste0(api.url, "query?q=",location.ids,"%20AND%20mostRecent:true&fields=name,location_id,state_name,admin_level&fetch_all=true")
         dataurl <- gsub(" ", "+", dataurl)
         dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
+        t <- try(fromJSON(dataurl, flatten=TRUE), silent=T)
+        if(grepl("Error in open.connection(con, \"rb\")", t[1], fixed=T)){
+          stop("Could not connect to API. Check internet connection and try again.")
+        }else{
         resp <- fromJSON(dataurl, flatten=TRUE)
         scroll.id <- resp$'_scroll_id'
         results[[length(results) + 1]] <- resp$hits
         success <- resp$success
+        }
       }
       t2 <- try(rbind_pages(results), silent=T)
       if("try-error" %in% class(t2)){
@@ -121,10 +131,15 @@ searchLocations <- function(locations_to_search, admin_level){
       dataurl <- paste0(api.url, "query?q=", location.ids, "%20AND%20", "admin_level:%22", admin_level, "%22", "%20AND%20mostRecent:true&fields=name,location_id,state_name&fetch_all=true")
       dataurl <- gsub(" ", "+", dataurl)
       dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
+      t <- try(fromJSON(dataurl, flatten=TRUE), silent=T)
+      if(grepl("Error in open.connection(con, \"rb\")", t[1], fixed=T)){
+        stop("Could not connect to API. Check internet connection and try again.")
+      }else{
       resp <- fromJSON(dataurl, flatten=TRUE)
       scroll.id <- resp$'_scroll_id'
       results[[length(results) + 1]] <- resp$hits
       success <- resp$success
+      }
     }
     t <- try(rbind_pages(results), silent=T)
     if("try-error" %in% class(t)){
@@ -164,10 +179,15 @@ searchLocations <- function(locations_to_search, admin_level){
         dataurl <- paste0(api.url, "query?q=", location.ids, "%20AND%20", "admin_level:%22", admin_level, "%22", "%20AND%20mostRecent:true&fields=name,location_id,state_name&fetch_all=true")
         dataurl <- gsub(" ", "+", dataurl)
         dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
+        t <- try(fromJSON(dataurl, flatten=TRUE), silent=T)
+        if(grepl("Error in open.connection(con, \"rb\")", t[1], fixed=T)){
+          stop("Could not connect to API. Check internet connection and try again.")
+        }else{
         resp <- fromJSON(dataurl, flatten=TRUE)
         scroll.id <- resp$'_scroll_id'
         results[[length(results) + 1]] <- resp$hits
         success <- resp$success
+        }
       }
       t2 <- try(rbind_pages(results), silent=T)
       if("try-error" %in% class(t2)){
@@ -251,7 +271,12 @@ getEpiData <- function(name=NULL, location_id=NULL, wb_region=NULL, country_name
   q <- gsub(" ", "+", q)
   
   dataurl <- paste0(api.url, "query?q=", q)
-  resp <- fromJSON(dataurl, flatten=TRUE)
+  t <- try(fromJSON(dataurl, flatten=TRUE), silent=T)
+  if(grepl("Error in open.connection(con, \"rb\")", t[1], fixed=T)){
+    stop("Could not connect to API. Check internet connection and try again.")
+  }else{
+    resp <- fromJSON(dataurl, flatten=TRUE)
+  }
   max <- resp$total
   
   scroll.id <- NULL
@@ -264,14 +289,19 @@ getEpiData <- function(name=NULL, location_id=NULL, wb_region=NULL, country_name
   while(is.null(success)){
     dataurl <- paste0(api.url, "query?q=", q)
     dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
-    resp <- fromJSON(dataurl, flatten=TRUE)
-    scroll.id <- resp$'_scroll_id'
-    results[[length(results) + 1]] <- resp$hits
-    success <- resp$success
-    if (is.null(success)){
-      pb$tick(size)
+    t <- try(fromJSON(dataurl, flatten=TRUE), silent=T)
+    if(grepl("Error in open.connection(con, \"rb\")", t[1], fixed=T)){
+      stop("Could not connect to API. Check internet connection and try again.")
     }else{
-      pb$finished <- T
+      resp <- fromJSON(dataurl, flatten=TRUE)
+      scroll.id <- resp$'_scroll_id'
+      results[[length(results) + 1]] <- resp$hits
+      success <- resp$success
+      if (is.null(success)){
+        pb$tick(size)
+      }else{
+        pb$finished <- T
+      }
     }
   }
   pb$terminate()
@@ -380,10 +410,15 @@ getISO3_genomic <- function(locations_to_search){
       dataurl <- paste0(loc_url, location.ids)
       dataurl <- gsub(" ", "+", dataurl)
       dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
+      t <- try(fromJSON(dataurl, flatten=TRUE), silent=T)
+      if(grepl("Error in open.connection(con, \"rb\")", t[1], fixed=T)){
+        stop("Could not connect to API. Check internet connection and try again.")
+      }else{
       resp <- fromJSON(dataurl, flatten=TRUE)
       results[[length(results) + 1]] <- resp$results
       scroll.id <- resp$'_scroll_id'
       success <- resp$success
+      }
     }
     t <- try(rbind_pages(results), silent=T)
     if("try-error" %in% class(t)){
@@ -423,10 +458,15 @@ getISO3_genomic <- function(locations_to_search){
         dataurl <- paste0(loc_url, location.ids)
         dataurl <- gsub(" ", "+", dataurl)
         dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
+        t <- try(fromJSON(dataurl, flatten=TRUE), silent=T)
+        if(grepl("Error in open.connection(con, \"rb\")", t[1], fixed=T)){
+          stop("Could not connect to API. Check internet connection and try again.")
+        }else{
         resp <- fromJSON(dataurl, flatten=TRUE)
         results[[length(results) + 1]] <- resp$results
         scroll.id <- resp$'_scroll_id'
         success <- resp$success
+        }
       }
       t2 <- try(rbind_pages(results), silent=T)
       if("try-error" %in% class(t2)){
@@ -523,10 +563,15 @@ getGenomicData <- function(query_url, location=NULL, cumulative=NULL, pangolin_l
   success <- NULL
   while(is.null(success)){
     dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
-    resp <- fromJSON(dataurl, flatten=TRUE)
-    results[[length(results) + 1]] <- resp$results
-    scroll.id <- resp$'_scroll_id'
-    success <- resp$success
+    t <- try(fromJSON(dataurl, flatten=TRUE), silent=T)
+    if(grepl("Error in open.connection(con, \"rb\")", t[1], fixed=T)){
+      stop("Could not connect to API. Check internet connection and try again.")
+    }else{
+      resp <- fromJSON(dataurl, flatten=TRUE)
+      results[[length(results) + 1]] <- resp$results
+      scroll.id <- resp$'_scroll_id'
+      success <- resp$success
+    }
   }
   if (length(results) > 1){
     hits <- rbind_pages(results)
@@ -539,6 +584,29 @@ getGenomicData <- function(query_url, location=NULL, cumulative=NULL, pangolin_l
   }
   return(hits)
 }
+
+dataurl <- "https://api.outbreak.info/genomics/prevalence-by-location?=mutations=S:N501Y&location_id=USA_US-CA"
+scroll.id <- NULL
+results <- list()
+success <- NULL
+while(is.null(success)){
+  dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
+  t <- try(fromJSON(dataurl, flatten=TRUE), silent=T)
+  if(grepl("Error in open.connection(con, \"rb\")", t[1], fixed=T)){
+    stop("Could not connect to API. Check internet connection and try again.")
+  }else{
+  resp <- fromJSON(dataurl, flatten=TRUE)
+  results[[length(results) + 1]] <- resp$results
+  scroll.id <- resp$'_scroll_id'
+  success <- resp$success
+  }
+}
+if (length(results) > 1){
+  hits <- rbind_pages(results)
+}else{
+  hits <- data.frame(results)
+}
+  
 
 getSeqCounts <- function(location=NULL, cumulative=NULL, subadmin=NULL){
   df <- getGenomicData(query_url="sequence-count", location = location, cumulative = cumulative, subadmin = subadmin)

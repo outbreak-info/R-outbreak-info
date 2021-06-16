@@ -28,10 +28,15 @@ getISO3_genomic <- function(locations_to_search){
       dataurl <- paste0(loc_url, location.ids)
       dataurl <- gsub(" ", "+", dataurl)
       dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
-      resp <- fromJSON(dataurl, flatten=TRUE)
-      results[[length(results) + 1]] <- resp$results
-      scroll.id <- resp$'_scroll_id'
-      success <- resp$success
+      t <- try(fromJSON(dataurl, flatten=TRUE), silent=T)
+      if(grepl("Error in open.connection(con, \"rb\")", t[1], fixed=T)){
+        stop("Could not connect to API. Check internet connection and try again.")
+      }else{
+        resp <- fromJSON(dataurl, flatten=TRUE)
+        results[[length(results) + 1]] <- resp$results
+        scroll.id <- resp$'_scroll_id'
+        success <- resp$success
+      }
     }
     t <- try(rbind_pages(results), silent=T)
     if("try-error" %in% class(t)){
@@ -71,10 +76,15 @@ getISO3_genomic <- function(locations_to_search){
         dataurl <- paste0(loc_url, location.ids)
         dataurl <- gsub(" ", "+", dataurl)
         dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
-        resp <- fromJSON(dataurl, flatten=TRUE)
-        results[[length(results) + 1]] <- resp$results
-        scroll.id <- resp$'_scroll_id'
-        success <- resp$success
+        t <- try(fromJSON(dataurl, flatten=TRUE), silent=T)
+        if(grepl("Error in open.connection(con, \"rb\")", t[1], fixed=T)){
+          stop("Could not connect to API. Check internet connection and try again.")
+        }else{
+          resp <- fromJSON(dataurl, flatten=TRUE)
+          results[[length(results) + 1]] <- resp$results
+          scroll.id <- resp$'_scroll_id'
+          success <- resp$success
+        }
       }
       t2 <- try(rbind_pages(results), silent=T)
       if("try-error" %in% class(t2)){

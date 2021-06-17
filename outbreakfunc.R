@@ -80,7 +80,7 @@ getISO3 <- function(locations_to_search){
       }
       t2 <- try(rbind_pages(results), silent=T)
       if("try-error" %in% class(t2)){
-        print(paste(locs_not_found[i], "not found. Please check spelling."))
+        message(locs_not_found[i], " not found. Please check spelling.")
         next
       }else{
         hits <- rbind_pages(results)
@@ -94,15 +94,15 @@ getISO3 <- function(locations_to_search){
         df$fullname <- paste0(df$name, " (", df$admin_level, ")")
       }
       for (i in df$fullname){
-        print(i)
+        cat(i)
         loc_sel <- readline("Is this a location of interest? (Y/N): ")
         if ((loc_sel == "Y")|(loc_sel == "y")){
           locs_of_interest = c(locs_of_interest, df$location_id[df$fullname==i])
           break
         }
         if ((loc_sel != "Y")&(loc_sel != "y")&(loc_sel != "N")&(loc_sel != "n")){
-          print("Expected input is Y or N")
-          print(i)
+          cat("Expected input is Y or N\n")
+          cat(i)
           loc_sel <- readline("Is this a location of interest? (Y/N): ")
           if ((loc_sel == "Y")|(loc_sel == "y")){
             locs_of_interest = c(locs_of_interest, df$location_id[df$fullname==i])
@@ -191,7 +191,7 @@ searchLocations <- function(locations_to_search, admin_level){
       }
       t2 <- try(rbind_pages(results), silent=T)
       if("try-error" %in% class(t2)){
-        print(paste(locs_not_found[i], "not found. Please check spelling."))
+        message(paste(locs_not_found[i], " not found. Please check spelling."))
         next
       }else{
         hits <- rbind_pages(results)
@@ -199,15 +199,15 @@ searchLocations <- function(locations_to_search, admin_level){
         df$name=apply(cbind(df$name, df$state_name), 1, function(x) paste(x[!is.na(x)], collapse = ", "))
       }
       for (i in df$name){
-        print(i)
+        cat(i)
         loc_sel <- readline("Is this a location of interest? (Y/N): ")
         if ((loc_sel == "Y")|(loc_sel == "y")){
           locs_of_interest = c(locs_of_interest, i)
           break
         }
         if ((loc_sel != "Y")&(loc_sel != "y")&(loc_sel != "N")&(loc_sel != "n")){
-          print("Expected input is Y or N")
-          print(i)
+          cat("Expected input is Y or N\n")
+          cat(i)
           loc_sel <- readline("Is this a location of interest? (Y/N): ")
           if ((loc_sel == "Y")|(loc_sel == "y")){
             locs_of_interest = c(locs_of_interest, i)
@@ -378,7 +378,7 @@ plotCovid <- function(locations, variable){
   location_codes <- getISO3(locations)
   df <- getEpiData(location_id=location_codes)
   if (!(variable %in% colnames(df))){
-    print(paste(variable, "is not a valid API field"))
+    stop(paste(variable, " is not a valid API field"))
     return(NULL)
   }
   p=ggplot(df, aes(date, get(variable), color=name, group=name)) + geom_line() + scale_x_date(date_breaks = "1 month") + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + labs(y=variable)
@@ -470,7 +470,7 @@ getISO3_genomic <- function(locations_to_search){
       }
       t2 <- try(rbind_pages(results), silent=T)
       if("try-error" %in% class(t2)){
-        print(paste(locs_not_found[i], "not found. Please check spelling."))
+        message(paste(locs_not_found[i], " not found. Please check spelling."))
         next
       }else{
         hits <- rbind_pages(results)
@@ -483,15 +483,15 @@ getISO3_genomic <- function(locations_to_search){
         df$full <- paste0(df$label, " (", df$admin_level, ")")
       }
       for (i in df$full){
-        print(i)
+        cat(i)
         loc_sel <- readline("Is this a location of interest? (Y/N): ")
         if ((loc_sel == "Y")|(loc_sel == "y")){
           locs_of_interest = c(locs_of_interest, df$id[df$full==i])
           break
         }
         if ((loc_sel != "Y")&(loc_sel != "y")&(loc_sel != "N")&(loc_sel != "n")){
-          print("Expected input is Y or N")
-          print(i)
+          cat("Expected input is Y or N\n\n")
+          cat(i)
           loc_sel <- readline("Is this a location of interest? (Y/N): ")
           if ((loc_sel == "Y")|(loc_sel == "y")){
             locs_of_interest = c(locs_of_interest, df$id[df$full==i])
@@ -583,28 +583,6 @@ getGenomicData <- function(query_url, location=NULL, cumulative=NULL, pangolin_l
     hits <- hits[order(as.Date(hits$date, format = "%Y-%m-%d")),]
   }
   return(hits)
-}
-
-dataurl <- "https://api.outbreak.info/genomics/prevalence-by-location?=mutations=S:N501Y&location_id=USA_US-CA"
-scroll.id <- NULL
-results <- list()
-success <- NULL
-while(is.null(success)){
-  dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
-  t <- try(fromJSON(dataurl, flatten=TRUE), silent=T)
-  if(grepl("Error in open.connection(con, \"rb\")", t[1], fixed=T)){
-    stop("Could not connect to API. Check internet connection and try again.")
-  }else{
-  resp <- fromJSON(dataurl, flatten=TRUE)
-  results[[length(results) + 1]] <- resp$results
-  scroll.id <- resp$'_scroll_id'
-  success <- resp$success
-  }
-}
-if (length(results) > 1){
-  hits <- rbind_pages(results)
-}else{
-  hits <- data.frame(results)
 }
   
 

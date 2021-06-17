@@ -88,7 +88,7 @@ getISO3_genomic <- function(locations_to_search){
       }
       t2 <- try(rbind_pages(results), silent=T)
       if("try-error" %in% class(t2)){
-        print(paste(locs_not_found[i], "not found. Please check spelling."))
+        message(paste(locs_not_found[i], " not found. Please check spelling."))
         next
       }else{
         hits <- rbind_pages(results)
@@ -101,15 +101,15 @@ getISO3_genomic <- function(locations_to_search){
         df$full <- paste0(df$label, " (", df$admin_level, ")")
       }
       for (i in df$full){
-        print(i)
+        cat(i)
         loc_sel <- readline("Is this a location of interest? (Y/N): ")
         if ((loc_sel == "Y")|(loc_sel == "y")){
           locs_of_interest = c(locs_of_interest, df$id[df$full==i])
           break
         }
         if ((loc_sel != "Y")&(loc_sel != "y")&(loc_sel != "N")&(loc_sel != "n")){
-          print("Expected input is Y or N")
-          print(i)
+          cat("Expected input is Y or N\n\n")
+          cat(i)
           loc_sel <- readline("Is this a location of interest? (Y/N): ")
           if ((loc_sel == "Y")|(loc_sel == "y")){
             locs_of_interest = c(locs_of_interest, df$id[df$full==i])

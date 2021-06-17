@@ -89,7 +89,7 @@ searchLocations <- function(locations_to_search, admin_level){
       }
       t2 <- try(rbind_pages(results), silent=T)
       if("try-error" %in% class(t2)){
-        print(paste(locs_not_found[i], "not found. Please check spelling."))
+        message(paste(locs_not_found[i], " not found. Please check spelling."))
         next
       }else{
         hits <- rbind_pages(results)
@@ -97,15 +97,15 @@ searchLocations <- function(locations_to_search, admin_level){
         df$name=apply(cbind(df$name, df$state_name), 1, function(x) paste(x[!is.na(x)], collapse = ", "))
       }
       for (i in df$name){
-        print(i)
+        cat(i)
         loc_sel <- readline("Is this a location of interest? (Y/N): ")
         if ((loc_sel == "Y")|(loc_sel == "y")){
           locs_of_interest = c(locs_of_interest, i)
           break
         }
         if ((loc_sel != "Y")&(loc_sel != "y")&(loc_sel != "N")&(loc_sel != "n")){
-          print("Expected input is Y or N")
-          print(i)
+          cat("Expected input is Y or N\n")
+          cat(i)
           loc_sel <- readline("Is this a location of interest? (Y/N): ")
           if ((loc_sel == "Y")|(loc_sel == "y")){
             locs_of_interest = c(locs_of_interest, i)

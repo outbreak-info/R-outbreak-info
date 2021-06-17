@@ -22,6 +22,7 @@
 
 plotAllLineagesByLocation <- function(location, other_threshold=0.05, nday_threshold=10, ndays=180, other_exclude=NULL, cumulative=F, include_title = F){
   df <- getGenomicData(query_url="prevalence-by-location-all-lineages", location = location, other_threshold = other_threshold, nday_threshold = nday_threshold, ndays = ndays, other_exclude = other_exclude, cumulative = cumulative)
+  cat("Plotting data...", "\n")
   p <- ggplot(df, aes(x=date, y=prevalence_rolling, group=lineage, fill=lineage)) + geom_area()
   if (include_title == T){
     p <- p + ggtitle(paste0("Lineage prevalence in ", str_to_title(location)))

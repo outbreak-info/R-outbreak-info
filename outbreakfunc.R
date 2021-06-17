@@ -316,7 +316,6 @@ getEpiData <- function(name=NULL, location_id=NULL, wb_region=NULL, country_name
   }
   return(hits)
 }
-#update getEpiData in package --> included sorting for dates
 
 getLocationData <- function(location_names, ...){
   location_codes <- getISO3(location_names)
@@ -384,7 +383,6 @@ plotCovid <- function(locations, variable){
   p=ggplot(df, aes(date, get(variable), color=name, group=name)) + geom_line() + scale_x_date(date_breaks = "1 month") + theme(axis.text.x = element_text(angle = 90, hjust = 1)) + labs(y=variable)
   return(p)
 }
-#update error message using stop()
 
 printAPIFields <- function(){
   df=data.frame("API Field"=c("admin_level", "cbsa", "confirmed", "confirmed_doublingRate", "confirmed_firstDate", "confirmed_newToday", "confirmed_numIncrease", "confirmed_pctIncrease", "confirmed_per_100k", "confirmed_rolling", "confirmed_rolling_14days_ago", "confirmed_rolling_14days_ago_diff", "confirmed_rolling_per_100k", "country_gdp_per_capita", "country_iso3", "country_name", "country_population", "date", "daysSince100Cases", "daysSince10Deaths", "daysSince50Deaths", "dead", "dead_doublingRate", "dead_firstDate", "dead_newToday", "dead_numIncrease", "dead_pctIncrease", "dead_per_100k", "dead_rolling", "dead_rolling_14days_ago", "dead_rolling_14days_ago_diff", "dead_rolling_per_100k", "first_dead-first_confirmed", "gdp_last_updated", "gdp_per_capita", "iso3", "lat", "location_id", "long", "mostRecent", "name", "num_subnational", "population", "recovered", "recovered_doublingRate", "recovered_firstDate", "recovered_newToday", "recovered_numIncrease", "recovered_pctIncrease", "recovered_per_100k", "recovered_rolling", "recovered_rolling_14days_ago", "recovered_rolling_14days_ago_diff", "recovered_rolling_per_100k", "state_iso3", "state_name", "sub_parts", "testing_*", "wb_region"),
@@ -562,6 +560,7 @@ getGenomicData <- function(query_url, location=NULL, cumulative=NULL, pangolin_l
   results <- list()
   success <- NULL
   while(is.null(success)){
+    cat("Retrieving data...", "\n")
     dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
     t <- try(fromJSON(dataurl, flatten=TRUE), silent=T)
     if(grepl("Error in open.connection(con, \"rb\")", t[1], fixed=T)){
@@ -603,6 +602,7 @@ getPrevalenceByLocation <- function(pangolin_lineage, location, mutations=NULL, 
 
 plotPrevalenceByLocation <- function(pangolin_lineage, location, mutations=NULL, cumulative=NULL, include_title=F){
   df <- getGenomicData(query_url="prevalence-by-location", pangolin_lineage = pangolin_lineage, location = location, mutations = mutations, cumulative = cumulative)
+  cat("Plotting data...", "\n")
   p <- ggplot(data=df, aes(x=date, y=proportion)) + geom_line() + scale_y_continuous(labels = scales::percent, name="percentage")
   p <- p + geom_ribbon(aes(ymin=proportion_ci_lower, ymax=proportion_ci_upper), alpha=0.2)
   if (include_title == T){
@@ -656,6 +656,7 @@ getAllLineagesByLocation <- function(location, other_threshold=0.05, nday_thresh
 
 plotAllLineagesByLocation <- function(location, other_threshold=0.05, nday_threshold=10, ndays=180, other_exclude=NULL, cumulative=F, include_title = F){
   df <- getGenomicData(query_url="prevalence-by-location-all-lineages", location = location, other_threshold = other_threshold, nday_threshold = nday_threshold, ndays = ndays, other_exclude = other_exclude, cumulative = cumulative)
+  cat("Plotting data...", "\n")
   p <- ggplot(df, aes(x=date, y=prevalence_rolling, group=lineage, fill=lineage)) + geom_area()
   if (include_title == T){
     p <- p + ggtitle(paste0("Lineage prevalence in ", str_to_title(location)))

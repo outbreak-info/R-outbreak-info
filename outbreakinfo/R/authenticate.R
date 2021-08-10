@@ -37,6 +37,9 @@ authenticate <- function(){
         )
         if (response$status_code == 200){
             cat("\nAuthenticated successfully!\n")
+            auth_token = response$headers$`x-auth-token`
+            if(!.is.null(auth_token)
+                Sys.setenv(OUTBREAK_INFO_TOKEN = auth_token)
             break
         } else if (response$status_code == 403){
             cat("\nAuthentication failed!\nTrying again in 5 seconds ... \n")
@@ -50,8 +53,3 @@ authenticate <- function(){
         }
     }
 }
-
-response <- GET(
-    OUTBREAK_INFO_AUTH,
-    add_headers(Authorization = paste("Bearer", Sys.getenv("OUTBREAK_INFO_TOKEN"), sep=" "))
-)

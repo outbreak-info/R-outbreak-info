@@ -54,7 +54,7 @@ authenticate <- function(){
     }
 }
 
-response <- GET(
-    OUTBREAK_INFO_AUTH,
-    add_headers(Authorization = paste("Bearer", Sys.getenv("OUTBREAK_INFO_TOKEN"), sep=" "))
-)
+#response <- GET(
+#    OUTBREAK_INFO_AUTH,
+#    add_headers(Authorization = paste("Bearer", Sys.getenv("OUTBREAK_INFO_TOKEN"), sep=" "))
+#)

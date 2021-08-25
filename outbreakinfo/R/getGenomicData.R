@@ -11,9 +11,8 @@
 #' @export
 #' @import jsonlite
 
-
 getGenomicData <- function(query_url, location=NULL, cumulative=NULL, pangolin_lineage=NULL, mutations=NULL, ndays=NULL, frequency=NULL, subadmin=NULL, other_threshold=NULL, nday_threshold=NULL, other_exclude=NULL){
-  genomic_url <- "https://api.outbreak.info/genomics/"
+  genomic_url <- "http://localhost:8000/genomics/"
 
   q <- c()
 
@@ -70,17 +69,38 @@ getGenomicData <- function(query_url, location=NULL, cumulative=NULL, pangolin_l
   results <- list()
   success <- NULL
   while(is.null(success)){
+      success <- FALSE
     cat("Retrieving data...", "\n")
     dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
-    t <- try(fromJSON(dataurl, flatten=TRUE), silent=T)
-    if(grepl("Error in open.connection(con, \"rb\")", t[1], fixed=T)){
-      stop("Could not connect to API. Check internet connection and try again.")
-    }else{
-      resp <- fromJSON(dataurl, flatten=TRUE)
-      results[[length(results) + 1]] <- resp$results
-      scroll.id <- resp$'_scroll_id'
-      success <- resp$success
-    }
+    tryCatch({
+        resp <- GET(
+            dataurl,
+            add_headers(Authorization = paste("Bearer", Sys.getenv("OUTBREAK_INFO_TOKEN"), sep=" "))
+        )
+        auth_token = resp$headers$`x-auth-token`
+        if(!is.null(auth_token))
+            Sys.setenv(OUTBREAK_INFO_TOKEN = auth_token)
+        if(resp$status_code == 401){
+            warning("Please authenticate by calling authenticate() to access the API.")
+        } else if (resp$status_code == 403) {
+            warning("Invalid taken. Please reauthenticate by calling the authenticate() function.")
+        } else if(resp$status_code == 500){
+            warning("There was an internal server error. Please cross check your query or contact help@outbreak.info for further assistance.")
+        } else if(resp$status_code == 429){
+            warning("You have exceeded the API usage limit. Please limit the usage to 1 request/minute.")
+        } else if (resp$status_code == 400){
+            warning("Malformed token. Please reauthenticate by calling the authenticate() function.")
+        } else if(resp$status_code == 200){
+            resp <- fromJSON(content(resp, "text"), flatten=TRUE)
+            results[[length(results) + 1]] <- resp$results
+            scroll.id <- resp$'_scroll_id'
+            success <- resp$success
+        }
+    }, error = function(cond){
+        stop("Could not connect to API. Please check internet connection and try again.");
+    }, warning = function(cond){
+        message(cond)
+    })
   }
   if (length(results) > 1){
     hits <- rbind_pages(results)
@@ -93,3 +113,5 @@ getGenomicData <- function(query_url, location=NULL, cumulative=NULL, pangolin_l
   }
   return(hits)
 }
+
+df <- getGenomicData(query_url="sequence-count", location = "United States", cumulative = FALSE, subadmin = FALSE)

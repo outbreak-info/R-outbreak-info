@@ -55,15 +55,15 @@ getGenomicsResponse <- function(dataurl){
             if(!is.null(auth_token))
                 Sys.setenv(OUTBREAK_INFO_TOKEN = auth_token)
             if(resp$status_code == 401){
-                warning("Please authenticateUser by calling authenticateUser() to access the API.")
+                warning("Please authenticate by calling authenticateUser() to access the API.")
             } else if (resp$status_code == 403) {
-                warning("Invalid taken. Please reauthenticateUser by calling the authenticateUser() function.")
+                warning("Invalid taken. Please reauthenticate by calling the authenticateUser() function.")
             } else if(resp$status_code == 500){
                 warning("There was an internal server error. Please cross check your query or contact help@outbreak.info for further assistance.")
             } else if(resp$status_code == 429){
                 warning("You have exceeded the API usage limit. Please limit the usage to 1 request/minute.")
             } else if (resp$status_code == 400){
-                warning("Malformed token. Please reauthenticateUser by calling the authenticateUser() function.")
+                warning("Malformed token. Please reauthenticate by calling the authenticateUser() function.")
             } else if(resp$status_code == 200){
                 resp <- fromJSON(content(resp, "text"), flatten=TRUE)
                 resp_df <- convert_list_to_dataframe(resp$results)

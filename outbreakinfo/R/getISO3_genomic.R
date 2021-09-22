@@ -10,8 +10,6 @@
 #' getISO3_genomic("San Diego")
 #'
 #' @export
-#' @import jsonlite
-#' @import plyr
 
 getISO3_genomic <- function(locations_to_search){
     loc_url <- "https://dev.outbreak.info/genomics/location?"

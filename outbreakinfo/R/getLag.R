@@ -10,7 +10,6 @@
 #'getLag(location="California")
 #'
 #' @export
-#' @import jsonlite
 
 getLag <- function(location=NULL){
   df <- getGenomicData(query_url="collection-submission", location = location)

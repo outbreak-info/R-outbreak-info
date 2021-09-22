@@ -10,7 +10,6 @@
 #' getISO3(c("San Diego", "Virginia", "India"))
 #'
 #' @export
-#' @import jsonlite
 
 getISO3 <- function(locations_to_search){
   locs_of_interest=c()

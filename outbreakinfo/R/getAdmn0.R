@@ -8,8 +8,6 @@
 #' getAdmn0()
 #'
 #' @export
-#' @import jsonlite
-#' @import progress
 
 getAdmn0 <- function(...){
   data <- getEpiData(admin_level = 0, ...)

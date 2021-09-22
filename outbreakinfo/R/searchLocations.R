@@ -11,7 +11,6 @@
 #' searchLocations(c("California", "Florida", "Texas"), admin_level=1)
 #'
 #' @export
-#' @import jsonlite
 
 searchLocations <- function(locations_to_search, admin_level){
   if (missing(admin_level)){

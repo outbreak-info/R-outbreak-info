@@ -11,7 +11,6 @@
 #'getMutationAcrossLineage(mutations="S:N501Y", location="United States of America")
 #'
 #' @export
-#' @import jsonlite
 
 
 getMutationAcrossLineage <- function(mutations, location=NULL){

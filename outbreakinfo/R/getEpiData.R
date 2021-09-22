@@ -20,9 +20,6 @@
 #' getEpiData(name="United States of America", date="2020-07-01")
 #'
 #' @export
-#' @import jsonlite
-#' @import progress
-#'
 
 getEpiData <- function(name=NULL, location_id=NULL, wb_region=NULL, country_name=NULL, state_name=NULL, admin_level=NULL, date=NULL, mostRecent=NULL, fields=NULL, sort=NULL, size=1000){
   q <- c()

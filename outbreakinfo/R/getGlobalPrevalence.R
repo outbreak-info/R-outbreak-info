@@ -12,7 +12,6 @@
 #'getGlobalPrevalence(pangolin_lineage = "B.1.1.7", mutations = "S:E484K")
 #'
 #' @export
-#' @import jsonlite
 
 
 getGlobalPrevalence <- function(pangolin_lineage, mutations=NULL, cumulative=NULL){

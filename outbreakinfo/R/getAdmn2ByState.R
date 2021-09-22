@@ -10,8 +10,6 @@
 #' getAdmn2ByState("California")
 #'
 #' @export
-#' @import jsonlite
-#' @import progress
 
 getAdmn2ByState <- function(states, ...){
   locations <- searchLocations(states, admin_level = 1)

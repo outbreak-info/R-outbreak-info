@@ -12,7 +12,6 @@
 #'getSeqCounts(location="United States of America")
 #'
 #' @export
-#' @import jsonlite
 
 
 getSeqCounts <- function(location=NULL, cumulative=NULL, subadmin=NULL){

@@ -5,7 +5,6 @@
 #' @description A function that does blabla, blabla.
 #' @keywords internal
 #' @export
-#' @import httr
 
 ## If object is a list, return a long dataframe with query_key as new column.
 ## If object is a dataframe, return the object directly
@@ -40,7 +39,6 @@ getGenomicsResponse <- function(dataurl){
         cat("Retrieving data...", "\n")
         dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
         dataurl <- URLencode(dataurl)
-        print(dataurl)
         resp <- NULL
         tryCatch({
             if(Sys.getenv("OUTBREAK_INFO_TOKEN") != ""){

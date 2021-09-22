@@ -13,7 +13,6 @@
 #'getPrevalenceByLocation(pangolin_lineage = "P.1", location = "Brazil")
 #'
 #' @export
-#' @import jsonlite
 
 
 

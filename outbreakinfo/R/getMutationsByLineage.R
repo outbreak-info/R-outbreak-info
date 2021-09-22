@@ -11,7 +11,6 @@
 #' getMutationsByLineage(pangolin_lineage="P.1", frequency=0.8)
 #'
 #' @export
-#' @import jsonlite
 
 
 getMutationsByLineage <- function(pangolin_lineage, frequency=0.8){

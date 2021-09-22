@@ -6,11 +6,9 @@
 #' @return url
 #'
 #' @examples
-#' authenticate()
+#' authenticateUser()
 #'
 #' @export
-#' @import httr
-#'
 
 OUTBREAK_INFO_AUTH = "https://dev.outbreak.info/genomics/get-auth-token"
 

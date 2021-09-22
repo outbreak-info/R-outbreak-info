@@ -10,8 +10,6 @@
 #' getLocationData("California", "India")
 #'
 #' @export
-#' @import jsonlite
-#' @import progress
 
 
 getLocationData <- function(location_names, ...){

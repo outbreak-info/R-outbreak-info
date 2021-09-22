@@ -11,30 +11,31 @@
 #' @export
 #' @import jsonlite
 
-## If object is a list, return a long dataframe with query_key as new column.
-## If object is a dataframe, return the object directly
-## If object is neither, throw warning and return NULL
-convert_list_to_dataframe <- function(list_obj){
-    if(!(class(list_obj) %in% c("list", "data.frame"))){
-        warning("Supplied object is not a list or dataframe")
-        return(NULL)
-    }
-    if(class(list_obj) == "data.frame"){
-        return(list_obj)
-    }
-    ## If list add a "query_key" column
-    query_keys <- names(list_obj)
-    res <- lapply(query_keys,
-           function(query_key) {
-               d <- list_obj[[query_key]]
-               d$query_key <- query_key
-               return(d)
-           })
-    res_df <- do.call(rbind, out)
-    return(res_df);
-}
-
 getGenomicData <- function(query_url, location=NULL, cumulative=NULL, pangolin_lineage=NULL, mutations=NULL, ndays=NULL, frequency=NULL, subadmin=NULL, other_threshold=NULL, nday_threshold=NULL, other_exclude=NULL){
+
+    ## If object is a list, return a long dataframe with query_key as new column.
+    ## If object is a dataframe, return the object directly
+    ## If object is neither, throw warning and return NULL
+    convert_list_to_dataframe <- function(list_obj){
+        if(!(class(list_obj) %in% c("list", "data.frame"))){
+            warning("Supplied object is not a list or dataframe")
+            return(NULL)
+        }
+        if(class(list_obj) == "data.frame"){
+            return(list_obj)
+        }
+        ## If list add a "query_key" column
+        query_keys <- names(list_obj)
+        res <- lapply(query_keys,
+                      function(query_key) {
+                          d <- list_obj[[query_key]]
+                          d$query_key <- query_key
+                          return(d)
+                      })
+        res_df <- do.call(rbind, out)
+        return(res_df);
+    }
+
   genomic_url <- "https://dev.outbreak.info/genomics/"
 
   q <- c()
@@ -96,6 +97,7 @@ getGenomicData <- function(query_url, location=NULL, cumulative=NULL, pangolin_l
     cat("Retrieving data...", "\n")
       dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
       dataurl <- URLencode(dataurl)
+      print(dataurl)
       resp <- NULL
       tryCatch({
           if(Sys.getenv("OUTBREAK_INFO_TOKEN") != ""){
@@ -145,3 +147,5 @@ getGenomicData <- function(query_url, location=NULL, cumulative=NULL, pangolin_l
   }
   return(hits)
 }
+
+  df <- getGenomicData(query_url="prevalence-by-location-all-lineages", location = "United States", other_threshold = 0.03, nday_threshold = 5, ndays = 60)

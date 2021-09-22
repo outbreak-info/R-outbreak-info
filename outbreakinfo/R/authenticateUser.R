@@ -12,11 +12,9 @@
 #' @import httr
 #'
 
-library(httr)
+OUTBREAK_INFO_AUTH = "https://dev.outbreak.info/genomics/get-auth-token"
 
-OUTBREAK_INFO_AUTH = "http://localhost:8000/genomics/get-auth-token"
-
-authenticate <- function(){
+authenticateUser <- function(){
     response <- POST(OUTBREAK_INFO_AUTH, body = '{}', encode = "raw")
     if (status_code(response) == 200) {
         response_content <- content(response)

@@ -8,8 +8,14 @@ Description: This package retrieves up-to-date COVID-19 epidemiological and geno
 License: GNU GPL v3
 Encoding: UTF-8
 LazyData: FALSE
-Imports: 
-    jsonlite, ggplot2, readr, progress, plyr, stringr
+Imports:
+    jsonlite,
+    ggplot2,
+    readr,
+    progress,
+    plyr,
+    stringr,
+    httr
 RoxygenNote: 7.1.0
-Suggests: 
+Suggests:
     testthat

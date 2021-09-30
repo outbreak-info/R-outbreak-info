@@ -17,6 +17,8 @@ convert_list_to_dataframe <- function(list_obj){
     if(class(list_obj) == "data.frame"){
         return(list_obj)
     }
+    ## Exclude items in list that have 0 columns
+    list_obj <- list_obj[sapply(list_obj, function(x){length(x) > 0})]
     ## If list add a "query_key" column
     query_keys <- names(list_obj)
     res <- lapply(query_keys,

@@ -1,0 +1,76 @@
+---
+title: "Location Report (United States)"
+date: "May 7, 2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(jsonlite)
+library(ggplot2)
+library(readr)
+library(dplyr)
+library(purrr)
+library(outbreakinfo)
+## source("../outbreakfunc.R")
+```
+
+------
+
+#### **Lineage prevalence in United States**
+*Lineages without daily prevalence > 3% on at least 5 days in the last 60 are grouped into "Other"*
+
+
+```{r}
+p <- plotAllLineagesByLocation(location = "United States of America", other_threshold = 0.03, nday_threshold = 5, ndays = 60)
+p <- p + scale_fill_brewer(palette="Set1")
+show(p)
+```
+
+-------
+
+#### **Characteristic S-gene mutations in common lineages**
+*Mutations in at least 75% of sequences*
+
+```{r}
+lineage_df <- getAllLineagesByLocation("United States")
+
+lineage_list <- lineage_df %>%
+  dplyr::filter(lineage != "other") %>%
+  dplyr::pull(lineage) %>%
+  unique()
+
+df_ll <- lineage_list %>%
+  purrr::map_dfr(~{getMutationsByLineage(.x, frequency=0) %>%
+  dplyr::mutate(lineage_name = .x)})
+
+mut_df <- df_ll %>%
+  dplyr::filter(prevalence > 0.75) %>%
+  dplyr::pull(mutation) %>%
+  unique()
+
+df_ll <- df_ll %>%
+  dplyr::filter(mutation %in% mut_df)
+
+df_ll <- df_ll %>%
+  dplyr::filter(gene == "S")
+
+p <- ggplot(df_ll, aes(mutation, lineage_name, fill = prevalence)) + geom_tile(color = "grey") + scale_fill_gradient2(labels = scales::percent, midpoint = 0.5, low = "#fff7f3", mid = "#f768a1", high = "#49006a") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1), panel.grid.major = element_blank(), panel.grid.minor = element_blank(), panel.background = element_blank()) + coord_equal() + ggtitle("Characteristic S-gene mutations in common lineages in the United States")
+
+show(p)
+```
+
+-------
+
+#### **Tracked variants of concern in the United States**
+
+```{r}
+voc <- c("B.1.1.7", "B.1.617.2", "P.1", "B.1.351")
+voc_df = NULL
+for (i in voc){
+  df <- getPrevalenceByLocation(i, "United States", cumulative=T)
+  df <- cbind(lineage = i, df)
+  voc_df = rbind(voc_df, df)
+}
+knitr::kable(voc_df)
+```

@@ -1,0 +1,39 @@
+---
+title: "Lineage Report (B.1.1.7)"
+date: "June 7, 2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(jsonlite)
+library(ggplot2)
+library(readr)
+source("/Users/manar/Downloads/outbreakfunc.R")
+```
+
+------
+
+#### **Average daily B.1.1.7 prevalence**
+
+```{r}
+p <- plotPrevalenceByLocation(pangolin_lineage = "b.1.1.7", location = "united states", include_title = T)
+show(p)
+```
+
+---------
+
+#### **Cumulative B.1.1.7 prevalence**
+
+```{r}
+us_df <- getCumulativeBySubadmin(pangolin_lineage = "B.1.1.7", location = "United States")
+
+states_map <- usmap::us_map()
+
+us_df <- merge(us_df, states_map, by.x="name", by.y="full", all.y=TRUE)
+us_df <- us_df[order(us_df$order),] 
+
+p <- ggplot() + geom_polygon(data = us_df, aes(x, y, group=group, fill=proportion), color="gray25", size=0.3) + scale_fill_gradient(low = "lemonchiffon", high = "lightseagreen", name = "Cumulative prevalence \nof B.1.1.7", labels = scales::percent) + ggplot2::theme_void() + coord_map(projection="albers", lat0=39, lat1=45)
+show(p)
+```
+

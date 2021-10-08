@@ -5,7 +5,11 @@ Version: 0.2.0
 Authors@R: c(person("Manar", "Alkuzweny", email = "manaralkuzweny@gmail.com",
                   role = c("aut", "cre")),
                   person("Karthik", "Gangavarapu", email = "gkarthik@ucla.edu",
-                                    role = c("aut"))
+                                    role = c("aut")),
+                  person("Laura", "Hughes", email = "lhughes@scripps.edu",
+                                    role = c("ctb")),
+                  person("Sabah", "Ul-Hasan", email = "sulhasan@scripps.edu",
+                                    role = c("ctb"))
                                     )
 Description: This package retrieves up-to-date COVID-19 epidemiological and genomic data from outbreak.info.
 License: GNU GPL v3

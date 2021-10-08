@@ -1,10 +1,10 @@
 # Steps to update the package down build
 
 # Semi-manual process!
-# NOTE: you'll need to supervise this process, because every example that 
+# NOTE: you'll need to supervise this process, because every example that
 # contains a call to a genomics function will require GISAID authentication.
 
-
+update_package_website = function(commit_message = "update R outbreakinfo package website"){
 # 1. Knit the README.Rmd file
 # Creates README.md
 knitr::knit("README.Rmd")
@@ -14,3 +14,6 @@ knitr::knit("README.Rmd")
 pkgdown::build_site()
 
 # 3. Push to GitHub; will automatically update GitHub pages.
+gert::git_commit_all(commit_message)
+gert::git_push()
+}

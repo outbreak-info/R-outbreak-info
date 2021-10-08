@@ -30,6 +30,7 @@ reference:
     and the [New York Times](https://github.com/nytimes/covid-19-data).
 - contents:
   - starts_with("getAdm")
+  - epidemiologyDataDictionary
   - getByAdmnLevel
   - getCountryByRegion
   - getCumulativeBySubadmin
@@ -38,5 +39,4 @@ reference:
   - getLocationData
   - getMetroByCountry
   - plotCovid
-  - printAPIFields
   - searchLocations

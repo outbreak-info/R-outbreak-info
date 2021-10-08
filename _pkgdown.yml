@@ -1,3 +1,41 @@
 template:
   params:
     ganalytics: G-VK9KSJ8ENE
+reference:
+- title: "SARS-CoV-2 Variant Prevalence"
+  desc: >
+    Functions to track SARS-CoV-2 variant prevalence worldwide, by country,
+    by state/province, or by U.S. county. All sequence data is provided by
+    [GISAID](https://www.gisaid.org/).
+- contents:
+  - getAllLineagesByLocation
+  - getCollectionDateByLocation
+  - getGenomicData
+  - getGlobalPrevalence
+  - getISO3_genomic
+  - getLag
+  - starts_with("getMutation")
+  - getPrevalenceByLocation
+  - getSeqCounts
+  - getSubmissionDateByLocation
+  - plotAllLineagesByLocation
+  - plotPrevalenceByLocation
+- title: "Cases & Deaths"
+  desc: >
+    Functions to track COVID-19 cases and deaths worldwide, by country,
+    by state/province, or by U.S. county. All epidemiological data is provided by
+    the [Center for Systems Science and Engineering (CSSE)](https://github.com/CSSEGISandData/COVID-19)
+    at Johns Hopkins University
+    and the [New York Times](https://github.com/nytimes/covid-19-data).
+- contents:
+  - starts_with("getAdm")
+  - getByAdmnLevel
+  - getCountryByRegion
+  - getCumulativeBySubadmin
+  - getEpiData
+  - getISO3
+  - getLocationData
+  - getMetroByCountry
+  - plotCovid
+  - printAPIFields
+  - searchLocations

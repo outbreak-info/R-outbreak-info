@@ -1,6 +1,7 @@
 template:
   params:
     ganalytics: G-VK9KSJ8ENE
+    bootswatch: flatly
 reference:
 - title: "SARS-CoV-2 Variant Prevalence"
   desc: >

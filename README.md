@@ -1,4 +1,4 @@
-# pkgdown <img src="man/figures/logo.png" align="right" />
+# outbreakinfo <img src="man/figures/logo.png" align="right" />
 R package for [outbreak.info](https://outbreak.info/)
 
 ### Installation

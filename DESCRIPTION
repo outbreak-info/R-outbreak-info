@@ -22,3 +22,5 @@ Imports:
 RoxygenNote: 7.1.0
 Suggests:
     testthat
+URL: https://github.com/outbreak-info/R-outbreak-info
+BugReports: https://github.com/outbreak-info/R-outbreak-info/issues

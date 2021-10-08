@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
@@ -101,17 +101,567 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#outbreakinfo-" class="anchor"></a>outbreakinfo <img src="reference/figures/logo.png" align="right">
 </h1></div>
-<p>R package for <a href="https://outbreak.info/">outbreak.info</a></p>
-<div id="installation" class="section level3">
-<h3 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h3>
-<p>Install using devtools.</p>
-<pre><code><a href="https://devtools.r-lib.org//reference/remote-reexports.html">devtools::install_github("outbreak-info/R-outbreak-info/outbreakinfo")</a></code></pre>
+<div id="r-package-for-outbreakinfo" class="section level4">
+<h4 class="hasAnchor">
+<a href="#r-package-for-outbreakinfo" class="anchor"></a>R package for <a href="https://outbreak.info">outbreak.info</a>
+</h4>
+<p><a href="https://outbreak.info">outbreak.info</a> is a platform to discover and explore COVID-19 data and variants. Our Variant Reports allow researchers to understand and track any emerging or known variant using customizable visualizations, enabling near real-time genomic surveillance, and our Epidemiology tools allow users to explore how COVID-19 cases and deaths are changing across locations.</p>
+<p>The <strong>outbreakinfo</strong> R package provides access to the underlying genomic and epidemiology data on outbreak.info. This includes <strong>SARS-CoV-2 variant prevalence</strong> data calculated using the <a href="https://github.com/andersen-lab/bjorn/">Bjorn</a> package using data provided by GISAID. We also standardize <strong>COVID-19 case and death data</strong> from Johns Hopkins University and the New York Times and calculate derived statistics.</p>
 </div>
-<div id="manual" class="section level3">
+<div id="installation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#installation" class="anchor"></a>Installation</h2>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Install development version from GitHub</span>
+<span class="co"># devtools::install_github("outbreak-info/R-outbreak-info/outbreakinfo")</span></code></pre></div>
+</div>
+<div id="getting-started" class="section level2">
+<h2 class="hasAnchor">
+<a href="#getting-started" class="anchor"></a>Getting Started</h2>
+<p>If you’re getting started using <strong>outbreakinfo</strong>, we recommend starting with the tutorial <a href="https://outbreak-info.github.io/R-outbreak-info/docs/articles/index.html">vignettes</a>.</p>
+<p>Note that to access the genomics data (SARS-CoV-2 variant prevalences), you will need to <strong>create an account on <a href="https://www.gisaid.org/registration/register/">GISAID</a></strong> before being able to access the data. It may take a few days for the registration to become active. Before calling the genomics functions, you’ll need to register your GISAID credentials:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">outbreakinfo</span><span class="fu">::</span><span class="fu">authenticateUser</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+</div>
+<div id="related-projects" class="section level2">
+<h2 class="hasAnchor">
+<a href="#related-projects" class="anchor"></a>Related Projects</h2>
+<p>API access for outbreak.info’s <a href="https://outbreak.info/resources">Research Library</a>, which provides metadata on COVID-19 publications, pre-prints, clinical trials, datasets, protocols, and more is available on our <a href="https://api.outbreak.info/try/resources">API</a>. API access for the cases and deaths data is also available on our <a href="https://api.outbreak.info/try/covid19">API</a>. These API endpoints can be accessed through the <a href="https://httr.r-lib.org/">httr</a> R package or the the Python <a href="https://docs.python-requests.org/en/latest/">requests</a> package.</p>
+<hr>
+</div>
+<div id="examples" class="section level2">
+<h2 class="hasAnchor">
+<a href="#examples" class="anchor"></a>Examples</h2>
+<div id="genomics-data" class="section level3">
 <h3 class="hasAnchor">
-<a href="#manual" class="anchor"></a>Manual</h3>
-<p>A vignette for this package can be found <a href="https://outbreak-info.github.io/R-outbreak-info/outbreakvignette.html">here</a>.</p>
+<a href="#genomics-data" class="anchor"></a>Genomics data</h3>
+<div id="lineage--mutation-tracker" class="section level4">
+<h4 class="hasAnchor">
+<a href="#lineage--mutation-tracker" class="anchor"></a>Lineage | Mutation Tracker</h4>
+<p>Provides access to the prevalence of a lineage, mutation(s), or lineage with additional mutations, to access the data underlying the <a href="https://outbreak.info/situation-reports?muts=S%3AP681R">outbreak.info Variant Tracker</a>.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://outbreak-info.github.io/R-outbreak-info/">outbreakinfo</a></span><span class="op">)</span>
+<span class="co">#  Provide GISAID credentials</span>
+<span class="fu">authenticateUser</span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; Please open this url in a browser and authenticate with your GISAID credentials.</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; https://gpsapi-test.epicov.org/epi3/gps_authenticate/NFVDXIKQIDTZLCVWBBKLVGARWRYSEQQWWZVFUDFQOBCBVYJDKEUNJIHCHSLEKQZDXCCENWZVZVVJAFWHMWRAKGOHHTEZENWSZPALYYAOAPJCAVNEZQTLREUKDPOHTUFH</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Waiting for authentication... [press CTRL-C to abort]</span>
+<span class="co">#&gt; Authenticated successfully!</span>
+<span class="co"># Get the prevalence of mutation P681R in the Spike protein in the United States over time.</span>
+<span class="va">P681R</span> <span class="op">=</span> <span class="fu"><a href="reference/getPrevalenceByLocation.html">getPrevalenceByLocation</a></span><span class="op">(</span>pangolin_lineage<span class="op">=</span><span class="st">"B.1.617.2"</span>, mutations <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"S:P681R"</span><span class="op">)</span>, location <span class="op">=</span> <span class="st">"Brazil"</span><span class="op">)</span>
+<span class="co">#&gt; Retrieving data... </span>
+<span class="co">#&gt; Retrieving data...</span>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">P681R</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<table class="table">
+<colgroup>
+<col width="6%">
+<col width="7%">
+<col width="8%">
+<col width="13%">
+<col width="14%">
+<col width="6%">
+<col width="13%">
+<col width="13%">
+<col width="15%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">date</th>
+<th align="right">total_count</th>
+<th align="right">lineage_count</th>
+<th align="right">total_count_rolling</th>
+<th align="right">lineage_count_rolling</th>
+<th align="right">proportion</th>
+<th align="right">proportion_ci_lower</th>
+<th align="right">proportion_ci_upper</th>
+<th align="left">query_key</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">2021-04-26</td>
+<td align="right">324</td>
+<td align="right">2</td>
+<td align="right">180.8571</td>
+<td align="right">0.2857143</td>
+<td align="right">0.0015798</td>
+<td align="right">2.7e-06</td>
+<td align="right">0.0137634</td>
+<td align="left">(B.1.617.2) AND (S:P681R)</td>
+</tr>
+<tr class="even">
+<td align="left">2021-04-27</td>
+<td align="right">258</td>
+<td align="right">0</td>
+<td align="right">185.8571</td>
+<td align="right">0.2857143</td>
+<td align="right">0.0015373</td>
+<td align="right">2.6e-06</td>
+<td align="right">0.0133964</td>
+<td align="left">(B.1.617.2) AND (S:P681R)</td>
+</tr>
+<tr class="odd">
+<td align="left">2021-04-28</td>
+<td align="right">115</td>
+<td align="right">0</td>
+<td align="right">183.2857</td>
+<td align="right">0.2857143</td>
+<td align="right">0.0015588</td>
+<td align="right">2.7e-06</td>
+<td align="right">0.0136142</td>
+<td align="left">(B.1.617.2) AND (S:P681R)</td>
+</tr>
+<tr class="even">
+<td align="left">2021-04-29</td>
+<td align="right">112</td>
+<td align="right">1</td>
+<td align="right">166.1429</td>
+<td align="right">0.4285714</td>
+<td align="right">0.0025795</td>
+<td align="right">3.0e-06</td>
+<td align="right">0.0149958</td>
+<td align="left">(B.1.617.2) AND (S:P681R)</td>
+</tr>
+<tr class="odd">
+<td align="left">2021-04-30</td>
+<td align="right">133</td>
+<td align="right">0</td>
+<td align="right">161.5714</td>
+<td align="right">0.4285714</td>
+<td align="right">0.0026525</td>
+<td align="right">3.0e-06</td>
+<td align="right">0.0153627</td>
+<td align="left">(B.1.617.2) AND (S:P681R)</td>
+</tr>
+<tr class="even">
+<td align="left">2021-05-01</td>
+<td align="right">60</td>
+<td align="right">0</td>
+<td align="right">164.4286</td>
+<td align="right">0.4285714</td>
+<td align="right">0.0026064</td>
+<td align="right">3.0e-06</td>
+<td align="right">0.0151770</td>
+<td align="left">(B.1.617.2) AND (S:P681R)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="lineage-comparison-tool" class="section level4">
+<h4 class="hasAnchor">
+<a href="#lineage-comparison-tool" class="anchor"></a>Lineage Comparison Tool</h4>
+<p>Provides access to the mutations per lineage, to access the data underlying the <a href="https://outbreak.info/compare-lineages?pango=P.1&amp;gene=ORF1a&amp;gene=ORF1b&amp;gene=S&amp;gene=E&amp;gene=ORF3a&amp;gene=M&amp;gene=ORF10&amp;gene=N&amp;gene=ORF8&amp;gene=ORF7b&amp;gene=ORF7a&amp;gene=ORF6&amp;threshold=80&amp;dark=true">outbreak.info Lineage Comparison Tool</a>.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://outbreak-info.github.io/R-outbreak-info/">outbreakinfo</a></span><span class="op">)</span>
+<span class="co">#  Provide GISAID credentials</span>
+<span class="fu">authenticateUser</span><span class="op">(</span><span class="op">)</span>
+<span class="co">#&gt; Please open this url in a browser and authenticate with your GISAID credentials.</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; https://gpsapi-test.epicov.org/epi3/gps_authenticate/GGPIIGDVWAUQZSQQFPIOYDJCCOOLLVYLSYKJUUNFFPGXIWUPOIOMCQSMFXINKMEFVXHXJSBOFACILRCIHVWDLZNULZZJITLOYJDSWDVQGRVOUPREKGTKACJBWYDZWSYU</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Waiting for authentication... [press CTRL-C to abort]</span>
+<span class="co">#&gt; Authenticated successfully!</span>
+<span class="co"># Get all mutations in Pango lineage P.1 at at least 80% prevalence in all P.1 sequences.</span>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="reference/getMutationsByLineage.html">getMutationsByLineage</a></span><span class="op">(</span>pangolin_lineage<span class="op">=</span><span class="st">"P.1"</span>, frequency<span class="op">=</span><span class="fl">0.8</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; Retrieving data...</span></code></pre></div>
+<table class="table">
+<colgroup>
+<col width="11%">
+<col width="9%">
+<col width="8%">
+<col width="4%">
+<col width="3%">
+<col width="11%">
+<col width="7%">
+<col width="6%">
+<col width="6%">
+<col width="7%">
+<col width="6%">
+<col width="11%">
+<col width="6%">
+</colgroup>
+<thead><tr class="header">
+<th align="left">mutation</th>
+<th align="right">mutation_count</th>
+<th align="right">lineage_count</th>
+<th align="left">lineage</th>
+<th align="left">gene</th>
+<th align="left">ref_aa</th>
+<th align="left">alt_aa</th>
+<th align="right">codon_num</th>
+<th align="left">codon_end</th>
+<th align="left">type</th>
+<th align="right">prevalence</th>
+<th align="left">change_length_nt</th>
+<th align="left">query_key</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">s:d614g</td>
+<td align="right">71709</td>
+<td align="right">72479</td>
+<td align="left">P.1</td>
+<td align="left">S</td>
+<td align="left">D</td>
+<td align="left">G</td>
+<td align="right">614</td>
+<td align="left">None</td>
+<td align="left">substitution</td>
+<td align="right">0.9893762</td>
+<td align="left">None</td>
+<td align="left">P.1</td>
+</tr>
+<tr class="even">
+<td align="left">s:v1176f</td>
+<td align="right">71660</td>
+<td align="right">72479</td>
+<td align="left">P.1</td>
+<td align="left">S</td>
+<td align="left">V</td>
+<td align="left">F</td>
+<td align="right">1176</td>
+<td align="left">None</td>
+<td align="left">substitution</td>
+<td align="right">0.9887002</td>
+<td align="left">None</td>
+<td align="left">P.1</td>
+</tr>
+<tr class="odd">
+<td align="left">orf1a:k1795q</td>
+<td align="right">71562</td>
+<td align="right">72479</td>
+<td align="left">P.1</td>
+<td align="left">ORF1a</td>
+<td align="left">K</td>
+<td align="left">Q</td>
+<td align="right">1795</td>
+<td align="left">None</td>
+<td align="left">substitution</td>
+<td align="right">0.9873481</td>
+<td align="left">None</td>
+<td align="left">P.1</td>
+</tr>
+<tr class="even">
+<td align="left">orf1b:p314l</td>
+<td align="right">71527</td>
+<td align="right">72479</td>
+<td align="left">P.1</td>
+<td align="left">ORF1b</td>
+<td align="left">P</td>
+<td align="left">L</td>
+<td align="right">314</td>
+<td align="left">None</td>
+<td align="left">substitution</td>
+<td align="right">0.9868652</td>
+<td align="left">None</td>
+<td align="left">P.1</td>
+</tr>
+<tr class="odd">
+<td align="left">n:p80r</td>
+<td align="right">71480</td>
+<td align="right">72479</td>
+<td align="left">P.1</td>
+<td align="left">N</td>
+<td align="left">P</td>
+<td align="left">R</td>
+<td align="right">80</td>
+<td align="left">None</td>
+<td align="left">substitution</td>
+<td align="right">0.9862167</td>
+<td align="left">None</td>
+<td align="left">P.1</td>
+</tr>
+<tr class="even">
+<td align="left">orf1b:e1264d</td>
+<td align="right">71390</td>
+<td align="right">72479</td>
+<td align="left">P.1</td>
+<td align="left">ORF1b</td>
+<td align="left">E</td>
+<td align="left">D</td>
+<td align="right">1264</td>
+<td align="left">None</td>
+<td align="left">substitution</td>
+<td align="right">0.9849750</td>
+<td align="left">None</td>
+<td align="left">P.1</td>
+</tr>
+<tr class="odd">
+<td align="left">orf3a:s253p</td>
+<td align="right">71327</td>
+<td align="right">72479</td>
+<td align="left">P.1</td>
+<td align="left">ORF3a</td>
+<td align="left">S</td>
+<td align="left">P</td>
+<td align="right">253</td>
+<td align="left">None</td>
+<td align="left">substitution</td>
+<td align="right">0.9841057</td>
+<td align="left">None</td>
+<td align="left">P.1</td>
+</tr>
+<tr class="even">
+<td align="left">s:h655y</td>
+<td align="right">71208</td>
+<td align="right">72479</td>
+<td align="left">P.1</td>
+<td align="left">S</td>
+<td align="left">H</td>
+<td align="left">Y</td>
+<td align="right">655</td>
+<td align="left">None</td>
+<td align="left">substitution</td>
+<td align="right">0.9824639</td>
+<td align="left">None</td>
+<td align="left">P.1</td>
+</tr>
+<tr class="odd">
+<td align="left">orf8:e92k</td>
+<td align="right">70980</td>
+<td align="right">72479</td>
+<td align="left">P.1</td>
+<td align="left">ORF8</td>
+<td align="left">E</td>
+<td align="left">K</td>
+<td align="right">92</td>
+<td align="left">None</td>
+<td align="left">substitution</td>
+<td align="right">0.9793181</td>
+<td align="left">None</td>
+<td align="left">P.1</td>
+</tr>
+<tr class="even">
+<td align="left">orf1a:s1188l</td>
+<td align="right">70949</td>
+<td align="right">72479</td>
+<td align="left">P.1</td>
+<td align="left">ORF1a</td>
+<td align="left">S</td>
+<td align="left">L</td>
+<td align="right">1188</td>
+<td align="left">None</td>
+<td align="left">substitution</td>
+<td align="right">0.9788904</td>
+<td align="left">None</td>
+<td align="left">P.1</td>
+</tr>
+<tr class="odd">
+<td align="left">s:l18f</td>
+<td align="right">70740</td>
+<td align="right">72479</td>
+<td align="left">P.1</td>
+<td align="left">S</td>
+<td align="left">L</td>
+<td align="left">F</td>
+<td align="right">18</td>
+<td align="left">None</td>
+<td align="left">substitution</td>
+<td align="right">0.9760068</td>
+<td align="left">None</td>
+<td align="left">P.1</td>
+</tr>
+<tr class="even">
+<td align="left">s:p26s</td>
+<td align="right">70633</td>
+<td align="right">72479</td>
+<td align="left">P.1</td>
+<td align="left">S</td>
+<td align="left">P</td>
+<td align="left">S</td>
+<td align="right">26</td>
+<td align="left">None</td>
+<td align="left">substitution</td>
+<td align="right">0.9745306</td>
+<td align="left">None</td>
+<td align="left">P.1</td>
+</tr>
+<tr class="odd">
+<td align="left">s:t20n</td>
+<td align="right">70368</td>
+<td align="right">72479</td>
+<td align="left">P.1</td>
+<td align="left">S</td>
+<td align="left">T</td>
+<td align="left">N</td>
+<td align="right">20</td>
+<td align="left">None</td>
+<td align="left">substitution</td>
+<td align="right">0.9708743</td>
+<td align="left">None</td>
+<td align="left">P.1</td>
+</tr>
+<tr class="even">
+<td align="left">orf1a:del3675/3677</td>
+<td align="right">70364</td>
+<td align="right">72479</td>
+<td align="left">P.1</td>
+<td align="left">ORF1a</td>
+<td align="left">ORF1A:DEL3675/3677</td>
+<td align="left">DEL3675/3677</td>
+<td align="right">3675</td>
+<td align="left">3677</td>
+<td align="left">deletion</td>
+<td align="right">0.9708191</td>
+<td align="left">9</td>
+<td align="left">P.1</td>
+</tr>
+<tr class="odd">
+<td align="left">s:t1027i</td>
+<td align="right">70134</td>
+<td align="right">72479</td>
+<td align="left">P.1</td>
+<td align="left">S</td>
+<td align="left">T</td>
+<td align="left">I</td>
+<td align="right">1027</td>
+<td align="left">None</td>
+<td align="left">substitution</td>
+<td align="right">0.9676458</td>
+<td align="left">None</td>
+<td align="left">P.1</td>
+</tr>
+<tr class="even">
+<td align="left">s:d138y</td>
+<td align="right">69857</td>
+<td align="right">72479</td>
+<td align="left">P.1</td>
+<td align="left">S</td>
+<td align="left">D</td>
+<td align="left">Y</td>
+<td align="right">138</td>
+<td align="left">None</td>
+<td align="left">substitution</td>
+<td align="right">0.9638240</td>
+<td align="left">None</td>
+<td align="left">P.1</td>
+</tr>
+<tr class="odd">
+<td align="left">s:n501y</td>
+<td align="right">69321</td>
+<td align="right">72479</td>
+<td align="left">P.1</td>
+<td align="left">S</td>
+<td align="left">N</td>
+<td align="left">Y</td>
+<td align="right">501</td>
+<td align="left">None</td>
+<td align="left">substitution</td>
+<td align="right">0.9564288</td>
+<td align="left">None</td>
+<td align="left">P.1</td>
+</tr>
+<tr class="even">
+<td align="left">s:e484k</td>
+<td align="right">69173</td>
+<td align="right">72479</td>
+<td align="left">P.1</td>
+<td align="left">S</td>
+<td align="left">E</td>
+<td align="left">K</td>
+<td align="right">484</td>
+<td align="left">None</td>
+<td align="left">substitution</td>
+<td align="right">0.9543868</td>
+<td align="left">None</td>
+<td align="left">P.1</td>
+</tr>
+<tr class="odd">
+<td align="left">s:k417t</td>
+<td align="right">69137</td>
+<td align="right">72479</td>
+<td align="left">P.1</td>
+<td align="left">S</td>
+<td align="left">K</td>
+<td align="left">T</td>
+<td align="right">417</td>
+<td align="left">None</td>
+<td align="left">substitution</td>
+<td align="right">0.9538901</td>
+<td align="left">None</td>
+<td align="left">P.1</td>
+</tr>
+<tr class="even">
+<td align="left">n:g204r</td>
+<td align="right">68165</td>
+<td align="right">72479</td>
+<td align="left">P.1</td>
+<td align="left">N</td>
+<td align="left">G</td>
+<td align="left">R</td>
+<td align="right">204</td>
+<td align="left">None</td>
+<td align="left">substitution</td>
+<td align="right">0.9404793</td>
+<td align="left">None</td>
+<td align="left">P.1</td>
+</tr>
+<tr class="odd">
+<td align="left">n:r203k</td>
+<td align="right">67782</td>
+<td align="right">72479</td>
+<td align="left">P.1</td>
+<td align="left">N</td>
+<td align="left">R</td>
+<td align="left">K</td>
+<td align="right">203</td>
+<td align="left">None</td>
+<td align="left">substitution</td>
+<td align="right">0.9351950</td>
+<td align="left">None</td>
+<td align="left">P.1</td>
+</tr>
+<tr class="even">
+<td align="left">s:r190s</td>
+<td align="right">67516</td>
+<td align="right">72479</td>
+<td align="left">P.1</td>
+<td align="left">S</td>
+<td align="left">R</td>
+<td align="left">S</td>
+<td align="right">190</td>
+<td align="left">None</td>
+<td align="left">substitution</td>
+<td align="right">0.9315250</td>
+<td align="left">None</td>
+<td align="left">P.1</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Plot the mutations as a heatmap</span></code></pre></div>
+</div>
+</div>
+<div id="cases--deaths" class="section level3">
+<h3 class="hasAnchor">
+<a href="#cases--deaths" class="anchor"></a>Cases &amp; Deaths</h3>
+<p>Replicates the daily confirmed cases visualization on <a href="https://outbreak.info/epidemiology?location=USA%3BMEX&amp;log=false&amp;variable=confirmed_rolling&amp;xVariable=date&amp;fixedY=false&amp;percapita=true">outbreak.info</a></p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Plots the daily confirmed cases per capita for the United States and Mexico.</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://outbreak-info.github.io/R-outbreak-info/">outbreakinfo</a></span><span class="op">)</span>
+<span class="fu"><a href="reference/plotCovid.html">plotCovid</a></span><span class="op">(</span>locations <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"United States of America"</span>, <span class="st">"Mexico"</span><span class="op">)</span>, variable <span class="op">=</span> <span class="st">"confirmed_rolling_per_100k"</span><span class="op">)</span></code></pre></div>
+<p><img src="reference/figures/daily_cases-1.png"><!-- --></p>
+<p>For more examples, please view our <a href="https://outbreak-info.github.io/R-outbreak-info/docs/articles/index.html">vignettes</a>.</p>
+<hr>
+</div>
+</div>
+<div id="data-sources" class="section level2">
+<h2 class="hasAnchor">
+<a href="#data-sources" class="anchor"></a>Data Sources</h2>
+<div id="sars-cov-2-virus-sequences" class="section level3">
+<h3 class="hasAnchor">
+<a href="#sars-cov-2-virus-sequences" class="anchor"></a>SARS-CoV-2 virus sequences</h3>
+<p>We would like to thank the GISAID Initiative and are grateful to all of the data contributors, i.e.the Authors, the Originating laboratories responsible for obtaining the specimens, and the Submitting laboratories for generating the genetic sequence and metadata and sharing via the GISAID Initiative, on which this research is based. GISAID data provided on this website are subject to GISAID’s <a href="https://www.gisaid.org/registration/terms-of-use/">Terms and Conditions</a>.</p>
+<p>The GISAID Initiative promotes the rapid sharing of data from all influenza viruses and the coronavirus causing COVID-19. This includes genetic sequence and related clinical and epidemiological data associated with human viruses, and geographical as well as species-specific data associated with avian and other animal viruses, to help researchers understand how viruses evolve and spread during epidemics and pandemics.</p>
+<p>GISAID does so by overcoming disincentive hurdles and restrictions, which discourage or prevented sharing of virological data prior to formal publication.</p>
+<p>The Initiative ensures that open access to data in GISAID is provided free-of-charge to all individuals that agreed to identify themselves and agreed to uphold the GISAID sharing mechanism governed through its <a href="https://www.gisaid.org/registration/terms-of-use/">Database Access Agreement</a>.</p>
+</div>
+<div id="cases--deaths-1" class="section level3">
+<h3 class="hasAnchor">
+<a href="#cases--deaths-1" class="anchor"></a>Cases &amp; deaths</h3>
+<p>Confirmed cases, recovered cases, and deaths over time for countries outside the United States, and provinces in Australia, Canada, and China are provided by <a href="Johns%20Hopkins%20University%20Center%20for%20Systems%20Science%20and%20Engineering">https://github.com/CSSEGISandData/COVID-19</a>. See <a href="https://systems.jhu.edu/research/public-health/2019-ncov-map-faqs/">data FAQ</a>.</p>
+<p>Confirmed cases and deaths over time for the United States, U.S. States, U.S. Metropolitan Areas, U.S. cities and U.S. counties are provided by the <a href="https://github.com/nytimes/covid-19-data">New York Times</a>. Note that “New York City” refers to the combined totals for New York, Kings, Queens, Bronx and Richmond Counties; “Kansas City” refers to cases within the Missouri portion of the Kansas City Metropolitan area and values for Jackson, Cass, Clay, and Platte counties are the totals excluding the KCMO data; cities like St. Louis that are administered separately from their containing county are reported separately. See other <a href="https://github.com/nytimes/covid-19-data#geographic-exceptions">geographic exceptions</a>.</p>
+</div>
 </div>
 </div>
   </div>

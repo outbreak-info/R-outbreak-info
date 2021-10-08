@@ -5,7 +5,8 @@
 #' @return dataframe
 #'
 #' @examples
-#' View(printAPIFields())
+#' df = epidemiologyDataDictionary()
+#' knitr::kable(df)
 #'
 #' @export
 

@@ -13,6 +13,7 @@ dataframe
 Documents fields included when extracting data from outbreak.info
 }
 \examples{
-View(printAPIFields())
+df = epidemiologyDataDictionary()
+knitr::kable(df)
 
 }

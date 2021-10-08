@@ -18,7 +18,7 @@ ggplot2 object
 Plot a metric of interest using up-to-date COVID-19 data from outbreak.info for location(s) of interest (World Bank region, country, state/province, metropolitan area, county).
 }
 \examples{
-p=plotCovid("Florida", "confirmed_per_100k")
+p = plotCovid("Florida", "confirmed_per_100k")
 show(p)
 
 }

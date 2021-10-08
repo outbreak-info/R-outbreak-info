@@ -23,7 +23,7 @@ Imports:
     plyr,
     stringr,
     httr
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
 Suggests:
     testthat
 URL: https://outbreak-info.github.io/R-outbreak-info/

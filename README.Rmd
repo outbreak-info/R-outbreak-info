@@ -1,0 +1,109 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r setup, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/"
+)
+```
+
+# outbreakinfo <img src="man/figures/logo.png" align="right" />
+#### R package for [outbreak.info](https://outbreak.info)
+
+[outbreak.info](https://outbreak.info) is a platform to discover and explore 
+COVID-19 data and variants. Our Variant Reports allow researchers to 
+understand and track any emerging or known variant using customizable 
+visualizations, enabling near real-time genomic surveillance, and our 
+Epidemiology tools allow users to explore how COVID-19 cases and deaths are 
+changing across locations.
+
+The **outbreakinfo** R package provides access to the underlying genomic 
+and epidemiology data on outbreak.info. This includes **SARS-CoV-2 variant prevalence** 
+data calculated using the [Bjorn](https://github.com/andersen-lab/bjorn/) 
+package using data provided by GISAID. We also standardize **COVID-19 case and death data**
+from Johns Hopkins University and the New York Times and calculate derived statistics.
+
+
+## Installation
+```{r installation, eval = FALSE}
+# Install development version from GitHub
+# devtools::install_github("outbreak-info/R-outbreak-info/outbreakinfo")
+```
+
+## Getting Started
+If you're getting started using **outbreakinfo**, we recommend starting with the tutorial [vignettes](https://outbreak-info.github.io/R-outbreak-info/docs/articles/index.html). 
+
+Note that to access the genomics data (SARS-CoV-2 variant prevalences), you will 
+need to **create an account on [GISAID](https://www.gisaid.org/registration/register/)** 
+before being able to access the data. It may take a few days for the registration to become active.
+Before calling the genomics functions, you'll need to register your GISAID credentials:
+```{r gisaid_auth, eval = FALSE}
+outbreakinfo::authenticateUser()
+```
+
+
+## Related Projects
+API access for outbreak.info's [Research Library](https://outbreak.info/resources), which provides metadata on COVID-19 publications, pre-prints, clinical trials, datasets, protocols, and more is available on our [API](https://api.outbreak.info/try/resources). API access for the cases and deaths data is also available on our [API](https://api.outbreak.info/try/covid19). These API endpoints can be accessed through the [httr](https://httr.r-lib.org/) R package or the the Python [requests](https://docs.python-requests.org/en/latest/) package.
+
+---
+
+## Examples
+### Genomics data
+
+#### Lineage | Mutation Tracker
+Provides access to the prevalence of a lineage, mutation(s), or lineage with
+additional mutations, to access the data underlying the 
+[outbreak.info Variant Tracker](https://outbreak.info/situation-reports?muts=S%3AP681R).
+``` {r variant_tracker, message = FALSE,}
+library(outbreakinfo)
+#  Provide GISAID credentials
+authenticateUser()
+# Get the prevalence of mutation P681R in the Spike protein in the United States over time.
+P681R = getPrevalenceByLocation(pangolin_lineage="B.1.617.2", mutations = c("S:P681R"), location = "Brazil")
+knitr::kable(head(P681R))
+
+```
+#### Lineage Comparison Tool
+Provides access to the mutations per lineage, to access the data underlying the 
+[outbreak.info Lineage Comparison Tool](https://outbreak.info/compare-lineages?pango=P.1&gene=ORF1a&gene=ORF1b&gene=S&gene=E&gene=ORF3a&gene=M&gene=ORF10&gene=N&gene=ORF8&gene=ORF7b&gene=ORF7a&gene=ORF6&threshold=80&dark=true).
+``` {r lineage_comparison, message = FALSE, warning = FALSE}
+library(outbreakinfo)
+#  Provide GISAID credentials
+authenticateUser()
+# Get all mutations in Pango lineage P.1 at at least 80% prevalence in all P.1 sequences.
+knitr::kable(getMutationsByLineage(pangolin_lineage="P.1", frequency=0.8))
+# Plot the mutations as a heatmap
+
+```
+### Cases & Deaths
+Replicates the daily confirmed cases visualization on [outbreak.info](https://outbreak.info/epidemiology?location=USA%3BMEX&log=false&variable=confirmed_rolling&xVariable=date&fixedY=false&percapita=true)
+```{r daily_cases}
+# Plots the daily confirmed cases per capita for the United States and Mexico.
+library(outbreakinfo)
+plotCovid(locations = c("United States of America", "Mexico"), variable = "confirmed_rolling_per_100k")
+```
+
+
+For more examples, please view our [vignettes](https://outbreak-info.github.io/R-outbreak-info/docs/articles/index.html).
+
+----
+
+## Data Sources
+### SARS-CoV-2 virus sequences
+We would like to thank the GISAID Initiative and are grateful to all of the data contributors, i.e.the Authors, the Originating laboratories responsible for obtaining the specimens, and the Submitting laboratories for generating the genetic sequence and metadata and sharing via the GISAID Initiative, on which this research is based. GISAID data provided on this website are subject to GISAID’s [Terms and Conditions](https://www.gisaid.org/registration/terms-of-use/).
+
+The GISAID Initiative promotes the rapid sharing of data from all influenza viruses and the coronavirus causing COVID-19. This includes genetic sequence and related clinical and epidemiological data associated with human viruses, and geographical as well as species-specific data associated with avian and other animal viruses, to help researchers understand how viruses evolve and spread during epidemics and pandemics.
+
+GISAID does so by overcoming disincentive hurdles and restrictions, which discourage or prevented sharing of virological data prior to formal publication.
+
+The Initiative ensures that open access to data in GISAID is provided free-of-charge to all individuals that agreed to identify themselves and agreed to uphold the GISAID sharing mechanism governed through its [Database Access Agreement](https://www.gisaid.org/registration/terms-of-use/).
+
+### Cases & deaths
+Confirmed cases, recovered cases, and deaths over time for countries outside the United States, and provinces in Australia, Canada, and China are provided by [https://github.com/CSSEGISandData/COVID-19](Johns Hopkins University Center for Systems Science and Engineering). See [data FAQ](https://systems.jhu.edu/research/public-health/2019-ncov-map-faqs/).
+
+Confirmed cases and deaths over time for the United States, U.S. States, U.S. Metropolitan Areas, U.S. cities and U.S. counties are provided by the [New York Times](https://github.com/nytimes/covid-19-data). Note that "New York City" refers to the combined totals for New York, Kings, Queens, Bronx and Richmond Counties; "Kansas City" refers to cases within the Missouri portion of the Kansas City Metropolitan area and values for Jackson, Cass, Clay, and Platte counties are the totals excluding the KCMO data; cities like St. Louis that are administered separately from their containing county are reported separately. See other [geographic exceptions](https://github.com/nytimes/covid-19-data#geographic-exceptions).

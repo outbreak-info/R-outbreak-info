@@ -59,7 +59,7 @@ API access for outbreak.info's [Research Library](https://outbreak.info/resource
 Provides access to the prevalence of a lineage, mutation(s), or lineage with
 additional mutations, to access the data underlying the 
 [outbreak.info Variant Tracker](https://outbreak.info/situation-reports?muts=S%3AP681R).
-``` {r variant_tracker, message = FALSE,}
+``` {r variant_tracker, message = FALSE}
 library(outbreakinfo)
 #  Provide GISAID credentials
 authenticateUser()

@@ -162,7 +162,21 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>knitr</span><span class='fu'>::</span><span class='fu'><a href='https://rdrr.io/pkg/knitr/man/kable.html'>kable</a></span><span class='op'>(</span><span class='fu'>genomicsDataDictionary</span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: NAs introduced by coercion</span></div><div class='output co'>#&gt; <span class='warning'>Warning: NAs introduced by coercion</span></div><div class='output co'>#&gt; <span class='error'>Error in "proportion":"Estimated prevalence of a variant: lineage_count_rolling / total_count_rolling": NA/NaN argument</span></div></pre>
+</div><div class='output co'>#&gt; 
+#&gt; 
+#&gt; |API Field             |Documentation                                                                                                 |
+#&gt; |:---------------------|:-------------------------------------------------------------------------------------------------------------|
+#&gt; |date                  |Sequence collection date, in YYYY-MM-DD format                                                                |
+#&gt; |lineage               |Pango lineage                                                                                                 |
+#&gt; |lineage_count         |Total number of samples on a given day assigned to the Pango lineage                                          |
+#&gt; |lineage_count_rolling |7 day rolling average of samples assigned to the Pango lineage on that day                                    |
+#&gt; |prevalence            |Estimated prevalence of the variant on that day                                                               |
+#&gt; |prevalence_rolling    |7 day rolling average estimate of prevalence of the variant on that day                                       |
+#&gt; |proportion            |Estimated prevalence of a variant: lineage_count_rolling / total_count_rolling                                |
+#&gt; |proportion_ci_lower   |95% confidence interval lower bound of estimated prevalence of a variant, calculated using Jeffrey's interval |
+#&gt; |proportion_ci_upper   |95% confidence interval upper bound of estimated prevalence of a variant, calculated using Jeffrey's interval |
+#&gt; |total_count           |Total number of samples sequenced on a given day                                                              |
+#&gt; |total_count_rolling   |7 day rolling average of total samples sequenced on that day                                                  |</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

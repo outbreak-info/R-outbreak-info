@@ -10,7 +10,7 @@ authenticateUser()
 url
 }
 \description{
-Authenticate API to get access to data
+Authenticate API to get access to genomics data
 }
 \examples{
 authenticateUser()

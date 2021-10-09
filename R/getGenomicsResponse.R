@@ -6,32 +6,6 @@
 #' @keywords internal
 #' @export
 
-## If object is a list, return a long dataframe with query_key as new column.
-## If object is a dataframe, return the object directly
-## If object is neither, throw warning and return NULL
-convert_list_to_dataframe <- function(list_obj){
-    if(!(class(list_obj) %in% c("list", "data.frame"))){
-        warning("Supplied object is not a list or dataframe")
-        return(NULL)
-    }
-    if(class(list_obj) == "data.frame"){
-        return(list_obj)
-    }
-    ## Exclude items in list that have 0 columns
-    list_obj <- list_obj[sapply(list_obj, function(x){length(x) > 0})]
-    ## If list add a "query_key" column
-    query_keys <- names(list_obj)
-    res <- lapply(query_keys,
-                  function(query_key) {
-                      d <- list_obj[[query_key]]
-                      d$query_key <- query_key
-                      return(d)
-                  })
-    res_df <- do.call(rbind, res)
-    return(res_df);
-}
-
-
 getGenomicsResponse <- function(dataurl){
     scroll.id <- NULL
     results <- list()
@@ -81,4 +55,29 @@ getGenomicsResponse <- function(dataurl){
             message(cond)
         })
     }
+}
+
+## If object is a list, return a long dataframe with query_key as new column.
+## If object is a dataframe, return the object directly
+## If object is neither, throw warning and return NULL
+convert_list_to_dataframe <- function(list_obj){
+    if(!(class(list_obj) %in% c("list", "data.frame"))){
+        warning("Supplied object is not a list or dataframe")
+        return(NULL)
+    }
+    if(class(list_obj) == "data.frame"){
+        return(list_obj)
+    }
+    ## Exclude items in list that have 0 columns
+    list_obj <- list_obj[sapply(list_obj, function(x){length(x) > 0})]
+    ## If list add a "query_key" column
+    query_keys <- names(list_obj)
+    res <- lapply(query_keys,
+                  function(query_key) {
+                      d <- list_obj[[query_key]]
+                      d$query_key <- query_key
+                      return(d)
+                  })
+    res_df <- do.call(rbind, res)
+    return(res_df);
 }

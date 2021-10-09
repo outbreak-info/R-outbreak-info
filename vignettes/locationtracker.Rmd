@@ -1,0 +1,56 @@
+---
+title: "Location Tracker"
+author: "Laura Hughes"
+date: "10/8/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## outbreak.info Location Tracker
+outbreak.info's Location Tracker allows you to explore what lineages are 
+currently circulating within a particular country, state/province, or U.S. county.
+These reports also allow you to compare the prevalence of variants within that 
+location, including Variants of Concern. Here, we'll show you how to pull the 
+data from these reports and recreate the 
+visualizations on the [United States Variant Report](https://outbreak.info/location-reports?loc=USA).
+
+### Before we start...
+Import the packages we'll use and provide our GISAID credentials to access the data.
+If you don't have a GISAID account, you can [register](https://www.gisaid.org/registration/register/) 
+for one on their website. It may take a day or two for the account to become active.
+```{r auth, message = FALSE, results='hide'}
+# Package imports
+library(dplyr)
+library(knitr)
+# library(outbreakinfo)
+
+# Authenticate yourself using your GISAID credentials.
+outbreakinfo::authenticateUser()
+```
+
+
+### What lineages are circulating within the location?
+First of all, let's grab the data for what lineages are circulating within the U.S. over the past 60 days.
+```{r all_lineages_data, results='hide'}
+usa_60d = outbreakinfo::getAllLineagesByLocation(location = "United States", other_threshold=0.03, nday_threshold=60)
+```
+
+``` {r all_lineages_exploration1}
+# This ends up being a large data frame. Let's take a look at what's inside:
+usa_60d %>% glimpse()
+```
+
+Let's look at how prevalent each of the different Pango lineages are in the U.S.:
+``` {r all_lineages_exploration2}
+
+usa_60d %>% 
+  group_by(lineage) %>%
+  summarise(min_prevalence = min(prevalence_rolling),
+            max_prevalence = max(prevalence_rolling)) %>% 
+  arrange(desc(max_prevalence)) %>% 
+  kable()
+```
+

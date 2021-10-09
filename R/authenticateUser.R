@@ -7,7 +7,8 @@
 #' @return url
 #'
 #' @examples
-#' authenticateUser()
+#'# Authenticate with GISAID credentials
+#'# authenticateUser()
 #'
 #' @export
 

@@ -14,7 +14,7 @@
 #'@examples
 #'library(dplyr)
 #'# Authenticate with GISAID credentials
-#'authenticateUser()
+#'# authenticateUser()
 #'india = getAllLineagesByLocation(location = "India", other_threshold=0.03, nday_threshold=60)
 #'india %>% filter(date == "2021-06-25")
 #'

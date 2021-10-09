@@ -5,6 +5,8 @@
 #' @return dataframe
 #'
 #' @examples
+#' #'# Authenticate with GISAID credentials
+#'# authenticateUser()
 #' df = epidemiologyDataDictionary()
 #' knitr::kable(df)
 #'

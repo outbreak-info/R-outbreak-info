@@ -10,7 +10,7 @@
 #'
 #'@examples
 #'# Authenticate with GISAID credentials
-#'authenticateUser()
+#'# authenticateUser()
 #'getCollectionDateByLocation(pangolin_lineage="B.1.1.7", location="California")
 #'
 #' @export

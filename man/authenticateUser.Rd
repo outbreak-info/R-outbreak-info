@@ -13,6 +13,8 @@ url
 Authenticate API to get access to genomics data
 }
 \examples{
+\dontrun{
 authenticateUser()
+}
 
 }

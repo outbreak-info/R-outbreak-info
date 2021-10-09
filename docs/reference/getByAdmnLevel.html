@@ -170,7 +170,345 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>getByAdmnLevel</span><span class='op'>(</span><span class='op'>-</span><span class='fl'>1</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in fromJSON(dataurl, flatten = TRUE): could not find function "fromJSON"</span></div><div class='input'>
+</div><div class='output co'>#&gt; <span class='message'></span></div><div class='output co'>#&gt; <span class='message'>  downloading [======&gt;-----------------------]  23% eta:  8s</span></div><div class='output co'>#&gt; <span class='message'></span></div><div class='output co'>#&gt; <span class='message'>  downloading [=============&gt;----------------]  47% eta:  5s</span></div><div class='output co'>#&gt; <span class='message'></span></div><div class='output co'>#&gt; <span class='message'>  downloading [====================&gt;---------]  70% eta:  3s</span></div><div class='output co'>#&gt; </div><div class='output co'>#&gt;                                        _id _score admin_level confirmed
+#&gt; 649               North_America_2020-01-22      1          -1         1
+#&gt; 1884      Europe___Central_Asia_2020-01-24      1          -1         2
+#&gt; 957       Europe___Central_Asia_2020-01-25      1          -1         3
+#&gt; 1272              North_America_2020-01-25      1          -1         3
+#&gt; 1644                 South_Asia_2020-01-25      1          -1         1
+#&gt; 18        Europe___Central_Asia_2020-01-26      1          -1         3
+#&gt; 1273              North_America_2020-01-28      1          -1         7
+#&gt; 1645                 South_Asia_2020-01-28      1          -1         2
+#&gt; 1885      Europe___Central_Asia_2020-01-28      1          -1         8
+#&gt; 19        Europe___Central_Asia_2020-01-29      1          -1        10
+#&gt; 126  Middle_East___North_Africa_2020-01-29      1          -1         4
+#&gt; 1274              North_America_2020-01-29      1          -1         7
+#&gt; 1420                 South_Asia_2020-01-29      1          -1         2
+#&gt; 253               North_America_2020-01-30      1          -1         9
+#&gt; 2173 Middle_East___North_Africa_2020-01-30      1          -1         4
+#&gt; 254               North_America_2020-01-31      1          -1        10
+#&gt; 342                  South_Asia_2020-01-31      1          -1         3
+#&gt; 958       Europe___Central_Asia_2020-01-31      1          -1        18
+#&gt; 2174 Middle_East___North_Africa_2020-01-31      1          -1         4
+#&gt; 343                  South_Asia_2020-02-01      1          -1         3
+#&gt; 1119 Middle_East___North_Africa_2020-02-01      1          -1         4
+#&gt; 650               North_America_2020-02-02      1          -1        15
+#&gt; 1120 Middle_East___North_Africa_2020-02-02      1          -1         5
+#&gt; 1886      Europe___Central_Asia_2020-02-02      1          -1        25
+#&gt; 1275              North_America_2020-02-03      1          -1        15
+#&gt;      confirmed_doublingRate confirmed_firstDate confirmed_newToday
+#&gt; 649                      NA          2020-01-21               TRUE
+#&gt; 1884                     NA          2020-01-24               TRUE
+#&gt; 957                   1.711          2020-01-24               TRUE
+#&gt; 1272                  2.398          2020-01-21               TRUE
+#&gt; 1644                     NA          2020-01-25               TRUE
+#&gt; 18                    3.415          2020-01-24               TRUE
+#&gt; 1273                  2.166          2020-01-21               TRUE
+#&gt; 1645                  2.502          2020-01-25               TRUE
+#&gt; 1885                  2.502          2020-01-24               TRUE
+#&gt; 19                    2.045          2020-01-24               TRUE
+#&gt; 126                      NA          2020-01-29               TRUE
+#&gt; 1274                  3.747          2020-01-21               TRUE
+#&gt; 1420                  3.332          2020-01-25               TRUE
+#&gt; 253                   7.146          2020-01-21               TRUE
+#&gt; 2173                     NA          2020-01-29               TRUE
+#&gt; 254                   5.458          2020-01-21               TRUE
+#&gt; 342                   5.682          2020-01-25               TRUE
+#&gt; 958                   1.819          2020-01-24               TRUE
+#&gt; 2174                     NA          2020-01-29               TRUE
+#&gt; 343                   5.682          2020-01-25               TRUE
+#&gt; 1119                     NA          2020-01-29               TRUE
+#&gt; 650                   3.830          2020-01-21               TRUE
+#&gt; 1120                 15.403          2020-01-29               TRUE
+#&gt; 1886                  2.596          2020-01-24               TRUE
+#&gt; 1275                  4.847          2020-01-21               TRUE
+#&gt;      confirmed_numIncrease confirmed_pctIncrease confirmed_rolling
+#&gt; 649                      0            0.00000000         0.6000000
+#&gt; 1884                     2                    NA         0.7500000
+#&gt; 957                      1            0.50000000         1.6000000
+#&gt; 1272                     1            0.50000000         0.8571429
+#&gt; 1644                     1                    NA         0.5000000
+#&gt; 18                       0            0.00000000         1.6666667
+#&gt; 1273                     1            0.16666667         1.1428571
+#&gt; 1645                     0            0.00000000         0.4285714
+#&gt; 1885                     5            1.66666667         2.2857143
+#&gt; 19                       2            0.25000000         2.8571429
+#&gt; 126                      4                    NA         1.0000000
+#&gt; 1274                     0            0.00000000         1.2857143
+#&gt; 1420                     0            0.00000000         0.2857143
+#&gt; 253                      2            0.28571429         1.2857143
+#&gt; 2173                     0            0.00000000         1.0000000
+#&gt; 254                      1            0.11111111         1.2857143
+#&gt; 342                      0            0.00000000         0.4285714
+#&gt; 958                      8            0.80000000         3.4285714
+#&gt; 2174                     0            0.00000000         0.8333333
+#&gt; 343                      0            0.00000000         0.4285714
+#&gt; 1119                     0            0.00000000         0.7142857
+#&gt; 650                      3            0.25000000         1.4285714
+#&gt; 1120                     1            0.25000000         0.1428571
+#&gt; 1886                     2            0.08695652         2.5714286
+#&gt; 1275                     0            0.00000000         1.1428571
+#&gt;      confirmed_rolling_14days_ago confirmed_rolling_14days_ago_diff       date
+#&gt; 649                            NA                                NA 2020-01-22
+#&gt; 1884                           NA                                NA 2020-01-24
+#&gt; 957                            NA                                NA 2020-01-25
+#&gt; 1272                           NA                                NA 2020-01-25
+#&gt; 1644                           NA                                NA 2020-01-25
+#&gt; 18                             NA                                NA 2020-01-26
+#&gt; 1273                           NA                                NA 2020-01-28
+#&gt; 1645                           NA                                NA 2020-01-28
+#&gt; 1885                           NA                                NA 2020-01-28
+#&gt; 19                             NA                                NA 2020-01-29
+#&gt; 126                            NA                                NA 2020-01-29
+#&gt; 1274                           NA                                NA 2020-01-29
+#&gt; 1420                           NA                                NA 2020-01-29
+#&gt; 253                            NA                                NA 2020-01-30
+#&gt; 2173                           NA                                NA 2020-01-30
+#&gt; 254                            NA                                NA 2020-01-31
+#&gt; 342                            NA                                NA 2020-01-31
+#&gt; 958                            NA                                NA 2020-01-31
+#&gt; 2174                           NA                                NA 2020-01-31
+#&gt; 343                            NA                                NA 2020-02-01
+#&gt; 1119                           NA                                NA 2020-02-01
+#&gt; 650                     0.5000000                         0.9285714 2020-02-02
+#&gt; 1120                           NA                                NA 2020-02-02
+#&gt; 1886                           NA                                NA 2020-02-02
+#&gt; 1275                    0.3333333                         0.8095238 2020-02-03
+#&gt;      daysSince50Deaths dead dead_doublingRate dead_firstDate dead_newToday
+#&gt; 649                 NA    0                NA     2020-02-29          TRUE
+#&gt; 1884                NA    0                NA     2020-02-15          TRUE
+#&gt; 957                 NA    0                NA     2020-02-15          TRUE
+#&gt; 1272                NA    0                NA     2020-02-29          TRUE
+#&gt; 1644                NA    0                NA     2020-03-11          TRUE
+#&gt; 18                  NA    0                NA     2020-02-15          TRUE
+#&gt; 1273                NA    0                NA     2020-02-29          TRUE
+#&gt; 1645                NA    0                NA     2020-03-11          TRUE
+#&gt; 1885                NA    0                NA     2020-02-15          TRUE
+#&gt; 19                  NA    0                NA     2020-02-15          TRUE
+#&gt; 126                 NA    0                NA     2020-02-19          TRUE
+#&gt; 1274                NA    0                NA     2020-02-29          TRUE
+#&gt; 1420                NA    0                NA     2020-03-11          TRUE
+#&gt; 253                 NA    0                NA     2020-02-29          TRUE
+#&gt; 2173                NA    0                NA     2020-02-19          TRUE
+#&gt; 254                 NA    0                NA     2020-02-29          TRUE
+#&gt; 342                 NA    0                NA     2020-03-11          TRUE
+#&gt; 958                 NA    0                NA     2020-02-15          TRUE
+#&gt; 2174                NA    0                NA     2020-02-19          TRUE
+#&gt; 343                 NA    0                NA     2020-03-11          TRUE
+#&gt; 1119                NA    0                NA     2020-02-19          TRUE
+#&gt; 650                 NA    0                NA     2020-02-29          TRUE
+#&gt; 1120                NA    0                NA     2020-02-19          TRUE
+#&gt; 1886                NA    0                NA     2020-02-15          TRUE
+#&gt; 1275                NA    0                NA     2020-02-29          TRUE
+#&gt;      dead_numIncrease dead_pctIncrease dead_rolling dead_rolling_14days_ago
+#&gt; 649                 0               NA            0                      NA
+#&gt; 1884                0               NA            0                      NA
+#&gt; 957                 0               NA            0                      NA
+#&gt; 1272                0               NA            0                      NA
+#&gt; 1644                0               NA            0                      NA
+#&gt; 18                  0               NA            0                      NA
+#&gt; 1273                0               NA            0                      NA
+#&gt; 1645                0               NA            0                      NA
+#&gt; 1885                0               NA            0                      NA
+#&gt; 19                  0               NA            0                      NA
+#&gt; 126                 0               NA            0                      NA
+#&gt; 1274                0               NA            0                      NA
+#&gt; 1420                0               NA            0                      NA
+#&gt; 253                 0               NA            0                      NA
+#&gt; 2173                0               NA            0                      NA
+#&gt; 254                 0               NA            0                      NA
+#&gt; 342                 0               NA            0                      NA
+#&gt; 958                 0               NA            0                      NA
+#&gt; 2174                0               NA            0                      NA
+#&gt; 343                 0               NA            0                      NA
+#&gt; 1119                0               NA            0                      NA
+#&gt; 650                 0               NA            0                       0
+#&gt; 1120                0               NA            0                      NA
+#&gt; 1886                0               NA            0                      NA
+#&gt; 1275                0               NA            0                       0
+#&gt;      dead_rolling_14days_ago_diff first_dead-first_confirmed
+#&gt; 649                            NA                         39
+#&gt; 1884                           NA                         22
+#&gt; 957                            NA                         22
+#&gt; 1272                           NA                         39
+#&gt; 1644                           NA                         46
+#&gt; 18                             NA                         22
+#&gt; 1273                           NA                         39
+#&gt; 1645                           NA                         46
+#&gt; 1885                           NA                         22
+#&gt; 19                             NA                         22
+#&gt; 126                            NA                         21
+#&gt; 1274                           NA                         39
+#&gt; 1420                           NA                         46
+#&gt; 253                            NA                         39
+#&gt; 2173                           NA                         21
+#&gt; 254                            NA                         39
+#&gt; 342                            NA                         46
+#&gt; 958                            NA                         22
+#&gt; 2174                           NA                         21
+#&gt; 343                            NA                         46
+#&gt; 1119                           NA                         21
+#&gt; 650                             0                         39
+#&gt; 1120                           NA                         21
+#&gt; 1886                           NA                         22
+#&gt; 1275                            0                         39
+#&gt;                            iso3                location_id mostRecent
+#&gt; 649               North America              North_America      FALSE
+#&gt; 1884      Europe &amp; Central Asia      Europe___Central_Asia      FALSE
+#&gt; 957       Europe &amp; Central Asia      Europe___Central_Asia      FALSE
+#&gt; 1272              North America              North_America      FALSE
+#&gt; 1644                 South Asia                 South_Asia      FALSE
+#&gt; 18        Europe &amp; Central Asia      Europe___Central_Asia      FALSE
+#&gt; 1273              North America              North_America      FALSE
+#&gt; 1645                 South Asia                 South_Asia      FALSE
+#&gt; 1885      Europe &amp; Central Asia      Europe___Central_Asia      FALSE
+#&gt; 19        Europe &amp; Central Asia      Europe___Central_Asia      FALSE
+#&gt; 126  Middle East &amp; North Africa Middle_East___North_Africa      FALSE
+#&gt; 1274              North America              North_America      FALSE
+#&gt; 1420                 South Asia                 South_Asia      FALSE
+#&gt; 253               North America              North_America      FALSE
+#&gt; 2173 Middle East &amp; North Africa Middle_East___North_Africa      FALSE
+#&gt; 254               North America              North_America      FALSE
+#&gt; 342                  South Asia                 South_Asia      FALSE
+#&gt; 958       Europe &amp; Central Asia      Europe___Central_Asia      FALSE
+#&gt; 2174 Middle East &amp; North Africa Middle_East___North_Africa      FALSE
+#&gt; 343                  South Asia                 South_Asia      FALSE
+#&gt; 1119 Middle East &amp; North Africa Middle_East___North_Africa      FALSE
+#&gt; 650               North America              North_America      FALSE
+#&gt; 1120 Middle East &amp; North Africa Middle_East___North_Africa      FALSE
+#&gt; 1886      Europe &amp; Central Asia      Europe___Central_Asia      FALSE
+#&gt; 1275              North America              North_America      FALSE
+#&gt;                            name recovered recovered_doublingRate
+#&gt; 649               North America         0                     NA
+#&gt; 1884      Europe &amp; Central Asia         0                     NA
+#&gt; 957       Europe &amp; Central Asia         0                     NA
+#&gt; 1272              North America         0                     NA
+#&gt; 1644                 South Asia         0                     NA
+#&gt; 18        Europe &amp; Central Asia         0                     NA
+#&gt; 1273              North America         0                     NA
+#&gt; 1645                 South Asia         0                     NA
+#&gt; 1885      Europe &amp; Central Asia         0                     NA
+#&gt; 19        Europe &amp; Central Asia         0                     NA
+#&gt; 126  Middle East &amp; North Africa         0                     NA
+#&gt; 1274              North America         0                     NA
+#&gt; 1420                 South Asia         0                     NA
+#&gt; 253               North America         0                     NA
+#&gt; 2173 Middle East &amp; North Africa         0                     NA
+#&gt; 254               North America         0                     NA
+#&gt; 342                  South Asia         0                     NA
+#&gt; 958       Europe &amp; Central Asia         0                     NA
+#&gt; 2174 Middle East &amp; North Africa         0                     NA
+#&gt; 343                  South Asia         0                     NA
+#&gt; 1119 Middle East &amp; North Africa         0                     NA
+#&gt; 650               North America         0                     NA
+#&gt; 1120 Middle East &amp; North Africa         0                     NA
+#&gt; 1886      Europe &amp; Central Asia         0                     NA
+#&gt; 1275              North America         0                     NA
+#&gt;      recovered_firstDate recovered_newToday recovered_numIncrease
+#&gt; 649           2020-02-12              FALSE                     0
+#&gt; 1884          2020-02-12              FALSE                     0
+#&gt; 957           2020-02-12              FALSE                     0
+#&gt; 1272          2020-02-12              FALSE                     0
+#&gt; 1644          2020-02-08              FALSE                     0
+#&gt; 18            2020-02-12              FALSE                     0
+#&gt; 1273          2020-02-12              FALSE                     0
+#&gt; 1645          2020-02-08              FALSE                     0
+#&gt; 1885          2020-02-12              FALSE                     0
+#&gt; 19            2020-02-12              FALSE                     0
+#&gt; 126           2020-02-12              FALSE                     0
+#&gt; 1274          2020-02-12              FALSE                     0
+#&gt; 1420          2020-02-08              FALSE                     0
+#&gt; 253           2020-02-12              FALSE                     0
+#&gt; 2173          2020-02-12              FALSE                     0
+#&gt; 254           2020-02-12              FALSE                     0
+#&gt; 342           2020-02-08              FALSE                     0
+#&gt; 958           2020-02-12              FALSE                     0
+#&gt; 2174          2020-02-12              FALSE                     0
+#&gt; 343           2020-02-08              FALSE                     0
+#&gt; 1119          2020-02-12              FALSE                     0
+#&gt; 650           2020-02-12              FALSE                     0
+#&gt; 1120          2020-02-12              FALSE                     0
+#&gt; 1886          2020-02-12              FALSE                     0
+#&gt; 1275          2020-02-12              FALSE                     0
+#&gt;      recovered_pctIncrease recovered_rolling recovered_rolling_14days_ago
+#&gt; 649                     NA                 0                           NA
+#&gt; 1884                    NA                 0                           NA
+#&gt; 957                     NA                 0                           NA
+#&gt; 1272                    NA                 0                           NA
+#&gt; 1644                    NA                 0                           NA
+#&gt; 18                      NA                 0                           NA
+#&gt; 1273                    NA                 0                           NA
+#&gt; 1645                    NA                 0                           NA
+#&gt; 1885                    NA                 0                           NA
+#&gt; 19                      NA                 0                           NA
+#&gt; 126                     NA                 0                           NA
+#&gt; 1274                    NA                 0                           NA
+#&gt; 1420                    NA                 0                           NA
+#&gt; 253                     NA                 0                           NA
+#&gt; 2173                    NA                 0                           NA
+#&gt; 254                     NA                 0                           NA
+#&gt; 342                     NA                 0                           NA
+#&gt; 958                     NA                 0                           NA
+#&gt; 2174                    NA                 0                           NA
+#&gt; 343                     NA                 0                           NA
+#&gt; 1119                    NA                 0                           NA
+#&gt; 650                     NA                 0                            0
+#&gt; 1120                    NA                 0                           NA
+#&gt; 1886                    NA                 0                           NA
+#&gt; 1275                    NA                 0                            0
+#&gt;      recovered_rolling_14days_ago_diff                  wb_region
+#&gt; 649                                 NA              North America
+#&gt; 1884                                NA      Europe &amp; Central Asia
+#&gt; 957                                 NA      Europe &amp; Central Asia
+#&gt; 1272                                NA              North America
+#&gt; 1644                                NA                 South Asia
+#&gt; 18                                  NA      Europe &amp; Central Asia
+#&gt; 1273                                NA              North America
+#&gt; 1645                                NA                 South Asia
+#&gt; 1885                                NA      Europe &amp; Central Asia
+#&gt; 19                                  NA      Europe &amp; Central Asia
+#&gt; 126                                 NA Middle East &amp; North Africa
+#&gt; 1274                                NA              North America
+#&gt; 1420                                NA                 South Asia
+#&gt; 253                                 NA              North America
+#&gt; 2173                                NA Middle East &amp; North Africa
+#&gt; 254                                 NA              North America
+#&gt; 342                                 NA                 South Asia
+#&gt; 958                                 NA      Europe &amp; Central Asia
+#&gt; 2174                                NA Middle East &amp; North Africa
+#&gt; 343                                 NA                 South Asia
+#&gt; 1119                                NA Middle East &amp; North Africa
+#&gt; 650                                  0              North America
+#&gt; 1120                                NA Middle East &amp; North Africa
+#&gt; 1886                                NA      Europe &amp; Central Asia
+#&gt; 1275                                 0              North America
+#&gt;      daysSince100Cases daysSince10Deaths
+#&gt; 649                 NA                NA
+#&gt; 1884                NA                NA
+#&gt; 957                 NA                NA
+#&gt; 1272                NA                NA
+#&gt; 1644                NA                NA
+#&gt; 18                  NA                NA
+#&gt; 1273                NA                NA
+#&gt; 1645                NA                NA
+#&gt; 1885                NA                NA
+#&gt; 19                  NA                NA
+#&gt; 126                 NA                NA
+#&gt; 1274                NA                NA
+#&gt; 1420                NA                NA
+#&gt; 253                 NA                NA
+#&gt; 2173                NA                NA
+#&gt; 254                 NA                NA
+#&gt; 342                 NA                NA
+#&gt; 958                 NA                NA
+#&gt; 2174                NA                NA
+#&gt; 343                 NA                NA
+#&gt; 1119                NA                NA
+#&gt; 650                 NA                NA
+#&gt; 1120                NA                NA
+#&gt; 1886                NA                NA
+#&gt; 1275                NA                NA
+#&gt;  [ reached 'max' / getOption("max.print") -- omitted 2261 rows ]</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

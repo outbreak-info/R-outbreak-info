@@ -13,6 +13,7 @@ dataframe
 Retrieve up-to-date COVID-19 data from outbreak.info for all countries
 }
 \examples{
+\dontrun{
 getAdmn0()
-
+}
 }

@@ -13,6 +13,7 @@ dataframe
 Retrieve up-to-date COVID-19 data from outbreak.info for all metropolitan areas in the United States of America.
 }
 \examples{
+\dontrun {
 getMetroByCountry()
-
+}
 }

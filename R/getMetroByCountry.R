@@ -5,8 +5,9 @@
 #' @return dataframe
 #'
 #' @examples
+#' \dontrun {
 #' getMetroByCountry()
-#'
+#' }
 #' @export
 
 getMetroByCountry <- function(...){

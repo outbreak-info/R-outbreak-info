@@ -13,6 +13,9 @@ dataframe
 Retrieve up-to-date COVID-19 data from outbreak.info for all counties in the United States of America.
 }
 \examples{
+# Takes a long time to run!
+\dontrun{
 getAdmn2ByCountry()
+}
 
 }

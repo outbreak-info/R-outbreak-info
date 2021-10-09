@@ -5,8 +5,9 @@
 #' @return dataframe
 #'
 #' @examples
+#' \dontrun{
 #' getAdmn0()
-#'
+#' }
 #' @export
 
 getAdmn0 <- function(...){

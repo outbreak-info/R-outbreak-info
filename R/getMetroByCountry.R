@@ -5,7 +5,7 @@
 #' @return dataframe
 #'
 #' @examples
-#' \dontrun {
+#' \dontrun{
 #' getMetroByCountry()
 #' }
 #' @export

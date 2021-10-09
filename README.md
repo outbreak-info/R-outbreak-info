@@ -76,7 +76,7 @@ library(outbreakinfo)
 authenticateUser()
 #> Please open this url in a browser and authenticate with your GISAID credentials.
 #> 
-#> https://gpsapi-test.epicov.org/epi3/gps_authenticate/ZPBCHTXBRRSJVLNFWPEXBLBCUDGJQWDQVEOXTIRRDZPSLUDHEIYESOCUXIMBRVOBERKBEZVGGCEVVHGTRTWXQVMNOAKGXATAOYGKIFXKDPBEOHIOSFSSWKTWRQPMFQSO
+#> https://gpsapi-test.epicov.org/epi3/gps_authenticate/DMEVVOZKNPUJPXMQYRUNSJUTWCUCTSKBRCPGIRQLKHLGKUPMGYVQQIJJCZQIHWBCXFUQJYZVHPWFONZHHQUUNNGPPELHRZMVHDFUXSFWTCNRYUZPWMUTZROQMYGCCFFO
 #> 
 #> Waiting for authentication... [press CTRL-C to abort]
 #> Authenticated successfully!
@@ -108,7 +108,7 @@ library(outbreakinfo)
 authenticateUser()
 #> Please open this url in a browser and authenticate with your GISAID credentials.
 #> 
-#> https://gpsapi-test.epicov.org/epi3/gps_authenticate/YPERKFVBSAWOYLQNYJMZCIJVUEHGEWAGEFBRUXFCXXWFHPLCIRJGIQHAVVALFAYITKKFIKABOYOODDFXJVQWUVEOQJLRCTLDPZHCNWWUHPVLIOLLDKQWRQYOOERYSIQI
+#> https://gpsapi-test.epicov.org/epi3/gps_authenticate/WVMXBRMQFBTEITETBCHXIKVGFTZKMITZJSLDKHGHAKQGHFQZJLGMDIJHNPQGGIEEPSVZRCVMQQRTXGOORITXQJCVVJNIKVVHJUWDLOMFEELKABVXBMSUQOTIGERFKLJT
 #> 
 #> Waiting for authentication... [press CTRL-C to abort]
 #> Authenticated successfully!

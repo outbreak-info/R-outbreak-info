@@ -5,7 +5,10 @@
 #' @return dataframe
 #'
 #' @examples
+#' # Takes a long time to run!
+#' \dontrun{
 #' getAdmn2ByCountry()
+#' }
 #'
 #' @export
 

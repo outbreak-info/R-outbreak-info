@@ -20,6 +20,10 @@ dataframe
 Retrieves the global daily prevalence of a PANGO lineage
 }
 \examples{
-getGlobalPrevalence(pangolin_lineage = "B.1.1.7", mutations = "S:E484K")
+# Authenticate with GISAID credentials
+authenticateUser()
+# B.1.1.7 lineage
+b117 = getGlobalPrevalence(pangolin_lineage = "B.1.1.7", mutations = "S:E484K")
+head(b117)
 
 }

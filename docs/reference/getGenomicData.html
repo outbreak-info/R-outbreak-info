@@ -173,9 +173,37 @@
     <p>dataframe</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>getGenomicData</span><span class='op'>(</span>query_url<span class='op'>=</span><span class='st'>"prevalence-by-location"</span>, location<span class='op'>=</span><span class='st'>"United Kingdom"</span>, pangolin_lineage <span class='op'>=</span> <span class='st'>"B.1.1.7"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Retrieving data... </div><div class='output co'>#&gt; <span class='error'>Error in GET(dataurl, add_headers(Authorization = paste("Bearer", Sys.getenv("OUTBREAK_INFO_TOKEN"),     sep = " "))): could not find function "GET"</span></div><div class='input'>
-</div></pre>
+    <pre class="examples"><div class='input'><span class='co'># Authenticate with GISAID credentials</span>
+<span class='fu'><a href='authenticateUser.html'>authenticateUser</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Please open this url in a browser and authenticate with your GISAID credentials.
+#&gt; 
+#&gt; https://gpsapi-test.epicov.org/epi3/gps_authenticate/CVRMEXVHCACJLVGDONOHPQSTNCUFOSAEHBTEYRRKLCJJQYEVIFCNMKQMGTNIIKOFXHNYLZAGOTKBDIQPYEWRDCNRTCVMMCNCLUDCUKIFYCOXRVSNFIMFHFRJPHXVHJDR
+#&gt; 
+#&gt; Waiting for authentication... [press CTRL-C to abort]
+#&gt; Authenticated successfully!</div><div class='input'><span class='va'>uk_b117</span> <span class='op'>=</span> <span class='fu'>getGenomicData</span><span class='op'>(</span>query_url<span class='op'>=</span><span class='st'>"prevalence-by-location"</span>, location<span class='op'>=</span><span class='st'>"United Kingdom"</span>, pangolin_lineage <span class='op'>=</span> <span class='st'>"B.1.1.7"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Retrieving data... 
+#&gt; Retrieving data... </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>uk_b117</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;         date total_count lineage_count total_count_rolling
+#&gt; 1 2020-03-20         408             2            275.2857
+#&gt; 2 2020-03-21         427             0            312.8571
+#&gt; 3 2020-03-22         387             0            344.8571
+#&gt; 4 2020-03-23         793             0            430.5714
+#&gt; 5 2020-03-24         732             0            493.5714
+#&gt; 6 2020-03-25         682             0            539.0000
+#&gt;   lineage_count_rolling   proportion proportion_ci_lower proportion_ci_upper
+#&gt; 1             0.2857143 0.0010378827        1.783956e-06         0.009084516
+#&gt; 2             0.2857143 0.0009132420        1.567547e-06         0.007986899
+#&gt; 3             0.2857143 0.0008285004        1.422257e-06         0.007249313
+#&gt; 4             0.2857143 0.0006635700        1.138630e-06         0.005807862
+#&gt; 5             0.2857143 0.0005788712        9.934937e-07         0.005069438
+#&gt; 6             0.2857143 0.0005300822        9.105874e-07         0.004647382
+#&gt;   query_key
+#&gt; 1   B.1.1.7
+#&gt; 2   B.1.1.7
+#&gt; 3   B.1.1.7
+#&gt; 4   B.1.1.7
+#&gt; 5   B.1.1.7
+#&gt; 6   B.1.1.7</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

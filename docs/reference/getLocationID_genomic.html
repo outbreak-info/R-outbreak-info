@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Retrieve global daily prevalence of a lineage — getGlobalPrevalence • outbreakinfo</title>
+<title>Get location id codes from genomic API — getLocationID_genomic • outbreakinfo</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Retrieve global daily prevalence of a lineage — getGlobalPrevalence" />
-<meta property="og:description" content="Retrieves the global daily prevalence of a PANGO lineage" />
+<meta property="og:title" content="Get location id codes from genomic API — getLocationID_genomic" />
+<meta property="og:description" content="Get location ID code for countries, states/provinces, metropolitan areas, and/or counties from genomic API" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -144,63 +144,40 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Retrieve global daily prevalence of a lineage</h1>
-    <small class="dont-index">Source: <a href='https://github.com/outbreak-info/R-outbreak-info/blob/master/R/getGlobalPrevalence.R'><code>R/getGlobalPrevalence.R</code></a></small>
-    <div class="hidden name"><code>getGlobalPrevalence.Rd</code></div>
+    <h1>Get location id codes from genomic API</h1>
+    <small class="dont-index">Source: <a href='https://github.com/outbreak-info/R-outbreak-info/blob/master/R/getLocationID_genomic.R'><code>R/getLocationID_genomic.R</code></a></small>
+    <div class="hidden name"><code>getLocationID_genomic.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Retrieves the global daily prevalence of a PANGO lineage</p>
+    <p>Get location ID code for countries, states/provinces, metropolitan areas, and/or counties from genomic API</p>
     </div>
 
-    <pre class="usage"><span class='fu'>getGlobalPrevalence</span><span class='op'>(</span><span class='va'>pangolin_lineage</span>, mutations <span class='op'>=</span> <span class='cn'>NULL</span>, cumulative <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>getLocationID_genomic</span><span class='op'>(</span><span class='va'>locations_to_search</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>pangolin_lineage:</th>
-      <td><p>PANGO lineage name</p></td>
-    </tr>
-    <tr>
-      <th>mutations:</th>
-      <td><p>(optional) a `vector` of mutation(s)</p></td>
-    </tr>
-    <tr>
-      <th>cumulative:</th>
-      <td><p>(optional) `Boolean` (T/F), T returns cumulative global prevalence since first day of detection</p></td>
+      <th>locations_to_search:</th>
+      <td><p>a location name</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>dataframe</p>
+    <p>a location ID code (ISO3, FIPS)</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Authenticate with GISAID credentials</span>
 <span class='fu'><a href='authenticateUser.html'>authenticateUser</a></span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; Please open this url in a browser and authenticate with your GISAID credentials.
 #&gt; 
-#&gt; https://gpsapi-test.epicov.org/epi3/gps_authenticate/WMEWHXQSIYXDMUEANRIXQXIYQRWXBBBWRGMINFULUFUBVMIXQSEQPLIJDVLWGGCKQMQLVINNTTLWQILBAKWMGGZPCJPJFUSDUOXZIDBSAWJETOMPTGNNZWFNXIVWOZJL
+#&gt; https://gpsapi-test.epicov.org/epi3/gps_authenticate/TWHOJRMIEULWDHANFNLJDTRQHXUOWHESNINPKPNSKGWLURIVVTJMMBDQBULQODFMBKWYXQIMZRGJPXYWKQGIOCRUQIWFOWJIVDOZVIMNHDSGVULKAVQPKWOSHURBATNX
 #&gt; 
 #&gt; Waiting for authentication... [press CTRL-C to abort]
-#&gt; Authenticated successfully!</div><div class='input'><span class='co'># B.1.1.7 lineage</span>
-<span class='va'>b117</span> <span class='op'>=</span> <span class='fu'>getGlobalPrevalence</span><span class='op'>(</span>pangolin_lineage <span class='op'>=</span> <span class='st'>"B.1.1.7"</span>, mutations <span class='op'>=</span> <span class='st'>"S:E484K"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Retrieving data... </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>b117</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;         date total_count lineage_count total_count_rolling
-#&gt; 1 2020-12-17        4559             1            4817.286
-#&gt; 2 2020-12-18        4521             1            4887.429
-#&gt; 3 2020-12-19        2920             0            4957.429
-#&gt; 4 2020-12-20        2858             0            5040.429
-#&gt; 5 2020-12-21        8632             0            4856.857
-#&gt; 6 2020-12-22        4020             0            4533.000
-#&gt;   lineage_count_rolling   proportion proportion_ci_lower proportion_ci_upper
-#&gt; 1             0.1428571 2.965511e-05        1.019325e-07        0.0005213116
-#&gt; 2             0.2857143 5.845902e-05        1.004726e-07        0.0005138468
-#&gt; 3             0.2857143 5.763357e-05        9.905382e-08        0.0005065927
-#&gt; 4             0.2857143 5.668452e-05        9.742265e-08        0.0004982525
-#&gt; 5             0.2857143 5.882699e-05        1.010931e-07        0.0005170196
-#&gt; 6             0.2857143 6.302984e-05        1.083184e-07        0.0005539618</div><div class='input'>
+#&gt; Authenticated successfully!</div><div class='input'><span class='fu'>getLocationID_genomic</span><span class='op'>(</span><span class='st'>"San Diego"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Retrieving data... </div><div class='output co'>#&gt; [1] "USA_US-CA_06073"</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

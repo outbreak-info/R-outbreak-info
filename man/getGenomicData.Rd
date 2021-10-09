@@ -25,6 +25,8 @@ dataframe
 Retrieves up-to-date COVID-19 genomic data from outbreak.info according to user specifications.
 }
 \examples{
-getGenomicData(query_url="prevalence-by-location", location="United Kingdom", pangolin_lineage = "B.1.1.7")
-
+# Authenticate with GISAID credentials
+authenticateUser()
+uk_b117 = getGenomicData(query_url="prevalence-by-location", location="United Kingdom", pangolin_lineage = "B.1.1.7")
+head(uk_b117)
 }

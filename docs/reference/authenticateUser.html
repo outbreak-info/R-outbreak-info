@@ -47,7 +47,7 @@
 
 
 <meta property="og:title" content="Authenticate API — authenticateUser" />
-<meta property="og:description" content="Authenticate API to get access to data" />
+<meta property="og:description" content="Authenticate API to get access to genomics data" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -150,7 +150,7 @@
     </div>
 
     <div class="ref-description">
-    <p>Authenticate API to get access to data</p>
+    <p>Authenticate API to get access to genomics data</p>
     </div>
 
     <pre class="usage"><span class='fu'>authenticateUser</span><span class='op'>(</span><span class='op'>)</span></pre>
@@ -162,7 +162,12 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>authenticateUser</span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in POST(OUTBREAK_INFO_AUTH, body = "{}", encode = "raw"): could not find function "POST"</span></div><div class='input'>
+</div><div class='output co'>#&gt; Please open this url in a browser and authenticate with your GISAID credentials.
+#&gt; 
+#&gt; https://gpsapi-test.epicov.org/epi3/gps_authenticate/LYWXEURSTGWACHVZFUXJIBHSWFTERRBBHVTWRGIKMBHPHNEDETQQMQWTBGSNFDXLWPNSPHQILHZFJMKKYUAXVHPBBXZXHJAWOLRTVFEKKPSXOCVIOZRASLILSEIKLGGQ
+#&gt; 
+#&gt; Waiting for authentication... [press CTRL-C to abort]
+#&gt; Authenticated successfully!</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -1,4 +1,4 @@
-#' @title Documentation of API fields
+#' @title Documentation of Epidemiology API fields
 #'
 #' @description Documents fields included when extracting data from outbreak.info
 #'

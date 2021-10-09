@@ -1,17 +1,19 @@
-#' @title Get ISO3 codes from genomic API
+#' @title Get location id codes from genomic API
 #'
-#' @description Get ISO3 codes for World Bank regions, countries, states/provinces, metropolitan areas, and/or counties from genomic API
+#' @description Get location ID code for countries, states/provinces, metropolitan areas, and/or counties from genomic API
 #'
 #' @param locations_to_search: a location name
 #'
-#' @return an ISO3 code
+#' @return a location ID code (ISO3, FIPS)
 #'
 #' @examples
-#' getISO3_genomic("San Diego")
+#'# Authenticate with GISAID credentials
+#' authenticateUser()
+#' getLocationID_genomic("San Diego")
 #'
 #' @export
 
-getISO3_genomic <- function(locations_to_search){
+getLocationID_genomic <- function(locations_to_search){
     loc_url <- "https://dev.outbreak.info/genomics/location?"
     locs_of_interest=c()
     locs_not_found=c()

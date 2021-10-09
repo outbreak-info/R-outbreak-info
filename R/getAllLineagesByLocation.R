@@ -12,7 +12,11 @@
 #'@return dataframe
 #'
 #'@examples
-#'getAllLineagesByLocation(location = "India", other_threshold=0.03, nday_threshold=60)
+#'library(dplyr)
+#'# Authenticate with GISAID credentials
+#'authenticateUser()
+#'india = getAllLineagesByLocation(location = "India", other_threshold=0.03, nday_threshold=60)
+#'india %>% filter(date == "2021-06-25")
 #'
 #' @export
 

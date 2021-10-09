@@ -4,12 +4,13 @@
 #'
 #'
 #' @return dataframe
+#' @export
 #'
 #' @examples
-#' getGenomicData(query_url="prevalence-by-location", location="United Kingdom", pangolin_lineage = "B.1.1.7")
-#'
-#' @export
-
+#'# Authenticate with GISAID credentials
+#' authenticateUser()
+#' uk_b117 = getGenomicData(query_url="prevalence-by-location", location="United Kingdom", pangolin_lineage = "B.1.1.7")
+#' head(uk_b117)
 
 getGenomicData <- function(query_url, location=NULL, cumulative=NULL, pangolin_lineage=NULL, mutations=NULL, ndays=NULL, frequency=NULL, subadmin=NULL, other_threshold=NULL, nday_threshold=NULL, other_exclude=NULL){
 

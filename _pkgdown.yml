@@ -9,12 +9,13 @@ reference:
     by state/province, or by U.S. county. All sequence data is provided by
     [GISAID](https://www.gisaid.org/).
 - contents:
+  - genomicsDataDictionary
   - authenticateUser
   - getAllLineagesByLocation
   - getCollectionDateByLocation
   - getGenomicData
   - getGlobalPrevalence
-  - getISO3_genomic
+  - getLocationID_genomic
   - getLag
   - starts_with("getMutation")
   - getPrevalenceByLocation

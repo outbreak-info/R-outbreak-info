@@ -169,8 +169,15 @@
     <p>an ISO3 code</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>getISO3_genomic</span><span class='op'>(</span><span class='st'>"San Diego"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Retrieving data... </div><div class='output co'>#&gt; <span class='error'>Error in GET(dataurl, add_headers(Authorization = paste("Bearer", Sys.getenv("OUTBREAK_INFO_TOKEN"),     sep = " "))): could not find function "GET"</span></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='co'># Authenticate with GISAID credentials</span>
+<span class='fu'><a href='authenticateUser.html'>authenticateUser</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Please open this url in a browser and authenticate with your GISAID credentials.
+#&gt; 
+#&gt; https://gpsapi-test.epicov.org/epi3/gps_authenticate/LYEPLSCZGAMACXBWKNPEPVEKETVLEOUBWXSFPVPJCWHIWPAIEVRWWDNPKJFCPLNBZYNIGKCSROXAOYHLTJQXDOUIYWWGSNCPWLUYKMYPFURYIUEVILXJLPJBCJLBLTZO
+#&gt; 
+#&gt; Waiting for authentication... [press CTRL-C to abort]
+#&gt; Authenticated successfully!</div><div class='input'><span class='fu'>getISO3_genomic</span><span class='op'>(</span><span class='st'>"San Diego"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Retrieving data... </div><div class='output co'>#&gt; [1] "USA_US-CA_06073"</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

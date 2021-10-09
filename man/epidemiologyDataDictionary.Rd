@@ -2,7 +2,7 @@
 % Please edit documentation in R/epidemiologyDataDictionary.R
 \name{epidemiologyDataDictionary}
 \alias{epidemiologyDataDictionary}
-\title{Documentation of API fields}
+\title{Documentation of Epidemiology API fields}
 \usage{
 epidemiologyDataDictionary()
 }

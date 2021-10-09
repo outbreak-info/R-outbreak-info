@@ -9,6 +9,7 @@ reference:
     by state/province, or by U.S. county. All sequence data is provided by
     [GISAID](https://www.gisaid.org/).
 - contents:
+  - authenticateUser
   - getAllLineagesByLocation
   - getCollectionDateByLocation
   - getGenomicData

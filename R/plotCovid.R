@@ -7,6 +7,9 @@
 #'
 #' @return ggplot2 object
 #'
+#' @import ggplot2
+#' @import progress
+#'
 #' @examples
 #' p = plotCovid("Florida", "confirmed_per_100k")
 #' show(p)

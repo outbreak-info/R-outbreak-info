@@ -1,7 +1,8 @@
 #' @title Authenticate API
 #'
-#' @description Authenticate API to get access to data
+#' @description Authenticate API to get access to genomics data
 #'
+#' @import httr
 #'
 #' @return url
 #'
@@ -49,6 +50,7 @@ authenticateUser <- function(){
 }
 
 OUTBREAK_INFO_AUTH = "https://dev.outbreak.info/genomics/get-auth-token"
+
 #response <- GET(
 #    OUTBREAK_INFO_AUTH,
 #    add_headers(Authorization = paste("Bearer", Sys.getenv("OUTBREAK_INFO_TOKEN"), sep=" "))

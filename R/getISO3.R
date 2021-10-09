@@ -4,6 +4,8 @@
 #'
 #' @param locations_to_search: vector or list of location (World Bank region, country, state/province, metropolitan area, county) name(s)
 #'
+#' @import jsonlite
+#'
 #' @return a vector or list of ISO3 codes
 #'
 #' @examples

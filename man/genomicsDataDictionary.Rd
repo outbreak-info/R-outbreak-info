@@ -13,5 +13,7 @@ dataframe
 Returns a dataframe describing the fields included when making calls to the genomics API.
 }
 \examples{
+# Authenticate with GISAID credentials
+# authenticateUser()
 knitr::kable(genomicsDataDictionary())
 }

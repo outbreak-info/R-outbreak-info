@@ -13,8 +13,7 @@ url
 Authenticate API to get access to genomics data
 }
 \examples{
-\dontrun{
-authenticateUser()
-}
+# Authenticate with GISAID credentials
+# authenticateUser()
 
 }

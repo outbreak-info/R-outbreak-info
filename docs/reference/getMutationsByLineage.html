@@ -116,6 +116,9 @@
       <a href="../articles/lineagevignette.html">Lineage Report (B.1.1.7)</a>
     </li>
     <li>
+      <a href="../articles/locationtracker.html">Location Tracker</a>
+    </li>
+    <li>
       <a href="../articles/locationvignette.html">Location Report (United States)</a>
     </li>
     <li>
@@ -174,7 +177,7 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>getMutationsByLineage</span><span class='op'>(</span>pangolin_lineage<span class='op'>=</span><span class='st'>"P.1"</span>, frequency<span class='op'>=</span><span class='fl'>0.8</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Retrieving data... </div><div class='output co'>#&gt; <span class='error'>Error in GET(dataurl, add_headers(Authorization = paste("Bearer", Sys.getenv("OUTBREAK_INFO_TOKEN"),     sep = " "))): could not find function "GET"</span></div><div class='input'>
+</div><div class='output co'>#&gt; Retrieving data... </div><div class='output co'>#&gt; <span class='error'>Error in curl::curl_fetch_memory(url, handle = handle): Timeout was reached: [dev.outbreak.info] Resolving timed out after 10000 milliseconds</span></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

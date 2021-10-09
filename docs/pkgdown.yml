@@ -3,7 +3,8 @@ pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   lineagevignette: lineagevignette.html
+  locationtracker: locationtracker.html
   locationvignette: locationvignette.html
   outbreakvignette: outbreakvignette.html
-last_built: 2021-10-09T01:45Z
+last_built: 2021-10-09T02:58Z
 

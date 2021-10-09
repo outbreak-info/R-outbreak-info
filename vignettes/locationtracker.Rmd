@@ -21,14 +21,16 @@ visualizations on the [United States Variant Report](https://outbreak.info/locat
 Import the packages we'll use and provide our GISAID credentials to access the data.
 If you don't have a GISAID account, you can [register](https://www.gisaid.org/registration/register/) 
 for one on their website. It may take a day or two for the account to become active.
-```{r auth, message = FALSE, results='hide'}
+```{r pkgs, message = FALSE, results='hide'}
 # Package imports
 library(dplyr)
 library(knitr)
-# library(outbreakinfo)
+library(outbreakinfo)
+```
 
+```{r auth, message = FALSE, results='hide', eval=FALSE}
 # Authenticate yourself using your GISAID credentials.
-outbreakinfo::authenticateUser()
+authenticateUser()
 ```
 
 

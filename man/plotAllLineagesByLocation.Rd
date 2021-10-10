@@ -10,8 +10,8 @@ plotAllLineagesByLocation(
   nday_threshold = 10,
   ndays = 180,
   other_exclude = NULL,
-  cumulative = F,
-  include_title = F
+  cumulative = FALSE,
+  include_title = TRUE
 )
 }
 \arguments{

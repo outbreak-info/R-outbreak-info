@@ -20,16 +20,21 @@
 #' @export
 
 plotAllLineagesByLocation <- function(location, other_threshold=0.05, nday_threshold=10, ndays=180, other_exclude=NULL, cumulative=FALSE, include_title = TRUE){
-  COLORPALETTE = c("#bab0ab", "#4E79A7", "#aecBe8", "#f28e2b", "#FFBE7D", "#59a14f", "#8CD17D", "#e15759", "#FF9D9A", "#499894", "#86BCB6", "#B6992D", "#F1CE63", "#D37295", "#FABFD2", "#B07AA1", "#D4A6C8", "#9D7660", "#D7B5A6", "#bcbd22", "#79706E", "#79706E")
+  COLORPALETTE = c("#bab0ab", "#4E79A7", "#aecBe8", "#f28e2b", "#FFBE7D", "#59a14f", "#8CD17D", "#e15759", "#FF9D9A", "#499894", "#86BCB6", "#B6992D", "#F1CE63", "#D37295", "#FABFD2", "#B07AA1", "#D4A6C8", "#9D7660", "#D7B5A6", "#bcbd22", "#79706E")
 
   df <- getGenomicData(query_url="prevalence-by-location-all-lineages", location = location, other_threshold = other_threshold, nday_threshold = nday_threshold, ndays = ndays, other_exclude = other_exclude, cumulative = cumulative)
 
   # set factors
-  df$lineage = factor(df$lineage, levels = unique(c("other", df %>% pull(lineage))))
+  df$lineage = factor(df$lineage, levels = unique(c("other", df %>% arrange(desc(prevalence_rolling)) %>% pull(lineage))))
+  numLineages = levels(df$lineage) %>% length()
+  # set anything beyond the 21 color palette to grey
+  if(numLineages > length(COLORPALETTE)){
+    COLORPALETTE = c(COLORPALETTE, rep("#bab0ab", numLineages - length(COLORPALETTE)))
+  }
 
   cat("Plotting data...", "\n")
   p <- ggplot(df, aes(x=date, y=prevalence_rolling, group=lineage, fill=lineage)) +
-    geom_area() +
+    geom_area(colour = "#555555", size = 0.2) +
     scale_x_date(date_labels = "%b %Y", expand = c(0,0)) +
     scale_y_continuous(labels = scales::percent, expand = c(0,0)) +
     scale_fill_manual(values = COLORPALETTE) +

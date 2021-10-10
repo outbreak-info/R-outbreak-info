@@ -12,7 +12,7 @@ getPrevalenceByLocation(
 )
 }
 \arguments{
-\item{pangolin_lineage:}{PANGO lineage name}
+\item{pangolin_lineage:}{PANGO lineage name or list of PANGO lineage names. A list of lineages will return a long dataframe with}
 
 \item{location:}{a location name}
 
@@ -24,9 +24,16 @@ getPrevalenceByLocation(
 dataframe
 }
 \description{
-Retrieves the daily prevalence of a PANGO lineage by location
+Retrieves the daily prevalence of a PANGO lineage(s) by location
 }
 \examples{
-getPrevalenceByLocation(pangolin_lineage = "P.1", location = "Brazil")
+# P.1 in Brazil
+getPrevalenceByLocation(pangolin_lineage = "P.1", location = "Brazil") \%>\% head()
+
+# AY.4 and B.1.617.2 in Brazil (AY.4 and B.1.617.2 separately)
+getPrevalenceByLocation(pangolin_lineage = c("AY.4", "B.1.617.2"), location = "Brazil") \%>\% filter(date == "2021-08-01")
+
+# AY.4 OR B.1.617.2 in Brazil (AY.4 and B.1.617.2 combined)
+getPrevalenceByLocation(pangolin_lineage = "AY.4 OR B.1.617.2", location = "Brazil")\%>\% filter(date == "2021-08-01")
 
 }

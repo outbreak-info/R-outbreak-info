@@ -47,7 +47,7 @@
 
 
 <meta property="og:title" content="Retrieve daily prevalence of a lineage by location — getPrevalenceByLocation" />
-<meta property="og:description" content="Retrieves the daily prevalence of a PANGO lineage by location" />
+<meta property="og:description" content="Retrieves the daily prevalence of a PANGO lineage(s) by location" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -116,7 +116,7 @@
       <a href="../articles/lineagevignette.html">Lineage Report (B.1.1.7)</a>
     </li>
     <li>
-      <a href="../articles/locationtracker.html">Location Tracker</a>
+      <a href="../articles/locationtracker.html">outbreak.info Location Tracker</a>
     </li>
     <li>
       <a href="../articles/locationvignette.html">Location Report (United States)</a>
@@ -153,7 +153,7 @@
     </div>
 
     <div class="ref-description">
-    <p>Retrieves the daily prevalence of a PANGO lineage by location</p>
+    <p>Retrieves the daily prevalence of a PANGO lineage(s) by location</p>
     </div>
 
     <pre class="usage"><span class='fu'>getPrevalenceByLocation</span><span class='op'>(</span>
@@ -168,7 +168,7 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>pangolin_lineage:</th>
-      <td><p>PANGO lineage name</p></td>
+      <td><p>PANGO lineage name or list of PANGO lineage names. A list of lineages will return a long dataframe with</p></td>
     </tr>
     <tr>
       <th>location:</th>
@@ -189,8 +189,51 @@
     <p>dataframe</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>getPrevalenceByLocation</span><span class='op'>(</span>pangolin_lineage <span class='op'>=</span> <span class='st'>"P.1"</span>, location <span class='op'>=</span> <span class='st'>"Brazil"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Retrieving data... </div><div class='output co'>#&gt; <span class='error'>Error in curl::curl_fetch_memory(url, handle = handle): Timeout was reached: [dev.outbreak.info] Resolving timed out after 10000 milliseconds</span></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='co'># P.1 in Brazil</span>
+<span class='fu'>getPrevalenceByLocation</span><span class='op'>(</span>pangolin_lineage <span class='op'>=</span> <span class='st'>"P.1"</span>, location <span class='op'>=</span> <span class='st'>"Brazil"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Retrieving data... 
+#&gt; Retrieving data... </div><div class='output co'>#&gt;         date total_count lineage_count total_count_rolling
+#&gt; 1 2020-09-11          17             1            14.66667
+#&gt; 2 2020-09-12           8             0            14.66667
+#&gt; 3 2020-09-13           2             0            12.85714
+#&gt; 4 2020-09-14          17             0            14.71429
+#&gt; 5 2020-09-15          35             1            16.28571
+#&gt; 6 2020-09-16          18             0            16.42857
+#&gt;   lineage_count_rolling  proportion proportion_ci_lower proportion_ci_upper
+#&gt; 1             0.1666667 0.011363636        3.219414e-05           0.1518167
+#&gt; 2             0.1666667 0.011363636        3.219414e-05           0.1518167
+#&gt; 3             0.1428571 0.011111111        3.705193e-05           0.1726194
+#&gt; 4             0.1428571 0.009708738        3.219414e-05           0.1518167
+#&gt; 5             0.2857143 0.017543860        3.021348e-05           0.1431841
+#&gt; 6             0.2857143 0.017391304        3.021348e-05           0.1431841
+#&gt;   lineage
+#&gt; 1     P.1
+#&gt; 2     P.1
+#&gt; 3     P.1
+#&gt; 4     P.1
+#&gt; 5     P.1
+#&gt; 6     P.1</div><div class='input'>
+<span class='co'># AY.4 and B.1.617.2 in Brazil (AY.4 and B.1.617.2 separately)</span>
+<span class='fu'>getPrevalenceByLocation</span><span class='op'>(</span>pangolin_lineage <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"AY.4"</span>, <span class='st'>"B.1.617.2"</span><span class='op'>)</span>, location <span class='op'>=</span> <span class='st'>"Brazil"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>date</span> <span class='op'>==</span> <span class='st'>"2021-08-01"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Retrieving data... 
+#&gt; Retrieving data... </div><div class='output co'>#&gt;         date total_count lineage_count total_count_rolling
+#&gt; 1 2021-08-01          26             0            96.71429
+#&gt; 2 2021-08-01          26             9            96.71429
+#&gt;   lineage_count_rolling proportion proportion_ci_lower proportion_ci_upper
+#&gt; 1              1.142857 0.01181684         0.001114606          0.04716443
+#&gt; 2             50.142857 0.51846381         0.416780895          0.61323933
+#&gt;     lineage
+#&gt; 1      AY.4
+#&gt; 2 B.1.617.2</div><div class='input'>
+<span class='co'># AY.4 OR B.1.617.2 in Brazil (AY.4 and B.1.617.2 combined)</span>
+<span class='fu'>getPrevalenceByLocation</span><span class='op'>(</span>pangolin_lineage <span class='op'>=</span> <span class='st'>"AY.4 OR B.1.617.2"</span>, location <span class='op'>=</span> <span class='st'>"Brazil"</span><span class='op'>)</span><span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>date</span> <span class='op'>==</span> <span class='st'>"2021-08-01"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Retrieving data... 
+#&gt; Retrieving data... </div><div class='output co'>#&gt;         date total_count lineage_count total_count_rolling
+#&gt; 1 2021-08-01          26             9            96.71429
+#&gt;   lineage_count_rolling proportion proportion_ci_lower proportion_ci_upper
+#&gt; 1              51.28571  0.5302806           0.4268701           0.6231636
+#&gt;             lineage
+#&gt; 1 AY.4 OR B.1.617.2</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

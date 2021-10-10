@@ -21,6 +21,5 @@ Retrieve all mutations in a specified lineage above a threshold
 getMutationsByLineage(pangolin_lineage="P.1", frequency=0.8)
 
 # get all delta lineages
-
 getMutationsByLineage(pangolin_lineage="P.1", frequency=0.8)
 }

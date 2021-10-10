@@ -11,7 +11,6 @@
 #' getMutationsByLineage(pangolin_lineage="P.1", frequency=0.8)
 #'
 #' # get all delta lineages
-#'
 #' getMutationsByLineage(pangolin_lineage="P.1", frequency=0.8)
 #' @export
 

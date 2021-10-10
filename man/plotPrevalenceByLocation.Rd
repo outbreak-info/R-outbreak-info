@@ -13,11 +13,11 @@ plotPrevalenceByLocation(
 )
 }
 \arguments{
-\item{pangolin_lineage:}{PANGO lineage name}
+\item{pangolin_lineage:}{(optional) PANGO lineage name or vector of PANGO lineage names. Either `pangolin_lineage` or `mutations` needs to be specified. A list of lineages will return a long dataframe with `lineage` as a variable; if you want to calculate the prevalence of lineage1 or lineage2 together, enter the lineages separated by " OR ". For instance, to calculate the prevalence of Delta, you'll need to supply `"B.1.617.2 OR AY.1 OR AY.2 OR ..."` **Be sure to include the space around "OR" and it must be capitalized.**}
 
-\item{location:}{a location name}
+\item{mutations:}{(optional) a `vector` of mutation(s). Either `pangolin_lineage` or `mutations` needs to be specified.}
 
-\item{mutations:}{(optional) a `vector` of mutation(s)}
+\item{location:}{(optional) a location name}
 
 \item{cumulative:}{(optional) `Boolean` (T/F), T returns cumulative prevalence since first day of detection}
 

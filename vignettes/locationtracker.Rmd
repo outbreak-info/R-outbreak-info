@@ -86,6 +86,19 @@ unreliable, just because not as many samples have been sequenced lately. We'll p
 There are also other [sources of bias](https://outbreak.info/situation-reports/caveats) that are harder to estimate, but you should bear in mind when you're looking at any prevalence plots of variants.
 
 ### Comparing the prevalence of specific lineages within a location
+To get a better idea of how uncertain the estimates of variant prevalence are, and also to look at the prevalence of variants that aren't high in prevalence at the moment, we can calculate the prevalence of variants over time with a 95% confidence interval. To view how these data change, we can also use the plotting function `plot` to replicate the visualization on outbreak.info. Let's look at the growth and decline of Alpha / B.1.1.7, Episilon / B.1.427 / B.1.429, Iota / B.1.526, and how Delta/B.1.617.2 overtakes them in the Spring of 2021:
+```{r variant_overlay}
+# The WHO lineages are a base Pango lineage with all the sublineages of the main lineage.
+# Using `lookupSublineages`, we can lookup all the sublineages associated with the WHO designated sequence, according to the most recent classifications from the Pango team.
+alpha_lineages = lookupSublineages("Alpha", returnQueryString = TRUE)
+epsilon_lineages = lookupSublineages("Epsilon", returnQueryString = TRUE)
+iota_lineages = lookupSublineages("Iota", returnQueryString = TRUE)
+delta_lineages = lookupSublineages("Delta", returnQueryString = TRUE)
+
+who_prevalence = getPrevalenceByLocation(pangolin_lineage = c(alpha_lineages, epsilon_lineages, iota_lineages, delta_lineages))
+```
+
+
 
 ### What mutations are contained within the lineages that are circulating within the U.S.?
 

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot prevalence of lineages by location — plotAllLineagesByLocation • outbreakinfo</title>
+<title>Lookup sublineages for a given Pango lineage or WHO name — lookupSublineages • outbreakinfo</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,11 @@
 
 
 
-<meta property="og:title" content="Plot prevalence of lineages by location — plotAllLineagesByLocation" />
-<meta property="og:description" content="Plot prevalence of all lineages above a specified frequency over time by location" />
+<meta property="og:title" content="Lookup sublineages for a given Pango lineage or WHO name — lookupSublineages" />
+<meta property="og:description" content="Retrieve all sublineages of a given Pango lineage or WHO designation.
+Based on a phylogeny maintained by the [Pango team](https://github.com/cov-lineages/lineages-website/blob/master/data/lineages.yml)
+to grab all sublineages associated with a lineage, and a curated list of Variants of Concern, Variants of Interest,
+Variants Under Monitoring, and de-escalated variants maintained by the [outbreak.info team](https://outbreak.info/situation-reports)" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -147,68 +150,50 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot prevalence of lineages by location</h1>
-    <small class="dont-index">Source: <a href='https://github.com/outbreak-info/R-outbreak-info/blob/master/R/plotAllLineagesByLocation.R'><code>R/plotAllLineagesByLocation.R</code></a></small>
-    <div class="hidden name"><code>plotAllLineagesByLocation.Rd</code></div>
+    <h1>Lookup sublineages for a given Pango lineage or WHO name</h1>
+    <small class="dont-index">Source: <a href='https://github.com/outbreak-info/R-outbreak-info/blob/master/R/lookupSublineages.R'><code>R/lookupSublineages.R</code></a></small>
+    <div class="hidden name"><code>lookupSublineages.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Plot prevalence of all lineages above a specified frequency over time by location</p>
+    <p>Retrieve all sublineages of a given Pango lineage or WHO designation.
+Based on a phylogeny maintained by the [Pango team](https://github.com/cov-lineages/lineages-website/blob/master/data/lineages.yml)
+to grab all sublineages associated with a lineage, and a curated list of Variants of Concern, Variants of Interest,
+Variants Under Monitoring, and de-escalated variants maintained by the [outbreak.info team](https://outbreak.info/situation-reports)</p>
     </div>
 
-    <pre class="usage"><span class='fu'>plotAllLineagesByLocation</span><span class='op'>(</span>
-  <span class='va'>location</span>,
-  other_threshold <span class='op'>=</span> <span class='fl'>0.05</span>,
-  nday_threshold <span class='op'>=</span> <span class='fl'>10</span>,
-  ndays <span class='op'>=</span> <span class='fl'>180</span>,
-  other_exclude <span class='op'>=</span> <span class='cn'>NULL</span>,
-  cumulative <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  include_title <span class='op'>=</span> <span class='cn'>TRUE</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>lookupSublineages</span><span class='op'>(</span><span class='va'>lineage</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>location:</th>
-      <td><p>a location name</p></td>
-    </tr>
-    <tr>
-      <th>other_threshold:</th>
-      <td><p>minimum prevalence threshold below which lineages are accumulated under "Other" (default=0.05)</p></td>
-    </tr>
-    <tr>
-      <th>nday_threshold:</th>
-      <td><p>minimum number of days in which the prevalence of a lineage must be below other_threshold to be accumulated under "Other" (default=10)</p></td>
-    </tr>
-    <tr>
-      <th>ndays:</th>
-      <td><p>the number of days before the current date to be used as a window to accumulate lineages under "Other" (default=180)</p></td>
-    </tr>
-    <tr>
-      <th>other_exclude:</th>
-      <td><p>(optional) lineage(s) that are NOT to be included under "Other" even if the conditions specified by the three thresholds above are met</p></td>
-    </tr>
-    <tr>
-      <th>cumulative:</th>
-      <td><p>`Boolean` (T/F), T returns cumulative prevalence of lineages (default=F)</p></td>
-    </tr>
-    <tr>
-      <th>include_title:</th>
-      <td><p>`Boolean` (T/F), T returns plot with title, F returns plot without title (default=F)</p></td>
+      <th>lineage:</th>
+      <td><p>String with the name of a Pango lineage or WHO name</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>ggplot2 object</p>
+    <p>list containing the sublineages associated with that lineage or WHO designation</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>plotAllLineagesByLocation</span><span class='op'>(</span>location <span class='op'>=</span> <span class='st'>"India"</span>, other_threshold<span class='op'>=</span><span class='fl'>0.03</span>, nday_threshold<span class='op'>=</span><span class='fl'>60</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Retrieving data... 
-#&gt; Retrieving data... 
-#&gt; Plotting data... </div><div class='img'><img src='plotAllLineagesByLocation-1.png' alt='' width='700' height='433' /></div><div class='input'>
-</div></pre>
+    <pre class="examples"><div class='input'><span class='co'># WHO-designated lineages</span>
+<span class='fu'>lookupSublineages</span><span class='op'>(</span><span class='st'>"Delta"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  [1] "AY.1"      "AY.2"      "AY.3"      "AY.3.1"    "AY.4"      "AY.4.1"   
+#&gt;  [7] "AY.5"      "AY.5.1"    "AY.5.2"    "AY.6"      "AY.7"      "AY.7.1"   
+#&gt; [13] "AY.7.2"    "AY.8"      "AY.9"      "AY.10"     "AY.11"     "AY.12"    
+#&gt; [19] "AY.13"     "AY.14"     "AY.15"     "AY.16"     "AY.17"     "AY.18"    
+#&gt; [25] "AY.19"     "AY.20"     "AY.21"     "AY.22"     "AY.23"     "AY.24"    
+#&gt; [31] "AY.25"     "AY.26"     "AY.27"     "AY.28"     "AY.29"     "AY.30"    
+#&gt; [37] "AY.31"     "AY.32"     "AY.33"     "AY.34"     "AY.35"     "AY.36"    
+#&gt; [43] "AY.37"     "AY.38"     "B.1.617.2"</div><div class='input'><span class='fu'>lookupSublineages</span><span class='op'>(</span><span class='st'>"epsilon"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "B.1.427"   "B.1.429"   "B.1.429.1"</div><div class='input'><span class='co'># Pango lineage</span>
+<span class='fu'>lookupSublineages</span><span class='op'>(</span><span class='st'>"B.1.1.7"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "B.1.1.7" "Q.1"     "Q.2"     "Q.3"     "Q.4"     "Q.5"     "Q.6"    
+#&gt; [8] "Q.7"     "Q.8"    </div><div class='input'><span class='co'>#' # Not a recognized lineage</span>
+<span class='fu'>lookupSublineages</span><span class='op'>(</span><span class='st'>"VOC-21APR-02"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Lineage VOC-21APR-02 not recognized as a Pango lineage</span></div><div class='output co'>#&gt; <span class='error'>Error in invokeRestart("muffleWarning"): no 'restart' 'muffleWarning' found</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

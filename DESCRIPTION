@@ -21,7 +21,8 @@ Imports:
     dplyr,
     plyr,
     stringr,
-    httr
+    httr,
+    yaml
 RoxygenNote: 7.1.2
 Suggests:
     testthat,

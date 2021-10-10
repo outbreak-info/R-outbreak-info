@@ -21,6 +21,8 @@ reference:
   - getPrevalenceByLocation
   - getSeqCounts
   - getSubmissionDateByLocation
+  - getCuratedLineages
+  - lookupSublineages
   - plotAllLineagesByLocation
   - plotPrevalenceByLocation
 - title: "Cases & Deaths"

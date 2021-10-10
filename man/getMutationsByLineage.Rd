@@ -7,7 +7,7 @@
 getMutationsByLineage(pangolin_lineage, frequency = 0.8)
 }
 \arguments{
-\item{pangolin_lineage:}{PANGO lineage name}
+\item{pangolin_lineage:}{PANGO lineage name or list}
 
 \item{frequency:}{a number between 0 and 1 specifying the frequency threshold above which to return mutations (default=0.8)}
 }
@@ -20,4 +20,7 @@ Retrieve all mutations in a specified lineage above a threshold
 \examples{
 getMutationsByLineage(pangolin_lineage="P.1", frequency=0.8)
 
+# get all delta lineages
+
+getMutationsByLineage(pangolin_lineage="P.1", frequency=0.8)
 }

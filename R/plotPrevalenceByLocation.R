@@ -2,11 +2,11 @@
 #'
 #' @description Plots the daily prevalence of a PANGO lineage by location
 #'
-#'@param pangolin_lineage: PANGO lineage name
-#'@param location: a location name
-#'@param mutations: (optional) a `vector` of mutation(s)
-#'@param cumulative: (optional) `Boolean` (T/F), T returns cumulative prevalence since first day of detection
-#'@param include_title: `Boolean` (T/F), T returns plot with title, F returns plot without title (default=F)
+#' @param pangolin_lineage: (optional) PANGO lineage name or vector of PANGO lineage names. Either `pangolin_lineage` or `mutations` needs to be specified. A list of lineages will return a long dataframe with `lineage` as a variable; if you want to calculate the prevalence of lineage1 or lineage2 together, enter the lineages separated by " OR ". For instance, to calculate the prevalence of Delta, you'll need to supply `"B.1.617.2 OR AY.1 OR AY.2 OR ..."` **Be sure to include the space around "OR" and it must be capitalized.**
+#' @param mutations: (optional) a `vector` of mutation(s). Either `pangolin_lineage` or `mutations` needs to be specified.
+#' @param location: (optional) a location name
+#' @param cumulative: (optional) `Boolean` (T/F), T returns cumulative prevalence since first day of detection
+#' @param include_title: `Boolean` (T/F), T returns plot with title, F returns plot without title (default=F)
 #'
 #'@return ggplot2 object
 #'
@@ -18,8 +18,10 @@
 
 
 plotPrevalenceByLocation <- function(pangolin_lineage, location, mutations=NULL, cumulative=NULL, include_title=F){
-  df <- getGenomicData(query_url="prevalence-by-location", pangolin_lineage = pangolin_lineage, location = location, mutations = mutations, cumulative = cumulative)
+  print(COLORPALETTE)
+  df <- getPrevalenceByLocation(pangolin_lineage=pangolin_lineage, location=location, mutations=mutations, cumulative=cumulative)
   cat("Plotting data...", "\n")
+
   p <- ggplot(data=df, aes(x=date, y=proportion)) + geom_line() + scale_y_continuous(labels = scales::percent, name="percentage")
   p <- p + geom_ribbon(aes(ymin=proportion_ci_lower, ymax=proportion_ci_upper), alpha=0.2)
   if (include_title == T){

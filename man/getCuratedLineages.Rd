@@ -2,7 +2,7 @@
 % Please edit documentation in R/getCuratedLineages.R
 \name{getCuratedLineages}
 \alias{getCuratedLineages}
-\title{Lookup curated lienages from outbreak.info}
+\title{Lookup curated lineages from outbreak.info}
 \usage{
 getCuratedLineages()
 }

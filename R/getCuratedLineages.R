@@ -1,4 +1,4 @@
-#' Lookup curated lienages from outbreak.info
+#' Lookup curated lineages from outbreak.info
 #'
 #' @description Retrieve a curated list of Variants of Concern, Variants of Interest,
 #' Variants Under Monitoring, and de-escalated variants maintained by the [outbreak.info team](https://outbreak.info/situation-reports)

@@ -22,6 +22,7 @@ for one on their website. It may take a day or two for the account to become act
 ```{r pkgs, message = FALSE, results='hide'}
 # Package imports
 library(dplyr)
+library(ggplot2)
 library(knitr)
 library(outbreakinfo)
 ```
@@ -98,23 +99,23 @@ delta_lineages = lookupSublineages("Delta", returnQueryString = TRUE)
 who_labels = c("Alpha", "Epsilon", "Iota", "Delta")
 names(who_labels) = c(alpha_lineages, epsilon_lineages, iota_lineages, delta_lineages)
 
-who_prevalence = getPrevalenceByLocation(pangolin_lineage = c(alpha_lineages, epsilon_lineages, iota_lineages, delta_lineages), location = "United States")
+who_prevalence = getPrevalence(pangolin_lineage = c(alpha_lineages, epsilon_lineages, iota_lineages, delta_lineages), location = "United States")
 plotPrevalenceByLocation(who_prevalence, labelDictionary = who_labels)
 
 
-delta_a222v = getPrevalenceByLocation(pangolin_lineage = delta_lineages, mutations="S:A222V", location = "United States")
-alpha_e484k = getPrevalenceByLocation(pangolin_lineage = alpha_lineages, mutations="S:E484K", location = "United States")
+delta_a222v = getPrevalence(pangolin_lineage = delta_lineages, mutations="S:A222V", location = "United States")
+alpha_e484k = getPrevalence(pangolin_lineage = alpha_lineages, mutations="S:E484K", location = "United States")
 
 df = bind_rows(delta_a222v, alpha_e484k)
 
-plotPrevalenceByLocation(df, include_title = FALSE)
+plotPrevalenceByLocation(df)
 ```
 
 ### A slight variation: comparing Delta prevalence across locations
 ```{r location_overlay}
 locations = c( "Missouri", "Kansas", "California", "Louisiana")
 
-delta_by_state = purrr::map_df(locations, function(loc) getPrevalenceByLocation(pangolin_lineage = delta_lineages, location = loc))
+delta_by_state = purrr::map_df(locations, function(loc) getPrevalence(pangolin_lineage = delta_lineages, location = loc))
 
 maxDate = delta_by_state %>% pull(date) %>% max()
 

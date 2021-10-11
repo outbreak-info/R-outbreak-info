@@ -5,26 +5,20 @@
 \title{Plot daily prevalence of a lineage by location}
 \usage{
 plotPrevalenceByLocation(
-  pangolin_lineage,
-  location = NULL,
-  mutations = NULL,
-  cumulative = NULL,
-  include_title = TRUE,
+  df,
+  colorVar = "lineage",
+  title = "Prevalence over time",
   labelDictionary = NULL
 )
 }
 \arguments{
-\item{pangolin_lineage:}{(optional) PANGO lineage name or vector of PANGO lineage names. Either `pangolin_lineage` or `mutations` needs to be specified. A list of lineages will return a long dataframe with `lineage` as a variable; if you want to calculate the prevalence of lineage1 or lineage2 together, enter the lineages separated by " OR ". For instance, to calculate the prevalence of Delta, you'll need to supply `"B.1.617.2 OR AY.1 OR AY.2 OR ..."` **Be sure to include the space around "OR" and it must be capitalized.**}
+\item{df:}{result of the call to \link[outbreakinfo]{getPrevalence}}
 
-\item{mutations:}{(optional) a `vector` of mutation(s). Either `pangolin_lineage` or `mutations` needs to be specified.}
+\item{colorVar:}{variable to used to color the line traces. `lineage` by default}
 
-\item{location:}{(optional) a location name}
+\item{title:}{(optional): Title to add to the plot}
 
-\item{cumulative:}{(optional) `Boolean` (T/F), T returns cumulative prevalence since first day of detection}
-
-\item{include_title:}{`Boolean` (T/F), T returns plot with title, F returns plot without title (default=F)}
-
-\item{labelDictionary:}{a named list of values to replace in the plot}
+\item{labelDictionary:}{(optional) a named list of values to replace in the plot legend.}
 }
 \value{
 ggplot2 object
@@ -33,8 +27,16 @@ ggplot2 object
 Plots the daily prevalence of a PANGO lineage by location
 }
 \examples{
-plotPrevalenceByLocation(pangolin_lineage = "P.1", location = "Brazil")
-plotPrevalenceByLocation(pangolin_lineage = c("B.1.1.7", "B.1.427 OR B.1.429", "B.1.617.2"), location = "United States", labelDictionary = c("B.1.427 OR B.1.429" = "Epsilon"))
+p1_brazil <- getPrevalence(pangolin_lineage = "P.1", location = "Brazil")
+plotPrevalenceByLocation(p1_brazil)
 
+us <- getPrevalence(pangolin_lineage = c("B.1.1.7", "B.1.427 OR B.1.429", "B.1.617.2"), location = "United States")
+plotPrevalenceByLocation(us, labelDictionary = c("B.1.427 OR B.1.429" = "Epsilon"), pangolin_lineage = c("B.1.1.7", "B.1.427 OR B.1.429", "B.1.617.2"), location = "United States")
 
+Overlay locations
+b117_india = getPrevalence(pangolin_lineage = "B.1.1.7", location = "India")
+b117_us = getPrevalence(pangolin_lineage = "B.1.1.7", location = "United States")
+b117_uk = getPrevalence(pangolin_lineage = "B.1.1.7", location = "United Kingdom")
+b117 = dplyr::bind_rows(b117_uk, b117_india, b117_us)
+plotPrevalenceByLocation(b117, colorVar = "location", title="B.1.1.7 prevalence over time")
 }

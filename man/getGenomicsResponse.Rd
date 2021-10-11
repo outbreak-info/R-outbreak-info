@@ -4,7 +4,7 @@
 \alias{getGenomicsResponse}
 \title{Get response from genomics endpoint}
 \usage{
-getGenomicsResponse(dataurl)
+getGenomicsResponse(dataurl, logInfo = T, logWarning = T, logError = T)
 }
 \description{
 A function that does blabla, blabla.

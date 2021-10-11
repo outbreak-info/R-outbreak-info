@@ -9,7 +9,7 @@ lookupSublineages(lineage, returnQueryString = FALSE)
 \arguments{
 \item{lineage:}{String with the name of a Pango lineage or WHO name}
 
-\item{returnQueryString:}{Boolean to return a query string to be piped into functions like `getPrevalenceByLocation` (collapses vector by `"OR"`)}
+\item{returnQueryString:}{Boolean to return a query string to be piped into functions like \link[outbreakinfo]{getPrevalence} (collapses vector by `"OR"`)}
 }
 \value{
 list containing the sublineages associated with that lineage or WHO designation

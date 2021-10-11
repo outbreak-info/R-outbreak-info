@@ -6,7 +6,7 @@
 #' Variants Under Monitoring, and de-escalated variants maintained by the [outbreak.info team](https://outbreak.info/situation-reports)
 #'
 #' @param lineage: String with the name of a Pango lineage or WHO name
-#' @param returnQueryString: Boolean to return a query string to be piped into functions like `getPrevalenceByLocation` (collapses vector by `"OR"`)
+#' @param returnQueryString: Boolean to return a query string to be piped into functions like \link[outbreakinfo]{getPrevalence} (collapses vector by `"OR"`)
 #'
 #' @import httr
 #' @import yaml

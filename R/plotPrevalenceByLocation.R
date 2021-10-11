@@ -2,24 +2,24 @@
 #'
 #' @description Plots the daily prevalence of a PANGO lineage by location
 #'
-#' @param df: result of the call to \link[outbreakinfo]{getPrevalenceByLocation}
+#' @param df: result of the call to \link[outbreakinfo]{getPrevalence}
 #' @param colorVar: variable to used to color the line traces. `lineage` by default
 #' @param title: (optional): Title to add to the plot
-#' @param labelDictionary: (optional) a named list of values to replace in the plot legend. 
+#' @param labelDictionary: (optional) a named list of values to replace in the plot legend.
 #'
 #'@return ggplot2 object
 #'
 #'@examples
-#'p1_brazil <- getPrevalenceByLocation(pangolin_lineage = "P.1", location = "Brazil")
+#'p1_brazil <- getPrevalence(pangolin_lineage = "P.1", location = "Brazil")
 #'plotPrevalenceByLocation(p1_brazil)
 #'
-#'us <- getPrevalenceByLocation(pangolin_lineage = c("B.1.1.7", "B.1.427 OR B.1.429", "B.1.617.2"), location = "United States")
+#'us <- getPrevalence(pangolin_lineage = c("B.1.1.7", "B.1.427 OR B.1.429", "B.1.617.2"), location = "United States")
 #'plotPrevalenceByLocation(us, labelDictionary = c("B.1.427 OR B.1.429" = "Epsilon"), pangolin_lineage = c("B.1.1.7", "B.1.427 OR B.1.429", "B.1.617.2"), location = "United States")
 #'
 #' Overlay locations
-#' b117_india = getPrevalenceByLocation(pangolin_lineage = "B.1.1.7", location = "India")
-#' b117_us = getPrevalenceByLocation(pangolin_lineage = "B.1.1.7", location = "United States")
-#' b117_uk = getPrevalenceByLocation(pangolin_lineage = "B.1.1.7", location = "United Kingdom")
+#' b117_india = getPrevalence(pangolin_lineage = "B.1.1.7", location = "India")
+#' b117_us = getPrevalence(pangolin_lineage = "B.1.1.7", location = "United States")
+#' b117_uk = getPrevalence(pangolin_lineage = "B.1.1.7", location = "United Kingdom")
 #' b117 = dplyr::bind_rows(b117_uk, b117_india, b117_us)
 #' plotPrevalenceByLocation(b117, colorVar = "location", title="B.1.1.7 prevalence over time")
 #' @export

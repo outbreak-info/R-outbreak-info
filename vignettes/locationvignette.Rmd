@@ -6,13 +6,8 @@ output: html_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-library(jsonlite)
-library(ggplot2)
 library(readr)
-library(dplyr)
-library(purrr)
 library(outbreakinfo)
-## source("../outbreakfunc.R")
 ```
 
 ------
@@ -22,7 +17,7 @@ library(outbreakinfo)
 
 
 ```{r}
-p <- plotAllLineagesByLocation(location = "United States of America", other_threshold = 0.03, nday_threshold = 5, ndays = 60)
+p <- plotAllLineagesByLocation(location = "United States", other_threshold = 0.03, nday_threshold = 5, ndays = 60)
 p <- p + scale_fill_brewer(palette="Set1")
 show(p)
 ```
@@ -68,7 +63,7 @@ show(p)
 voc <- c("B.1.1.7", "B.1.617.2", "P.1", "B.1.351")
 voc_df = NULL
 for (i in voc){
-  df <- getPrevalenceByLocation(i, "United States", cumulative=T)
+  df <- getPrevalence(i, "United States", cumulative=T)
   df <- cbind(lineage = i, df)
   voc_df = rbind(voc_df, df)
 }

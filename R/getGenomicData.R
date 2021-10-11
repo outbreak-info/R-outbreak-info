@@ -46,7 +46,7 @@ getGenomicData <- function(query_url, location=NULL, cumulative=NULL, pangolin_l
         q <- c(q, paste0("pangolin_lineage=", pangolin_lineage, "&"))
     }
     if(!is.null(mutations)){
-        mutations <- paste(mutations, collapse=",")
+        mutations <- paste(mutations, collapse=" AND ")
         q <- c(q, paste0("mutations=", mutations, "&"))
     }
     if(!is.null(ndays)){

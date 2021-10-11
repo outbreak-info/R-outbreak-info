@@ -22,6 +22,7 @@ Imports:
     plyr,
     purrr,
     stringr,
+    tidyr,
     httr,
     yaml
 RoxygenNote: 7.1.2

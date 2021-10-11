@@ -2,20 +2,43 @@
 #'
 #' @description Retrieve all mutations in a specified lineage above a threshold
 #'
-#'@param pangolin_lineage: PANGO lineage name or list
+#'@param pangolin_lineage: PANGO lineage name or vector
 #'@param frequency: a number between 0 and 1 specifying the frequency threshold above which to return mutations (default=0.8)
 #'
 #' @return dataframe
 #'
 #' @examples
-#' getMutationsByLineage(pangolin_lineage="P.1", frequency=0.8)
+#' p1 = getMutationsByLineage(pangolin_lineage="P.1", frequency=0.5)
+#' 
+#' # get all mutations in at least 80% of the combined delta lineages
+#' delta_lineages_combined = lookupSublineages("Delta", returnQueryString = TRUE)
+#' delta_mutations_combined = getMutationsByLineage(pangolin_lineage=delta_lineages_combined, frequency=0.75)
 #'
-#' # get all delta lineages
-#' getMutationsByLineage(pangolin_lineage="P.1", frequency=0.8)
+#' # get all mutations in at least 80% of one of the delta lineages
+#' delta_lineages = lookupSublineages("Delta", returnQueryString = FALSE)
+#' delta_mutations = getMutationsByLineage(pangolin_lineage=delta_lineages, frequency=0.75)
 #' @export
 
 
-getMutationsByLineage <- function(pangolin_lineage, frequency=0.8){
-  df <- getGenomicData(query_url="lineage-mutations", pangolin_lineage = pangolin_lineage, frequency = frequency)
+getMutationsByLineage <- function(pangolin_lineage, frequency=0.75){
+  
+  if(length(pangolin_lineage) > 1) {
+    # Set frequency to 0 and then filter after the fact.
+    df <- map_df(pangolin_lineage, function(lineage) getGenomicData(query_url="lineage-mutations", pangolin_lineage = lineage, frequency = 0))
+    
+    if(!is.null(df) & nrow(df) != 0){
+      mutations = df %>% 
+        filter(prevalence >= frequency) %>% 
+        pull(mutation) %>%
+        unique()
+      
+      df <- df %>%
+        filter(mutation %in% mutations)
+    }    
+    
+  } else {
+    df <- getGenomicData(query_url="lineage-mutations", pangolin_lineage = pangolin_lineage, frequency = frequency)
+  }
+  
   return(df)
 }

@@ -4,10 +4,10 @@
 \alias{getMutationsByLineage}
 \title{Retrieve mutations by lineage}
 \usage{
-getMutationsByLineage(pangolin_lineage, frequency = 0.8)
+getMutationsByLineage(pangolin_lineage, frequency = 0.75)
 }
 \arguments{
-\item{pangolin_lineage:}{PANGO lineage name or list}
+\item{pangolin_lineage:}{PANGO lineage name or vector}
 
 \item{frequency:}{a number between 0 and 1 specifying the frequency threshold above which to return mutations (default=0.8)}
 }
@@ -18,8 +18,13 @@ dataframe
 Retrieve all mutations in a specified lineage above a threshold
 }
 \examples{
-getMutationsByLineage(pangolin_lineage="P.1", frequency=0.8)
+p1 = getMutationsByLineage(pangolin_lineage="P.1", frequency=0.5)
 
-# get all delta lineages
-getMutationsByLineage(pangolin_lineage="P.1", frequency=0.8)
+# get all mutations in at least 80\% of the combined delta lineages
+delta_lineages_combined = lookupSublineages("Delta", returnQueryString = TRUE)
+delta_mutations_combined = getMutationsByLineage(pangolin_lineage=delta_lineages_combined, frequency=0.75)
+
+# get all mutations in at least 80\% of one of the delta lineages
+delta_lineages = lookupSublineages("Delta", returnQueryString = FALSE)
+delta_mutations = getMutationsByLineage(pangolin_lineage=delta_lineages, frequency=0.75)
 }

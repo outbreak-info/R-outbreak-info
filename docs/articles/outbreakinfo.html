@@ -139,7 +139,8 @@
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://outbreak-info.github.io/R-outbreak-info/">outbreakinfo</a></span><span class="op">)</span>
 <span class="co">#&gt; Warning: replacing previous import 'jsonlite::flatten' by 'purrr::flatten' when</span>
 <span class="co">#&gt; loading 'outbreakinfo'</span>
-<span class="co"># just used to tidy some of the outputs</span>
+
+<span class="co"># Not needed; just used to tidy some of the outputs</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span> </code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
@@ -232,9 +233,18 @@
 </tbody>
 </table>
 </div>
-<div id="mutations-within-a-variant" class="section level3">
+<div id="mutations-within-a-lineage" class="section level3">
 <h3 class="hasAnchor">
-<a href="#mutations-within-a-variant" class="anchor"></a>Mutations within a variant</h3>
+<a href="#mutations-within-a-lineage" class="anchor"></a>Mutations within a lineage</h3>
+<p>When we say a lineage, like B.1.1.7, what does that actually mean? The <code>getMutationsByLineage</code> function allows you to pull the prevalence of all the mutations within all the sequences assigned to B.1.1.7 or other lineages, and <code>plotMutationHeatmap</code> allows you to compare their prevalence in a heatmap:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">char_muts</span> <span class="op">=</span> <span class="fu"><a href="../reference/getMutationsByLineage.html">getMutationsByLineage</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"B.1.1.7"</span>, <span class="st">"B.1.351"</span>, <span class="st">"B.1.617.2"</span>, <span class="st">"P.1"</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; Retrieving data... </span>
+<span class="co">#&gt; Retrieving data... </span>
+<span class="co">#&gt; Retrieving data... </span>
+<span class="co">#&gt; Retrieving data...</span>
+<span class="fu"><a href="../reference/plotMutationHeatmap.html">plotMutationHeatmap</a></span><span class="op">(</span><span class="va">char_muts</span>, title <span class="op">=</span> <span class="st">"Mutations with at least 75% prevalence in Variants of Concern"</span>, lightBorders <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<p><img src="outbreakinfo_files/figure-html/characteristic_mutations-1.png" width="700"></p>
 </div>
 <div id="additional-genomic-functions" class="section level3">
 <h3 class="hasAnchor">
@@ -250,7 +260,7 @@
 <h3 class="hasAnchor">
 <a href="#accessing-cases-deaths-data" class="anchor"></a>Accessing Cases &amp; Deaths data</h3>
 <p>All cases and death data can be accessed through the main function <code>getEpiData</code> and plotted with <code>plotEpiData</code>. For instance, you can compare the cases per capita in a few major metropolitan areas:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Get the epi data</span>
 <span class="va">epi_metro</span> <span class="op">=</span> <span class="fu"><a href="../reference/getEpiData.html">getEpiData</a></span><span class="op">(</span>name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Detroit-Warren-Dearborn, MI"</span>, <span class="st">"New Orleans-Metairie, LA"</span><span class="op">)</span><span class="op">)</span>
 

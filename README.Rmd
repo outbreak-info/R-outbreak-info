@@ -73,11 +73,17 @@ Provides access to the mutations per lineage, to access the data underlying the
 ``` {r lineage_comparison, message = FALSE, warning = FALSE}
 library(outbreakinfo)
 #  Provide GISAID credentials using authenticateUser()
-# Get all mutations in Pango lineage P.1 at at least 80% prevalence in all P.1 sequences.
-knitr::kable(getMutationsByLineage(pangolin_lineage="P.1", frequency=0.8))
-# Plot the mutations as a heatmap
 
+# Lookup which Pango lineages are associated with the Delta / B.1.617.2 Variant of Concern
+delta_lineages = lookupSublineages("Delta", returnQueryString = FALSE)
+
+# Get all mutations in the Delta lineages which at at leas 75% prevalent in one of the lineages.
+delta_mutations = getMutationsByLineage(pangolin_lineage=delta_lineages, frequency=0.75)
+
+# Plot the mutations as a heatmap
+plotMutationHeatmap(delta_mutations, genes = c("S"), title = "S-gene mutations in Delta lineages")
 ```
+
 ### Cases & Deaths
 Replicates the daily confirmed cases visualization on [outbreak.info](https://outbreak.info/epidemiology?location=USA%3BMEX&log=false&variable=confirmed_rolling&xVariable=date&fixedY=false&percapita=true)
 ```{r daily_cases}
@@ -85,8 +91,9 @@ Replicates the daily confirmed cases visualization on [outbreak.info](https://ou
 library(outbreakinfo)
 plotEpiData(locations = c("United States of America", "Mexico"), variable = "confirmed_rolling_per_100k")
 ```
+----
 
-
+## More examples
 For more examples, please view our [vignettes](https://outbreak-info.github.io/R-outbreak-info/docs/articles/index.html).
 
 ----

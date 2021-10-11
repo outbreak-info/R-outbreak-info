@@ -41,6 +41,7 @@ getPrevalenceByLocation <- function(pangolin_lineage=NULL, location=NULL, mutati
 
   df <- getGenomicData(query_url="prevalence-by-location", pangolin_lineage = lineage_string, location = location, mutations = mutations, cumulative = cumulative)
 
-  df = df %>% rename(lineage = query_key)
+  if(!is.null(df))
+      df = df %>% rename(lineage = query_key)
   return(df)
 }

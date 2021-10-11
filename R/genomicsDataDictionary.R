@@ -5,8 +5,6 @@
 #' @import dplyr
 #'
 #' @examples
-#'# Authenticate with GISAID credentials
-#'# authenticateUser()
 #' knitr::kable(genomicsDataDictionary())
 #' @export
 

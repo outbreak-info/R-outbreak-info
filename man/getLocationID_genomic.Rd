@@ -16,8 +16,6 @@ a location ID code (ISO3, FIPS)
 Get location ID code for countries, states/provinces, metropolitan areas, and/or counties from genomic API
 }
 \examples{
-# Authenticate with GISAID credentials
-authenticateUser()
 getLocationID_genomic("San Diego")
 
 }

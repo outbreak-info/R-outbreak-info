@@ -24,6 +24,9 @@ plotAllLineagesByLocation <- function(location, other_threshold=0.05, nday_thres
 
   df <- getGenomicData(query_url="prevalence-by-location-all-lineages", location = location, other_threshold = other_threshold, nday_threshold = nday_threshold, ndays = ndays, other_exclude = other_exclude, cumulative = cumulative)
 
+  if(is.null(df))
+      return(df)
+
   # set factors
   df$lineage = factor(df$lineage, levels = unique(c("other", df %>% arrange(desc(prevalence_rolling)) %>% pull(lineage))))
   numLineages = levels(df$lineage) %>% length()

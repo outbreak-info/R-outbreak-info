@@ -8,7 +8,7 @@
 #'@return dataframe
 #'
 #'@examples
-#'getMutationAcrossLineage(mutations="S:N501Y", location="United States of America")
+#'getMutationAcrossLineage(mutations="S:N501Y", location="United States")
 #'
 #' @export
 

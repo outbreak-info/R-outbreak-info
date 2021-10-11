@@ -67,7 +67,7 @@ getLocationID_genomic <- function(locations_to_search){
                 df$admin_level[df$admin_level == "2"] <- "county"
                 df$full <- paste0(df$label, " (", df$admin_level, ")")
                 for (i in df$full){
-                    cat(i)
+                    cat(paste0(i, "\n"))
                     loc_sel <- readline("Is this a location of interest? (Y/N): ")
                     if ((loc_sel == "Y")|(loc_sel == "y")){
                         locs_of_interest = c(locs_of_interest, df$id[df$full==i])

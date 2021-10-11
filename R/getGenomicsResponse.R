@@ -6,7 +6,7 @@
 #' @keywords internal
 #' @export
 
-getGenomicsResponse <- function(dataurl, logInfo = T){
+getGenomicsResponse <- function(dataurl, logInfo = T, logWarning = T, logError = T){
     scroll.id <- NULL
     results <- list()
     success <- NULL
@@ -54,12 +54,12 @@ getGenomicsResponse <- function(dataurl, logInfo = T){
                 return(results);
             }
         }, error = function(cond){
-            if(logInfo){
+            if(logError){
                 message(cond)
             }
             stop("Could not connect to API. Please check internet connection and try again.");
         }, warning = function(cond){
-            if(logInfo){
+            if(logWarning){
                 message(cond)
             }
             return(NULL)

@@ -6,13 +6,15 @@
 #' @keywords internal
 #' @export
 
-getGenomicsResponse <- function(dataurl){
+getGenomicsResponse <- function(dataurl, logInfo = T){
     scroll.id <- NULL
     results <- list()
     success <- NULL
     while(is.null(success)){
         success <- FALSE
-        cat("Retrieving data...", "\n")
+        if(logInfo){
+            cat("Retrieving data...", "\n")
+        }
         dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
         dataurl <- URLencode(dataurl)
         resp <- NULL
@@ -31,15 +33,15 @@ getGenomicsResponse <- function(dataurl){
             if(!is.null(auth_token))
                 Sys.setenv(OUTBREAK_INFO_TOKEN = auth_token)
             if(resp$status_code == 401){
-                warning("Please authenticate by calling authenticateUser() to access the API.")
+                warning("Please authenticate by calling authenticateUser() to access the API.\n")
             } else if (resp$status_code == 403) {
-                warning("Invalid taken. Please reauthenticate by calling the authenticateUser() function.")
+                warning("Invalid token. Please reauthenticate by calling the authenticateUser() function.\n")
             } else if(resp$status_code == 500){
-                warning("There was an internal server error. Please cross check your query or contact help@outbreak.info for further assistance.")
+                warning("There was an internal server error. Please cross check your query or contact help@outbreak.info for further assistance.\n")
             } else if(resp$status_code == 429){
-                warning("You have exceeded the API usage limit. Please limit the usage to 1 request/minute.")
+                warning("You have exceeded the API usage limit. Please limit the usage to 1 request/minute.\n")
             } else if (resp$status_code == 400){
-                warning("Malformed token. Please reauthenticate by calling the authenticateUser() function.")
+                warning("Malformed token. Please reauthenticate by calling the authenticateUser() function.\n")
             } else if(resp$status_code == 200){
                 resp <- fromJSON(content(resp, "text"), flatten=TRUE)
                 resp_df <- convert_list_to_dataframe(resp$results)
@@ -49,10 +51,15 @@ getGenomicsResponse <- function(dataurl){
                 return(results);
             }
         }, error = function(cond){
-            message(cond)
+            if(logInfo){
+                message(cond)
+            }
             stop("Could not connect to API. Please check internet connection and try again.");
         }, warning = function(cond){
-            message(cond)
+            if(logInfo){
+                message(cond)
+            }
+            return(NULL)
         })
     }
 }

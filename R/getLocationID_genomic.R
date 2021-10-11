@@ -20,8 +20,10 @@ getLocationID_genomic <- function(locations_to_search){
     for (i in locations_to_search){
         location.ids <- paste0("name=", paste(i))
         dataurl <- paste0(loc_url, location.ids)
-        results <- getGenomicsResponse(dataurl)
-        hits <- rbind_pages(results)
+        results <- getGenomicsResponse(dataurl, F)
+        hits <- data.frame()
+        if(length(results) >= 1)
+            hits <- rbind_pages(results)
         if(nrow(hits) == 0){
             locs_not_found = c(locs_not_found, i)
         } else {
@@ -50,8 +52,10 @@ getLocationID_genomic <- function(locations_to_search){
         for (i in 1:length(locations)){
             location.ids <- paste0("name=", paste(locations[i]))
             dataurl <- paste0(loc_url, location.ids)
-            results <- getGenomicsResponse(dataurl)
-            hits <- rbind_pages(results)
+            results <- getGenomicsResponse(dataurl, F)
+            hits <- data.frame()
+            if(length(results) >= 1)
+                hits <- rbind_pages(results)
             if(nrow(hits) == 0){
                 next
             } else {

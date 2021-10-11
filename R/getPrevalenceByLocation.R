@@ -3,7 +3,7 @@
 #' @description Retrieves the daily prevalence of a PANGO lineage(s) by location
 #'
 #' @param pangolin_lineage: (optional) PANGO lineage name or vector of PANGO lineage names. Either `pangolin_lineage` or `mutations` needs to be specified. A list of lineages will return a long dataframe with `lineage` as a variable; if you want to calculate the prevalence of lineage1 or lineage2 together, enter the lineages separated by " OR ". For instance, to calculate the prevalence of Delta, you'll need to supply `"B.1.617.2 OR AY.1 OR AY.2 OR ..."` **Be sure to include the space around "OR" and it must be capitalized.**
-#' @param mutations: (optional) a `vector` of mutation(s). Either `pangolin_lineage` or `mutations` needs to be specified.
+#' @param mutations: (optional) a `vector` of mutation(s). Either `pangolin_lineage` or `mutations` needs to be specified. Mutations should be specified in the format `gene:mutation`, like "S:E484K"
 #' @param location: (optional) a location name
 #' @param cumulative: (optional) `Boolean` (T/F), T returns cumulative prevalence since first day of detection
 #'

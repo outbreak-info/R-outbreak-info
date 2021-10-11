@@ -24,8 +24,6 @@ dataframe
 Retrieve most recent collection date by location
 }
 \examples{
-# Authenticate with GISAID credentials
-# authenticateUser()
 getCollectionDateByLocation(pangolin_lineage="B.1.1.7", location="California")
 
 }

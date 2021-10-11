@@ -27,8 +27,6 @@ dataframe
 Retrieve cumulative prevalence of a PANGO lineage by the immediate administrative level of a location
 }
 \examples{
-# Authenticate with GISAID credentials
-# authenticateUser()
 getCumulativeBySubadmin(pangolin_lineage="B.1.1.7", location="California")
 
 

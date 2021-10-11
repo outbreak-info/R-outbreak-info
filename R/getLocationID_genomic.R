@@ -7,8 +7,6 @@
 #' @return a location ID code (ISO3, FIPS)
 #'
 #' @examples
-#'# Authenticate with GISAID credentials
-#' authenticateUser()
 #' getLocationID_genomic("San Diego")
 #'
 #' @export

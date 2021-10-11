@@ -10,8 +10,6 @@
 #'@return dataframe
 #'
 #' @examples
-#'# Authenticate with GISAID credentials
-#'# authenticateUser()
 #' getCumulativeBySubadmin(pangolin_lineage="B.1.1.7", location="California")
 #'
 #'

@@ -4,12 +4,14 @@
 \alias{getMutationsByLineage}
 \title{Retrieve mutations by lineage}
 \usage{
-getMutationsByLineage(pangolin_lineage, frequency = 0.75)
+getMutationsByLineage(pangolin_lineage, frequency = 0.75, logInfo = TRUE)
 }
 \arguments{
 \item{pangolin_lineage:}{PANGO lineage name or vector}
 
 \item{frequency:}{a number between 0 and 1 specifying the frequency threshold above which to return mutations (default=0.8)}
+
+\item{logInfo:}{(optional) `Boolean` (T/F), T logs helper messages during API calls.}
 }
 \value{
 dataframe

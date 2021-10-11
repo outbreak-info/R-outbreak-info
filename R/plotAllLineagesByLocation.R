@@ -15,7 +15,7 @@
 #'@return ggplot2 object
 #'
 #'@examples
-#'plotAllLineagesByLocation(location = "India", other_threshold=0.03, nday_threshold=60)
+#'plotAllLineagesByLocation(location = "India", other_threshold=0.03, ndays=60)
 #'
 #' @export
 

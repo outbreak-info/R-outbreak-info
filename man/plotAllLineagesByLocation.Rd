@@ -36,6 +36,6 @@ ggplot2 object
 Plot prevalence of all lineages above a specified frequency over time by location
 }
 \examples{
-plotAllLineagesByLocation(location = "India", other_threshold=0.03, nday_threshold=60)
+plotAllLineagesByLocation(location = "India", other_threshold=0.03, ndays=60)
 
 }

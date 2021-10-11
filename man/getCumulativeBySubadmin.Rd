@@ -27,6 +27,10 @@ dataframe
 Retrieve cumulative prevalence of a PANGO lineage by the immediate administrative level of a location
 }
 \examples{
+# Worldwide prevalence of B.1.1.7 by country
+getCumulativeBySubadmin(pangolin_lineage="B.1.1.7")
+
+# County-level prevalence of B.1.1.7
 getCumulativeBySubadmin(pangolin_lineage="B.1.1.7", location="California")
 
 

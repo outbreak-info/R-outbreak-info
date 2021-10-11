@@ -54,6 +54,7 @@ t(b117_san_diego[1,])
 # Plotting it:
 plotPrevalenceOverTime(b117_san_diego, title = "B.1.1.7 prevalence in San Diego")
 ```
+Variables are described in the [Genomics Data Dictionary](https://outbreak-info.github.io/R-outbreak-info/reference/genomicsDataDictionary.html).
 
 #### Customizing variant inputs
 In addition to viewing the change in prevalence of a lineage over time, more complex variants can be queried. This includes **combinations of lineages**, like the [Delta variant](https://outbreak.info/situation-reports/delta), **lineages with additional mutation(s)**, like [B.1.1.7 with S:E484K](https://outbreak.info/situation-reports?muts=S%3AE484K&pango=B.1.1.7), **individual mutations**, like [S:E484K](https://outbreak.info/situation-reports?muts=S%3AE484K), or **groups of mutations**, like [S:E484K and S:P681R](https://outbreak.info/situation-reports?muts=S%3AE484K&muts=S%3AP681R). View the [Variant Tracker](varianttracker.html) and [Location Tracker](locationtracker.html) vignettes for more advanced examples.
@@ -69,10 +70,22 @@ All the [Variant Prevalence Functions](https://outbreak-info.github.io/R-outbrea
 Epidemiology data in outbreak.info includes daily cases and death data for World Bank Regions, individual countries, states/provinces, U.S. Metropolitan areas, and U.S. counties.
 
 ### Accessing Cases & Deaths data
-All cases and death data can be accessed through the main function `getEpiData` and plotted with `plotEpiData`
+All cases and death data can be accessed through the main function `getEpiData` and plotted with `plotEpiData`. For instance, you can compare the cases per capita in a few major metropolitan areas:
+```{r epi}
+# Get the epi data
+epi_metro = getEpiData(name = c("Detroit-Warren-Dearborn, MI", "New Orleans-Metairie, LA"))
+
+# Accessing just the first row:
+t(epi_metro[1,])
+
+# Get the epi data and plot it.
+plotEpiData(locations = c("Detroit-Warren-Dearborn, MI", "New Orleans-Metairie, LA"), variable = "confirmed_rolling_per_100k")
+```
+
+Variables are described in the [Epidemiology Data Dictionary](https://outbreak-info.github.io/R-outbreak-info/reference/epidemiologyDataDictionary.html).
 
 ### Customizing epidemiology features
-View the [Epidemiology vignette](outbreakvignette.html) for more details on how to access these data.
+View the [Epidemiology vignette](outbreakvignette.html) for more details on how to access these data and [Epidemiology Data Dictionary](https://outbreak-info.github.io/R-outbreak-info/reference/epidemiologyDataDictionary.html) for information on the variables contained within the data.
 
 ### Additional epidemiology functions
-All the [Cases & Deaths Functions](https://outbreak-info.github.io/R-outbreak-info/reference/index.html#section-sars-cov-variant-prevalence) provide documentation on their functionality and examples.
+All the [Cases & Deaths Functions](https://outbreak-info.github.io/R-outbreak-info/reference/index.html#section-cases-deaths) provide documentation on their functionality and examples.

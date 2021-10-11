@@ -74,6 +74,8 @@ plotEpiData <- function(locations, variable){
             legend.background = element_rect(fill = "#eeeeec", colour = NA)) +
       scale_colour_manual(values = colour_palette)
   }
+  
+  nrow = ceiling(length(locations)/3)
 
   p = p +
     scale_x_date(date_labels = "%b %Y") +
@@ -81,7 +83,8 @@ plotEpiData <- function(locations, variable){
     theme(text = element_text(size = 16),
           legend.title = element_blank(),
           axis.title = element_blank()) +
-    ggtitle(title, subtitle = subtitle)
+    ggtitle(title, subtitle = subtitle) +
+    guides(colour = guide_legend(nrow = nrow))
   return(p)
 }
 

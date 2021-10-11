@@ -8,7 +8,7 @@ getPrevalence(
   pangolin_lineage = NULL,
   location = NULL,
   mutations = NULL,
-  cumulative = NULL
+  cumulative = FALSE
 )
 }
 \arguments{

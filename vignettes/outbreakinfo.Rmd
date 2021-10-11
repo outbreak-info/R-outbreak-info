@@ -1,0 +1,68 @@
+---
+title: "Introduction to outbreakinfo"
+# author: "Laura Hughes"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to outbreakinfo}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+[Outbreak.info](https://outbreak.info) is a project to enable the tracking of SARS-CoV-2 Variants within the COVID-19 pandemic. This R package offers access to the data we have gathered and calculated along with visualizations to replicate the visualizations on outbreak.info. Here, we'll outline some of the basic functionality of the R package to access the genomic (SARS-CoV-2 variant) data and epidemiology data (COVID-19 cases and deaths).
+
+## SARS-CoV-2 variant prevalence
+
+The core functionality within the suite of [Variant Prevalence Functions](https://outbreak-info.github.io/R-outbreak-info/reference/index.html#section-sars-cov-variant-prevalence) include accessing data for:
+
+- [Variant prevalence over time](#prevalence-over-time)
+- [Cumulative variant prevalence](#cumulative-variant-prevalence)
+- [Calculating mutation prevalence within a variant](#muations-within-a-variant)
+
+### Getting started
+Before we start, to we need to provide our GISAID credentials to access the genomic data.
+If you don't have a GISAID account, you can [register](https://www.gisaid.org/registration/register/)
+for one on their website. It may take a day or two for the account to become active.
+```{r pkgs, message = FALSE, results='hide'}
+# Package imports
+library(outbreakinfo)
+```
+
+```{r auth, message = FALSE, results='hide', eval=FALSE}
+# Authenticate yourself using your GISAID credentials.
+authenticateUser()
+```
+
+
+### Prevalence over time
+One important aspect of a variant to track is how its prevalence is changing over time. We can calculate this prevalence for any lineage, mutation, combination of mutations, or lineage with added mutations. We'll access the data and then plot the results.
+
+#### Lineage over time: B.1.1.7
+```{r prev-time}
+# Function to grab all the data for the prevalence of B.1.1.7 in San Diego
+b117_san_diego = getPrevalence(pangolin_lineage = "B.1.1.7", location="San Diego")
+
+# Accessing just the first row:
+t(b117_san_diego[1,])
+
+# Plotting it:
+plotPrevalenceOverTime(b117_san_diego, title = "B.1.1.7 prevalence in San Diego")
+```
+
+#### Customizing variant inputs
+In addition to viewing the change in prevalence of a lineage over time, more complex variants can be queried. This includes **combinations of lineages**, like the [Delta variant](https://outbreak.info/situation-reports/delta), **lineages with additional mutation(s)**, like [B.1.1.7 with S:E484K](https://outbreak.info/situation-reports?muts=S%3AE484K&pango=B.1.1.7), **individual mutations**, like [S:E484K](https://outbreak.info/situation-reports?muts=S%3AE484K), or **groups of mutations**, like [S:E484K and S:P681R](https://outbreak.info/situation-reports?muts=S%3AE484K&muts=S%3AP681R). View the [Variant Tracker](varianttracker.html) and [Location Tracker](locationtracker.html) vignettes for more advanced examples.
+
+### Cumulative variant prevalence
+
+### Mutations within a variant
+
+### Additional genomic functions
+All the [Variant Prevalence Functions](https://outbreak-info.github.io/R-outbreak-info/reference/index.html#section-sars-cov-variant-prevalence) provide documentation on their functionality and examples.
+
+## Cases & deaths data

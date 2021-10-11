@@ -105,6 +105,9 @@
   </a>
 </li>
 <li>
+  <a href="../articles/outbreakinfo.html">Get started</a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -115,16 +118,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/lineagevignette.html">Lineage Report (B.1.1.7)</a>
+      <a href="../articles/epivignette.html">outbreak.info R package: Epidemiological data</a>
     </li>
     <li>
       <a href="../articles/locationtracker.html">outbreak.info Location Tracker</a>
     </li>
     <li>
-      <a href="../articles/locationvignette.html">Location Report (United States)</a>
-    </li>
-    <li>
-      <a href="../articles/outbreakvignette.html">outbreak.info R package: Epidemiological data</a>
+      <a href="../articles/varianttracker.html">outbreak.info Variant Tracker</a>
     </li>
   </ul>
 </li>
@@ -158,18 +158,22 @@
     <p>Retrieve all mutations in a specified lineage above a threshold</p>
     </div>
 
-    <pre class="usage"><span class='fu'>getMutationsByLineage</span><span class='op'>(</span><span class='va'>pangolin_lineage</span>, frequency <span class='op'>=</span> <span class='fl'>0.8</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>getMutationsByLineage</span><span class='op'>(</span><span class='va'>pangolin_lineage</span>, frequency <span class='op'>=</span> <span class='fl'>0.75</span>, logInfo <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>pangolin_lineage:</th>
-      <td><p>PANGO lineage name or list</p></td>
+      <td><p>PANGO lineage name or vector</p></td>
     </tr>
     <tr>
       <th>frequency:</th>
       <td><p>a number between 0 and 1 specifying the frequency threshold above which to return mutations (default=0.8)</p></td>
+    </tr>
+    <tr>
+      <th>logInfo:</th>
+      <td><p>(optional) `Boolean` (T/F), T logs helper messages during API calls.</p></td>
     </tr>
     </table>
 
@@ -178,147 +182,60 @@
     <p>dataframe</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>getMutationsByLineage</span><span class='op'>(</span>pangolin_lineage<span class='op'>=</span><span class='st'>"P.1"</span>, frequency<span class='op'>=</span><span class='fl'>0.8</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Retrieving data... </div><div class='output co'>#&gt;              mutation mutation_count lineage_count lineage  gene
-#&gt; 1             s:d614g          71709         72479     P.1     S
-#&gt; 2            s:v1176f          71660         72479     P.1     S
-#&gt; 3        orf1a:k1795q          71562         72479     P.1 ORF1a
-#&gt; 4         orf1b:p314l          71527         72479     P.1 ORF1b
-#&gt; 5              n:p80r          71480         72479     P.1     N
-#&gt; 6        orf1b:e1264d          71390         72479     P.1 ORF1b
-#&gt; 7         orf3a:s253p          71327         72479     P.1 ORF3a
-#&gt; 8             s:h655y          71208         72479     P.1     S
-#&gt; 9           orf8:e92k          70980         72479     P.1  ORF8
-#&gt; 10       orf1a:s1188l          70949         72479     P.1 ORF1a
-#&gt; 11             s:l18f          70740         72479     P.1     S
-#&gt; 12             s:p26s          70633         72479     P.1     S
-#&gt; 13             s:t20n          70368         72479     P.1     S
-#&gt; 14 orf1a:del3675/3677          70364         72479     P.1 ORF1a
-#&gt; 15           s:t1027i          70134         72479     P.1     S
-#&gt; 16            s:d138y          69857         72479     P.1     S
-#&gt; 17            s:n501y          69321         72479     P.1     S
-#&gt; 18            s:e484k          69173         72479     P.1     S
-#&gt; 19            s:k417t          69137         72479     P.1     S
-#&gt; 20            n:g204r          68165         72479     P.1     N
-#&gt; 21            n:r203k          67782         72479     P.1     N
-#&gt; 22            s:r190s          67516         72479     P.1     S
-#&gt;                ref_aa       alt_aa codon_num codon_end         type prevalence
-#&gt; 1                   D            G       614      None substitution  0.9893762
-#&gt; 2                   V            F      1176      None substitution  0.9887002
-#&gt; 3                   K            Q      1795      None substitution  0.9873481
-#&gt; 4                   P            L       314      None substitution  0.9868652
-#&gt; 5                   P            R        80      None substitution  0.9862167
-#&gt; 6                   E            D      1264      None substitution  0.9849750
-#&gt; 7                   S            P       253      None substitution  0.9841057
-#&gt; 8                   H            Y       655      None substitution  0.9824639
-#&gt; 9                   E            K        92      None substitution  0.9793181
-#&gt; 10                  S            L      1188      None substitution  0.9788904
-#&gt; 11                  L            F        18      None substitution  0.9760068
-#&gt; 12                  P            S        26      None substitution  0.9745306
-#&gt; 13                  T            N        20      None substitution  0.9708743
-#&gt; 14 ORF1A:DEL3675/3677 DEL3675/3677      3675      3677     deletion  0.9708191
-#&gt; 15                  T            I      1027      None substitution  0.9676458
-#&gt; 16                  D            Y       138      None substitution  0.9638240
-#&gt; 17                  N            Y       501      None substitution  0.9564288
-#&gt; 18                  E            K       484      None substitution  0.9543868
-#&gt; 19                  K            T       417      None substitution  0.9538901
-#&gt; 20                  G            R       204      None substitution  0.9404793
-#&gt; 21                  R            K       203      None substitution  0.9351950
-#&gt; 22                  R            S       190      None substitution  0.9315250
-#&gt;    change_length_nt query_key
-#&gt; 1              None       P.1
-#&gt; 2              None       P.1
-#&gt; 3              None       P.1
-#&gt; 4              None       P.1
-#&gt; 5              None       P.1
-#&gt; 6              None       P.1
-#&gt; 7              None       P.1
-#&gt; 8              None       P.1
-#&gt; 9              None       P.1
-#&gt; 10             None       P.1
-#&gt; 11             None       P.1
-#&gt; 12             None       P.1
-#&gt; 13             None       P.1
-#&gt; 14                9       P.1
-#&gt; 15             None       P.1
-#&gt; 16             None       P.1
-#&gt; 17             None       P.1
-#&gt; 18             None       P.1
-#&gt; 19             None       P.1
-#&gt; 20             None       P.1
-#&gt; 21             None       P.1
-#&gt; 22             None       P.1</div><div class='input'>
-<span class='co'># get all delta lineages</span>
-<span class='fu'>getMutationsByLineage</span><span class='op'>(</span>pangolin_lineage<span class='op'>=</span><span class='st'>"P.1"</span>, frequency<span class='op'>=</span><span class='fl'>0.8</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Retrieving data... </div><div class='output co'>#&gt;              mutation mutation_count lineage_count lineage  gene
-#&gt; 1             s:d614g          71709         72479     P.1     S
-#&gt; 2            s:v1176f          71660         72479     P.1     S
-#&gt; 3        orf1a:k1795q          71562         72479     P.1 ORF1a
-#&gt; 4         orf1b:p314l          71527         72479     P.1 ORF1b
-#&gt; 5              n:p80r          71480         72479     P.1     N
-#&gt; 6        orf1b:e1264d          71390         72479     P.1 ORF1b
-#&gt; 7         orf3a:s253p          71327         72479     P.1 ORF3a
-#&gt; 8             s:h655y          71208         72479     P.1     S
-#&gt; 9           orf8:e92k          70980         72479     P.1  ORF8
-#&gt; 10       orf1a:s1188l          70949         72479     P.1 ORF1a
-#&gt; 11             s:l18f          70740         72479     P.1     S
-#&gt; 12             s:p26s          70633         72479     P.1     S
-#&gt; 13             s:t20n          70368         72479     P.1     S
-#&gt; 14 orf1a:del3675/3677          70364         72479     P.1 ORF1a
-#&gt; 15           s:t1027i          70134         72479     P.1     S
-#&gt; 16            s:d138y          69857         72479     P.1     S
-#&gt; 17            s:n501y          69321         72479     P.1     S
-#&gt; 18            s:e484k          69173         72479     P.1     S
-#&gt; 19            s:k417t          69137         72479     P.1     S
-#&gt; 20            n:g204r          68165         72479     P.1     N
-#&gt; 21            n:r203k          67782         72479     P.1     N
-#&gt; 22            s:r190s          67516         72479     P.1     S
-#&gt;                ref_aa       alt_aa codon_num codon_end         type prevalence
-#&gt; 1                   D            G       614      None substitution  0.9893762
-#&gt; 2                   V            F      1176      None substitution  0.9887002
-#&gt; 3                   K            Q      1795      None substitution  0.9873481
-#&gt; 4                   P            L       314      None substitution  0.9868652
-#&gt; 5                   P            R        80      None substitution  0.9862167
-#&gt; 6                   E            D      1264      None substitution  0.9849750
-#&gt; 7                   S            P       253      None substitution  0.9841057
-#&gt; 8                   H            Y       655      None substitution  0.9824639
-#&gt; 9                   E            K        92      None substitution  0.9793181
-#&gt; 10                  S            L      1188      None substitution  0.9788904
-#&gt; 11                  L            F        18      None substitution  0.9760068
-#&gt; 12                  P            S        26      None substitution  0.9745306
-#&gt; 13                  T            N        20      None substitution  0.9708743
-#&gt; 14 ORF1A:DEL3675/3677 DEL3675/3677      3675      3677     deletion  0.9708191
-#&gt; 15                  T            I      1027      None substitution  0.9676458
-#&gt; 16                  D            Y       138      None substitution  0.9638240
-#&gt; 17                  N            Y       501      None substitution  0.9564288
-#&gt; 18                  E            K       484      None substitution  0.9543868
-#&gt; 19                  K            T       417      None substitution  0.9538901
-#&gt; 20                  G            R       204      None substitution  0.9404793
-#&gt; 21                  R            K       203      None substitution  0.9351950
-#&gt; 22                  R            S       190      None substitution  0.9315250
-#&gt;    change_length_nt query_key
-#&gt; 1              None       P.1
-#&gt; 2              None       P.1
-#&gt; 3              None       P.1
-#&gt; 4              None       P.1
-#&gt; 5              None       P.1
-#&gt; 6              None       P.1
-#&gt; 7              None       P.1
-#&gt; 8              None       P.1
-#&gt; 9              None       P.1
-#&gt; 10             None       P.1
-#&gt; 11             None       P.1
-#&gt; 12             None       P.1
-#&gt; 13             None       P.1
-#&gt; 14                9       P.1
-#&gt; 15             None       P.1
-#&gt; 16             None       P.1
-#&gt; 17             None       P.1
-#&gt; 18             None       P.1
-#&gt; 19             None       P.1
-#&gt; 20             None       P.1
-#&gt; 21             None       P.1
-#&gt; 22             None       P.1</div></pre>
+    <pre class="examples"><div class='input'><span class='va'>p1</span> <span class='op'>=</span> <span class='fu'>getMutationsByLineage</span><span class='op'>(</span>pangolin_lineage<span class='op'>=</span><span class='st'>"P.1"</span>, frequency<span class='op'>=</span><span class='fl'>0.5</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Retrieving data... </div><div class='input'>
+<span class='co'># get all mutations in at least 80% of the combined delta lineages</span>
+<span class='va'>delta_lineages_combined</span> <span class='op'>=</span> <span class='fu'><a href='lookupSublineages.html'>lookupSublineages</a></span><span class='op'>(</span><span class='st'>"Delta"</span>, returnQueryString <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>delta_mutations_combined</span> <span class='op'>=</span> <span class='fu'>getMutationsByLineage</span><span class='op'>(</span>pangolin_lineage<span class='op'>=</span><span class='va'>delta_lineages_combined</span>, frequency<span class='op'>=</span><span class='fl'>0.75</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Retrieving data... </div><div class='input'>
+<span class='co'># get all mutations in at least 80% of one of the delta lineages</span>
+<span class='va'>delta_lineages</span> <span class='op'>=</span> <span class='fu'><a href='lookupSublineages.html'>lookupSublineages</a></span><span class='op'>(</span><span class='st'>"Delta"</span>, returnQueryString <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='va'>delta_mutations</span> <span class='op'>=</span> <span class='fu'>getMutationsByLineage</span><span class='op'>(</span>pangolin_lineage<span class='op'>=</span><span class='va'>delta_lineages</span>, frequency<span class='op'>=</span><span class='fl'>0.75</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

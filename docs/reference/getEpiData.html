@@ -105,6 +105,9 @@
   </a>
 </li>
 <li>
+  <a href="../articles/outbreakinfo.html">Get started</a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -115,16 +118,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/lineagevignette.html">Lineage Report (B.1.1.7)</a>
+      <a href="../articles/epivignette.html">outbreak.info R package: Epidemiological data</a>
     </li>
     <li>
       <a href="../articles/locationtracker.html">outbreak.info Location Tracker</a>
     </li>
     <li>
-      <a href="../articles/locationvignette.html">Location Report (United States)</a>
-    </li>
-    <li>
-      <a href="../articles/outbreakvignette.html">outbreak.info R package: Epidemiological data</a>
+      <a href="../articles/varianttracker.html">outbreak.info Variant Tracker</a>
     </li>
   </ul>
 </li>
@@ -227,7 +227,7 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>getEpiData</span><span class='op'>(</span>name<span class='op'>=</span><span class='st'>"United States of America"</span>, date<span class='op'>=</span><span class='st'>"2020-07-01"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "https://api.outbreak.info/covid19/query?q=(name:%22United%20States%20of%20America%22)%20AND%20(date:%222020-07-01%22)&amp;size=1000&amp;fetch_all=true"</div><div class='output co'>#&gt;             X_id  X_score admin_level confirmed confirmed_doublingRate
+</div><div class='output co'>#&gt;             X_id  X_score admin_level confirmed confirmed_doublingRate
 #&gt; 1 USA_2020-07-01 14.69031           0   2703296                 40.773
 #&gt;   confirmed_firstDate confirmed_newToday confirmed_numIncrease
 #&gt; 1          2020-01-21               TRUE                 49975

@@ -25,6 +25,7 @@ reference:
   - getCuratedLineages
   - lookupSublineages
   - plotAllLineagesByLocation
+  - plotMutationHeatmap
   - plotPrevalenceOverTime
 - title: "Cases & Deaths"
   desc: >

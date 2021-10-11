@@ -118,16 +118,10 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/lineagevignette.html">Lineage Report (B.1.1.7)</a>
+      <a href="../articles/epivignette.html">outbreak.info R package: Epidemiological data</a>
     </li>
     <li>
       <a href="../articles/locationtracker.html">outbreak.info Location Tracker</a>
-    </li>
-    <li>
-      <a href="../articles/locationvignette.html">Location Report (United States)</a>
-    </li>
-    <li>
-      <a href="../articles/outbreakvignette.html">outbreak.info R package: Epidemiological data</a>
     </li>
     <li>
       <a href="../articles/varianttracker.html">outbreak.info Variant Tracker</a>
@@ -168,7 +162,8 @@
   pangolin_lineage <span class='op'>=</span> <span class='cn'>NULL</span>,
   location <span class='op'>=</span> <span class='cn'>NULL</span>,
   mutations <span class='op'>=</span> <span class='cn'>NULL</span>,
-  cumulative <span class='op'>=</span> <span class='cn'>FALSE</span>
+  cumulative <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  logInfo <span class='op'>=</span> <span class='cn'>TRUE</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -190,6 +185,10 @@
       <th>cumulative:</th>
       <td><p>(optional) `Boolean` (T/F), T returns cumulative prevalence since first day of detection</p></td>
     </tr>
+    <tr>
+      <th>logInfo:</th>
+      <td><p>(optional) `Boolean` (T/F), T logs helper messages during API calls.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -199,94 +198,19 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># lineage: P.1 in Brazil</span>
 <span class='fu'>getPrevalence</span><span class='op'>(</span>pangolin_lineage <span class='op'>=</span> <span class='st'>"P.1"</span>, location <span class='op'>=</span> <span class='st'>"Brazil"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Retrieving data... </div><div class='output co'>#&gt;         date total_count lineage_count total_count_rolling
-#&gt; 1 2020-09-11          17             1            14.66667
-#&gt; 2 2020-09-12           8             0            14.66667
-#&gt; 3 2020-09-13           2             0            12.85714
-#&gt; 4 2020-09-14          17             0            14.71429
-#&gt; 5 2020-09-15          35             1            16.28571
-#&gt; 6 2020-09-16          18             0            16.42857
-#&gt;   lineage_count_rolling  proportion proportion_ci_lower proportion_ci_upper
-#&gt; 1             0.1666667 0.011363636        3.219414e-05           0.1518167
-#&gt; 2             0.1666667 0.011363636        3.219414e-05           0.1518167
-#&gt; 3             0.1428571 0.011111111        3.705193e-05           0.1726194
-#&gt; 4             0.1428571 0.009708738        3.219414e-05           0.1518167
-#&gt; 5             0.2857143 0.017543860        3.021348e-05           0.1431841
-#&gt; 6             0.2857143 0.017391304        3.021348e-05           0.1431841
-#&gt;   lineage location
-#&gt; 1     P.1   Brazil
-#&gt; 2     P.1   Brazil
-#&gt; 3     P.1   Brazil
-#&gt; 4     P.1   Brazil
-#&gt; 5     P.1   Brazil
-#&gt; 6     P.1   Brazil</div><div class='input'>
+</div><div class='output co'>#&gt; <span class='error'>Error in getPrevalence(pangolin_lineage = "P.1", location = "Brazil") %&gt;%     head(): could not find function "%&gt;%"</span></div><div class='input'>
 <span class='co'># AY.4 and B.1.617.2 in Brazil (AY.4, AY.34, and B.1.617.2 separately)</span>
-<span class='fu'>getPrevalence</span><span class='op'>(</span>pangolin_lineage <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"AY.4"</span>, <span class='st'>"AY.34"</span>, <span class='st'>"B.1.617.2"</span><span class='op'>)</span>, location <span class='op'>=</span> <span class='st'>"Brazil"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>date</span> <span class='op'>==</span> <span class='st'>"2021-09-01"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Retrieving data... 
-#&gt; Retrieving data... 
-#&gt; Retrieving data... </div><div class='output co'>#&gt;         date total_count lineage_count total_count_rolling
-#&gt; 1 2021-09-01          36             1            431.2857
-#&gt; 2 2021-09-01          36            19            431.2857
-#&gt;   lineage_count_rolling proportion proportion_ci_lower proportion_ci_upper
-#&gt; 1              10.28571 0.02384896          0.01199003          0.04076588
-#&gt; 2             255.57143 0.59258032          0.54710319          0.63957454
-#&gt;     lineage location
-#&gt; 1      AY.4   Brazil
-#&gt; 2 B.1.617.2   Brazil</div><div class='input'>
+<span class='fu'>getPrevalence</span><span class='op'>(</span>pangolin_lineage <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"AY.4"</span>, <span class='st'>"AY.34"</span>, <span class='st'>"B.1.617.2"</span><span class='op'>)</span>, location <span class='op'>=</span> <span class='st'>"Brazil"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>date</span> <span class='op'>==</span> <span class='st'>"2021-09-01"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in getPrevalence(pangolin_lineage = c("AY.4", "AY.34", "B.1.617.2"),     location = "Brazil") %&gt;% filter(date == "2021-09-01"): could not find function "%&gt;%"</span></div><div class='input'>
 <span class='co'># AY.4 OR B.1.617.2 in Brazil (AY.4, AY.34 and B.1.617.2 combined)</span>
-<span class='fu'>getPrevalence</span><span class='op'>(</span>pangolin_lineage <span class='op'>=</span> <span class='st'>"AY.4 OR AY.34 OR B.1.617.2"</span>, location <span class='op'>=</span> <span class='st'>"Brazil"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>date</span> <span class='op'>==</span> <span class='st'>"2021-09-01"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Retrieving data... </div><div class='output co'>#&gt;         date total_count lineage_count total_count_rolling
-#&gt; 1 2021-09-01          28            16                  33
-#&gt;   lineage_count_rolling proportion proportion_ci_lower proportion_ci_upper
-#&gt; 1              13.33333  0.4040404           0.2418367           0.5637582
-#&gt;                      lineage location
-#&gt; 1 AY.4 OR AY.34 OR B.1.617.2   Brazil</div><div class='input'>
+<span class='fu'>getPrevalence</span><span class='op'>(</span>pangolin_lineage <span class='op'>=</span> <span class='st'>"AY.4 OR AY.34 OR B.1.617.2"</span>, location <span class='op'>=</span> <span class='st'>"Brazil"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/stats/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>date</span> <span class='op'>==</span> <span class='st'>"2021-09-01"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='error'>Error in getPrevalence(pangolin_lineage = "AY.4 OR AY.34 OR B.1.617.2",     location = "Brazil") %&gt;% filter(date == "2021-09-01"): could not find function "%&gt;%"</span></div><div class='input'>
 <span class='co'># S:E484K mutation prevalence worldwide</span>
 <span class='fu'>getPrevalence</span><span class='op'>(</span>mutations <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"S:E484K"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Retrieving data... </div><div class='output co'>#&gt;         date total_count lineage_count total_count_rolling
-#&gt; 1 2020-02-01          50             1            48.71429
-#&gt; 2 2020-02-02          48             0            48.14286
-#&gt; 3 2020-02-03          41             0            48.71429
-#&gt; 4 2020-02-04          34             0            48.42857
-#&gt; 5 2020-02-05          45             0            45.42857
-#&gt; 6 2020-02-06          33             0            41.28571
-#&gt;   lineage_count_rolling  proportion proportion_ci_lower proportion_ci_upper
-#&gt; 1             0.1428571 0.002932551        9.970067e-06          0.04972339
-#&gt; 2             0.1428571 0.002967359        1.017669e-05          0.05072726
-#&gt; 3             0.1428571 0.002932551        9.970067e-06          0.04972339
-#&gt; 4             0.1428571 0.002949853        1.017669e-05          0.05072726
-#&gt; 5             0.1428571 0.003144654        1.085137e-05          0.05399771
-#&gt; 6             0.1428571 0.003460208        1.190358e-05          0.05907571
-#&gt;   lineage  location
-#&gt; 1 S:E484K Worldwide
-#&gt; 2 S:E484K Worldwide
-#&gt; 3 S:E484K Worldwide
-#&gt; 4 S:E484K Worldwide
-#&gt; 5 S:E484K Worldwide
-#&gt; 6 S:E484K Worldwide</div><div class='input'>
+</div><div class='output co'>#&gt; <span class='error'>Error in getPrevalence(mutations = c("S:E484K")) %&gt;% head(): could not find function "%&gt;%"</span></div><div class='input'>
 <span class='co'># B.1.1.7 + S:E484K mutation worldwide</span>
 <span class='fu'>getPrevalence</span><span class='op'>(</span>pangolin_lineage <span class='op'>=</span> <span class='st'>"B.1.1.7"</span>, mutations <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"S:E484K"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Retrieving data... </div><div class='output co'>#&gt;         date total_count lineage_count total_count_rolling
-#&gt; 1 2020-12-17        4559             1            4817.286
-#&gt; 2 2020-12-18        4521             1            4887.429
-#&gt; 3 2020-12-19        2920             0            4957.429
-#&gt; 4 2020-12-20        2858             0            5040.429
-#&gt; 5 2020-12-21        8632             0            4856.857
-#&gt; 6 2020-12-22        4020             0            4533.000
-#&gt;   lineage_count_rolling   proportion proportion_ci_lower proportion_ci_upper
-#&gt; 1             0.1428571 2.965511e-05        1.019325e-07        0.0005213116
-#&gt; 2             0.2857143 5.845902e-05        1.004726e-07        0.0005138468
-#&gt; 3             0.2857143 5.763357e-05        9.905382e-08        0.0005065927
-#&gt; 4             0.2857143 5.668452e-05        9.742265e-08        0.0004982525
-#&gt; 5             0.2857143 5.882699e-05        1.010931e-07        0.0005170196
-#&gt; 6             0.2857143 6.302984e-05        1.083184e-07        0.0005539618
-#&gt;                   lineage  location
-#&gt; 1 (B.1.1.7) AND (S:E484K) Worldwide
-#&gt; 2 (B.1.1.7) AND (S:E484K) Worldwide
-#&gt; 3 (B.1.1.7) AND (S:E484K) Worldwide
-#&gt; 4 (B.1.1.7) AND (S:E484K) Worldwide
-#&gt; 5 (B.1.1.7) AND (S:E484K) Worldwide
-#&gt; 6 (B.1.1.7) AND (S:E484K) Worldwide</div></pre>
+</div><div class='output co'>#&gt; <span class='error'>Error in getPrevalence(pangolin_lineage = "B.1.1.7", mutations = c("S:E484K")) %&gt;%     head(): could not find function "%&gt;%"</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -11,15 +11,22 @@
 #'
 #' @examples
 #' # Worldwide prevalence of B.1.1.7 by country
-#' getCumulativeBySubadmin(pangolin_lineage="B.1.1.7")
+#' getCumulativeBySubadmin(pangolin_lineage="B.1.1.7") %>% head()
 #' 
 #' # County-level prevalence of B.1.1.7
-#' getCumulativeBySubadmin(pangolin_lineage="B.1.1.7", location="California")
+#' getCumulativeBySubadmin(pangolin_lineage="B.1.1.7", location="California") %>% head()
 #'
 #'
 #' @export
 
 getCumulativeBySubadmin <- function(pangolin_lineage, location=NULL, mutations=NULL, ndays=NULL){
   df <- getGenomicData(query_url="lineage-by-sub-admin-most-recent", pangolin_lineage = pangolin_lineage, location = location, mutations = mutations, ndays = ndays)
+  
+  
+  if(!is.null(df) & nrow(df) != 0){
+    df <- df %>%
+      rename(lineage = query_key) 
+  }
+  
   return(df)
 }

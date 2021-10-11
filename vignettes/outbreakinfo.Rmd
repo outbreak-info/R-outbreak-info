@@ -32,6 +32,10 @@ for one on their website. It may take a day or two for the account to become act
 ```{r pkgs, message = FALSE, results='hide'}
 # Package imports
 library(outbreakinfo)
+
+# Not needed; just used to tidy some of the outputs
+library(dplyr)
+library(knitr) 
 ```
 
 ```{r auth, message = FALSE, results='hide', eval=FALSE}
@@ -59,7 +63,20 @@ Variables are described in the [Genomics Data Dictionary](https://outbreak-info.
 #### Customizing variant inputs
 In addition to viewing the change in prevalence of a lineage over time, more complex variants can be queried. This includes **combinations of lineages**, like the [Delta variant](https://outbreak.info/situation-reports/delta), **lineages with additional mutation(s)**, like [B.1.1.7 with S:E484K](https://outbreak.info/situation-reports?muts=S%3AE484K&pango=B.1.1.7), **individual mutations**, like [S:E484K](https://outbreak.info/situation-reports?muts=S%3AE484K), or **groups of mutations**, like [S:E484K and S:P681R](https://outbreak.info/situation-reports?muts=S%3AE484K&muts=S%3AP681R). View the [Variant Tracker](varianttracker.html) and [Location Tracker](locationtracker.html) vignettes for more advanced examples.
 
-### Cumulative variant prevalence
+### Cumulative variant prevalence geographically
+To get the prevalence of a particular variant to compare between locations, you can access the data through the `getCumulativeBySubadmin` function. Note that there are options to supply a location, like `"United States"` to view the prevalence broken down by U.S. state, and/or over the past `n` days. See the [Variant Tracker Vignette](varianttracker.html) for more details.
+```{r cumulative}
+# Calculate cumulative prevalence of B.1.1.7 by country
+b117_world = getCumulativeBySubadmin(pangolin_lineage = "B.1.1.7")
+
+# filtering down the data to view a few countries
+b117_world %>% 
+  filter(name %in% c("Canada", "United Kingdom", "Australia", "New Zealand")) %>%
+  select(name, proportion, proportion_ci_lower, proportion_ci_upper) %>% 
+  arrange(desc(proportion)) %>% 
+  knitr::kable()
+```
+
 
 ### Mutations within a variant
 

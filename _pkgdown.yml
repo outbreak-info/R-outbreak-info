@@ -19,6 +19,7 @@ reference:
   - getLag
   - starts_with("getMutation")
   - getPrevalence
+  - getCumulativeBySubadmin
   - getSeqCounts
   - getSubmissionDateByLocation
   - getCuratedLineages
@@ -37,7 +38,6 @@ reference:
   - epidemiologyDataDictionary
   - getByAdmnLevel
   - getCountryByRegion
-  - getCumulativeBySubadmin
   - getEpiData
   - getISO3
   - getLocationData

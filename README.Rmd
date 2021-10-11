@@ -61,8 +61,7 @@ additional mutations, to access the data underlying the
 [outbreak.info Variant Tracker](https://outbreak.info/situation-reports?muts=S%3AP681R).
 ``` {r variant_tracker, message = FALSE}
 library(outbreakinfo)
-#  Provide GISAID credentials
-authenticateUser()
+#  Provide GISAID credentials using authenticateUser()
 # Get the prevalence of mutation P681R in the Spike protein in the United States over time.
 P681R = getPrevalenceByLocation(pangolin_lineage="B.1.617.2", mutations = c("S:P681R"), location = "Brazil")
 knitr::kable(head(P681R))
@@ -73,8 +72,7 @@ Provides access to the mutations per lineage, to access the data underlying the
 [outbreak.info Lineage Comparison Tool](https://outbreak.info/compare-lineages?pango=P.1&gene=ORF1a&gene=ORF1b&gene=S&gene=E&gene=ORF3a&gene=M&gene=ORF10&gene=N&gene=ORF8&gene=ORF7b&gene=ORF7a&gene=ORF6&threshold=80&dark=true).
 ``` {r lineage_comparison, message = FALSE, warning = FALSE}
 library(outbreakinfo)
-#  Provide GISAID credentials
-authenticateUser()
+#  Provide GISAID credentials using authenticateUser()
 # Get all mutations in Pango lineage P.1 at at least 80% prevalence in all P.1 sequences.
 knitr::kable(getMutationsByLineage(pangolin_lineage="P.1", frequency=0.8))
 # Plot the mutations as a heatmap

@@ -9,6 +9,8 @@
 #'
 #' @return dataframe
 #'
+#' @import purrr
+#'
 #' @examples
 #' # lineage: P.1 in Brazil
 #' getPrevalenceByLocation(pangolin_lineage = "P.1", location = "Brazil") %>% head()
@@ -33,13 +35,12 @@ getPrevalenceByLocation <- function(pangolin_lineage=NULL, location=NULL, mutati
     stop("Either `pangolin_lineage` or `mutations` needs to be specified")
   }
 
-  if(is.vector(pangolin_lineage)) {
-    lineage_string = paste(pangolin_lineage, collapse = ",")
+  if(length(pangolin_lineage) > 1) {
+    df = map_df(pangolin_lineage, function(lineage) getGenomicData(query_url="prevalence-by-location", pangolin_lineage = lineage, location = "United States", mutations = NULL, cumulative = NULL))
   } else {
-    lineage_string = pangolin_lineage
+    df <- getGenomicData(query_url="prevalence-by-location", pangolin_lineage = pangolin_lineage, location = location, mutations = mutations, cumulative = cumulative)
   }
 
-  df <- getGenomicData(query_url="prevalence-by-location", pangolin_lineage = lineage_string, location = location, mutations = mutations, cumulative = cumulative)
 
   df = df %>% rename(lineage = query_key)
   return(df)

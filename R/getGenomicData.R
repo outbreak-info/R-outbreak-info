@@ -22,6 +22,10 @@ getGenomicData <- function(query_url, location=NULL, cumulative=NULL, pangolin_l
 
     if(!is.null(location)){
         location <- getLocationID_genomic(location)
+        if(length(location) == 0){
+            cat(paste0("Could not find location ", location, "\n"))
+            return(NULL)
+        }
         q <- c(q, paste0("location_id=", location, "&"))
     }
     if(!is.null(cumulative)){

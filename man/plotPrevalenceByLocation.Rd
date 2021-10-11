@@ -9,7 +9,8 @@ plotPrevalenceByLocation(
   location,
   mutations = NULL,
   cumulative = NULL,
-  include_title = F
+  include_title = TRUE,
+  labelDictionary = NULL
 )
 }
 \arguments{
@@ -31,6 +32,7 @@ Plots the daily prevalence of a PANGO lineage by location
 }
 \examples{
 plotPrevalenceByLocation(pangolin_lineage = "P.1", location = "Brazil")
+plotPrevalenceByLocation(pangolin_lineage = c("B.1.1.7", "B.1.427 OR B.1.429", "B.1.617.2"), location = "United States", c("B.1.427 OR B.1.429" = "Epsilon"))
 
 
 }

@@ -30,7 +30,7 @@ lookupSublineages = function (lineage, returnQueryString = FALSE) {
 
   if(length(who_lineage) == 1){
     # WHO lineage; convert the lineage to a list
-    children = lapply(who_lineage[[1]], getSublineage) %>% unlist()
+    children = lapply(who_lineage[[1]], getSublineages) %>% unlist()
   } else {
     children = getSublineages(lineage)
   }

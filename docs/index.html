@@ -107,13 +107,6 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-
-<hr>
-<div id="output-github_document" class="section level2">
-<h2 class="hasAnchor">
-<a href="#output-github_document" class="anchor"></a>output: github_document</h2>
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-</div>
 <div id="outbreakinfo-" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#outbreakinfo-" class="anchor"></a>outbreakinfo <img src="reference/figures/logo.png" align="right">
@@ -155,392 +148,51 @@
 <div id="lineage--mutation-tracker" class="section level4">
 <h4 class="hasAnchor">
 <a href="#lineage--mutation-tracker" class="anchor"></a>Lineage | Mutation Tracker</h4>
-<p>Provides access to the prevalence of a lineage, mutation(s), or lineage with additional mutations, to access the data underlying the <a href="https://outbreak.info/situation-reports?muts=S%3AP681R">outbreak.info Variant Tracker</a>.</p>
+<p>Provides access to the prevalence of a lineage, mutation(s), or lineage with additional mutations, to access the data underlying the <a href="https://outbreak.info/situation-reports?muts=S%3AP681R">outbreak.info Variant Tracker</a>. View the <a href="articles/varianttracker.html">Variant Tracker Vignette</a> to explore more options.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://outbreak-info.github.io/R-outbreak-info/">outbreakinfo</a></span><span class="op">)</span>
+<span class="co">#&gt; Warning: replacing previous import 'jsonlite::flatten' by 'purrr::flatten' when</span>
+<span class="co">#&gt; loading 'outbreakinfo'</span>
 <span class="co">#  Provide GISAID credentials using authenticateUser()</span>
-<span class="co"># Get the prevalence of mutation P681R in the Spike protein in the United States over time.</span>
-<span class="va">P681R</span> <span class="op">=</span> <span class="fu">getPrevalenceByLocation</span><span class="op">(</span>pangolin_lineage<span class="op">=</span><span class="st">"B.1.617.2"</span>, mutations <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"S:P681R"</span><span class="op">)</span>, location <span class="op">=</span> <span class="st">"Brazil"</span><span class="op">)</span>
-<span class="co">#&gt; Error in getPrevalenceByLocation(pangolin_lineage = "B.1.617.2", mutations = c("S:P681R"), : could not find function "getPrevalenceByLocation"</span>
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">P681R</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; Error in head(P681R): object 'P681R' not found</span></code></pre></div>
+<span class="co"># Get the prevalence of mutation P681R in the Spike protein in Kansas over time.</span>
+<span class="va">P681R</span> <span class="op">=</span> <span class="fu"><a href="reference/getPrevalence.html">getPrevalence</a></span><span class="op">(</span>mutations <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"S:P681R"</span><span class="op">)</span>, location <span class="op">=</span> <span class="st">"Kansas"</span>, logInfo <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+<span class="fu"><a href="reference/plotPrevalenceOverTime.html">plotPrevalenceOverTime</a></span><span class="op">(</span><span class="va">P681R</span>, title <span class="op">=</span> <span class="st">"Prevalence of S:P681R in Kansas"</span><span class="op">)</span></code></pre></div>
+<p><img src="reference/figures/variant_tracker-1.png"><!-- --></p>
+</div>
+<div id="location-tracker" class="section level4">
+<h4 class="hasAnchor">
+<a href="#location-tracker" class="anchor"></a>Location Tracker</h4>
+<p>Provides access to the prevalence of all lineages and variants in a country, state/province, or U.S. county, to access the data underlying the <a href="https://outbreak.info/location-reports?loc=USA_US-CA">outbreak.info Location Tracker</a>. View the <a href="articles/locationtracker.html">Location Tracker Vignette</a> to explore more options.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://outbreak-info.github.io/R-outbreak-info/">outbreakinfo</a></span><span class="op">)</span>
+<span class="co">#  Provide GISAID credentials using authenticateUser()</span>
+<span class="co"># Get the prevalence of all circulating lineages in California over the past 90 days</span>
+<span class="va">ca_lineages</span> <span class="op">=</span> <span class="fu"><a href="reference/getAllLineagesByLocation.html">getAllLineagesByLocation</a></span><span class="op">(</span>location <span class="op">=</span> <span class="st">"California"</span>, ndays <span class="op">=</span> <span class="fl">90</span><span class="op">)</span>
+<span class="co">#&gt; Retrieving data...</span>
+
+<span class="co"># Plot the prevalence of the dominant lineages in California</span>
+<span class="fu"><a href="reference/plotAllLineagesByLocation.html">plotAllLineagesByLocation</a></span><span class="op">(</span>location <span class="op">=</span> <span class="st">"California"</span>, ndays <span class="op">=</span> <span class="fl">90</span><span class="op">)</span>
+<span class="co">#&gt; Retrieving data... </span>
+<span class="co">#&gt; Plotting data...</span></code></pre></div>
+<p><img src="reference/figures/location_tracker-1.png"><!-- --></p>
 </div>
 <div id="lineage-comparison-tool" class="section level4">
 <h4 class="hasAnchor">
 <a href="#lineage-comparison-tool" class="anchor"></a>Lineage Comparison Tool</h4>
 <p>Provides access to the mutations per lineage, to access the data underlying the <a href="https://outbreak.info/compare-lineages?pango=P.1&amp;gene=ORF1a&amp;gene=ORF1b&amp;gene=S&amp;gene=E&amp;gene=ORF3a&amp;gene=M&amp;gene=ORF10&amp;gene=N&amp;gene=ORF8&amp;gene=ORF7b&amp;gene=ORF7a&amp;gene=ORF6&amp;threshold=80&amp;dark=true">outbreak.info Lineage Comparison Tool</a>.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://outbreak-info.github.io/R-outbreak-info/">outbreakinfo</a></span><span class="op">)</span>
 <span class="co">#  Provide GISAID credentials using authenticateUser()</span>
-<span class="co"># Get all mutations in Pango lineage P.1 at at least 80% prevalence in all P.1 sequences.</span>
-<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="reference/getMutationsByLineage.html">getMutationsByLineage</a></span><span class="op">(</span>pangolin_lineage<span class="op">=</span><span class="st">"P.1"</span>, frequency<span class="op">=</span><span class="fl">0.8</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; Retrieving data...</span></code></pre></div>
-<table class="table">
-<colgroup>
-<col width="11%">
-<col width="9%">
-<col width="8%">
-<col width="4%">
-<col width="3%">
-<col width="11%">
-<col width="7%">
-<col width="6%">
-<col width="6%">
-<col width="7%">
-<col width="6%">
-<col width="10%">
-<col width="6%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">mutation</th>
-<th align="right">mutation_count</th>
-<th align="right">lineage_count</th>
-<th align="left">lineage</th>
-<th align="left">gene</th>
-<th align="left">ref_aa</th>
-<th align="left">alt_aa</th>
-<th align="right">codon_num</th>
-<th align="left">codon_end</th>
-<th align="left">type</th>
-<th align="right">prevalence</th>
-<th align="left">change_length_nt</th>
-<th align="left">query_key</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">s:d614g</td>
-<td align="right">71709</td>
-<td align="right">72479</td>
-<td align="left">P.1</td>
-<td align="left">S</td>
-<td align="left">D</td>
-<td align="left">G</td>
-<td align="right">614</td>
-<td align="left">None</td>
-<td align="left">substitution</td>
-<td align="right">0.9893762</td>
-<td align="left">None</td>
-<td align="left">P.1</td>
-</tr>
-<tr class="even">
-<td align="left">s:v1176f</td>
-<td align="right">71660</td>
-<td align="right">72479</td>
-<td align="left">P.1</td>
-<td align="left">S</td>
-<td align="left">V</td>
-<td align="left">F</td>
-<td align="right">1176</td>
-<td align="left">None</td>
-<td align="left">substitution</td>
-<td align="right">0.9887002</td>
-<td align="left">None</td>
-<td align="left">P.1</td>
-</tr>
-<tr class="odd">
-<td align="left">orf1a:k1795q</td>
-<td align="right">71562</td>
-<td align="right">72479</td>
-<td align="left">P.1</td>
-<td align="left">ORF1a</td>
-<td align="left">K</td>
-<td align="left">Q</td>
-<td align="right">1795</td>
-<td align="left">None</td>
-<td align="left">substitution</td>
-<td align="right">0.9873481</td>
-<td align="left">None</td>
-<td align="left">P.1</td>
-</tr>
-<tr class="even">
-<td align="left">orf1b:p314l</td>
-<td align="right">71527</td>
-<td align="right">72479</td>
-<td align="left">P.1</td>
-<td align="left">ORF1b</td>
-<td align="left">P</td>
-<td align="left">L</td>
-<td align="right">314</td>
-<td align="left">None</td>
-<td align="left">substitution</td>
-<td align="right">0.9868652</td>
-<td align="left">None</td>
-<td align="left">P.1</td>
-</tr>
-<tr class="odd">
-<td align="left">n:p80r</td>
-<td align="right">71480</td>
-<td align="right">72479</td>
-<td align="left">P.1</td>
-<td align="left">N</td>
-<td align="left">P</td>
-<td align="left">R</td>
-<td align="right">80</td>
-<td align="left">None</td>
-<td align="left">substitution</td>
-<td align="right">0.9862167</td>
-<td align="left">None</td>
-<td align="left">P.1</td>
-</tr>
-<tr class="even">
-<td align="left">orf1b:e1264d</td>
-<td align="right">71390</td>
-<td align="right">72479</td>
-<td align="left">P.1</td>
-<td align="left">ORF1b</td>
-<td align="left">E</td>
-<td align="left">D</td>
-<td align="right">1264</td>
-<td align="left">None</td>
-<td align="left">substitution</td>
-<td align="right">0.9849750</td>
-<td align="left">None</td>
-<td align="left">P.1</td>
-</tr>
-<tr class="odd">
-<td align="left">orf3a:s253p</td>
-<td align="right">71327</td>
-<td align="right">72479</td>
-<td align="left">P.1</td>
-<td align="left">ORF3a</td>
-<td align="left">S</td>
-<td align="left">P</td>
-<td align="right">253</td>
-<td align="left">None</td>
-<td align="left">substitution</td>
-<td align="right">0.9841057</td>
-<td align="left">None</td>
-<td align="left">P.1</td>
-</tr>
-<tr class="even">
-<td align="left">s:h655y</td>
-<td align="right">71208</td>
-<td align="right">72479</td>
-<td align="left">P.1</td>
-<td align="left">S</td>
-<td align="left">H</td>
-<td align="left">Y</td>
-<td align="right">655</td>
-<td align="left">None</td>
-<td align="left">substitution</td>
-<td align="right">0.9824639</td>
-<td align="left">None</td>
-<td align="left">P.1</td>
-</tr>
-<tr class="odd">
-<td align="left">orf8:e92k</td>
-<td align="right">70980</td>
-<td align="right">72479</td>
-<td align="left">P.1</td>
-<td align="left">ORF8</td>
-<td align="left">E</td>
-<td align="left">K</td>
-<td align="right">92</td>
-<td align="left">None</td>
-<td align="left">substitution</td>
-<td align="right">0.9793181</td>
-<td align="left">None</td>
-<td align="left">P.1</td>
-</tr>
-<tr class="even">
-<td align="left">orf1a:s1188l</td>
-<td align="right">70949</td>
-<td align="right">72479</td>
-<td align="left">P.1</td>
-<td align="left">ORF1a</td>
-<td align="left">S</td>
-<td align="left">L</td>
-<td align="right">1188</td>
-<td align="left">None</td>
-<td align="left">substitution</td>
-<td align="right">0.9788904</td>
-<td align="left">None</td>
-<td align="left">P.1</td>
-</tr>
-<tr class="odd">
-<td align="left">s:l18f</td>
-<td align="right">70740</td>
-<td align="right">72479</td>
-<td align="left">P.1</td>
-<td align="left">S</td>
-<td align="left">L</td>
-<td align="left">F</td>
-<td align="right">18</td>
-<td align="left">None</td>
-<td align="left">substitution</td>
-<td align="right">0.9760068</td>
-<td align="left">None</td>
-<td align="left">P.1</td>
-</tr>
-<tr class="even">
-<td align="left">s:p26s</td>
-<td align="right">70633</td>
-<td align="right">72479</td>
-<td align="left">P.1</td>
-<td align="left">S</td>
-<td align="left">P</td>
-<td align="left">S</td>
-<td align="right">26</td>
-<td align="left">None</td>
-<td align="left">substitution</td>
-<td align="right">0.9745306</td>
-<td align="left">None</td>
-<td align="left">P.1</td>
-</tr>
-<tr class="odd">
-<td align="left">s:t20n</td>
-<td align="right">70368</td>
-<td align="right">72479</td>
-<td align="left">P.1</td>
-<td align="left">S</td>
-<td align="left">T</td>
-<td align="left">N</td>
-<td align="right">20</td>
-<td align="left">None</td>
-<td align="left">substitution</td>
-<td align="right">0.9708743</td>
-<td align="left">None</td>
-<td align="left">P.1</td>
-</tr>
-<tr class="even">
-<td align="left">orf1a:del3675/3677</td>
-<td align="right">70364</td>
-<td align="right">72479</td>
-<td align="left">P.1</td>
-<td align="left">ORF1a</td>
-<td align="left">ORF1A:DEL3675/3677</td>
-<td align="left">DEL3675/3677</td>
-<td align="right">3675</td>
-<td align="left">3677</td>
-<td align="left">deletion</td>
-<td align="right">0.9708191</td>
-<td align="left">9</td>
-<td align="left">P.1</td>
-</tr>
-<tr class="odd">
-<td align="left">s:t1027i</td>
-<td align="right">70134</td>
-<td align="right">72479</td>
-<td align="left">P.1</td>
-<td align="left">S</td>
-<td align="left">T</td>
-<td align="left">I</td>
-<td align="right">1027</td>
-<td align="left">None</td>
-<td align="left">substitution</td>
-<td align="right">0.9676458</td>
-<td align="left">None</td>
-<td align="left">P.1</td>
-</tr>
-<tr class="even">
-<td align="left">s:d138y</td>
-<td align="right">69857</td>
-<td align="right">72479</td>
-<td align="left">P.1</td>
-<td align="left">S</td>
-<td align="left">D</td>
-<td align="left">Y</td>
-<td align="right">138</td>
-<td align="left">None</td>
-<td align="left">substitution</td>
-<td align="right">0.9638240</td>
-<td align="left">None</td>
-<td align="left">P.1</td>
-</tr>
-<tr class="odd">
-<td align="left">s:n501y</td>
-<td align="right">69321</td>
-<td align="right">72479</td>
-<td align="left">P.1</td>
-<td align="left">S</td>
-<td align="left">N</td>
-<td align="left">Y</td>
-<td align="right">501</td>
-<td align="left">None</td>
-<td align="left">substitution</td>
-<td align="right">0.9564288</td>
-<td align="left">None</td>
-<td align="left">P.1</td>
-</tr>
-<tr class="even">
-<td align="left">s:e484k</td>
-<td align="right">69173</td>
-<td align="right">72479</td>
-<td align="left">P.1</td>
-<td align="left">S</td>
-<td align="left">E</td>
-<td align="left">K</td>
-<td align="right">484</td>
-<td align="left">None</td>
-<td align="left">substitution</td>
-<td align="right">0.9543868</td>
-<td align="left">None</td>
-<td align="left">P.1</td>
-</tr>
-<tr class="odd">
-<td align="left">s:k417t</td>
-<td align="right">69137</td>
-<td align="right">72479</td>
-<td align="left">P.1</td>
-<td align="left">S</td>
-<td align="left">K</td>
-<td align="left">T</td>
-<td align="right">417</td>
-<td align="left">None</td>
-<td align="left">substitution</td>
-<td align="right">0.9538901</td>
-<td align="left">None</td>
-<td align="left">P.1</td>
-</tr>
-<tr class="even">
-<td align="left">n:g204r</td>
-<td align="right">68165</td>
-<td align="right">72479</td>
-<td align="left">P.1</td>
-<td align="left">N</td>
-<td align="left">G</td>
-<td align="left">R</td>
-<td align="right">204</td>
-<td align="left">None</td>
-<td align="left">substitution</td>
-<td align="right">0.9404793</td>
-<td align="left">None</td>
-<td align="left">P.1</td>
-</tr>
-<tr class="odd">
-<td align="left">n:r203k</td>
-<td align="right">67782</td>
-<td align="right">72479</td>
-<td align="left">P.1</td>
-<td align="left">N</td>
-<td align="left">R</td>
-<td align="left">K</td>
-<td align="right">203</td>
-<td align="left">None</td>
-<td align="left">substitution</td>
-<td align="right">0.9351950</td>
-<td align="left">None</td>
-<td align="left">P.1</td>
-</tr>
-<tr class="even">
-<td align="left">s:r190s</td>
-<td align="right">67516</td>
-<td align="right">72479</td>
-<td align="left">P.1</td>
-<td align="left">S</td>
-<td align="left">R</td>
-<td align="left">S</td>
-<td align="right">190</td>
-<td align="left">None</td>
-<td align="left">substitution</td>
-<td align="right">0.9315250</td>
-<td align="left">None</td>
-<td align="left">P.1</td>
-</tr>
-</tbody>
-</table>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Plot the mutations as a heatmap</span></code></pre></div>
+
+<span class="co"># Lookup which Pango lineages are associated with the Delta / B.1.617.2 Variant of Concern</span>
+<span class="va">delta_lineages</span> <span class="op">=</span> <span class="fu"><a href="reference/lookupSublineages.html">lookupSublineages</a></span><span class="op">(</span><span class="st">"Delta"</span>, returnQueryString <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+
+<span class="co"># Get all mutations in the Delta lineages which at at leas 75% prevalent in one of the lineages.</span>
+<span class="va">delta_mutations</span> <span class="op">=</span> <span class="fu"><a href="reference/getMutationsByLineage.html">getMutationsByLineage</a></span><span class="op">(</span>pangolin_lineage<span class="op">=</span><span class="va">delta_lineages</span>, frequency<span class="op">=</span><span class="fl">0.75</span>, logInfo <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+
+<span class="co"># Plot the mutations as a heatmap</span>
+<span class="fu"><a href="reference/plotMutationHeatmap.html">plotMutationHeatmap</a></span><span class="op">(</span><span class="va">delta_mutations</span>, title <span class="op">=</span> <span class="st">"S-gene mutations in Delta lineages"</span><span class="op">)</span></code></pre></div>
+<p><img src="reference/figures/lineage_comparison-1.png"><!-- --></p>
 </div>
 </div>
 <div id="cases--deaths" class="section level3">
@@ -550,13 +202,19 @@
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Plots the daily confirmed cases per capita for the United States and Mexico.</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://outbreak-info.github.io/R-outbreak-info/">outbreakinfo</a></span><span class="op">)</span>
-<span class="fu"><a href="reference/plotCovid.html">plotCovid</a></span><span class="op">(</span>locations <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"United States of America"</span>, <span class="st">"Mexico"</span><span class="op">)</span>, variable <span class="op">=</span> <span class="st">"confirmed_rolling_per_100k"</span><span class="op">)</span>
-<span class="co">#&gt; [1] "https://api.outbreak.info/covid19/query?q=(location_id:%22USA%22%20OR%20location_id:%22MEX%22)&amp;size=1000&amp;fetch_all=true"</span>
-<span class="co">#&gt;   downloading [========================&gt;-----]  82% eta:  3s</span></code></pre></div>
-<p><img src="reference/figures/daily_cases-1.png" alt="plot of chunk daily_cases"></p>
+<span class="fu"><a href="reference/plotEpiData.html">plotEpiData</a></span><span class="op">(</span>locations <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"United States of America"</span>, <span class="st">"Mexico"</span><span class="op">)</span>, variable <span class="op">=</span> <span class="st">"confirmed_rolling_per_100k"</span><span class="op">)</span></code></pre></div>
+</div>
+</div>
+<div id="section" class="section level2">
+<h2 class="hasAnchor">
+<a href="#section" class="anchor"></a><img src="reference/figures/daily_cases-1.png"><!-- -->
+</h2>
+</div>
+<div id="more-examples" class="section level2">
+<h2 class="hasAnchor">
+<a href="#more-examples" class="anchor"></a>More examples</h2>
 <p>For more examples, please view our <a href="https://outbreak-info.github.io/R-outbreak-info/docs/articles/index.html">vignettes</a>.</p>
 <hr>
-</div>
 </div>
 <div id="data-sources" class="section level2">
 <h2 class="hasAnchor">
@@ -577,7 +235,6 @@
 </div>
 </div>
 </div>
-
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -58,15 +58,31 @@ API access for outbreak.info's [Research Library](https://outbreak.info/resource
 #### Lineage | Mutation Tracker
 Provides access to the prevalence of a lineage, mutation(s), or lineage with
 additional mutations, to access the data underlying the
-[outbreak.info Variant Tracker](https://outbreak.info/situation-reports?muts=S%3AP681R).
+[outbreak.info Variant Tracker](https://outbreak.info/situation-reports?muts=S%3AP681R). View the [Variant Tracker Vignette](articles/varianttracker.html) to explore more options.
 ``` {r variant_tracker, message = FALSE}
 library(outbreakinfo)
 #  Provide GISAID credentials using authenticateUser()
-# Get the prevalence of mutation P681R in the Spike protein in the United States over time.
-P681R = getPrevalenceByLocation(pangolin_lineage="B.1.617.2", mutations = c("S:P681R"), location = "Brazil")
-knitr::kable(head(P681R))
+# Get the prevalence of mutation P681R in the Spike protein in Kansas over time.
+P681R = getPrevalence(mutations = c("S:P681R"), location = "Kansas", logInfo = FALSE)
+plotPrevalenceOverTime(P681R, title = "Prevalence of S:P681R in Kansas")
 
 ```
+
+
+#### Location Tracker
+Provides access to the prevalence of all lineages and variants in a country, state/province, or U.S. county, to access the data underlying the
+[outbreak.info Location Tracker](https://outbreak.info/location-reports?loc=USA_US-CA). View the [Location Tracker Vignette](articles/locationtracker.html) to explore more options.
+``` {r location_tracker, message = FALSE}
+library(outbreakinfo)
+#  Provide GISAID credentials using authenticateUser()
+# Get the prevalence of all circulating lineages in California over the past 90 days
+ca_lineages = getAllLineagesByLocation(location = "California", ndays = 90)
+
+# Plot the prevalence of the dominant lineages in California
+plotAllLineagesByLocation(location = "California", ndays = 90)
+```
+
+
 #### Lineage Comparison Tool
 Provides access to the mutations per lineage, to access the data underlying the
 [outbreak.info Lineage Comparison Tool](https://outbreak.info/compare-lineages?pango=P.1&gene=ORF1a&gene=ORF1b&gene=S&gene=E&gene=ORF3a&gene=M&gene=ORF10&gene=N&gene=ORF8&gene=ORF7b&gene=ORF7a&gene=ORF6&threshold=80&dark=true).
@@ -78,10 +94,10 @@ library(outbreakinfo)
 delta_lineages = lookupSublineages("Delta", returnQueryString = FALSE)
 
 # Get all mutations in the Delta lineages which at at leas 75% prevalent in one of the lineages.
-delta_mutations = getMutationsByLineage(pangolin_lineage=delta_lineages, frequency=0.75)
+delta_mutations = getMutationsByLineage(pangolin_lineage=delta_lineages, frequency=0.75, logInfo = FALSE)
 
 # Plot the mutations as a heatmap
-plotMutationHeatmap(delta_mutations, genes = c("S"), title = "S-gene mutations in Delta lineages")
+plotMutationHeatmap(delta_mutations, title = "S-gene mutations in Delta lineages")
 ```
 
 ### Cases & Deaths

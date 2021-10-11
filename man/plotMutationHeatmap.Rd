@@ -4,12 +4,12 @@
 \alias{plotMutationHeatmap}
 \title{Title}
 \usage{
-plotMutationHeatmap(df, genes = NULL, title = NULL, lightBorders = TRUE)
+plotMutationHeatmap(df, gene2Plot = "S", title = NULL, lightBorders = TRUE)
 }
 \arguments{
 \item{df:}{Resulting dataframe from calling \link[outbreakinfo]{getMutationsByLineage}}
 
-\item{genes:}{(optional) vector containing which genes to include, e.g. c("Orf1a", "Orf1b", "S")}
+\item{gene2Plot:}{(optional) string containing which genes to include, e.g. "Orf1a" By default, will limit the mutations to those in the S-gene.}
 
 \item{title:}{(optional) title to add to the plot}
 
@@ -20,12 +20,4 @@ plotMutationHeatmap(df, genes = NULL, title = NULL, lightBorders = TRUE)
 }
 \description{
 Plots a heatamp of mutation prevalence across particular lineages.
-}
-\examples{
-p1 = getMutationsByLineage(pangolin_lineage = "P.1", frequency = 0.5)
-plotMutationHeatmap(p1, genes =c("Orf1a", "Orf1b", "S"))
-
-delta_lineages = lookupSublineages("Delta", returnQueryString = FALSE)
-delta_mutations = getMutationsByLineage(pangolin_lineage=delta_lineages, frequency=0.75)
-plotMutationHeatmap(delta_mutations, genes = c("S"), title = "S-gene mutations in Delta lineages")
 }

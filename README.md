@@ -75,14 +75,14 @@ library(outbreakinfo)
 #  Provide GISAID credentials
 authenticateUser()
 #> Please open this url in a browser and authenticate with your GISAID credentials.
-#> 
+#>
 #> https://gpsapi-test.epicov.org/epi3/gps_authenticate/DMEVVOZKNPUJPXMQYRUNSJUTWCUCTSKBRCPGIRQLKHLGKUPMGYVQQIJJCZQIHWBCXFUQJYZVHPWFONZHHQUUNNGPPELHRZMVHDFUXSFWTCNRYUZPWMUTZROQMYGCCFFO
-#> 
+#>
 #> Waiting for authentication... [press CTRL-C to abort]
 #> Authenticated successfully!
 # Get the prevalence of mutation P681R in the Spike protein in the United States over time.
-P681R = getPrevalenceByLocation(pangolin_lineage="B.1.617.2", mutations = c("S:P681R"), location = "Brazil")
-#> Retrieving data... 
+P681R = getPrevalence(pangolin_lineage="B.1.617.2", mutations = c("S:P681R"), location = "Brazil")
+#> Retrieving data...
 #> Retrieving data...
 knitr::kable(head(P681R))
 ```
@@ -107,9 +107,9 @@ library(outbreakinfo)
 #  Provide GISAID credentials
 authenticateUser()
 #> Please open this url in a browser and authenticate with your GISAID credentials.
-#> 
+#>
 #> https://gpsapi-test.epicov.org/epi3/gps_authenticate/WVMXBRMQFBTEITETBCHXIKVGFTZKMITZJSLDKHGHAKQGHFQZJLGMDIJHNPQGGIEEPSVZRCVMQQRTXGOORITXQJCVVJNIKVVHJUWDLOMFEELKABVXBMSUQOTIGERFKLJT
-#> 
+#>
 #> Waiting for authentication... [press CTRL-C to abort]
 #> Authenticated successfully!
 # Get all mutations in Pango lineage P.1 at at least 80% prevalence in all P.1 sequences.

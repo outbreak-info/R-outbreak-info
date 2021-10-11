@@ -18,7 +18,7 @@ reference:
   - getLocationID_genomic
   - getLag
   - starts_with("getMutation")
-  - getPrevalenceByLocation
+  - getPrevalence
   - getSeqCounts
   - getSubmissionDateByLocation
   - getCuratedLineages

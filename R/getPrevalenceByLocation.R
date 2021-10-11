@@ -13,24 +13,24 @@
 #'
 #' @examples
 #' # lineage: P.1 in Brazil
-#' getPrevalenceByLocation(pangolin_lineage = "P.1", location = "Brazil") %>% head()
+#' getPrevalence(pangolin_lineage = "P.1", location = "Brazil") %>% head()
 #'
 #' # AY.4 and B.1.617.2 in Brazil (AY.4, AY.34, and B.1.617.2 separately)
-#' getPrevalenceByLocation(pangolin_lineage = c("AY.4", "AY.34", "B.1.617.2"), location = "Brazil") %>% filter(date == "2021-09-01")
+#' getPrevalence(pangolin_lineage = c("AY.4", "AY.34", "B.1.617.2"), location = "Brazil") %>% filter(date == "2021-09-01")
 #'
 #' # AY.4 OR B.1.617.2 in Brazil (AY.4, AY.34 and B.1.617.2 combined)
-#' getPrevalenceByLocation(pangolin_lineage = "AY.4 OR AY.34 OR B.1.617.2", location = "Brazil") %>% filter(date == "2021-09-01")
+#' getPrevalence(pangolin_lineage = "AY.4 OR AY.34 OR B.1.617.2", location = "Brazil") %>% filter(date == "2021-09-01")
 #'
 #' # S:E484K mutation prevalence worldwide
-#' getPrevalenceByLocation(mutations = c("S:E484K")) %>% head()
+#' getPrevalence(mutations = c("S:E484K")) %>% head()
 #'
 #' # B.1.1.7 + S:E484K mutation worldwide
-#' getPrevalenceByLocation(pangolin_lineage = "B.1.1.7", mutations = c("S:E484K")) %>% head()
+#' getPrevalence(pangolin_lineage = "B.1.1.7", mutations = c("S:E484K")) %>% head()
 #' @export
 
 
 
-getPrevalenceByLocation <- function(pangolin_lineage=NULL, location=NULL, mutations=NULL, cumulative=NULL){
+getPrevalence <- function(pangolin_lineage=NULL, location=NULL, mutations=NULL, cumulative=NULL){
   if(is.null(pangolin_lineage) && is.null(mutations)) {
     stop("Either `pangolin_lineage` or `mutations` needs to be specified")
   }
@@ -43,10 +43,10 @@ getPrevalenceByLocation <- function(pangolin_lineage=NULL, location=NULL, mutati
 
 
   if(!is.null(df)){
-      df = df %>% 
-      rename(lineage = query_key) %>% 
+      df = df %>%
+      rename(lineage = query_key) %>%
       mutate(location = ifelse(is.null(location), "Worldwide", location))
   }
-  
+
   return(df)
 }

@@ -15,16 +15,16 @@ knitr::opts_chunk$set(
 # outbreakinfo <img src="man/figures/logo.png" align="right" />
 #### R package for [outbreak.info](https://outbreak.info)
 
-[outbreak.info](https://outbreak.info) is a platform to discover and explore 
-COVID-19 data and variants. Our Variant Reports allow researchers to 
-understand and track any emerging or known variant using customizable 
-visualizations, enabling near real-time genomic surveillance, and our 
-Epidemiology tools allow users to explore how COVID-19 cases and deaths are 
+[outbreak.info](https://outbreak.info) is a platform to discover and explore
+COVID-19 data and variants. Our Variant Reports allow researchers to
+understand and track any emerging or known variant using customizable
+visualizations, enabling near real-time genomic surveillance, and our
+Epidemiology tools allow users to explore how COVID-19 cases and deaths are
 changing across locations.
 
-The **outbreakinfo** R package provides access to the underlying genomic 
-and epidemiology data on outbreak.info. This includes **SARS-CoV-2 variant prevalence** 
-data calculated using the [Bjorn](https://github.com/andersen-lab/bjorn/) 
+The **outbreakinfo** R package provides access to the underlying genomic
+and epidemiology data on outbreak.info. This includes **SARS-CoV-2 variant prevalence**
+data calculated using the [Bjorn](https://github.com/andersen-lab/bjorn/)
 package using data provided by GISAID. We also standardize **COVID-19 case and death data**
 from Johns Hopkins University and the New York Times and calculate derived statistics.
 
@@ -32,14 +32,14 @@ from Johns Hopkins University and the New York Times and calculate derived stati
 ## Installation
 ```{r installation, eval = FALSE}
 # Install development version from GitHub
-# devtools::install_github("outbreak-info/R-outbreak-info/outbreakinfo")
+# devtools::install_github("outbreak-info/R-outbreak-info")
 ```
 
 ## Getting Started
-If you're getting started using **outbreakinfo**, we recommend starting with the tutorial [vignettes](https://outbreak-info.github.io/R-outbreak-info/docs/articles/index.html). 
+If you're getting started using **outbreakinfo**, we recommend starting with the tutorial [vignettes](https://outbreak-info.github.io/R-outbreak-info/docs/articles/index.html).
 
-Note that to access the genomics data (SARS-CoV-2 variant prevalences), you will 
-need to **create an account on [GISAID](https://www.gisaid.org/registration/register/)** 
+Note that to access the genomics data (SARS-CoV-2 variant prevalences), you will
+need to **create an account on [GISAID](https://www.gisaid.org/registration/register/)**
 before being able to access the data. It may take a few days for the registration to become active.
 Before calling the genomics functions, you'll need to register your GISAID credentials:
 ```{r gisaid_auth, eval = FALSE}
@@ -57,7 +57,7 @@ API access for outbreak.info's [Research Library](https://outbreak.info/resource
 
 #### Lineage | Mutation Tracker
 Provides access to the prevalence of a lineage, mutation(s), or lineage with
-additional mutations, to access the data underlying the 
+additional mutations, to access the data underlying the
 [outbreak.info Variant Tracker](https://outbreak.info/situation-reports?muts=S%3AP681R).
 ``` {r variant_tracker, message = FALSE}
 library(outbreakinfo)
@@ -69,7 +69,7 @@ knitr::kable(head(P681R))
 
 ```
 #### Lineage Comparison Tool
-Provides access to the mutations per lineage, to access the data underlying the 
+Provides access to the mutations per lineage, to access the data underlying the
 [outbreak.info Lineage Comparison Tool](https://outbreak.info/compare-lineages?pango=P.1&gene=ORF1a&gene=ORF1b&gene=S&gene=E&gene=ORF3a&gene=M&gene=ORF10&gene=N&gene=ORF8&gene=ORF7b&gene=ORF7a&gene=ORF6&threshold=80&dark=true).
 ``` {r lineage_comparison, message = FALSE, warning = FALSE}
 library(outbreakinfo)

@@ -71,7 +71,6 @@ getEpiData <- function(name=NULL, location_id=NULL, wb_region=NULL, country_name
 
   dataurl <- paste0(api.url, "query?q=", q)
   dataurl <- URLencode(dataurl)
-  print(dataurl)
   resp <- GET(
       dataurl
   )

@@ -98,8 +98,8 @@ delta_lineages = lookupSublineages("Delta", returnQueryString = TRUE)
 who_labels = c("Alpha", "Epsilon", "Iota", "Delta")
 names(who_labels) = c(alpha_lineages, epsilon_lineages, iota_lineages, delta_lineages)
 
-who_prevalence = getPrevalenceByLocation(pangolin_lineage = c(alpha_lineages, epsilon_lineages, iota_lineages, delta_lineages))
-plotPrevalenceByLocation(pangolin_lineage = c(alpha_lineages, epsilon_lineages, iota_lineages, delta_lineages), labelDictionary = who_labels)
+who_prevalence = getPrevalenceByLocation(pangolin_lineage = c(alpha_lineages, epsilon_lineages, iota_lineages, delta_lineages), location = "United States")
+plotPrevalenceByLocation(pangolin_lineage = c(alpha_lineages, epsilon_lineages, iota_lineages, delta_lineages), labelDictionary = who_labels, location = "United States")
 ```
 
 

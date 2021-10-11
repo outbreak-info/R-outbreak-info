@@ -1,3 +1,5 @@
+OUTBREAK_INFO_AUTH = "https://dev.outbreak.info/genomics/get-auth-token"
+
 #' @title Authenticate API
 #'
 #' @description Authenticate API to get access to genomics data
@@ -9,12 +11,7 @@
 #' @examples
 #'# Authenticate with GISAID credentials
 #'# authenticateUser()
-#'
 #' @export
-
-
-OUTBREAK_INFO_AUTH = "https://dev.outbreak.info/genomics/get-auth-token"
-
 authenticateUser <- function(){
     response <- POST(OUTBREAK_INFO_AUTH, body = '{}', encode = "raw")
     if (status_code(response) == 200) {

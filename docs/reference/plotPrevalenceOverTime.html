@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Authenticate API — OUTBREAK_INFO_AUTH • outbreakinfo</title>
+<title>Plot daily prevalence of a lineage by location — plotPrevalenceOverTime • outbreakinfo</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="Authenticate API — OUTBREAK_INFO_AUTH" />
-<meta property="og:description" content="Authenticate API to get access to genomics data" />
+<meta property="og:title" content="Plot daily prevalence of a lineage by location — plotPrevalenceOverTime" />
+<meta property="og:description" content="Plots the daily prevalence of a PANGO lineage by location" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -147,30 +147,63 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Authenticate API</h1>
-    <small class="dont-index">Source: <a href='https://github.com/outbreak-info/R-outbreak-info/blob/master/R/authenticateUser.R'><code>R/authenticateUser.R</code></a></small>
-    <div class="hidden name"><code>OUTBREAK_INFO_AUTH.Rd</code></div>
+    <h1>Plot daily prevalence of a lineage by location</h1>
+    <small class="dont-index">Source: <a href='https://github.com/outbreak-info/R-outbreak-info/blob/master/R/plotPrevalenceOverTime.R'><code>R/plotPrevalenceOverTime.R</code></a></small>
+    <div class="hidden name"><code>plotPrevalenceOverTime.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Authenticate API to get access to genomics data</p>
+    <p>Plots the daily prevalence of a PANGO lineage by location</p>
     </div>
 
-    <pre class="usage"><span class='va'>OUTBREAK_INFO_AUTH</span></pre>
+    <pre class="usage"><span class='fu'>plotPrevalenceOverTime</span><span class='op'>(</span>
+  <span class='va'>df</span>,
+  colorVar <span class='op'>=</span> <span class='st'>"lineage"</span>,
+  title <span class='op'>=</span> <span class='st'>"Prevalence over time"</span>,
+  labelDictionary <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>df:</th>
+      <td><p>result of the call to <a href='getPrevalence.html'>getPrevalence</a></p></td>
+    </tr>
+    <tr>
+      <th>colorVar:</th>
+      <td><p>variable to used to color the line traces. `lineage` by default</p></td>
+    </tr>
+    <tr>
+      <th>title:</th>
+      <td><p>(optional): Title to add to the plot</p></td>
+    </tr>
+    <tr>
+      <th>labelDictionary:</th>
+      <td><p>(optional) a named list of values to replace in the plot legend.</p></td>
+    </tr>
+    </table>
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>An object of class <code>character</code> of length 1.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>url</p>
+    <p>ggplot2 object</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Authenticate with GISAID credentials</span>
-<span class='co'># authenticateUser()</span>
-
-</div></pre>
+    <pre class="examples"><div class='input'><span class='va'>p1_brazil</span> <span class='op'>&lt;-</span> <span class='fu'><a href='getPrevalence.html'>getPrevalence</a></span><span class='op'>(</span>pangolin_lineage <span class='op'>=</span> <span class='st'>"P.1"</span>, location <span class='op'>=</span> <span class='st'>"Brazil"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Retrieving data... </div><div class='input'><span class='fu'>plotPrevalenceOverTime</span><span class='op'>(</span><span class='va'>p1_brazil</span><span class='op'>)</span>
+</div><div class='img'><img src='plotPrevalenceOverTime-1.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='va'>us</span> <span class='op'>&lt;-</span> <span class='fu'><a href='getPrevalence.html'>getPrevalence</a></span><span class='op'>(</span>pangolin_lineage <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"B.1.1.7"</span>, <span class='st'>"B.1.427 OR B.1.429"</span>, <span class='st'>"B.1.617.2"</span><span class='op'>)</span>, location <span class='op'>=</span> <span class='st'>"United States"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Retrieving data... 
+#&gt; Retrieving data... 
+#&gt; Retrieving data... </div><div class='input'><span class='fu'>plotPrevalenceOverTime</span><span class='op'>(</span><span class='va'>us</span>, labelDictionary <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"B.1.427 OR B.1.429"</span> <span class='op'>=</span> <span class='st'>"Epsilon"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='img'><img src='plotPrevalenceOverTime-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># Overlay locations</span>
+<span class='va'>b117_india</span> <span class='op'>=</span> <span class='fu'><a href='getPrevalence.html'>getPrevalence</a></span><span class='op'>(</span>pangolin_lineage <span class='op'>=</span> <span class='st'>"B.1.1.7"</span>, location <span class='op'>=</span> <span class='st'>"India"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Retrieving data... </div><div class='input'><span class='va'>b117_us</span> <span class='op'>=</span> <span class='fu'><a href='getPrevalence.html'>getPrevalence</a></span><span class='op'>(</span>pangolin_lineage <span class='op'>=</span> <span class='st'>"B.1.1.7"</span>, location <span class='op'>=</span> <span class='st'>"United States"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Retrieving data... </div><div class='input'><span class='va'>b117_uk</span> <span class='op'>=</span> <span class='fu'><a href='getPrevalence.html'>getPrevalence</a></span><span class='op'>(</span>pangolin_lineage <span class='op'>=</span> <span class='st'>"B.1.1.7"</span>, location <span class='op'>=</span> <span class='st'>"United Kingdom"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Retrieving data... </div><div class='input'><span class='va'>b117</span> <span class='op'>=</span> <span class='fu'>dplyr</span><span class='fu'>::</span><span class='fu'><a href='https://dplyr.tidyverse.org/reference/bind.html'>bind_rows</a></span><span class='op'>(</span><span class='va'>b117_uk</span>, <span class='va'>b117_india</span>, <span class='va'>b117_us</span><span class='op'>)</span>
+<span class='fu'>plotPrevalenceOverTime</span><span class='op'>(</span><span class='va'>b117</span>, colorVar <span class='op'>=</span> <span class='st'>"location"</span>, title<span class='op'>=</span><span class='st'>"B.1.1.7 prevalence over time"</span><span class='op'>)</span>
+</div><div class='img'><img src='plotPrevalenceOverTime-3.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

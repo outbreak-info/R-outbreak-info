@@ -15,5 +15,4 @@ Authenticate API to get access to genomics data
 \examples{
 # Authenticate with GISAID credentials
 # authenticateUser()
-
 }

@@ -131,6 +131,7 @@ plotPrevalenceOverTime(df, title = "Variant prevalence in the United States", la
 ```
 
 ### A slight variation: comparing Delta prevalence across locations
+Instead of comparing the prevalence of variants within a single location, we can also compare the prevalence of one variant across multiple locations. Here, for instance, we plot how the prevalence of all Delta lineages in a few U.S. states has changed over time.
 ```{r location_overlay}
 locations = c( "Missouri", "Kansas", "California", "Louisiana")
 

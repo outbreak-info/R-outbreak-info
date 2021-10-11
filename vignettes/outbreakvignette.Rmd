@@ -305,7 +305,7 @@ print(unique(admin_df$name))
 
 --------
 
-#### **plotCovid**
+#### **plotEpiData**
 **Description:** 
 
 Plot a metric of interest using up-to-date COVID-19 data using data from [outbreak.info](https://outbreak.info/) for location(s) of interest (World Bank region, country, state/province, metropolitan area, county)
@@ -313,7 +313,7 @@ Plot a metric of interest using up-to-date COVID-19 data using data from [outbre
 **Usage:**
 
 ```{r, eval=F, echo=T}
-plotCovid(locations, variable)
+plotEpiData(locations, variable)
 ```
 
 **Arguments:**
@@ -325,7 +325,7 @@ variable: metric to plot
 **Example:**
 
 ```{r}
-p=plotCovid(c("Texas", "Brazil", "San Diego County"), "confirmed_per_100k")
+p=plotEpiData(c("Texas", "Brazil", "San Diego County"), "confirmed_per_100k")
 show(p)
 ```
 

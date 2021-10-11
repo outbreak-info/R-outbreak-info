@@ -83,7 +83,7 @@ Replicates the daily confirmed cases visualization on [outbreak.info](https://ou
 ```{r daily_cases}
 # Plots the daily confirmed cases per capita for the United States and Mexico.
 library(outbreakinfo)
-plotCovid(locations = c("United States of America", "Mexico"), variable = "confirmed_rolling_per_100k")
+plotEpiData(locations = c("United States of America", "Mexico"), variable = "confirmed_rolling_per_100k")
 ```
 
 

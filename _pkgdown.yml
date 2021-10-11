@@ -42,5 +42,5 @@ reference:
   - getISO3
   - getLocationData
   - getMetroByCountry
-  - plotCovid
+  - plotEpiData
   - searchLocations

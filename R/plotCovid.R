@@ -11,13 +11,13 @@
 #' @import progress
 #'
 #' @examples
-#' p = plotCovid("Florida", "confirmed_per_100k")
+#' p = plotEpiData("Florida", "confirmed_per_100k")
 #' show(p)
 #'
 #' @export
 
 
-plotCovid <- function(locations, variable){
+plotEpiData <- function(locations, variable){
   if (missing(variable)){
     stop("Variable to plot not specified")
   }

@@ -15,7 +15,7 @@ location, including Variants of Concern. Here, we'll show you how to pull the
 data from these reports and recreate the 
 visualizations on the [United States Variant Report](https://outbreak.info/location-reports?loc=USA).
 
-### Before we start...
+## Before we start...
 Import the packages we'll use and provide our GISAID credentials to access the data.
 If you don't have a GISAID account, you can [register](https://www.gisaid.org/registration/register/) 
 for one on their website. It may take a day or two for the account to become active.
@@ -32,7 +32,7 @@ authenticateUser()
 ```
 
 
-### What lineages are circulating within the location?
+## What lineages are circulating within the location?
 To be able to discover which lineages are currently circulating around the U.S.,
 let's grab the prevalence of all the lineages in the U.S. over the past 60 days.
 ```{r all_lineages_data, results='hide'}
@@ -85,7 +85,7 @@ estimates**. In particular, the estimates of how much lineage is in a location r
 unreliable, just because not as many samples have been sequenced lately. We'll plot that in the next section.
 There are also other [sources of bias](https://outbreak.info/situation-reports/caveats) that are harder to estimate, but you should bear in mind when you're looking at any prevalence plots of variants.
 
-### Comparing the prevalence of specific lineages within a location
+## Comparing the prevalence of specific lineages within a location
 To get a better idea of how uncertain the estimates of variant prevalence are, and also to look at the prevalence of variants that aren't high in prevalence at the moment, we can calculate the prevalence of variants over time with a 95% confidence interval. To view how these data change, we can also use the plotting function `plot` to replicate the visualization on outbreak.info. Let's look at the growth and decline of Alpha / B.1.1.7, Episilon / B.1.427 / B.1.429, Iota / B.1.526, and how Delta/B.1.617.2 overtakes them in the Spring of 2021:
 ```{r variant_overlay}
 # The WHO lineages are a base Pango lineage with all the sublineages of the main lineage.
@@ -103,9 +103,8 @@ plotPrevalenceByLocation(pangolin_lineage = c(alpha_lineages, epsilon_lineages, 
 ```
 
 
+## What mutations are contained within the lineages that are circulating within the U.S.?
 
-### What mutations are contained within the lineages that are circulating within the U.S.?
+## How prevalent are Variants of Concern within the U.S.?
 
-### How prevalent are Variants of Concern within the U.S.?
-
-### Where are the Variants of Concern most prevalent within the U.S.?
+## Where are the Variants of Concern most prevalent within the U.S.?

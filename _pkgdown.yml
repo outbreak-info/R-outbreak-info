@@ -24,7 +24,7 @@ reference:
   - getCuratedLineages
   - lookupSublineages
   - plotAllLineagesByLocation
-  - plotPrevalenceByLocation
+  - plotPrevalenceOverTime
 - title: "Cases & Deaths"
   desc: >
     Functions to track COVID-19 cases and deaths worldwide, by country,

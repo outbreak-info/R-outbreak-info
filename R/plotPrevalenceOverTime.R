@@ -11,20 +11,20 @@
 #'
 #'@examples
 #'p1_brazil <- getPrevalence(pangolin_lineage = "P.1", location = "Brazil")
-#'plotPrevalenceByLocation(p1_brazil)
+#'plotPrevalenceOverTime(p1_brazil)
 #'
 #'us <- getPrevalence(pangolin_lineage = c("B.1.1.7", "B.1.427 OR B.1.429", "B.1.617.2"), location = "United States")
-#'plotPrevalenceByLocation(us, labelDictionary = c("B.1.427 OR B.1.429" = "Epsilon"), pangolin_lineage = c("B.1.1.7", "B.1.427 OR B.1.429", "B.1.617.2"), location = "United States")
+#'plotPrevalenceOverTime(us, labelDictionary = c("B.1.427 OR B.1.429" = "Epsilon"))
 #'
-#' Overlay locations
+#' # Overlay locations
 #' b117_india = getPrevalence(pangolin_lineage = "B.1.1.7", location = "India")
 #' b117_us = getPrevalence(pangolin_lineage = "B.1.1.7", location = "United States")
 #' b117_uk = getPrevalence(pangolin_lineage = "B.1.1.7", location = "United Kingdom")
 #' b117 = dplyr::bind_rows(b117_uk, b117_india, b117_us)
-#' plotPrevalenceByLocation(b117, colorVar = "location", title="B.1.1.7 prevalence over time")
+#' plotPrevalenceOverTime(b117, colorVar = "location", title="B.1.1.7 prevalence over time")
 #' @export
 
-plotPrevalenceByLocation <- function(df, colorVar = "lineage", title = "Prevalence over time", labelDictionary = NULL) {
+plotPrevalenceOverTime <- function(df, colorVar = "lineage", title = "Prevalence over time", labelDictionary = NULL) {
   if(!is.null(labelDictionary)) {
     df = df %>%
       mutate(lineage = ifelse(is.na(unname(labelDictionary[lineage])), lineage, unname(labelDictionary[lineage])))

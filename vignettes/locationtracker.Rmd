@@ -8,16 +8,16 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-outbreak.info's Location Tracker allows you to explore what lineages are 
+outbreak.info's Location Tracker allows you to explore what lineages are
 currently circulating within a particular country, state/province, or U.S. county.
-These reports also allow you to compare the prevalence of variants within that 
-location, including Variants of Concern. Here, we'll show you how to pull the 
-data from these reports and recreate the 
+These reports also allow you to compare the prevalence of variants within that
+location, including Variants of Concern. Here, we'll show you how to pull the
+data from these reports and recreate the
 visualizations on the [United States Variant Report](https://outbreak.info/location-reports?loc=USA).
 
 ## Before we start...
 Import the packages we'll use and provide our GISAID credentials to access the data.
-If you don't have a GISAID account, you can [register](https://www.gisaid.org/registration/register/) 
+If you don't have a GISAID account, you can [register](https://www.gisaid.org/registration/register/)
 for one on their website. It may take a day or two for the account to become active.
 ```{r pkgs, message = FALSE, results='hide'}
 # Package imports
@@ -49,17 +49,17 @@ usa_60d %>% glimpse()
 You can get explanations of each of the variables by looking at the data dictionary (`outbreakinfo::genomicsDataDictionary()`). Let's look at how prevalent each of the different Pango lineages are in the U.S.:
 ``` {r all_lineages_exploration2}
 
-usa_60d %>% 
-  filter(lineage != "other") %>% 
+usa_60d %>%
+  filter(lineage != "other") %>%
   group_by(lineage) %>%
   summarise(min_prevalence = min(prevalence_rolling),
-            max_prevalence = max(prevalence_rolling)) %>% 
-  arrange(desc(max_prevalence)) %>% 
+            max_prevalence = max(prevalence_rolling)) %>%
+  arrange(desc(max_prevalence)) %>%
   kable()
 ```
 
 ### Plotting the breakdown of lineages in the U.S. over time
-That gives an idea of what the range of prevalences for the lineages are, but not how they have changed over time. It's easier to see this temporal behavior with a streamgraph 
+That gives an idea of what the range of prevalences for the lineages are, but not how they have changed over time. It's easier to see this temporal behavior with a streamgraph
 which plots the relative prevalence of all the lineages over time. `plotAllLineagesByLocation` replicates these plots on outbreak.info:
 ```{r all_lineages_streamgraph}
 plotAllLineagesByLocation("United States", other_threshold = 0.03, nday_threshold = 5, ndays = 60)
@@ -67,7 +67,7 @@ plotAllLineagesByLocation("United States", other_threshold = 0.03, nday_threshol
 
 
 ### Modifying the parameters to group lineages into the Other category
-One thing that pops out is that there's a big group of lineages which are grouped into an "other" 
+One thing that pops out is that there's a big group of lineages which are grouped into an "other"
 category. As of October 2021, there are over 800 separate Pango lineages which have been found in the U.S. --
 way too many to plot . The parameters in `getAllLineagesByLocation` and `plotAllLineagesByLocation` group
 the smaller lineages into this "other" category. Let's break down how these parameters work:
@@ -76,7 +76,7 @@ the smaller lineages into this "other" category. Let's break down how these para
 - `nday_threshold` is the number of days which that threshold must be met not to be grouped into "other"
 - `ndays` is the window before the current date where to look to group lineages into "other"
 
-... so for the example we ran before, we grouped all lineages which did not have a prevalence of at least 3% 
+... so for the example we ran before, we grouped all lineages which did not have a prevalence of at least 3%
 (`other_threshold = 0.03`) in at least 5 days (`nday_threshold = 5`) over the last 60 days (`ndays = 60`). If we want to look at more historic data, we can adjust these parameters. Let's change the window to the last year (`ndays = 365`) and find all lineages which had a prevalence of at least 5% (`other_threshold = 0.05`) in 5 days (`nday_threshold = 5`) in that year. We can also make sure certain lineages, like A.1 which was circulating early on in the pandemic, are not grouped into the "other" category by specifying `other_exclude = "a.1"`.
 
 It's easy then to see the trends over the last year -- the North American lineages B.1 and B.1.2 appearing in 2020, the emergence of the California variants (B.1.427/B.1.429/Epsilon) and the New York variant (B.1.526/Iota) in early 2021, the rise of B.1.1.7/Alpha in the Spring of 2021, and Delta (B.1.617.2 + AY-lineages) outcompeting all lineages in summer 2021:
@@ -87,7 +87,7 @@ plotAllLineagesByLocation("United States", other_threshold = 0.05, nday_threshol
 ###  Remember: these are just estimates
 One essential thing to note is that while these streamgraphs are great for looking at the breakdown
 of lineages within a location over time, they're **rubbish at showing the uncertainty associated with these
-estimates**. In particular, the estimates of how much lineage is in a location recently tends to be more 
+estimates**. In particular, the estimates of how much lineage is in a location recently tends to be more
 unreliable, just because not as many samples have been sequenced lately. We'll plot that in the next section.
 There are also other [sources of bias](https://outbreak.info/situation-reports/caveats) that are harder to estimate, but you should bear in mind when you're looking at any prevalence plots of variants.
 
@@ -112,7 +112,7 @@ who_prevalence %>% glimpse()
 
 ### Plotting specific variants over time
 ```{r variant_overlay}
-plotPrevalenceByLocation(who_prevalence, labelDictionary = who_labels)
+plotPrevalenceOverTime(who_prevalence, labelDictionary = who_labels)
 ```
 
 ### More advanced options: specifying variants that aren't lineages
@@ -127,7 +127,7 @@ df = bind_rows(delta_a222v, e484k, e484k_p618h)
 # Come up with nicer labels than all the AY.1 lineages exist today
 custom_labels = c("Delta with A222V", "E484K", "E484K and P681H")
 names(custom_labels) = df %>% count(lineage) %>% pull(lineage)
-plotPrevalenceByLocation(df, title = "Variant prevalence in the United States", labelDictionary = custom_labels)
+plotPrevalenceOverTime(df, title = "Variant prevalence in the United States", labelDictionary = custom_labels)
 ```
 
 ### A slight variation: comparing Delta prevalence across locations
@@ -138,7 +138,7 @@ delta_by_state = purrr::map_df(locations, function(loc) getPrevalence(pangolin_l
 
 maxDate = delta_by_state %>% pull(date) %>% max()
 
-plotPrevalenceByLocation(delta_by_state, colorVar = "location", title = "Delta prevalence across locations") +
+plotPrevalenceOverTime(delta_by_state, colorVar = "location", title = "Delta prevalence across locations") +
   xlim(c(as.Date("2021-04-01"), maxDate))
 
 ```

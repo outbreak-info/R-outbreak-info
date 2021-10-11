@@ -29,6 +29,11 @@ The core functionality within the suite of [Variant Prevalence Functions](https:
 Before we start, to we need to provide our GISAID credentials to access the genomic data.
 If you don't have a GISAID account, you can [register](https://www.gisaid.org/registration/register/)
 for one on their website. It may take a day or two for the account to become active.
+```{r install, message = FALSE, results='hide', eval=FALSE}
+# Install the package, if you haven't already, using devtools
+devtools::install_github("outbreak-info/R-outbreak-info")
+```
+
 ```{r pkgs, message = FALSE, results='hide'}
 # Package imports
 library(outbreakinfo)

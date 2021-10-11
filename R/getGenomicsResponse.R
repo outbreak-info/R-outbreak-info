@@ -44,10 +44,7 @@ getGenomicsResponse <- function(dataurl, logInfo = T, logWarning = T, logError =
                 warning("Malformed token. Please reauthenticate by calling the authenticateUser() function.\n")
             } else if(resp$status_code == 200){
                 resp <- fromJSON(content(resp, "text"), flatten=TRUE)
-                if(length(resp$results) > 0)
-                    resp_df <- convert_list_to_dataframe(resp$results)
-                else
-                    resp_df <- data.frame()
+                if(length(resp$results) > 0) resp_df <- convert_list_to_dataframe(resp$results) else resp_df <- data.frame()
                 results[[length(results) + 1]] <- resp_df
                 scroll.id <- resp$'_scroll_id'
                 success <- resp$success
@@ -85,7 +82,11 @@ convert_list_to_dataframe <- function(list_obj){
     res <- lapply(query_keys,
                   function(query_key) {
                       d <- list_obj[[query_key]]
-                      d$query_key <- query_key
+                      if(class(d) == "data.frame"){
+                          d$query_key <- query_key
+                      } else {
+                          d <- data.frame(key = query_key, value = d)
+                      }
                       return(d)
                   })
     res_df <- do.call(rbind, res)

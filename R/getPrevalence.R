@@ -30,7 +30,7 @@
 
 
 
-getPrevalence <- function(pangolin_lineage=NULL, location=NULL, mutations=NULL, cumulative=NULL){
+getPrevalence <- function(pangolin_lineage=NULL, location=NULL, mutations=NULL, cumulative=FALSE){
   if(is.null(pangolin_lineage) && is.null(mutations)) {
     stop("Either `pangolin_lineage` or `mutations` needs to be specified")
   }

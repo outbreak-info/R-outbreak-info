@@ -162,7 +162,7 @@ to grab all sublineages associated with a lineage, and a curated list of Variant
 Variants Under Monitoring, and de-escalated variants maintained by the [outbreak.info team](https://outbreak.info/situation-reports)</p>
     </div>
 
-    <pre class="usage"><span class='fu'>lookupSublineages</span><span class='op'>(</span><span class='va'>lineage</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>lookupSublineages</span><span class='op'>(</span><span class='va'>lineage</span>, returnQueryString <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -170,6 +170,10 @@ Variants Under Monitoring, and de-escalated variants maintained by the [outbreak
     <tr>
       <th>lineage:</th>
       <td><p>String with the name of a Pango lineage or WHO name</p></td>
+    </tr>
+    <tr>
+      <th>returnQueryString:</th>
+      <td><p>Boolean to return a query string to be piped into functions like `getPrevalenceByLocation` (collapses vector by `"OR"`)</p></td>
     </tr>
     </table>
 
@@ -188,7 +192,8 @@ Variants Under Monitoring, and de-escalated variants maintained by the [outbreak
 #&gt; [31] "AY.25"     "AY.26"     "AY.27"     "AY.28"     "AY.29"     "AY.30"    
 #&gt; [37] "AY.31"     "AY.32"     "AY.33"     "AY.34"     "AY.35"     "AY.36"    
 #&gt; [43] "AY.37"     "AY.38"     "B.1.617.2"</div><div class='input'><span class='fu'>lookupSublineages</span><span class='op'>(</span><span class='st'>"epsilon"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "B.1.427"   "B.1.429"   "B.1.429.1"</div><div class='input'><span class='co'># Pango lineage</span>
+</div><div class='output co'>#&gt; [1] "B.1.427"   "B.1.429"   "B.1.429.1"</div><div class='input'><span class='fu'>lookupSublineages</span><span class='op'>(</span><span class='st'>"epsilon"</span>, returnQueryString <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "B.1.427 OR B.1.429 OR B.1.429.1"</div><div class='input'><span class='co'># Pango lineage</span>
 <span class='fu'>lookupSublineages</span><span class='op'>(</span><span class='st'>"B.1.1.7"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] "B.1.1.7" "Q.1"     "Q.2"     "Q.3"     "Q.4"     "Q.5"     "Q.6"    
 #&gt; [8] "Q.7"     "Q.8"    </div><div class='input'><span class='co'>#' # Not a recognized lineage</span>

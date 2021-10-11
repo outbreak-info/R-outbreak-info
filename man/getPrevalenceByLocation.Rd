@@ -37,8 +37,8 @@ getPrevalenceByLocation(pangolin_lineage = c("AY.4", "AY.34", "B.1.617.2"), loca
 getPrevalenceByLocation(pangolin_lineage = "AY.4 OR AY.34 OR B.1.617.2", location = "Brazil") \%>\% filter(date == "2021-09-01")
 
 # S:E484K mutation prevalence worldwide
-getPrevalenceByLocation(mutations = c("S:E484K"))
+getPrevalenceByLocation(mutations = c("S:E484K")) \%>\% head()
 
 # B.1.1.7 + S:E484K mutation worldwide
-getPrevalenceByLocation(pangolin_lineage = "B.1.1.7", mutations = c("S:E484K"))
+getPrevalenceByLocation(pangolin_lineage = "B.1.1.7", mutations = c("S:E484K")) \%>\% head()
 }

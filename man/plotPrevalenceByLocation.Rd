@@ -32,7 +32,7 @@ Plots the daily prevalence of a PANGO lineage by location
 }
 \examples{
 plotPrevalenceByLocation(pangolin_lineage = "P.1", location = "Brazil")
-plotPrevalenceByLocation(pangolin_lineage = c("B.1.1.7", "B.1.427 OR B.1.429", "B.1.617.2"), location = "United States", c("B.1.427 OR B.1.429" = "Epsilon"))
+plotPrevalenceByLocation(pangolin_lineage = c("B.1.1.7", "B.1.427 OR B.1.429", "B.1.617.2"), location = "United States", labelDictionary = c("B.1.427 OR B.1.429" = "Epsilon"))
 
 
 }

@@ -18,6 +18,6 @@ dataframe
 Retrieve prevalence of a specified mutation across all lineages by location
 }
 \examples{
-getMutationAcrossLineage(mutations="S:N501Y", location="United States of America")
+getMutationAcrossLineage(mutations="S:N501Y", location="United States")
 
 }

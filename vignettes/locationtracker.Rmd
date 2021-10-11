@@ -34,6 +34,7 @@ authenticateUser()
 
 
 ## What lineages are circulating within the location?
+### Accessing the data: prevalence of all circulating lineages in the U.S.
 To be able to discover which lineages are currently circulating around the U.S.,
 let's grab the prevalence of all the lineages in the U.S. over the past 60 days.
 ```{r all_lineages_data, results='hide'}
@@ -57,12 +58,15 @@ usa_60d %>%
   kable()
 ```
 
+### Plotting the breakdown of lineages in the U.S. over time
 That gives an idea of what the range of prevalences for the lineages are, but not how they have changed over time. It's easier to see this temporal behavior with a streamgraph 
 which plots the relative prevalence of all the lineages over time. `plotAllLineagesByLocation` replicates these plots on outbreak.info:
 ```{r all_lineages_streamgraph}
 plotAllLineagesByLocation("United States", other_threshold = 0.03, nday_threshold = 5, ndays = 60)
 ```
 
+
+### Modifying the parameters to group lineages into the Other category
 One thing that pops out is that there's a big group of lineages which are grouped into an "other" 
 category. As of October 2021, there are over 800 separate Pango lineages which have been found in the U.S. --
 way too many to plot . The parameters in `getAllLineagesByLocation` and `plotAllLineagesByLocation` group
@@ -80,6 +84,7 @@ It's easy then to see the trends over the last year -- the North American lineag
 plotAllLineagesByLocation("United States", other_threshold = 0.05, nday_threshold = 5, ndays = 365, other_exclude = "a.1")
 ```
 
+###  Remember: these are just estimates
 One essential thing to note is that while these streamgraphs are great for looking at the breakdown
 of lineages within a location over time, they're **rubbish at showing the uncertainty associated with these
 estimates**. In particular, the estimates of how much lineage is in a location recently tends to be more 
@@ -87,6 +92,7 @@ unreliable, just because not as many samples have been sequenced lately. We'll p
 There are also other [sources of bias](https://outbreak.info/situation-reports/caveats) that are harder to estimate, but you should bear in mind when you're looking at any prevalence plots of variants.
 
 ## Comparing the prevalence of specific lineages within a location
+### Accessing the data: prevalence of particular variants over time in the U.S.
 To get a better idea of how uncertain the estimates of variant prevalence are, and also to look at the prevalence of variants that aren't high in prevalence at the moment, we can calculate the prevalence of variants over time with a 95% confidence interval. To view how these data change, we can also use the plotting function `plot` to replicate the visualization on outbreak.info. Let's look at the growth and decline of Alpha / B.1.1.7, Episilon / B.1.427 / B.1.429, Iota / B.1.526, and how Delta/B.1.617.2 overtakes them in the Spring of 2021:
 ```{r variant_overlay}
 # The WHO lineages are a base Pango lineage with all the sublineages of the main lineage.
@@ -100,15 +106,28 @@ who_labels = c("Alpha", "Epsilon", "Iota", "Delta")
 names(who_labels) = c(alpha_lineages, epsilon_lineages, iota_lineages, delta_lineages)
 
 who_prevalence = getPrevalence(pangolin_lineage = c(alpha_lineages, epsilon_lineages, iota_lineages, delta_lineages), location = "United States")
+
+who_prevalence %>% glimpse()
+```
+
+### Plotting specific variants over time
+```{r variant_overlay}
 plotPrevalenceByLocation(who_prevalence, labelDictionary = who_labels)
+```
 
-
+### More advanced options: specifying variants that aren't lineages
+It's easy to gather the prevalence over time for a specific Pango lineage, or a group of Pango lineages, like the ones that make up WHO Variants of Concern and Interest. But you can also look at how a particular **mutation** is increasing or decreasing in prevalence or how a **lineage with a specific mutation(s)** is changing. Here, we'll look at the changes in a particular mutation within Delta (S:A222V) and compare it's growth with the mutation S:E484K, which is often found in lineages like B.1.351/Beta and P.1/Gamma, and the combination of S:E484K and S:P681H, which is found in P.1.7.
+```{r custom_variants}
 delta_a222v = getPrevalence(pangolin_lineage = delta_lineages, mutations="S:A222V", location = "United States")
-alpha_e484k = getPrevalence(pangolin_lineage = alpha_lineages, mutations="S:E484K", location = "United States")
+e484k = getPrevalence(mutations="S:E484K", location = "United States")
+e484k_p618h = getPrevalence(mutations=c("S:E484K", "S:P681H"), location = "United States")
 
-df = bind_rows(delta_a222v, alpha_e484k)
+df = bind_rows(delta_a222v, e484k, e484k_p618h)
 
-plotPrevalenceByLocation(df)
+# Come up with nicer labels than all the AY.1 lineages exist today
+custom_labels = c("Delta with A222V", "E484K", "E484K and P681H")
+names(custom_labels) = df %>% count(lineage) %>% pull(lineage)
+plotPrevalenceByLocation(df, title = "Variant prevalence in the United States", labelDictionary = custom_labels)
 ```
 
 ### A slight variation: comparing Delta prevalence across locations

@@ -4,10 +4,12 @@
 \alias{lookupSublineages}
 \title{Lookup sublineages for a given Pango lineage or WHO name}
 \usage{
-lookupSublineages(lineage)
+lookupSublineages(lineage, returnQueryString = FALSE)
 }
 \arguments{
 \item{lineage:}{String with the name of a Pango lineage or WHO name}
+
+\item{returnQueryString:}{Boolean to return a query string to be piped into functions like `getPrevalenceByLocation` (collapses vector by `"OR"`)}
 }
 \value{
 list containing the sublineages associated with that lineage or WHO designation
@@ -22,6 +24,7 @@ Variants Under Monitoring, and de-escalated variants maintained by the [outbreak
 # WHO-designated lineages
 lookupSublineages("Delta")
 lookupSublineages("epsilon")
+lookupSublineages("epsilon", returnQueryString = TRUE)
 # Pango lineage
 lookupSublineages("B.1.1.7")
 #' # Not a recognized lineage

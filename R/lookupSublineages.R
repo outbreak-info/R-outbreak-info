@@ -6,6 +6,7 @@
 #' Variants Under Monitoring, and de-escalated variants maintained by the [outbreak.info team](https://outbreak.info/situation-reports)
 #'
 #' @param lineage: String with the name of a Pango lineage or WHO name
+#' @param returnQueryString: Boolean to return a query string to be piped into functions like `getPrevalenceByLocation` (collapses vector by `"OR"`)
 #'
 #' @import httr
 #' @import yaml
@@ -17,23 +18,27 @@
 #' # WHO-designated lineages
 #' lookupSublineages("Delta")
 #' lookupSublineages("epsilon")
+#' lookupSublineages("epsilon", returnQueryString = TRUE)
 #' # Pango lineage
 #' lookupSublineages("B.1.1.7")
 #' #' # Not a recognized lineage
 #' lookupSublineages("VOC-21APR-02")
 
-lookupSublineages = function (lineage) {
-    curated = getCuratedLineages()
-    who_lineage = curated %>% filter(tolower(who_name) == tolower(lineage)) %>% pull(pangolin_lineage)
+lookupSublineages = function (lineage, returnQueryString = FALSE) {
+  curated = getCuratedLineages()
+  who_lineage = curated %>% filter(tolower(who_name) == tolower(lineage)) %>% pull(pangolin_lineage)
 
-    if(length(who_lineage) == 1){
-      # WHO lineage; convert the lineage to a list
-      children = lapply(who_lineage[[1]], getSublineage) %>% unlist()
-    } else {
-      children = getSublineages(lineage)
+  if(length(who_lineage) == 1){
+    # WHO lineage; convert the lineage to a list
+    children = lapply(who_lineage[[1]], getSublineages) %>% unlist()
+  } else {
+    children = getSublineages(lineage)
+  }
+  if(returnQueryString) {
+    return(paste(children, collapse = " OR "))
+  } else {
+    return(children)
     }
-
-  return(children)
 }
 
 getSublineages = function(lineage) {

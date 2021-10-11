@@ -9,6 +9,8 @@
 #'
 #' @return dataframe
 #'
+#' @import purrr
+#'
 #' @examples
 #' # lineage: P.1 in Brazil
 #' getPrevalenceByLocation(pangolin_lineage = "P.1", location = "Brazil") %>% head()
@@ -20,10 +22,10 @@
 #' getPrevalenceByLocation(pangolin_lineage = "AY.4 OR AY.34 OR B.1.617.2", location = "Brazil") %>% filter(date == "2021-09-01")
 #'
 #' # S:E484K mutation prevalence worldwide
-#' getPrevalenceByLocation(mutations = c("S:E484K"))
+#' getPrevalenceByLocation(mutations = c("S:E484K")) %>% head()
 #'
 #' # B.1.1.7 + S:E484K mutation worldwide
-#' getPrevalenceByLocation(pangolin_lineage = "B.1.1.7", mutations = c("S:E484K"))
+#' getPrevalenceByLocation(pangolin_lineage = "B.1.1.7", mutations = c("S:E484K")) %>% head()
 #' @export
 
 
@@ -33,13 +35,12 @@ getPrevalenceByLocation <- function(pangolin_lineage=NULL, location=NULL, mutati
     stop("Either `pangolin_lineage` or `mutations` needs to be specified")
   }
 
-  if(is.vector(pangolin_lineage)) {
-    lineage_string = paste(pangolin_lineage, collapse = ",")
+  if(length(pangolin_lineage) > 1) {
+    df = map_df(pangolin_lineage, function(lineage) getGenomicData(query_url="prevalence-by-location", pangolin_lineage = lineage, location = "United States", mutations = NULL, cumulative = NULL))
   } else {
-    lineage_string = pangolin_lineage
+    df <- getGenomicData(query_url="prevalence-by-location", pangolin_lineage = pangolin_lineage, location = location, mutations = mutations, cumulative = cumulative)
   }
 
-  df <- getGenomicData(query_url="prevalence-by-location", pangolin_lineage = lineage_string, location = location, mutations = mutations, cumulative = cumulative)
 
   if(!is.null(df))
       df = df %>% rename(lineage = query_key)

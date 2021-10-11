@@ -214,6 +214,27 @@
 <div id="comparing-the-prevalence-of-specific-lineages-within-a-location" class="section level3">
 <h3 class="hasAnchor">
 <a href="#comparing-the-prevalence-of-specific-lineages-within-a-location" class="anchor"></a>Comparing the prevalence of specific lineages within a location</h3>
+<p>To get a better idea of how uncertain the estimates of variant prevalence are, and also to look at the prevalence of variants that aren’t high in prevalence at the moment, we can calculate the prevalence of variants over time with a 95% confidence interval. To view how these data change, we can also use the plotting function <code>plot</code> to replicate the visualization on outbreak.info. Let’s look at the growth and decline of Alpha / B.1.1.7, Episilon / B.1.427 / B.1.429, Iota / B.1.526, and how Delta/B.1.617.2 overtakes them in the Spring of 2021:</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># The WHO lineages are a base Pango lineage with all the sublineages of the main lineage.</span>
+<span class="co"># Using `lookupSublineages`, we can lookup all the sublineages associated with the WHO designated sequence, according to the most recent classifications from the Pango team.</span>
+<span class="va">alpha_lineages</span> <span class="op">=</span> <span class="fu"><a href="../reference/lookupSublineages.html">lookupSublineages</a></span><span class="op">(</span><span class="st">"Alpha"</span>, returnQueryString <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="va">epsilon_lineages</span> <span class="op">=</span> <span class="fu"><a href="../reference/lookupSublineages.html">lookupSublineages</a></span><span class="op">(</span><span class="st">"Epsilon"</span>, returnQueryString <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="va">iota_lineages</span> <span class="op">=</span> <span class="fu"><a href="../reference/lookupSublineages.html">lookupSublineages</a></span><span class="op">(</span><span class="st">"Iota"</span>, returnQueryString <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="va">delta_lineages</span> <span class="op">=</span> <span class="fu"><a href="../reference/lookupSublineages.html">lookupSublineages</a></span><span class="op">(</span><span class="st">"Delta"</span>, returnQueryString <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="co"># create a label dictionary to rename the lineages by their WHO name:</span>
+<span class="va">who_labels</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Alpha"</span>, <span class="st">"Epsilon"</span>, <span class="st">"Iota"</span>, <span class="st">"Delta"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">who_labels</span><span class="op">)</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">alpha_lineages</span>, <span class="va">epsilon_lineages</span>, <span class="va">iota_lineages</span>, <span class="va">delta_lineages</span><span class="op">)</span>
+
+<span class="va">who_prevalence</span> <span class="op">=</span> <span class="fu"><a href="../reference/getPrevalenceByLocation.html">getPrevalenceByLocation</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">alpha_lineages</span>, <span class="va">epsilon_lineages</span>, <span class="va">iota_lineages</span>, <span class="va">delta_lineages</span><span class="op">)</span>, location <span class="op">=</span> <span class="st">"United States"</span><span class="op">)</span></code></pre></div>
+<pre><code>## Retrieving data... 
+## Retrieving data...</code></pre>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/plotPrevalenceByLocation.html">plotPrevalenceByLocation</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">alpha_lineages</span>, <span class="va">epsilon_lineages</span>, <span class="va">iota_lineages</span>, <span class="va">delta_lineages</span><span class="op">)</span>, labelDictionary <span class="op">=</span> <span class="va">who_labels</span>, location <span class="op">=</span> <span class="st">"United States"</span><span class="op">)</span></code></pre></div>
+<pre><code>## Retrieving data... 
+## Retrieving data... 
+## Plotting data...</code></pre>
+<p><img src="locationtracker_files/figure-html/variant_overlay-1.png" width="700"></p>
 </div>
 <div id="what-mutations-are-contained-within-the-lineages-that-are-circulating-within-the-u-s-" class="section level3">
 <h3 class="hasAnchor">

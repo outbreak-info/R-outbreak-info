@@ -20,6 +20,7 @@ Imports:
     progress,
     dplyr,
     plyr,
+    purrr,
     stringr,
     httr,
     yaml

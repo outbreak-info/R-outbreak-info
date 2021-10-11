@@ -94,8 +94,12 @@ alpha_lineages = lookupSublineages("Alpha", returnQueryString = TRUE)
 epsilon_lineages = lookupSublineages("Epsilon", returnQueryString = TRUE)
 iota_lineages = lookupSublineages("Iota", returnQueryString = TRUE)
 delta_lineages = lookupSublineages("Delta", returnQueryString = TRUE)
+# create a label dictionary to rename the lineages by their WHO name:
+who_labels = c("Alpha", "Epsilon", "Iota", "Delta")
+names(who_labels) = c(alpha_lineages, epsilon_lineages, iota_lineages, delta_lineages)
 
 who_prevalence = getPrevalenceByLocation(pangolin_lineage = c(alpha_lineages, epsilon_lineages, iota_lineages, delta_lineages))
+plotPrevalenceByLocation(pangolin_lineage = c(alpha_lineages, epsilon_lineages, iota_lineages, delta_lineages), labelDictionary = who_labels)
 ```
 
 

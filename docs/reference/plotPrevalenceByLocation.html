@@ -158,7 +158,7 @@
 
     <pre class="usage"><span class='fu'>plotPrevalenceByLocation</span><span class='op'>(</span>
   <span class='va'>pangolin_lineage</span>,
-  <span class='va'>location</span>,
+  location <span class='op'>=</span> <span class='cn'>NULL</span>,
   mutations <span class='op'>=</span> <span class='cn'>NULL</span>,
   cumulative <span class='op'>=</span> <span class='cn'>NULL</span>,
   include_title <span class='op'>=</span> <span class='cn'>TRUE</span>,
@@ -187,6 +187,10 @@
     <tr>
       <th>include_title:</th>
       <td><p>`Boolean` (T/F), T returns plot with title, F returns plot without title (default=F)</p></td>
+    </tr>
+    <tr>
+      <th>labelDictionary:</th>
+      <td><p>a named list of values to replace in the plot</p></td>
     </tr>
     </table>
 

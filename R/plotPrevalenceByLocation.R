@@ -7,6 +7,7 @@
 #' @param location: (optional) a location name
 #' @param cumulative: (optional) `Boolean` (T/F), T returns cumulative prevalence since first day of detection
 #' @param include_title: `Boolean` (T/F), T returns plot with title, F returns plot without title (default=F)
+#' @param labelDictionary: a named list of values to replace in the plot
 #'
 #'@return ggplot2 object
 #'
@@ -17,7 +18,7 @@
 #'
 #' @export
 
-plotPrevalenceByLocation <- function(pangolin_lineage, location, mutations = NULL, cumulative = NULL, include_title = TRUE, labelDictionary = NULL){
+plotPrevalenceByLocation <- function(pangolin_lineage, location = NULL, mutations = NULL, cumulative = NULL, include_title = TRUE, labelDictionary = NULL){
   df <- getPrevalenceByLocation(pangolin_lineage=pangolin_lineage, location=location, mutations=mutations, cumulative=cumulative)
   cat("Plotting data...", "\n")
 
@@ -43,7 +44,13 @@ plotPrevalenceByLocation <- function(pangolin_lineage, location, mutations = NUL
       location = "the World"
     }
 
-    p <- p + ggtitle(paste0("Prevalence of ", toupper(pangolin_lineage), " in ", stringr::str_to_title(location)))
+    if(length(pangolin_lineage) > 1) {
+      pango_title = NULL
+    } else {
+      pango_title = paste0(" of ", toupper(pangolin_lineage))
+    }
+
+    p <- p + ggtitle(paste0("Prevalence", pango_title, " in ", stringr::str_to_title(location)))
   }
   return(p)
 }

@@ -48,5 +48,11 @@ getPrevalence <- function(pangolin_lineage=NULL, location=NULL, mutations=NULL, 
           mutate(location = ifelse(is.null(location), "Worldwide", location))
   }
 
-  return(df)
+  if(!is.null(df) & nrow(df) != 0 & cumulative == TRUE){
+    df <- df %>%
+      rename(lineage = key) %>%
+      mutate(location = ifelse(is.null(location), "Worldwide", location))
+  }
+
+    return(df)
 }

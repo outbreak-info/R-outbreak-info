@@ -1,0 +1,74 @@
+---
+title: "outbreak.info Variant Tracker"
+# author: "Laura Hughes"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{outbreak.info Variant Tracker}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+# Accessing the data in outbreak.info's Variant Tracker
+Outbreak.info's Variant Tracker allows you to view how combinations of lineages and mutations are changing over time. These reports allow you to answer questions like:
+
+- [What mutations are present within that lineage?](#what-mutations-are-characteristic-of-the-variant-)
+- [How prevalent is a variant overall?](#how-prevalent-is-a-variant-overall-)
+- [How is the prevalence of the variant changing?](#how-is-the-prevalence-of-a-variant-changing-)
+- [Where is the variant most prevalent?](#where-is-the-variant-most-prevalent-)
+- [What is known about the variant in the research literature?](#what-do-we-know-about-the-variant-in-the-literature-)
+
+
+Here, we'll demonstrate how to access the data in the [P.1 Lineage Report](https://outbreak.info/situation-reports?pango=P.1&loc=BRA&loc=USA&selected=Worldwide&overlay=false). The P.1 / Gamma lineage was labeled a [Variant of Concern](https://outbreak.info/situation-reports) by the WHO in January 2021 because it showed evidence of increased transmissibility, virulence, and/or decreased diagnostic, therapeutic, or vaccine efficacy.
+
+## Before we start...
+Import the packages we'll use and provide our GISAID credentials to access the data.
+If you don't have a GISAID account, you can [register](https://www.gisaid.org/registration/register/)
+for one on their website. It may take a day or two for the account to become active.
+```{r pkgs, message = FALSE, results='hide'}
+# Package imports
+library(dplyr)
+library(purrr)
+library(ggplot2)
+library(knitr)
+library(outbreakinfo)
+```
+
+```{r auth, message = FALSE, results='hide', eval=FALSE}
+# Authenticate yourself using your GISAID credentials.
+authenticateUser()
+```
+
+
+## What mutations are characteristic of the variant?
+A very basic question: what is P.1? What mutations are consistent across the lineage?
+
+### Grabbing the characteristic mutations
+
+## How prevalent is a variant overall?
+To start with, let's get some basic information about the overall, cumulative prevalence of P.1 in certain locations. We'll look at the worldwide totals, in Brazil, in the United States, and in Illinois.
+```{r cum_prevalence}
+locations = c("Brazil", "United States", "Illinois")
+
+worldwide_prevalence = getPrevalence(pangolin_lineage = "P.1", cumulative = TRUE)
+cumulative_prevalences = purrr::map_df(locations, function(loc) getPrevalence(pangolin_lineage = "P.1", location = loc, cumulative = TRUE)) %>% 
+  arrange(desc(value.global_prevalence))
+
+cumulative_prevalences = worldwide_prevalence %>% dplyr::bind_rows(cumulative_prevalences)
+
+kable(cumulative_prevalences %>% dplyr::select(location, value.global_prevalence, value.lineage_count, value.first_detected, value.last_detected))
+```
+
+
+
+## How is the prevalence of a variant changing?
+
+## Where is the variant most prevalent?
+
+## What do we know about the variant in the literature?

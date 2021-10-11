@@ -1,7 +1,7 @@
 ---
 title: "outbreak.info Location Tracker"
 # author: "Laura Hughes"
-date: "10/8/2021"
+date: "`r Sys.Date()`"
 output: html_document
 ---
 # Accessing the data in outbreak.info's Location Tracker

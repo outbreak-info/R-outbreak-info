@@ -10,7 +10,7 @@
 #' uk_b117 = getGenomicData(query_url="prevalence-by-location", location="United Kingdom", pangolin_lineage = "B.1.1.7")
 #' head(uk_b117)
 
-getGenomicData <- function(query_url, location=NULL, cumulative=NULL, pangolin_lineage=NULL, mutations=NULL, ndays=NULL, frequency=NULL, subadmin=NULL, other_threshold=NULL, nday_threshold=NULL, other_exclude=NULL){
+getGenomicData <- function(query_url, location=NULL, cumulative=NULL, pangolin_lineage=NULL, mutations=NULL, ndays=NULL, frequency=NULL, subadmin=NULL, other_threshold=NULL, nday_threshold=NULL, other_exclude=NULL, logInfo=TRUE){
 
     genomic_url <- "https://dev.outbreak.info/genomics/"
 
@@ -71,7 +71,7 @@ getGenomicData <- function(query_url, location=NULL, cumulative=NULL, pangolin_l
     q <- sub("&$", "", q)
 
     dataurl <- paste0(genomic_url, q)
-    results <- getGenomicsResponse(dataurl);
+    results <- getGenomicsResponse(dataurl, logInfo);
 
     if (length(results) > 1){
         hits <- rbind_pages(results)

@@ -15,7 +15,8 @@ getGenomicData(
   subadmin = NULL,
   other_threshold = NULL,
   nday_threshold = NULL,
-  other_exclude = NULL
+  other_exclude = NULL,
+  logInfo = TRUE
 )
 }
 \value{

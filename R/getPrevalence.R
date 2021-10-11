@@ -6,6 +6,7 @@
 #' @param mutations: (optional) a `vector` of mutation(s). Either `pangolin_lineage` or `mutations` needs to be specified. Mutations should be specified in the format `gene:mutation`, like "S:E484K"
 #' @param location: (optional) a location name
 #' @param cumulative: (optional) `Boolean` (T/F), T returns cumulative prevalence since first day of detection
+#' @param logInfo: (optional) `Boolean` (T/F), T logs helper messages during API calls.
 #'
 #' @return dataframe
 #'
@@ -30,15 +31,15 @@
 
 
 
-getPrevalence <- function(pangolin_lineage=NULL, location=NULL, mutations=NULL, cumulative=FALSE){
+getPrevalence <- function(pangolin_lineage=NULL, location=NULL, mutations=NULL, cumulative=FALSE, logInfo=TRUE){
   if(is.null(pangolin_lineage) && is.null(mutations)) {
     stop("Either `pangolin_lineage` or `mutations` needs to be specified")
   }
 
   if(length(pangolin_lineage) > 1) {
-    df <- map_df(pangolin_lineage, function(lineage) getGenomicData(query_url="prevalence-by-location", pangolin_lineage = lineage, location = "United States", mutations = NULL, cumulative = NULL))
+    df <- map_df(pangolin_lineage, function(lineage) getGenomicData(query_url="prevalence-by-location", pangolin_lineage = lineage, location = "United States", mutations = mutations, cumulative = cumulative, logInfo = logInfo))
   } else {
-    df <- getGenomicData(query_url="prevalence-by-location", pangolin_lineage = pangolin_lineage, location = location, mutations = mutations, cumulative = cumulative)
+    df <- getGenomicData(query_url="prevalence-by-location", pangolin_lineage = pangolin_lineage, location = location, mutations = mutations, cumulative = cumulative, logInfo = logInfo)
   }
 
 

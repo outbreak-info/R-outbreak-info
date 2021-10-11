@@ -8,7 +8,8 @@ getPrevalence(
   pangolin_lineage = NULL,
   location = NULL,
   mutations = NULL,
-  cumulative = FALSE
+  cumulative = FALSE,
+  logInfo = TRUE
 )
 }
 \arguments{
@@ -19,6 +20,8 @@ getPrevalence(
 \item{location:}{(optional) a location name}
 
 \item{cumulative:}{(optional) `Boolean` (T/F), T returns cumulative prevalence since first day of detection}
+
+\item{logInfo:}{(optional) `Boolean` (T/F), T logs helper messages during API calls.}
 }
 \value{
 dataframe

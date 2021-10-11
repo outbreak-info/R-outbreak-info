@@ -4,6 +4,7 @@
 #'
 #'@param pangolin_lineage: PANGO lineage name or vector
 #'@param frequency: a number between 0 and 1 specifying the frequency threshold above which to return mutations (default=0.8)
+#' @param logInfo: (optional) `Boolean` (T/F), T logs helper messages during API calls.
 #'
 #' @return dataframe
 #'
@@ -20,11 +21,11 @@
 #' @export
 
 
-getMutationsByLineage <- function(pangolin_lineage, frequency=0.75){
+getMutationsByLineage <- function(pangolin_lineage, frequency=0.75, logInfo=TRUE){
   
   if(length(pangolin_lineage) > 1) {
     # Set frequency to 0 and then filter after the fact.
-    df <- map_df(pangolin_lineage, function(lineage) getGenomicData(query_url="lineage-mutations", pangolin_lineage = lineage, frequency = 0))
+    df <- map_df(pangolin_lineage, function(lineage) getGenomicData(query_url="lineage-mutations", pangolin_lineage = lineage, frequency = 0, logInfo = logInfo))
     
     if(!is.null(df) & nrow(df) != 0){
       mutations = df %>% 
@@ -37,7 +38,7 @@ getMutationsByLineage <- function(pangolin_lineage, frequency=0.75){
     }    
     
   } else {
-    df <- getGenomicData(query_url="lineage-mutations", pangolin_lineage = pangolin_lineage, frequency = frequency)
+    df <- getGenomicData(query_url="lineage-mutations", pangolin_lineage = pangolin_lineage, frequency = frequency, logInfo = logInfo)
   }
   
   return(df)

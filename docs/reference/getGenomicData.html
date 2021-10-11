@@ -116,7 +116,7 @@
       <a href="../articles/lineagevignette.html">Lineage Report (B.1.1.7)</a>
     </li>
     <li>
-      <a href="../articles/locationtracker.html">Location Tracker</a>
+      <a href="../articles/locationtracker.html">outbreak.info Location Tracker</a>
     </li>
     <li>
       <a href="../articles/locationvignette.html">Location Report (United States)</a>
@@ -179,8 +179,7 @@
     <pre class="examples"><div class='input'><span class='co'># Authenticate with GISAID credentials</span>
 <span class='co'># authenticateUser()</span>
 <span class='va'>uk_b117</span> <span class='op'>=</span> <span class='fu'>getGenomicData</span><span class='op'>(</span>query_url<span class='op'>=</span><span class='st'>"prevalence-by-location"</span>, location<span class='op'>=</span><span class='st'>"United Kingdom"</span>, pangolin_lineage <span class='op'>=</span> <span class='st'>"B.1.1.7"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Retrieving data... 
-#&gt; Retrieving data... </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>uk_b117</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Retrieving data... </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>uk_b117</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;         date total_count lineage_count total_count_rolling
 #&gt; 1 2020-03-20         408             2            275.2857
 #&gt; 2 2020-03-21         427             0            312.8571

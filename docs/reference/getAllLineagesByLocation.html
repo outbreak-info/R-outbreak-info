@@ -116,7 +116,7 @@
       <a href="../articles/lineagevignette.html">Lineage Report (B.1.1.7)</a>
     </li>
     <li>
-      <a href="../articles/locationtracker.html">Location Tracker</a>
+      <a href="../articles/locationtracker.html">outbreak.info Location Tracker</a>
     </li>
     <li>
       <a href="../articles/locationvignette.html">Location Report (United States)</a>
@@ -208,8 +208,7 @@
 #&gt; <span class='message'>    intersect, setdiff, setequal, union</span></div><div class='input'><span class='co'># Authenticate with GISAID credentials</span>
 <span class='co'># authenticateUser()</span>
 <span class='va'>india</span> <span class='op'>=</span> <span class='fu'>getAllLineagesByLocation</span><span class='op'>(</span>location <span class='op'>=</span> <span class='st'>"India"</span>, other_threshold<span class='op'>=</span><span class='fl'>0.03</span>, nday_threshold<span class='op'>=</span><span class='fl'>60</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Retrieving data... 
-#&gt; Retrieving data... </div><div class='input'><span class='va'>india</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>date</span> <span class='op'>==</span> <span class='st'>"2021-06-25"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Retrieving data... </div><div class='input'><span class='va'>india</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></span><span class='op'>(</span><span class='va'>date</span> <span class='op'>==</span> <span class='st'>"2021-06-25"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;         date total_count lineage_count   lineage prevalence prevalence_rolling
 #&gt; 1 2021-06-25         151            11     ay.12 0.07284768         0.07737397
 #&gt; 2 2021-06-25         151            34      ay.4 0.22516556         0.14771395

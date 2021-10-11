@@ -12,6 +12,9 @@
 #'
 #' @export
 
+
+OUTBREAK_INFO_AUTH = "https://dev.outbreak.info/genomics/get-auth-token"
+
 authenticateUser <- function(){
     response <- POST(OUTBREAK_INFO_AUTH, body = '{}', encode = "raw")
     if (status_code(response) == 200) {
@@ -49,10 +52,3 @@ authenticateUser <- function(){
         }
     }
 }
-
-OUTBREAK_INFO_AUTH = "https://dev.outbreak.info/genomics/get-auth-token"
-
-#response <- GET(
-#    OUTBREAK_INFO_AUTH,
-#    add_headers(Authorization = paste("Bearer", Sys.getenv("OUTBREAK_INFO_TOKEN"), sep=" "))
-#)

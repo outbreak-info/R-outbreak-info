@@ -42,7 +42,11 @@ getPrevalenceByLocation <- function(pangolin_lineage=NULL, location=NULL, mutati
   }
 
 
-  if(!is.null(df))
-      df = df %>% rename(lineage = query_key)
+  if(!is.null(df)){
+      df = df %>% 
+      rename(lineage = query_key) %>% 
+      mutate(location = ifelse(is.null(location), "Worldwide", location))
+  }
+  
   return(df)
 }

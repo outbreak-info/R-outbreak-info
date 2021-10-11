@@ -117,26 +117,28 @@
 <h1 class="hasAnchor">
 <a href="#accessing-the-data-in-outbreak-infos-location-tracker" class="anchor"></a>Accessing the data in outbreak.info’s Location Tracker</h1>
 <p>outbreak.info’s Location Tracker allows you to explore what lineages are currently circulating within a particular country, state/province, or U.S. county. These reports also allow you to compare the prevalence of variants within that location, including Variants of Concern. Here, we’ll show you how to pull the data from these reports and recreate the visualizations on the <a href="https://outbreak.info/location-reports?loc=USA">United States Variant Report</a>.</p>
-<div id="before-we-start" class="section level3">
-<h3 class="hasAnchor">
-<a href="#before-we-start" class="anchor"></a>Before we start…</h3>
+<div id="before-we-start" class="section level2">
+<h2 class="hasAnchor">
+<a href="#before-we-start" class="anchor"></a>Before we start…</h2>
 <p>Import the packages we’ll use and provide our GISAID credentials to access the data. If you don’t have a GISAID account, you can <a href="https://www.gisaid.org/registration/register/">register</a> for one on their website. It may take a day or two for the account to become active.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Package imports</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://outbreak-info.github.io/R-outbreak-info/">outbreakinfo</a></span><span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<pre><code>## Warning: replacing previous import 'jsonlite::flatten' by 'purrr::flatten' when
+## loading 'outbreakinfo'</code></pre>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Authenticate yourself using your GISAID credentials.</span>
 <span class="fu"><a href="../reference/authenticateUser.html">authenticateUser</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="what-lineages-are-circulating-within-the-location" class="section level3">
-<h3 class="hasAnchor">
-<a href="#what-lineages-are-circulating-within-the-location" class="anchor"></a>What lineages are circulating within the location?</h3>
+<div id="what-lineages-are-circulating-within-the-location" class="section level2">
+<h2 class="hasAnchor">
+<a href="#what-lineages-are-circulating-within-the-location" class="anchor"></a>What lineages are circulating within the location?</h2>
 <p>To be able to discover which lineages are currently circulating around the U.S., let’s grab the prevalence of all the lineages in the U.S. over the past 60 days.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">usa_60d</span> <span class="op">=</span> <span class="fu"><a href="../reference/getAllLineagesByLocation.html">getAllLineagesByLocation</a></span><span class="op">(</span>location <span class="op">=</span> <span class="st">"United States"</span>, other_threshold <span class="op">=</span> <span class="fl">0.03</span>, nday_threshold <span class="op">=</span> <span class="fl">5</span>, ndays <span class="op">=</span> <span class="fl">60</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">usa_60d</span> <span class="op">=</span> <span class="fu"><a href="../reference/getAllLineagesByLocation.html">getAllLineagesByLocation</a></span><span class="op">(</span>location <span class="op">=</span> <span class="st">"United States"</span>, other_threshold <span class="op">=</span> <span class="fl">0.03</span>, nday_threshold <span class="op">=</span> <span class="fl">5</span>, ndays <span class="op">=</span> <span class="fl">60</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># This ends up being a large data frame. Let's take a look at what's inside:</span>
 <span class="va">usa_60d</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <pre><code>## Rows: 1,408
@@ -148,7 +150,7 @@
 ## $ prevalence         &lt;dbl&gt; 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0, …
 ## $ prevalence_rolling &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …</code></pre>
 <p>You can get explanations of each of the variables by looking at the data dictionary (<code><a href="../reference/genomicsDataDictionary.html">outbreakinfo::genomicsDataDictionary()</a></code>). Let’s look at how prevalent each of the different Pango lineages are in the U.S.:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">usa_60d</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">lineage</span> <span class="op">!=</span> <span class="st">"other"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">lineage</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -186,7 +188,7 @@
 </tbody>
 </table>
 <p>That gives an idea of what the range of prevalences for the lineages are, but not how they have changed over time. It’s easier to see this temporal behavior with a streamgraph which plots the relative prevalence of all the lineages over time. <code>plotAllLineagesByLocation</code> replicates these plots on outbreak.info:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plotAllLineagesByLocation.html">plotAllLineagesByLocation</a></span><span class="op">(</span><span class="st">"United States"</span>, other_threshold <span class="op">=</span> <span class="fl">0.03</span>, nday_threshold <span class="op">=</span> <span class="fl">5</span>, ndays <span class="op">=</span> <span class="fl">60</span><span class="op">)</span></code></pre></div>
 <pre><code>## Retrieving data... 
 ## Retrieving data... 
@@ -203,7 +205,7 @@
 </ul>
 <p>… so for the example we ran before, we grouped all lineages which did not have a prevalence of at least 3% (<code>other_threshold = 0.03</code>) in at least 5 days (<code>nday_threshold = 5</code>) over the last 60 days (<code>ndays = 60</code>). If we want to look at more historic data, we can adjust these parameters. Let’s change the window to the last year (<code>ndays = 365</code>) and find all lineages which had a prevalence of at least 5% (<code>other_threshold = 0.05</code>) in 5 days (<code>nday_threshold = 5</code>) in that year. We can also make sure certain lineages, like A.1 which was circulating early on in the pandemic, are not grouped into the “other” category by specifying <code>other_exclude = "a.1"</code>.</p>
 <p>It’s easy then to see the trends over the last year – the North American lineages B.1 and B.1.2 appearing in 2020, the emergence of the California variants (B.1.427/B.1.429/Epsilon) and the New York variant (B.1.526/Iota) in early 2021, the rise of B.1.1.7/Alpha in the Spring of 2021, and Delta (B.1.617.2 + AY-lineages) outcompeting all lineages in summer 2021:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plotAllLineagesByLocation.html">plotAllLineagesByLocation</a></span><span class="op">(</span><span class="st">"United States"</span>, other_threshold <span class="op">=</span> <span class="fl">0.05</span>, nday_threshold <span class="op">=</span> <span class="fl">5</span>, ndays <span class="op">=</span> <span class="fl">365</span>, other_exclude <span class="op">=</span> <span class="st">"a.1"</span><span class="op">)</span></code></pre></div>
 <pre><code>## Retrieving data... 
 ## Retrieving data... 
@@ -211,11 +213,11 @@
 <p><img src="locationtracker_files/figure-html/all_lineages_streamgraph_overload-1.png" width="700"></p>
 <p>One essential thing to note is that while these streamgraphs are great for looking at the breakdown of lineages within a location over time, they’re <strong>rubbish at showing the uncertainty associated with these estimates</strong>. In particular, the estimates of how much lineage is in a location recently tends to be more unreliable, just because not as many samples have been sequenced lately. We’ll plot that in the next section. There are also other <a href="https://outbreak.info/situation-reports/caveats">sources of bias</a> that are harder to estimate, but you should bear in mind when you’re looking at any prevalence plots of variants.</p>
 </div>
-<div id="comparing-the-prevalence-of-specific-lineages-within-a-location" class="section level3">
-<h3 class="hasAnchor">
-<a href="#comparing-the-prevalence-of-specific-lineages-within-a-location" class="anchor"></a>Comparing the prevalence of specific lineages within a location</h3>
-<p>To get a better idea of how uncertain the estimates of variant prevalence are, and also to look at the prevalence of variants that aren’t high in prevalence at the moment, we can calculate the prevalence of variants over time with a 95% confidence interval. To view how these data change, we can also use the plotting function <code>plot</code> to replicate the visualization on outbreak.info. Let’s look at the growth and decline of Alpha / B.1.1.7, Episilon / B.1.427 / B.1.429, Iota / B.1.526, and how Delta/B.1.617.2 overtakes them in the Spring of 2021:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div id="comparing-the-prevalence-of-specific-lineages-within-a-location" class="section level2">
+<h2 class="hasAnchor">
+<a href="#comparing-the-prevalence-of-specific-lineages-within-a-location" class="anchor"></a>Comparing the prevalence of specific lineages within a location</h2>
+<p>To get a better idea of how uncertain the estimates of variant prevalence are, and also to look at the prevalence of variants that aren’t high in prevalence at the moment, we can calculate the prevalence of variants over time with a 95% confidence interval. To view how these data change, we can also use the plotting function <code>plot</code> to replicate the visualization on outbreak.info. Let’s look at the growth and decline of Alpha / B.1.1.7, Episilon / B.1.427 / B.1.429, Iota / B.1.526, and how Delta/B.1.617.2 overtakes them in the Spring of 2021: ### test1</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># The WHO lineages are a base Pango lineage with all the sublineages of the main lineage.</span>
 <span class="co"># Using `lookupSublineages`, we can lookup all the sublineages associated with the WHO designated sequence, according to the most recent classifications from the Pango team.</span>
 <span class="va">alpha_lineages</span> <span class="op">=</span> <span class="fu"><a href="../reference/lookupSublineages.html">lookupSublineages</a></span><span class="op">(</span><span class="st">"Alpha"</span>, returnQueryString <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
@@ -228,25 +230,52 @@
 
 <span class="va">who_prevalence</span> <span class="op">=</span> <span class="fu"><a href="../reference/getPrevalenceByLocation.html">getPrevalenceByLocation</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">alpha_lineages</span>, <span class="va">epsilon_lineages</span>, <span class="va">iota_lineages</span>, <span class="va">delta_lineages</span><span class="op">)</span>, location <span class="op">=</span> <span class="st">"United States"</span><span class="op">)</span></code></pre></div>
 <pre><code>## Retrieving data... 
+## Retrieving data... 
+## Retrieving data... 
+## Retrieving data... 
+## Retrieving data... 
+## Retrieving data... 
+## Retrieving data... 
 ## Retrieving data...</code></pre>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plotPrevalenceByLocation.html">plotPrevalenceByLocation</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">alpha_lineages</span>, <span class="va">epsilon_lineages</span>, <span class="va">iota_lineages</span>, <span class="va">delta_lineages</span><span class="op">)</span>, labelDictionary <span class="op">=</span> <span class="va">who_labels</span>, location <span class="op">=</span> <span class="st">"United States"</span><span class="op">)</span></code></pre></div>
 <pre><code>## Retrieving data... 
 ## Retrieving data... 
+## Retrieving data... 
+## Retrieving data... 
+## Retrieving data... 
+## Retrieving data... 
+## Retrieving data... 
+## Retrieving data... 
 ## Plotting data...</code></pre>
 <p><img src="locationtracker_files/figure-html/variant_overlay-1.png" width="700"></p>
-</div>
-<div id="what-mutations-are-contained-within-the-lineages-that-are-circulating-within-the-u-s-" class="section level3">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">delta_a222v</span> <span class="op">=</span> <span class="fu"><a href="../reference/getPrevalenceByLocation.html">getPrevalenceByLocation</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="va">delta_lineages</span>, mutations<span class="op">=</span><span class="st">"S:A222V"</span>, location <span class="op">=</span> <span class="st">"United States"</span><span class="op">)</span></code></pre></div>
+<pre><code>## Retrieving data... 
+## Retrieving data...</code></pre>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">alpha_e484k</span> <span class="op">=</span> <span class="fu"><a href="../reference/getPrevalenceByLocation.html">getPrevalenceByLocation</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="va">alpha_lineages</span>, mutations<span class="op">=</span><span class="st">"S:E484K"</span>, location <span class="op">=</span> <span class="st">"United States"</span><span class="op">)</span></code></pre></div>
+<pre><code>## Retrieving data... 
+## Retrieving data...</code></pre>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">df</span> <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">delta_a222v</span>, <span class="va">alpha_e484k</span><span class="op">)</span></code></pre></div>
+<div id="test-2" class="section level3">
 <h3 class="hasAnchor">
-<a href="#what-mutations-are-contained-within-the-lineages-that-are-circulating-within-the-u-s-" class="anchor"></a>What mutations are contained within the lineages that are circulating within the U.S.?</h3>
+<a href="#test-2" class="anchor"></a>test 2</h3>
+<p>fdsjkfkdsjl</p>
 </div>
-<div id="how-prevalent-are-variants-of-concern-within-the-u-s-" class="section level3">
-<h3 class="hasAnchor">
-<a href="#how-prevalent-are-variants-of-concern-within-the-u-s-" class="anchor"></a>How prevalent are Variants of Concern within the U.S.?</h3>
 </div>
-<div id="where-are-the-variants-of-concern-most-prevalent-within-the-u-s-" class="section level3">
-<h3 class="hasAnchor">
-<a href="#where-are-the-variants-of-concern-most-prevalent-within-the-u-s-" class="anchor"></a>Where are the Variants of Concern most prevalent within the U.S.?</h3>
+<div id="what-mutations-are-contained-within-the-lineages-that-are-circulating-within-the-u-s-" class="section level2">
+<h2 class="hasAnchor">
+<a href="#what-mutations-are-contained-within-the-lineages-that-are-circulating-within-the-u-s-" class="anchor"></a>What mutations are contained within the lineages that are circulating within the U.S.?</h2>
+</div>
+<div id="how-prevalent-are-variants-of-concern-within-the-u-s-" class="section level2">
+<h2 class="hasAnchor">
+<a href="#how-prevalent-are-variants-of-concern-within-the-u-s-" class="anchor"></a>How prevalent are Variants of Concern within the U.S.?</h2>
+</div>
+<div id="where-are-the-variants-of-concern-most-prevalent-within-the-u-s-" class="section level2">
+<h2 class="hasAnchor">
+<a href="#where-are-the-variants-of-concern-most-prevalent-within-the-u-s-" class="anchor"></a>Where are the Variants of Concern most prevalent within the U.S.?</h2>
 </div>
 </div>
   </div>

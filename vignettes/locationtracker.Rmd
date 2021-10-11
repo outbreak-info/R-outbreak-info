@@ -99,7 +99,28 @@ who_labels = c("Alpha", "Epsilon", "Iota", "Delta")
 names(who_labels) = c(alpha_lineages, epsilon_lineages, iota_lineages, delta_lineages)
 
 who_prevalence = getPrevalenceByLocation(pangolin_lineage = c(alpha_lineages, epsilon_lineages, iota_lineages, delta_lineages), location = "United States")
-plotPrevalenceByLocation(pangolin_lineage = c(alpha_lineages, epsilon_lineages, iota_lineages, delta_lineages), labelDictionary = who_labels, location = "United States")
+plotPrevalenceByLocation(who_prevalence, labelDictionary = who_labels)
+
+
+delta_a222v = getPrevalenceByLocation(pangolin_lineage = delta_lineages, mutations="S:A222V", location = "United States")
+alpha_e484k = getPrevalenceByLocation(pangolin_lineage = alpha_lineages, mutations="S:E484K", location = "United States")
+
+df = bind_rows(delta_a222v, alpha_e484k)
+
+plotPrevalenceByLocation(df, include_title = FALSE)
+```
+
+### A slight variation: comparing Delta prevalence across locations
+```{r location_overlay}
+locations = c( "Missouri", "Kansas", "California", "Louisiana")
+
+delta_by_state = purrr::map_df(locations, function(loc) getPrevalenceByLocation(pangolin_lineage = delta_lineages, location = loc))
+
+maxDate = delta_by_state %>% pull(date) %>% max()
+
+plotPrevalenceByLocation(delta_by_state, colorVar = "location", title = "Delta prevalence across locations") +
+  xlim(c(as.Date("2021-04-01"), maxDate))
+
 ```
 
 

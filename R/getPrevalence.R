@@ -36,16 +36,16 @@ getPrevalence <- function(pangolin_lineage=NULL, location=NULL, mutations=NULL, 
   }
 
   if(length(pangolin_lineage) > 1) {
-    df = map_df(pangolin_lineage, function(lineage) getGenomicData(query_url="prevalence-by-location", pangolin_lineage = lineage, location = "United States", mutations = NULL, cumulative = NULL))
+    df <- map_df(pangolin_lineage, function(lineage) getGenomicData(query_url="prevalence-by-location", pangolin_lineage = lineage, location = "United States", mutations = NULL, cumulative = NULL))
   } else {
     df <- getGenomicData(query_url="prevalence-by-location", pangolin_lineage = pangolin_lineage, location = location, mutations = mutations, cumulative = cumulative)
   }
 
 
-  if(!is.null(df) & nrow(df) != 0){
-      df = df %>%
-      rename(lineage = query_key) %>%
-      mutate(location = ifelse(is.null(location), "Worldwide", location))
+  if(!is.null(df) & nrow(df) != 0 & cumulative == FALSE){
+      df <- df %>%
+          rename(lineage = query_key) %>%
+          mutate(location = ifelse(is.null(location), "Worldwide", location))
   }
 
   return(df)

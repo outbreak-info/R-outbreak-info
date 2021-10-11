@@ -146,6 +146,7 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Authenticate yourself using your GISAID credentials.</span>
 <span class="fu"><a href="../reference/authenticateUser.html">authenticateUser</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<hr>
 </div>
 <div id="prevalence-over-time" class="section level3">
 <h3 class="hasAnchor">
@@ -181,6 +182,7 @@
 <h4 class="hasAnchor">
 <a href="#customizing-variant-inputs" class="anchor"></a>Customizing variant inputs</h4>
 <p>In addition to viewing the change in prevalence of a lineage over time, more complex variants can be queried. This includes <strong>combinations of lineages</strong>, like the <a href="https://outbreak.info/situation-reports/delta">Delta variant</a>, <strong>lineages with additional mutation(s)</strong>, like <a href="https://outbreak.info/situation-reports?muts=S%3AE484K&amp;pango=B.1.1.7">B.1.1.7 with S:E484K</a>, <strong>individual mutations</strong>, like <a href="https://outbreak.info/situation-reports?muts=S%3AE484K">S:E484K</a>, or <strong>groups of mutations</strong>, like <a href="https://outbreak.info/situation-reports?muts=S%3AE484K&amp;muts=S%3AP681R">S:E484K and S:P681R</a>. View the <a href="varianttracker.html">Variant Tracker</a> and <a href="locationtracker.html">Location Tracker</a> vignettes for more advanced examples.</p>
+<hr>
 </div>
 </div>
 <div id="cumulative-variant-prevalence-geographically" class="section level3">
@@ -232,6 +234,7 @@
 </tr>
 </tbody>
 </table>
+<hr>
 </div>
 <div id="mutations-within-a-lineage" class="section level3">
 <h3 class="hasAnchor">
@@ -245,17 +248,20 @@
 <span class="co">#&gt; Retrieving data...</span>
 <span class="fu"><a href="../reference/plotMutationHeatmap.html">plotMutationHeatmap</a></span><span class="op">(</span><span class="va">char_muts</span>, title <span class="op">=</span> <span class="st">"Mutations with at least 75% prevalence in Variants of Concern"</span>, lightBorders <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p><img src="outbreakinfo_files/figure-html/characteristic_mutations-1.png" width="700"></p>
+<hr>
 </div>
 <div id="additional-genomic-functions" class="section level3">
 <h3 class="hasAnchor">
 <a href="#additional-genomic-functions" class="anchor"></a>Additional genomic functions</h3>
 <p>All the <a href="https://outbreak-info.github.io/R-outbreak-info/reference/index.html#section-sars-cov-variant-prevalence">Variant Prevalence Functions</a> provide documentation on their functionality and examples.</p>
+<hr>
 </div>
 </div>
 <div id="cases-deaths-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#cases-deaths-data" class="anchor"></a>Cases &amp; deaths data</h2>
 <p>Epidemiology data in outbreak.info includes daily cases and death data for World Bank Regions, individual countries, states/provinces, U.S. Metropolitan areas, and U.S. counties.</p>
+<hr>
 <div id="accessing-cases-deaths-data" class="section level3">
 <h3 class="hasAnchor">
 <a href="#accessing-cases-deaths-data" class="anchor"></a>Accessing Cases &amp; Deaths data</h3>
@@ -343,6 +349,7 @@
 <span class="fu"><a href="../reference/plotEpiData.html">plotEpiData</a></span><span class="op">(</span>locations <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Detroit-Warren-Dearborn, MI"</span>, <span class="st">"New Orleans-Metairie, LA"</span><span class="op">)</span>, variable <span class="op">=</span> <span class="st">"confirmed_rolling_per_100k"</span><span class="op">)</span></code></pre></div>
 <p><img src="outbreakinfo_files/figure-html/epi-1.png" width="700"></p>
 <p>Variables are described in the <a href="https://outbreak-info.github.io/R-outbreak-info/reference/epidemiologyDataDictionary.html">Epidemiology Data Dictionary</a>.</p>
+<hr>
 </div>
 <div id="customizing-epidemiology-features" class="section level3">
 <h3 class="hasAnchor">

@@ -43,6 +43,7 @@ library(knitr)
 authenticateUser()
 ```
 
+---
 
 ### Prevalence over time
 One important aspect of a variant to track is how its prevalence is changing over time. We can calculate this prevalence for any lineage, mutation, combination of mutations, or lineage with added mutations. We'll access the data and then plot the results.
@@ -63,6 +64,8 @@ Variables are described in the [Genomics Data Dictionary](https://outbreak-info.
 #### Customizing variant inputs
 In addition to viewing the change in prevalence of a lineage over time, more complex variants can be queried. This includes **combinations of lineages**, like the [Delta variant](https://outbreak.info/situation-reports/delta), **lineages with additional mutation(s)**, like [B.1.1.7 with S:E484K](https://outbreak.info/situation-reports?muts=S%3AE484K&pango=B.1.1.7), **individual mutations**, like [S:E484K](https://outbreak.info/situation-reports?muts=S%3AE484K), or **groups of mutations**, like [S:E484K and S:P681R](https://outbreak.info/situation-reports?muts=S%3AE484K&muts=S%3AP681R). View the [Variant Tracker](varianttracker.html) and [Location Tracker](locationtracker.html) vignettes for more advanced examples.
 
+---
+
 ### Cumulative variant prevalence geographically
 To get the prevalence of a particular variant to compare between locations, you can access the data through the `getCumulativeBySubadmin` function. Note that there are options to supply a location, like `"United States"` to view the prevalence broken down by U.S. state, and/or over the past `n` days. See the [Variant Tracker Vignette](varianttracker.html) for more details.
 ```{r cumulative}
@@ -77,6 +80,7 @@ b117_world %>%
   knitr::kable()
 ```
 
+---
 
 ### Mutations within a lineage
 When we say a lineage, like B.1.1.7, what does that actually mean?  The `getMutationsByLineage` function allows you to pull the prevalence of all the mutations within all the sequences assigned to B.1.1.7 or other lineages, and  `plotMutationHeatmap` allows you to compare their prevalence in a heatmap:
@@ -85,13 +89,19 @@ char_muts = getMutationsByLineage(pangolin_lineage = c("B.1.1.7", "B.1.351", "B.
 plotMutationHeatmap(char_muts, title = "Mutations with at least 75% prevalence in Variants of Concern", lightBorders = FALSE)
 ```
 
-
+---
 
 ### Additional genomic functions
 All the [Variant Prevalence Functions](https://outbreak-info.github.io/R-outbreak-info/reference/index.html#section-sars-cov-variant-prevalence) provide documentation on their functionality and examples.
 
+
+---
+
 ## Cases & deaths data
 Epidemiology data in outbreak.info includes daily cases and death data for World Bank Regions, individual countries, states/provinces, U.S. Metropolitan areas, and U.S. counties.
+
+---
+
 
 ### Accessing Cases & Deaths data
 All cases and death data can be accessed through the main function `getEpiData` and plotted with `plotEpiData`. For instance, you can compare the cases per capita in a few major metropolitan areas:
@@ -107,6 +117,8 @@ plotEpiData(locations = c("Detroit-Warren-Dearborn, MI", "New Orleans-Metairie, 
 ```
 
 Variables are described in the [Epidemiology Data Dictionary](https://outbreak-info.github.io/R-outbreak-info/reference/epidemiologyDataDictionary.html).
+
+---
 
 ### Customizing epidemiology features
 View the [Epidemiology vignette](outbreakvignette.html) for more details on how to access these data and [Epidemiology Data Dictionary](https://outbreak-info.github.io/R-outbreak-info/reference/epidemiologyDataDictionary.html) for information on the variables contained within the data.

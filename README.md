@@ -10,22 +10,20 @@ This R package provides access to the underlying genomic and epidemiology data o
 ## Installation
 
 ``` r
-# Install development version from GitHub
+# Install development version from GitHub in R or RStudio
 # devtools::install_github("outbreak-info/R-outbreak-info")
 ```
 
 ## Getting Started
 
-If you’re getting started using **outbreakinfo**, we recommend starting
-with the tutorial
-[vignettes](https://outbreak-info.github.io/R-outbreak-info/docs/articles/index.html).
+If you’re getting started using **outbreakinfo**, we recommend walking through our
+[tutorial vignettes](https://outbreak-info.github.io/R-outbreak-info/docs/articles/index.html).
 
-Note that to access the genomics data (SARS-CoV-2 variant prevalences),
-you will need to **create an account on
-[GISAID](https://www.gisaid.org/registration/register/)** before being
-able to access the data. It may take a few days for the registration to
-become active. Before calling the genomics functions, you’ll need to
-register your GISAID credentials:
+To access the genomics data (SARS-CoV-2 variant prevalences) that will come up in the tutorial, you will need to [create an account on GISAID](https://www.gisaid.org/registration/register/) before being able to access the data. 
+
+**It may take a few days for the registration to become active.** 
+
+Before calling the genomics functions, you’ll need to register your GISAID credentials:
 
 ``` r
 outbreakinfo::authenticateUser()

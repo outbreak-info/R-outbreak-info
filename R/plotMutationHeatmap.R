@@ -24,35 +24,38 @@ plotMutationHeatmap = function(df, gene2Plot = "S", title = NULL, lightBorders =
   
   # Filter down to one gene
   df = df %>% filter(gene == gene2Plot)
-  
-  df = df %>% 
-    rowwise() %>% 
-    mutate(mutation_simplified = toupper(str_split(mutation, ":")[[1]][2])) %>% 
-    arrange(codon_num)
-  
-  # create empty grid
-  mutation_simplified = df %>% pull(mutation_simplified) %>% unique()
-  lineage = df %>% pull(lineage) %>% unique()
-  blank = crossing(lineage, mutation_simplified)
-  
-  # refactor the mutations to sort them
-  blank$mutation_simplified = factor(blank$mutation_simplified, levels = mutation_simplified)
-  df$mutation_simplified = factor(df$mutation_simplified, levels = mutation_simplified)
-  
-  p = ggplot(df, aes(x = mutation_simplified, y = lineage, fill = prevalence)) +
-    geom_tile(colour = borderColour, fill = "#dedede", data = blank) +
-    geom_tile(colour = borderColour) +
-    theme_minimal() +
-    coord_fixed() +
-    xlab("mutation") +
-    scale_fill_gradientn(colours = MUTATIONPALETTE, limits = c(0,1), labels = scales::percent) +
-    theme(axis.text.x = element_text(angle = 45, vjust = 0.9, hjust=1),
-          panel.grid = element_blank(),
-          legend.position = "bottom"
-          )
-  
-  if(!is.null(title)) {
-    p = p + ggtitle(title)
+  if(!is.null(df) & nrow(df) != 0){
+    df = df %>% 
+      rowwise() %>% 
+      mutate(mutation_simplified = toupper(str_split(mutation, ":")[[1]][2])) %>% 
+      arrange(codon_num)
+    
+    # create empty grid
+    mutation_simplified = df %>% pull(mutation_simplified) %>% unique()
+    lineage = df %>% pull(lineage) %>% unique()
+    blank = crossing(lineage, mutation_simplified)
+    
+    # refactor the mutations to sort them
+    blank$mutation_simplified = factor(blank$mutation_simplified, levels = mutation_simplified)
+    df$mutation_simplified = factor(df$mutation_simplified, levels = mutation_simplified)
+    
+    p = ggplot(df, aes(x = mutation_simplified, y = lineage, fill = prevalence)) +
+      geom_tile(colour = borderColour, fill = "#dedede", data = blank) +
+      geom_tile(colour = borderColour) +
+      theme_minimal() +
+      coord_fixed() +
+      xlab("mutation") +
+      scale_fill_gradientn(colours = MUTATIONPALETTE, limits = c(0,1), labels = scales::percent) +
+      theme(axis.text.x = element_text(angle = 45, vjust = 0.9, hjust=1),
+            panel.grid = element_blank(),
+            legend.position = "bottom"
+      )
+    
+    if(!is.null(title)) {
+      p = p + ggtitle(title)
+    }
+    return(p)
+  } else {
+    warning("No data found. Check if there are mutations present in the gene you specified.")
   }
-  return(p)
 }

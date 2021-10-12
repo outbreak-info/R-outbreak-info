@@ -47,9 +47,30 @@ authenticateUser()
 
 
 ## What mutations are characteristic of the variant?
-A very basic question: what is P.1? What mutations are consistent across the lineage?
+A very basic question: what is P.1? What mutations consistently appear in most sequences within the lineage?
 
 ### Grabbing the characteristic mutations
+```{r characteristic_mutations}
+p1 = getMutationsByLineage(pangolin_lineage="P.1")
+plotMutationHeatmap(p1, title="Characteristic mutations of P.1 occurring in at least 75% of sequences")
+```
+
+### Comparing to other lineages
+We can also compare how the mutations of P.1 compare to its sublineages, to look how any mutations may have been aquired or disappeared. We can also lower (or raise) the threshold for which mutations are included
+```{r all_gamma_mutations}
+# First: find which sublineages are associated with P.1:
+gamma_lineages = lookupSublineages("Gamma", returnQueryString = FALSE)
+
+# Collect the data
+gamma_mutations = getMutationsByLineage(pangolin_lineage=gamma_lineages, frequency=0.5, logInfo = FALSE)
+
+# Plot!
+plotMutationHeatmap(gamma_mutations, title = "S-gene mutations in > 50% of Gamma sequences")
+
+# You can also change the gene you select by changing 
+# plotMutationHeatmap(gamma_mutations, title = "ORF1a-gene mutations in Gamma lineages", gene2Plot="ORF1a")
+```
+
 
 ## How prevalent is a variant overall?
 To start with, let's get some basic information about the overall, cumulative prevalence of P.1 in certain locations. We'll look at the worldwide totals, in Brazil, in the United States, and in Illinois.
@@ -66,9 +87,10 @@ kable(cumulative_prevalences %>% dplyr::select(location, value.global_prevalence
 ```
 
 
-
 ## How is the prevalence of a variant changing?
 
 ## Where is the variant most prevalent?
 
+
 ## What do we know about the variant in the literature?
+The pace of research on COVID-19 has been staggering, with the research community publishing thousands of papers, clinical trials, datasets and more each week. The [P.1 papers and other resources](https://outbreak.info/resources/search?q=%22P.1%22) can be found in outbreak.info's Research Library. At this time, the R package does not provide access to these data, but they can be found in our [resource API](https://api.outbreak.info/try/resources).

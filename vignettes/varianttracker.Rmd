@@ -8,11 +8,11 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
-
-```{r setup, include = FALSE}
+  
+  ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
+collapse = TRUE,
+comment = "#>"
 )
 ```
 # Accessing the data in outbreak.info's Variant Tracker
@@ -86,11 +86,136 @@ cumulative_prevalences = worldwide_prevalence %>% dplyr::bind_rows(cumulative_pr
 kable(cumulative_prevalences %>% dplyr::select(location, value.global_prevalence, value.lineage_count, value.first_detected, value.last_detected))
 ```
 
+---
 
 ## How is the prevalence of a variant changing?
+We can access how the prevalence of a lineage, a group of lineages, a mutation, a group of mutations, or a lineage with additional mutations is changing, customizable to any of the over 2,000 countries, states/provinces, or U.S. counties.
+
+### Lineage queries
+Let's start with something simple: just the prevalence of P.1 across Brazil, where we see it becomes dominant in spring 2021 but then falls to near 0 prevalence.
+```{r p1}
+p1_brazil = getPrevalence(pangolin_lineage = "P.1", location = "Brazil")
+plotPrevalenceOverTime(p1_brazil, title = "Daily P.1 prevalence in Brazil")
+```
+
+### Comparing lineage queries & multiple lineage queries.
+How does that compare to the appearance of Delta lineages in Brazil?  Or to the proliferation of P.1 in the United States?  Using the same functions with slightly different parameters, we can grab the data for the Delta lineages in Brazil and P.1 in the U.S. and see how they compare.
+```{r p1_comparison}
+# Multiple lineage queries should be separated by the parameter ` OR `. The `lookupSublinage` function is a convenient wrapper to look up what sublineages are associated with Delta (e.g. B.1.617.2 and all the AY sublineages) and collapse it into a string to be used in `getPrevalence`.
+delta_lineages_string = lookupSublineages("Delta", returnQueryString = TRUE)
+
+# the name of this lineage gets REALLY long, so we can change the name with a named dictionary:
+delta_label = c("Delta")
+names(delta_label) = delta_lineages_string
+
+# Get Delta prevalence, combine into a single dataset, and plot
+delta_brazil = getPrevalence(pangolin_lineage = delta_lineages_string, location = "Brazil")
+p1_delta_brazil = dplyr::bind_rows(p1_brazil, delta_brazil)
+plotPrevalenceOverTime(p1_delta_brazil, title = "Daily P.1 and Delta prevalence in Brazil", labelDictionary = delta_label)
+
+
+# Comparing P.1 in the U.S. and Brazil. We also need to change what variable colors the traces.
+p1_usa = getPrevalence(pangolin_lineage = "P.1", location = "United States")
+p1 = dplyr::bind_rows(p1_brazil, p1_usa)
+plotPrevalenceOverTime(p1, title = "Daily P.1 prevalence", colorVar = "location")
+```
+
+### Mutation queries
+From the [Characteristic mutations](#grabbing-the-characteristic-mutations) plots, two mutations of interest that pop up in the P.1 and Gamma sequences are N501Y and E484K in the Spike protein. Rather than look at the prevalence of a Pango lineage, you can also look at how the prevalence of these two mutations is changing. Be sure to add the gene in front of the mutation, like `S:N501Y`.
+```{r mutation_queries}
+# With no location specified, the results for all samples (Worldwide) are returned.
+n501y_e484k = getPrevalence(mutations = c("S:E484K", "S:N501Y"))
+plotPrevalenceOverTime(n501y_e484k, title = "Daily S:E484K & S:N501Y prevalence")
+
+# You can also see how often those two combinations of mutations appear in lineages:
+lineages_n501y_e484k = getMutationAcrossLineage(mutations = c("S:E484K", "S:N501Y"))
+
+# We'll sort those lineages and take the top 5, of lineages with at least 1,000 sequences:
+lineages_n501y_e484k %>% 
+  select(pangolin_lineage, proportion, lineage_count) %>% 
+  filter(lineage_count >= 1000) %>% 
+  arrange(desc(proportion)) %>% 
+  slice(1:5) %>% 
+  knitr::kable()
+
+# ... and you can combine mutations with a Pango lineage to look at how those mutations are prevalent in the P.1 backbone.
+P1_n501y_e484k = getPrevalence(mutations = c("S:E484K", "S:N501Y"), pangolin_lineage = "P.1")
+```
+
+---
 
 ## Where is the variant most prevalent?
+After seeing how P.1 prevalence changes in specific locations, a natural related question is where is the prevalence of P.1 the greatest? We can access that data for the entire world, to look at how the prevalence varies by country, or we can look at how it varies within a country like Brazil.
 
+### Getting P.1 cumulative prevalence by country
+```{r variant_prevalence}
+p1_by_country = getCumulativeBySubadmin(pangolin_lineage = "P.1")
+```
+
+### Making a choropleth
+The location names in the genomics data are standardized to the location ids contained in the  [GADM data](https://gadm.org/download_world.html). After downloading the shapefile from GADM, it's easy to make a choropleth using the [sf](https://r-spatial.github.io/sf/) package. Note: since GADM doesn't allow their data to be redistributed, you'll need to download the data yourself. But it's free to use! You might also want to run the data through [mapshaper](https://mapshaper.org/) to simplify the geometries, since the data is quite large.  Within the choropleth, it's easy to see that P.1 has been more prevalent across South America.
+```{r}
+library(sf)
+
+# Load in the spatial data
+gadm = read_sf("../data/gadm36_0.shp")
+
+# join by the ISO3 ID
+gadm_p1 = left_join(gadm, p1_by_country, by=c("GID_0" = "id"))
+
+# Create a quick little plotting function
+
+plotChoropleth = function(df, fillVar = "proportion", title = NULL, proj4 = "+proj=wag7 +lon_0=11 +datum=WGS84 +units=m +no_defs") {
+  # color palette: ColorBrewer's YlGnBu:https://colorbrewer2.org/#type=sequential&scheme=YlGnBu&n=9
+  CHOROPLETH_PALETTE = c('#ffffd9','#edf8b1','#c7e9b4','#7fcdbb','#41b6c4','#1d91c0','#225ea8','#253494','#081d58')
+  
+  # Reproject as Mollweide projection
+  df_projected = st_transform(df, crs = proj4)
+  
+  df_projected = df_projected %>%
+    filter(NAME_0 != "Antarctica")
+
+  
+  p = ggplot(df_projected, aes_string(fill = fillVar)) +
+    geom_sf(size = 0.1, colour = "#555555") +
+    scale_fill_gradientn(colours = CHOROPLETH_PALETTE, na.value = "#babab0", labels=scales::percent, limits = c(0,1)) +
+    theme_void() +
+    theme(legend.position = "bottom") 
+  
+  if(!is.null(title)){ 
+    p = p +
+      ggtitle(title)
+  }
+  return(p)
+}
+
+plotChoropleth(gadm_p1, title="Cumulative P.1 prevalence")
+```
+
+
+### Adjusting the time window
+The choropleth above shows the cumulative prevalence of P.1 since it was first detected. However, more recently, its prevalence has dropped. We can adjust this time window by modifying the `ndays` parameter to only calculate prevalence over the past 60 days. When we make that adjustment, we see there are a lot more countries that haven't sequenced any samples in the last two months (show in grey), and overall, the prevalence of P.1 has been dropping as the Delta lineages spread across the world.
+```{r}
+p1_by_country_60days = getCumulativeBySubadmin(pangolin_lineage = "P.1", ndays = 60)
+
+
+# join by the ISO3 ID
+gadm_p1_60days = left_join(gadm, p1_by_country_60days, by=c("GID_0" = "id"))
+
+plotChoropleth(gadm_p1_60days, title="Cumulative P.1 prevalence in the past 60 days")
+```
+
+### Specifying a location
+Instead of looking at the prevalence by country, you can also specify a location like Brazil, and look at the cumulative prevalence one administrative unit below that.  So, for countries, you will get the prevalence at the state/province-level, and for states, you get the prevalnece at the county level. Note that the smaller the geographic area, it's likely that the uncertainty in these estimates will increase, since there's less sampling.
+```{r}
+library(ggplot2)
+# P.1 prevalence by Brazilian states
+p1_in_brazil = getCumulativeBySubadmin(pangolin_lineage = "P.1", location = "Brazil")
+
+# P.1 prevalence by Californian counties
+p1_in_california = getCumulativeBySubadmin(pangolin_lineage = "P.1", location = "California")
+```
+---
 
 ## What do we know about the variant in the literature?
 The pace of research on COVID-19 has been staggering, with the research community publishing thousands of papers, clinical trials, datasets and more each week. The [P.1 papers and other resources](https://outbreak.info/resources/search?q=%22P.1%22) can be found in outbreak.info's Research Library. At this time, the R package does not provide access to these data, but they can be found in our [resource API](https://api.outbreak.info/try/resources).

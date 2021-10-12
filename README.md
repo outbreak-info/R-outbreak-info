@@ -1,24 +1,11 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# outbreakinfo <img src="man/figures/logo.png" align="right" />
+# R package for outbreak.info <img src="man/figures/logo.png" align="right" />
 
-#### R package for [outbreak.info](https://outbreak.info)
+[outbreak.info](https://outbreak.info) is a platform for the understanding and exploration of COVID-19 data and variants. Our (Variant Reports)[https://outbreak.info/situation-reports] allow researchers to track any emerging or known variant using customizable visualizations. This enables near real-time genomic surveillance. Our Epidemiology tools, available through the outbreak.info platform, allow users to navigate how COVID-19 cases and deaths are changing across locations.
 
-[outbreak.info](https://outbreak.info) is a platform to discover and
-explore COVID-19 data and variants. Our Variant Reports allow
-researchers to understand and track any emerging or known variant using
-customizable visualizations, enabling near real-time genomic
-surveillance, and our Epidemiology tools allow users to explore how
-COVID-19 cases and deaths are changing across locations.
-
-The **outbreakinfo** R package provides access to the underlying genomic
-and epidemiology data on outbreak.info. This includes **SARS-CoV-2
-variant prevalence** data calculated using the
-[Bjorn](https://github.com/andersen-lab/bjorn/) package using data
-provided by GISAID. We also standardize **COVID-19 case and death data**
-from Johns Hopkins University and the New York Times and calculate
-derived statistics.
+This R package provides access to the underlying genomic and epidemiology data on outbreak.info, which includes **SARS-CoV-2 variant prevalence** data calculated using the [Bjorn](https://github.com/andersen-lab/bjorn/) package using data provided by GISAID. We standardize **COVID-19 case and death data** from Johns Hopkins University and the New York Times and calculate derived statistics.
 
 ## Installation
 

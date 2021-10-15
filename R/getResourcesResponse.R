@@ -1,0 +1,182 @@
+#' Access outbreak.info Research Library API
+#'
+#' @param queryString (optional): constructs a query over ALL fields, or a fielded query searching within specific fields. Fielded query terms should be separated by ` AND ` or ` OR ` 
+#' @param size (optional): number of records to return (default = 10)
+#' @param fetchAll (optional): Boolean whether to return all results for the query
+#' @param fields (optional): vector specifying which fields to return. Returns all by default
+#' @param sort (optional): field to sort by.  Add `-` to sort in descending order
+#' @param facets (optional): field by which to aggregate (count) their frequency
+#' @param facet_size (optional): how many facet groups to include in the facet total (default = 10)
+#'
+#' @import httr
+#' @import jsonlite
+#' @import progress
+#' @import stringr
+#' @import dplyr
+#' 
+#' @return dataframe containing the response of the API query
+#' @export
+#'
+#' @examples
+#' # Return only the first 10 hits for 
+#' df = getResourcesResponse("ivermectin", size = 10)
+#' df = getResourcesResponse("_exists_:topicCategory", size = 10)
+#' df = getResourcesResponse("ivermectin", size = 10, facets="@type", fields=c("date", "name"))
+
+getResourcesResponse = function(queryString = NULL, size = 10, fetchAll = FALSE, fields = NULL, sort = NULL, facets = NULL, facet_size = 10) {
+  
+  # Construct the query
+  query = "https://api.outbreak.info/resources/query?"
+  
+  # add base query
+  if(!is.null(queryString)){
+    query = str_c("https://api.outbreak.info/resources/query?q=", queryString)
+  }
+  
+  
+  # add sorting
+  if(!is.null(sort)){
+    query = str_c(query, "&sort=", sort)
+  }
+  
+  # add size param
+  if(!is.null(size)){
+    query = str_c(query, "&size=", size)
+  }
+  
+  # add fields param
+  if(!is.null(fields)){
+    query = str_c(query, "&fields=", paste(fields, sep=","))
+  }
+  
+  # add facets param
+  if(!is.null(facets)){
+    query = str_c(query, "&facets=", facets, "&facet_size=", facet_size)
+  }
+  
+  # --- RUN THE QUERY(-IES) --
+  if(fetchAll) {
+    # Fetch all queries -- keep going till you hit the end
+    query = str_c(query, "&fetch_all=true")
+    
+    df = tibble()
+    res = getResourcesQuery(query)
+    
+    # add progress bar
+    pb <- progress_bar$new(total = res$total, clear = FALSE, show_after = 0)
+    
+    while(!is.null(res)){
+      pb$update(nrow(df) / res$total)
+      df = df %>% bind_rows(res$hits)
+      res = getResourcesQuery(query, res$id)
+    }
+    pb$update(1)
+    pb$terminate()
+    
+    # return statement
+    if(!is.null(facets)) {
+      return(list(hits = df, total = res[["total"]], facets = res[["facets"]]))    
+    } else {
+      return(df)
+    }
+    
+    
+  } else {
+    # Single query
+    results = getResourcesQuery(query)
+  }
+  
+  # Data cleanup!
+  # remove `_score`
+  results$hits = results$hits %>% 
+    select(-`_score`)
+  
+  if("date" %in% colnames(results$hits)) {
+    results$hits = results$hits %>% 
+      mutate(date =  as.Date(date, "%Y-%m-%d"))
+  }
+  
+  if("datePublished" %in% colnames(results$hits)) {
+    results$hits = results$hits %>% 
+      mutate(datePublished =  as.Date(datePublished, "%Y-%m-%d"))
+  }
+  
+  if("dateModified" %in% colnames(results$hits)) {
+    results$hits = results$hits %>% 
+      mutate(dateModified =  as.Date(dateModified, "%Y-%m-%d"))
+  }
+  
+  
+  if("dateCreated" %in% colnames(results$hits)) {
+    results$hits = results$hits %>% 
+      mutate(dateCreated =  as.Date(dateCreated, "%Y-%m-%d"))
+  }
+  
+  
+  if("dateCompleted" %in% colnames(results$hits)) {
+    results$hits = results$hits %>% 
+      mutate(dateCompleted =  as.Date(dateCompleted, "%Y-%m-%d"))
+  }
+  
+  # Flatten the results, if they don't include an aggregation
+  if(!is.null(facets)) {
+    return(results)
+  } else {
+    return(results$hits)  
+  }
+  
+}
+
+# helper function to grab the results
+getResourcesQuery = function(query, scroll_id = NA) {
+  if(!is.na(scroll_id)){
+    query = str_c(query, "&scroll_id=", scroll_id)
+  }
+  resp = GET(URLencode(query))
+  
+  if(resp$status_code == 200) {
+    resp_content = content(resp, as="text")
+    results = fromJSON(resp_content)
+    if(length(results[["success"]] == 0)) {
+      return(NULL)
+    } else {
+      return(list(hits = results[["hits"]], id = results[["_scroll_id"]], total = results[["total"]], facets = results[["facets"]]))  
+    }
+  } else {
+    stop("Hmm. ", query, " isn't a recognized query. Try reformatting your query string or reach out to help@outbreak.info for help.")
+  }
+}
+
+library(httr)
+library(microbenchmark)
+
+# heavy, fetch all query
+query = "https://api.outbreak.info/resources/query?q=remdesivir&fetch_all=true&aggs=name"
+
+# very light query
+query = "https://api.outbreak.info/resources/query?q=remdesivir&size=3&fields=date"
+resp = GET(query)
+
+resp_text = content(resp, as="text")
+
+rjson_plus_df = function(text){
+  x = rjson::fromJSON(text)
+  a = do.call(rbind, x$hits)
+  return(a %>% as_tibble() %>% mutate_all(unlist))
+}
+
+
+
+rjson_plus_df2 = function(text){
+  x = rjson::fromJSON(text)
+  return(map_df(x$hits, as_tibble))
+}
+
+jl = jsonlite::fromJSON(resp_text)
+rj = rjson_plus_df(resp_text)
+
+microbenchmark(jsonlite::fromJSON(resp_text), times = 20)
+microbenchmark(RJSONIO::fromJSON(resp_text), times = 20)
+microbenchmark(rjson::fromJSON(resp_text), times = 20)
+microbenchmark(rjson_plus_df(resp_text), times = 20)
+microbenchmark(rjson_plus_df2(resp_text), times = 20)

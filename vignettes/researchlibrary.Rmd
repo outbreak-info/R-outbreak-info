@@ -1,0 +1,59 @@
+---
+title: "Research Library"
+# author: "Laura Hughes"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Research Library}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r imports, message = FALSE, results='hide'}
+library(outbreakinfo)
+
+# For some data manipulation and plotting
+library(ggplot2)
+library(dplyr)
+library(lubridate)
+```
+
+### Access how many resources are collected by date
+```{r resources_by_date}
+# query the API to get the resources by date. Filter to > 1 January 2020, to remove the weirdos that slipped through.
+resources_by_date = getResourcesData(query = "date:[2020-01-01 TO *]", fields = "date", fetchAll = TRUE)
+
+# roll up the number of resources by week
+resources_by_date = resources_by_date %>% 
+  mutate(year = lubridate::year(date),
+         iso_week = lubridate::isoweek(date)) 
+
+resources_per_week = resources_by_date %>% 
+  count(iso_week, year) %>% 
+  # convert from iso week back to a date
+  mutate(iso_date = lubridate::parse_date_time(paste(year,iso_week, "Mon", sep="-"), "Y-W-a")) 
+
+# plot!
+fill_color = "#66c2a5"
+ggplot(resources_per_week, aes(x = iso_date, y = n)) +
+  geom_bar(fill = fill_color, stat="identity") +
+  ggtitle("COVID-19 resources have rapidly proliferated", subtitle="Number of publications, datasets, clinical trials, and more added to outbreak.info's Research Library") +
+  theme_minimal() + 
+  theme(
+    text = element_text(family="DM Sans"),
+    axis.title = element_blank(),
+    axis.text = element_text(size = 16),
+    plot.title = element_text(size = 20),
+    plot.subtitle = element_text(colour="#777777", size=16)
+  ) +
+  scale_y_continuous(label=scales::comma) +
+  scale_x_datetime(limits = c(min(resources_per_week$iso_date, na.rm = T), max(resources_per_week$iso_date, na.rm = T)), date_labels = "%b %Y")
+```
+

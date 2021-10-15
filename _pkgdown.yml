@@ -45,3 +45,9 @@ reference:
   - getMetroByCountry
   - plotEpiData
   - searchLocations
+- title: "Research Library"
+  desc: >
+    Functions to track metadata of COVID-19 publications, clinical trials, datasets, protocols, and more.
+- contents:
+  - getResourcesData
+  - getResourcesResponse

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Articles • outbreakinfo</title>
+<title>Title — getResourcesResponse • outbreakinfo</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -48,7 +48,8 @@
   <link href="../extra.css" rel="stylesheet">
   
 
-<meta property="og:title" content="Articles" />
+<meta property="og:title" content="Title — getResourcesResponse" />
+<meta property="og:description" content="Title" />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -78,7 +79,7 @@
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    <div class="container template-article-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -123,7 +124,7 @@
       <a href="../articles/locationtracker.html">outbreak.info Location Tracker</a>
     </li>
     <li>
-      <a href="../articles/researchlibrary.html">Research Library</a>
+      <a href="../articles/researchlibrary.html">Research Libary</a>
     </li>
     <li>
       <a href="../articles/varianttracker.html">outbreak.info Variant Tracker</a>
@@ -151,26 +152,73 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Articles</h1>
+    <h1>Title</h1>
+    <small class="dont-index">Source: <a href='https://github.com/outbreak-info/R-outbreak-info/blob/master/R/getResourcesResponse.R'><code>R/getResourcesResponse.R</code></a></small>
+    <div class="hidden name"><code>getResourcesResponse.Rd</code></div>
     </div>
 
-    <div class="section ">
-      <h3>All vignettes</h3>
-      <p class="section-desc"></p>
-
-      <dl>
-        <dt><a href="epivignette.html">outbreak.info R package: Epidemiological data</a></dt>
-        <dd></dt>
-        <dt><a href="locationtracker.html">outbreak.info Location Tracker</a></dt>
-        <dd></dt>
-        <dt><a href="outbreakinfo.html">Introduction to outbreakinfo</a></dt>
-        <dd></dt>
-        <dt><a href="researchlibrary.html">Research Library</a></dt>
-        <dd></dt>
-        <dt><a href="varianttracker.html">outbreak.info Variant Tracker</a></dt>
-        <dd></dt>
-      </dl>
+    <div class="ref-description">
+    <p>Title</p>
     </div>
+
+    <pre class="usage"><span class='fu'>getResourcesResponse</span><span class='op'>(</span>
+  queryString <span class='op'>=</span> <span class='cn'>NULL</span>,
+  size <span class='op'>=</span> <span class='fl'>10</span>,
+  fetchAll <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  fields <span class='op'>=</span> <span class='cn'>NULL</span>,
+  sort <span class='op'>=</span> <span class='cn'>NULL</span>,
+  facets <span class='op'>=</span> <span class='cn'>NULL</span>,
+  facet_size <span class='op'>=</span> <span class='fl'>10</span>
+<span class='op'>)</span></pre>
+
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>queryString</th>
+      <td><p>(optional): constructs a query over ALL fields, or a fielded query searching within specific fields. Fielded query terms should be separated by ` AND ` or ` OR `</p></td>
+    </tr>
+    <tr>
+      <th>size</th>
+      <td><p>(optional): number of records to return (default = 10)</p></td>
+    </tr>
+    <tr>
+      <th>fetchAll</th>
+      <td><p>(optional): Boolean whether to return all results for the query</p></td>
+    </tr>
+    <tr>
+      <th>fields</th>
+      <td><p>(optional): vector specifying which fields to return. Returns all by default</p></td>
+    </tr>
+    <tr>
+      <th>sort</th>
+      <td><p>(optional): field to sort by.  Add `-` to sort in descending order</p></td>
+    </tr>
+    <tr>
+      <th>facets</th>
+      <td><p>(optional): field by which to aggregate (count) their frequency</p></td>
+    </tr>
+    <tr>
+      <th>facet_size</th>
+      <td><p>(optional): how many facet groups to include in the facet total (default = 10)</p></td>
+    </tr>
+    </table>
+
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>dataframe containing the response of the API query</p>
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># Return only the first 10 hits for </span>
+<span class='va'>df</span> <span class='op'>=</span> <span class='fu'>getResourcesResponse</span><span class='op'>(</span><span class='st'>"ivermectin"</span>, size <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
+<span class='va'>df</span> <span class='op'>=</span> <span class='fu'>getResourcesResponse</span><span class='op'>(</span><span class='st'>"_exists_:topicCategory"</span>, size <span class='op'>=</span> <span class='fl'>10</span><span class='op'>)</span>
+<span class='va'>df</span> <span class='op'>=</span> <span class='fu'>getResourcesResponse</span><span class='op'>(</span><span class='st'>"ivermectin"</span>, size <span class='op'>=</span> <span class='fl'>10</span>, facets<span class='op'>=</span><span class='st'>"@type"</span>, fields<span class='op'>=</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"date"</span>, <span class='st'>"name"</span><span class='op'>)</span><span class='op'>)</span>
+</div></pre>
+  </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 

@@ -1,5 +1,5 @@
 ---
-title: "outbreak.info R package: Epidemiological data"
+title: "Cases & Deaths data"
 date: "April 26, 2021"
 output: html_document
 ---

@@ -1,10 +1,10 @@
 ---
-title: "outbreak.info Variant Tracker"
+title: "Variant Tracker"
 # author: "Laura Hughes"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{outbreak.info Variant Tracker}
+  %\VignetteIndexEntry{Variant Tracker}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

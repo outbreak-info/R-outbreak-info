@@ -16,17 +16,16 @@ knitr::opts_chunk$set(
 #### R package for [outbreak.info](https://outbreak.info)
 
 [outbreak.info](https://outbreak.info) is a platform to discover and explore
-COVID-19 data and variants. Our Variant Reports allow researchers to
-understand and track any emerging or known variant using customizable
-visualizations, enabling near real-time genomic surveillance, and our
-Epidemiology tools allow users to explore how COVID-19 cases and deaths are
+COVID-19 data and variants. Our [Variant Reports](https://outbreak.info/situation-reports) allow researchers to track any emerging or known variant using customizable
+visualizations, enabling near real-time genomic surveillance. Our
+[Epidemiology tools](https://outbreak.info/epidemiology) allow users to explore how COVID-19 cases and deaths are
 changing across locations.
 
 The **outbreakinfo** R package provides access to the underlying genomic
 and epidemiology data on outbreak.info. This includes **SARS-CoV-2 variant prevalence**
 data calculated using the [Bjorn](https://github.com/andersen-lab/bjorn/)
-package using data provided by GISAID. We also standardize **COVID-19 case and death data**
-from Johns Hopkins University and the New York Times and calculate derived statistics.
+package using data provided by [GISAID](gisaid.org). We standardize **COVID-19 case and death data**
+from [Johns Hopkins University](https://github.com/CSSEGISandData/COVID-19) and the [New York Times](https://github.com/nytimes/covid-19-data) and calculate derived statistics.
 
 
 ## Installation
@@ -36,11 +35,11 @@ from Johns Hopkins University and the New York Times and calculate derived stati
 ```
 
 ## Getting Started
-If you're getting started using **outbreakinfo**, we recommend starting with the tutorial [vignettes](https://outbreak-info.github.io/R-outbreak-info/docs/articles/index.html).
+If you're getting started using **outbreakinfo**, we recommend starting with our tutorial [vignettes](https://outbreak-info.github.io/R-outbreak-info/docs/articles/index.html).
 
-Note that to access the genomics data (SARS-CoV-2 variant prevalences), you will
+To access the genomics data (SARS-CoV-2 variant prevalences), you will
 need to **create an account on [GISAID](https://www.gisaid.org/registration/register/)**
-before being able to access the data. It may take a few days for the registration to become active.
+before being able to access the data. *It may take a few days for the registration to become active*.
 Before calling the genomics functions, you'll need to register your GISAID credentials:
 ```{r gisaid_auth, eval = FALSE}
 outbreakinfo::authenticateUser()
@@ -125,6 +124,6 @@ GISAID does so by overcoming disincentive hurdles and restrictions, which discou
 The Initiative ensures that open access to data in GISAID is provided free-of-charge to all individuals that agreed to identify themselves and agreed to uphold the GISAID sharing mechanism governed through its [Database Access Agreement](https://www.gisaid.org/registration/terms-of-use/).
 
 ### Cases & deaths
-Confirmed cases, recovered cases, and deaths over time for countries outside the United States, and provinces in Australia, Canada, and China are provided by [https://github.com/CSSEGISandData/COVID-19](Johns Hopkins University Center for Systems Science and Engineering). See [data FAQ](https://systems.jhu.edu/research/public-health/2019-ncov-map-faqs/).
+Confirmed cases, recovered cases, and deaths over time for countries outside the United States, and provinces in Australia, Canada, and China are provided by [Johns Hopkins University Center for Systems Science and Engineering](https://github.com/CSSEGISandData/COVID-19). See [data FAQ](https://systems.jhu.edu/research/public-health/2019-ncov-map-faqs/).
 
 Confirmed cases and deaths over time for the United States, U.S. States, U.S. Metropolitan Areas, U.S. cities and U.S. counties are provided by the [New York Times](https://github.com/nytimes/covid-19-data). Note that "New York City" refers to the combined totals for New York, Kings, Queens, Bronx and Richmond Counties; "Kansas City" refers to cases within the Missouri portion of the Kansas City Metropolitan area and values for Jackson, Cass, Clay, and Platte counties are the totals excluding the KCMO data; cities like St. Louis that are administered separately from their containing county are reported separately. See other [geographic exceptions](https://github.com/nytimes/covid-19-data#geographic-exceptions).

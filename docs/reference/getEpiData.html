@@ -231,55 +231,55 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>getEpiData</span><span class='op'>(</span>name<span class='op'>=</span><span class='st'>"United States of America"</span>, date<span class='op'>=</span><span class='st'>"2020-07-01"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;             X_id  X_score admin_level confirmed confirmed_doublingRate
-#&gt; 1 USA_2020-07-01 14.69031           0   2703296                 40.773
+#&gt; 1 USA_2020-07-01 14.69083           0   2703296                 40.773
 #&gt;   confirmed_firstDate confirmed_newToday confirmed_numIncrease
 #&gt; 1          2020-01-21               TRUE                 49975
 #&gt;   confirmed_numIncrease_per_100k confirmed_pctIncrease confirmed_per_100k
 #&gt; 1                       15.30038            0.01883489           827.6432
 #&gt;                                                                                        confirmed_per_100k_breaks
-#&gt; 1 -822.9560, 715.7147, 2082.3663, 3804.9633, 5754.9489, 7705.3890, 9721.0582, 12820.3341, 17098.7011, 23132.4532
+#&gt; 1 -822.9560, 724.1761, 2103.4859, 3825.9357, 5769.8643, 7817.4576, 9967.6266, 12959.4436, 17066.4079, 23210.1789
 #&gt;   confirmed_rolling confirmed_rolling_14days_ago
 #&gt; 1          48583.86                     25815.29
 #&gt;   confirmed_rolling_14days_ago_diff
 #&gt; 1                          22768.57
-#&gt;                                                                           confirmed_rolling_14days_ago_diff_breaks
-#&gt; 1 -148609.429, -88774.214, -35813.143, -9455.143, -2153.071, 2400.214, 10792.429, 33900.786, 99049.000, 187497.429
+#&gt;                                                                                                     confirmed_rolling_14days_ago_diff_breaks
+#&gt; 1 -148609.429, -148608.429, -148607.429, -94663.214, -34847.071, -5253.970, 2090.214, 9837.714, 33993.357, 91037.714, 141405.429, 187497.429
 #&gt;   confirmed_rolling_14days_ago_diff_per_100k
 #&gt; 1                                   6.970843
 #&gt;                                                 confirmed_rolling_14days_ago_diff_per_100k_breaks
-#&gt; 1 -432.0734, -217.2130, -81.0552, -23.3633, -5.3205, 5.2207, 21.9304, 61.0124, 157.5027, 449.9255
+#&gt; 1 -432.0734, -254.3425, -72.5687, -22.1762, -4.9328, 6.1929, 25.7133, 80.9240, 185.4881, 336.2997
 #&gt;   confirmed_rolling_14days_ago_per_100k
 #&gt; 1                              7.903627
-#&gt;                                                                                     confirmed_rolling_breaks
-#&gt; 1 0.000, 2243.786, 7374.071, 16432.929, 31154.357, 53173.071, 105958.214, 178176.214, 280951.286, 391313.286
+#&gt;                                                                            confirmed_rolling_breaks
+#&gt; 1 0.00, 3727.50, 13653.00, 28620.43, 49773.86, 86921.50, 138335.36, 201311.07, 302796.21, 391313.29
 #&gt;   confirmed_rolling_per_100k
 #&gt; 1                   14.87447
 #&gt;                                                           confirmed_rolling_per_100k_breaks
-#&gt; 1 0.0000, 4.5829, 13.3953, 25.0106, 40.2593, 61.4818, 91.0893, 150.6596, 273.3976, 449.9255
+#&gt; 1 0.0000, 4.7358, 13.8640, 25.8184, 40.9749, 60.7250, 86.4380, 140.6011, 315.2096, 432.0734
 #&gt;               country_name       date daysSince100Cases daysSince10Deaths
 #&gt; 1 United States of America 2020-07-01            121.25               120
 #&gt;   daysSince50Deaths   dead dead_doublingRate dead_firstDate dead_newToday
 #&gt; 1               110 128104           138.629     2020-02-29          TRUE
 #&gt;   dead_numIncrease dead_numIncrease_per_100k dead_pctIncrease dead_per_100k
 #&gt; 1              642                 0.1965552      0.005036795      39.22042
-#&gt;                                                                             dead_per_100k_breaks
-#&gt; 1 -0.0829, 13.4538, 38.2274, 69.5124, 103.3962, 139.2906, 182.4280, 239.4386, 427.1562, 643.2136
+#&gt;                                                                            dead_per_100k_breaks
+#&gt; 1 -0.0829, 12.9255, 36.5600, 65.6543, 97.7097, 134.2768, 179.2636, 239.3157, 427.1562, 643.5197
 #&gt;   dead_rolling dead_rolling_14days_ago dead_rolling_14days_ago_diff
 #&gt; 1     590.7143                609.4286                    -18.71429
 #&gt;                                                                                   dead_rolling_14days_ago_diff_breaks
-#&gt; 1 -23232.0000, -21078.1250, -10766.0536, -1018.5714, -137.8571, 83.3571, 440.6429, 10356.1310, 21173.7738, 23262.0000
+#&gt; 1 -23232.0000, -21245.2024, -10763.5476, -862.5000, -110.5714, 152.9286, 903.7143, 10630.7024, 21173.7738, 23262.0000
 #&gt;   dead_rolling_14days_ago_diff_per_100k
 #&gt; 1                           -0.00572958
-#&gt;                                                dead_rolling_14days_ago_diff_per_100k_breaks
-#&gt; 1 -74.0297, -67.1663, -33.7804, -1.8408, -0.2316, 0.2573, 1.5969, 34.5096, 67.8094, 74.1253
+#&gt;                                               dead_rolling_14days_ago_diff_per_100k_breaks
+#&gt; 1 -74.0297, -68.0401, -34.6502, -2.2840, -0.2677, 0.2190, 1.2227, 4.1256, 34.5763, 74.1253
 #&gt;   dead_rolling_14days_ago_per_100k
 #&gt; 1                        0.1865831
 #&gt;                                                                                       dead_rolling_breaks
-#&gt; 1 0.0000, 60.2143, 220.6071, 469.1429, 824.7143, 1504.1429, 2589.2857, 10491.1429, 21390.8000, 23485.4000
+#&gt; 1 0.0000, 61.1429, 228.7143, 486.2143, 830.5000, 1476.0000, 2551.7857, 11756.9762, 21522.2000, 23485.4000
 #&gt;   dead_rolling_per_100k
 #&gt; 1             0.1808535
 #&gt;                                                        dead_rolling_per_100k_breaks
-#&gt; 1 0.0000, 0.1292, 0.3935, 0.7680, 1.3198, 2.2014, 4.1797, 31.0698, 68.2076, 74.8372
+#&gt; 1 0.0000, 0.1376, 0.4305, 0.8768, 1.5426, 2.8716, 5.6571, 35.9578, 68.8505, 74.8372
 #&gt;   first_dead.first_confirmed gdp_last_updated gdp_per_capita iso3      lat
 #&gt; 1                         39             2018       62794.59  USA 39.52802
 #&gt;   location_id      long mostRecent                     name num_subnational

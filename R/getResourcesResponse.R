@@ -9,7 +9,7 @@
 #' @param facet_size (optional): how many facet groups to include in the facet total (default = 10)
 #'
 #' @import httr
-#' @import jsonlite
+#' @import RcppSimdJson
 #' @import progress
 #' @import stringr
 #' @import dplyr
@@ -142,7 +142,7 @@ getResourcesQuery = function(query, scroll_id = NA) {
   
   if(resp$status_code == 200) {
     resp_content = content(resp, as="text")
-    results = fromJSON(resp_content)
+    results = fparse(resp$content)
     if(length(results[["success"]] == 0)) {
       return(NULL)
     } else {

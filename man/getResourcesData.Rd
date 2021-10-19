@@ -2,23 +2,23 @@
 % Please edit documentation in R/getResourcesData.R
 \name{getResourcesData}
 \alias{getResourcesData}
-\title{Title}
+\title{Get COVID-19 resource metadata}
 \usage{
 getResourcesData(
   query = NULL,
   types = NULL,
   size = 10,
   fetchAll = FALSE,
-  fields = null,
+  fields = NULL,
   sort = NULL,
   facets = NULL,
   facet_size = 10
 )
 }
 \arguments{
-\item{query}{(optional): constructs a query over ALL fields, or a fielded query searching within specific fields. Fielded query terms should be separated by ` AND ` or ` OR `. See Elasticserach query strings for more info.}
+\item{query}{(optional): constructs a query over ALL fields, or a fielded query searching within specific fields. Fielded query terms should be separated by ` AND ` or ` OR `. See \href{https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax}{Elasticserach query strings} for more info.}
 
-\item{types}{(optional): vector of resource type}
+\item{types}{(optional): vector of resource type to return. The most frequent types include: "Publication", "ClinicalTrial", "Dataset", "Protocol", "SoftwareSourceCode", "Analysis".}
 
 \item{size}{(optional): number of records to return (default = 10)}
 
@@ -36,9 +36,17 @@ getResourcesData(
 
 }
 \description{
-Title
+Get COVID-19 resource metadata
 }
 \examples{
 # Get the date latest date for every resource (newest of dateModified, dateCreated, datePublished)
 resources_by_date = getResourcesData(query = "date:[2020-01-01 TO *]", fields = "date")
+
+# Get all metadata on remdesivir
+remdesivir = getResourcesData(query = "remdesivir", fetchAll = TRUE, fields = c("@type", "name", "curatedBy"))
+remdesivir \%>\% count(`@type`) \%>\% arrange(desc(n))
+
+# Get all metadata for remdesivir Clinical Trials or Datasets
+remdesivir_trials_data = getResourcesData(query = "remdesivir", types = c("ClinicalTrial", "Dataset"), fetchAll = TRUE, fields = c("@type", "name", "curatedBy"))
+remdesivir_trials_data \%>\% count(`@type`) \%>\% arrange(desc(n))
 }

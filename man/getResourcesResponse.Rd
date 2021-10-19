@@ -2,7 +2,7 @@
 % Please edit documentation in R/getResourcesResponse.R
 \name{getResourcesResponse}
 \alias{getResourcesResponse}
-\title{Title}
+\title{Access outbreak.info Research Library API}
 \usage{
 getResourcesResponse(
   queryString = NULL,
@@ -11,12 +11,11 @@ getResourcesResponse(
   fields = NULL,
   sort = NULL,
   facets = NULL,
-  facet_size = 10
+  facet_size = 10,
+  queryStub = "https://api.outbreak.info/resources/query?"
 )
 }
 \arguments{
-\item{queryString}{(optional): constructs a query over ALL fields, or a fielded query searching within specific fields. Fielded query terms should be separated by ` AND ` or ` OR `}
-
 \item{size}{(optional): number of records to return (default = 10)}
 
 \item{fetchAll}{(optional): Boolean whether to return all results for the query}
@@ -28,16 +27,22 @@ getResourcesResponse(
 \item{facets}{(optional): field by which to aggregate (count) their frequency}
 
 \item{facet_size}{(optional): how many facet groups to include in the facet total (default = 10)}
+
+\item{query}{(optional): constructs a query over ALL fields, or a fielded query searching within specific fields. Fielded query terms should be separated by ` AND ` or ` OR `. See \href{https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax}{Elasticserach query strings} for more info.}
 }
 \value{
-dataframe containing the response of the API query
+dataframe or list (for facetted queries) containing the response of the API query
 }
 \description{
-Title
+Access outbreak.info Research Library API
 }
 \examples{
-# Return only the first 10 hits for 
+# Return only the first 10 hits for "ivermectin"
 df = getResourcesResponse("ivermectin", size = 10)
+
+# Find the first 10 results which contain the variable `topicCategory`  
 df = getResourcesResponse("_exists_:topicCategory", size = 10)
+
+# Get `date`/`name` from the first 10 hits for the query "ivermectin" plus a count of the `@type` field for ALL results
 df = getResourcesResponse("ivermectin", size = 10, facets="@type", fields=c("date", "name"))
 }

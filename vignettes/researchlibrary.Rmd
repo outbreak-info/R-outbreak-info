@@ -21,6 +21,7 @@ library(outbreakinfo)
 
 # For some data manipulation and plotting
 library(ggplot2)
+library(knitr)
 library(dplyr)
 library(lubridate)
 ```
@@ -35,6 +36,7 @@ resources_by_date = resources_by_date %>%
   mutate(year = lubridate::year(date),
          iso_week = lubridate::isoweek(date)) 
 
+# count the number of new resources per week.
 resources_per_week = resources_by_date %>% 
   count(iso_week, year) %>% 
   # convert from iso week back to a date
@@ -51,9 +53,57 @@ ggplot(resources_per_week, aes(x = iso_date, y = n)) +
     axis.title = element_blank(),
     axis.text = element_text(size = 16),
     plot.title = element_text(size = 20),
-    plot.subtitle = element_text(colour="#777777", size=12)
+    plot.subtitle = element_text(colour="#777777", size=9)
   ) +
   scale_y_continuous(label=scales::comma) +
   scale_x_datetime(limits = c(min(resources_per_week$iso_date, na.rm = T), max(resources_per_week$iso_date, na.rm = T)), date_labels = "%b %Y")
+```
+
+### Count how many resources there are by type
+```{r resources_by_type}
+# We COULD grab the resources by querying the index just to pull out the `@type` field, and then using dplyr to summarise the data.
+resources_by_type_slow_way = getResourcesData(fields="@type", fetchAll = TRUE)
+resources_by_type_slow_way_summary = resources_by_type_slow_way %>% count(`@type`) %>% arrange(desc(n))
+knitr::kable(resources_by_type_slow_way_summary)
+
+# ... but the API actually will count variables for us, which is loads faster.
+# Note: we'll need to change `facet_size` from its default of 10, to make sure all the types are returned.
+resources_by_type_response = getResourcesData(facets="@type", facet_size = 50, size = 0)
+# The results are stored in `resources_by_type_response$facets$`@type`$terms`:
+resources_by_type = resources_by_type_response$facets$`@type`$terms
+# And we get the same data, but without having to make those lengthy calls to grab all the data and then count them.
+knitr::kable(resources_by_type %>% select(term, count))
+```
+
+### Count how many resources there are by type AND by data source
+```{r}
+getSources = function(type) {
+  facets = getResourcesData(query=paste0('@type:"', type, '"'), facets="curatedBy.name", facet_size = 50, size = 0)
+  
+  terms = facets$facets$curatedBy.name$terms %>% 
+    mutate(type = type)
+}
+
+resources_by_source = map_df(resources_by_type %>% pull(term), getSources)
+
+resources_by_curator =  getResourcesData(facets="curatedBy.name", facet_size = 50, size = 0)
+resources_by_curator = resources_by_curator$facets$curatedBy.name$terms$term %>% rev()
+
+resources_by_source$type = factor(resources_by_source$type, resources_by_type %>% pull(term) %>% rev())
+resources_by_source$term = factor(resources_by_source$term, resources_by_curator)
+
+ggplot(resources_by_source, aes(x = type, y = count, fill = term)) + 
+  geom_bar(stat = "identity") +
+  coord_flip() +
+  scale_y_continuous(labels=scales::comma) +
+  theme_minimal()
+```
+
+
+
+### Some notes on constructing queries
+The Lucene syntax that underlies Elasticsearch, which powers our API. As a result, there's a lot of different and complex queries you can run, if you know the right syntax. Here are a few examples of what you can do; see also the [Elasticsearch query syntax]({https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax) for more documentation.
+```{r query_examples}
+
 ```
 

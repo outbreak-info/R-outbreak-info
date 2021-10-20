@@ -6,18 +6,21 @@
 #### R package for [outbreak.info](https://outbreak.info)
 
 [outbreak.info](https://outbreak.info) is a platform to discover and
-explore COVID-19 data and variants. Our Variant Reports allow
-researchers to understand and track any emerging or known variant using
-customizable visualizations, enabling near real-time genomic
-surveillance, and our Epidemiology tools allow users to explore how
+explore COVID-19 data and variants. Our [Variant
+Reports](https://outbreak.info/situation-reports) allow researchers to
+track any emerging or known variant using customizable visualizations,
+enabling near real-time genomic surveillance. Our [Epidemiology
+tools](https://outbreak.info/epidemiology) allow users to explore how
 COVID-19 cases and deaths are changing across locations.
 
 The **outbreakinfo** R package provides access to the underlying genomic
 and epidemiology data on outbreak.info. This includes **SARS-CoV-2
 variant prevalence** data calculated using the
 [Bjorn](https://github.com/andersen-lab/bjorn/) package using data
-provided by GISAID. We also standardize **COVID-19 case and death data**
-from Johns Hopkins University and the New York Times and calculate
+provided by [GISAID](gisaid.org). We standardize **COVID-19 case and
+death data** from [Johns Hopkins
+University](https://github.com/CSSEGISandData/COVID-19) and the [New
+York Times](https://github.com/nytimes/covid-19-data) and calculate
 derived statistics.
 
 ## Installation
@@ -30,14 +33,14 @@ derived statistics.
 ## Getting Started
 
 If you’re getting started using **outbreakinfo**, we recommend starting
-with the tutorial
+with our tutorial
 [vignettes](https://outbreak-info.github.io/R-outbreak-info/docs/articles/index.html).
 
-Note that to access the genomics data (SARS-CoV-2 variant prevalences),
-you will need to **create an account on
+To access the genomics data (SARS-CoV-2 variant prevalences), you will
+need to **create an account on
 [GISAID](https://www.gisaid.org/registration/register/)** before being
-able to access the data. It may take a few days for the registration to
-become active. Before calling the genomics functions, you’ll need to
+able to access the data. *It may take a few days for the registration to
+become active*. Before calling the genomics functions, you’ll need to
 register your GISAID credentials:
 
 ``` r
@@ -184,9 +187,8 @@ Agreement](https://www.gisaid.org/registration/terms-of-use/).
 
 Confirmed cases, recovered cases, and deaths over time for countries
 outside the United States, and provinces in Australia, Canada, and China
-are provided by
-[https://github.com/CSSEGISandData/COVID-19](Johns%20Hopkins%20University%20Center%20for%20Systems%20Science%20and%20Engineering).
-See [data
+are provided by [Johns Hopkins University Center for Systems Science and
+Engineering](https://github.com/CSSEGISandData/COVID-19). See [data
 FAQ](https://systems.jhu.edu/research/public-health/2019-ncov-map-faqs/).
 
 Confirmed cases and deaths over time for the United States, U.S. States,

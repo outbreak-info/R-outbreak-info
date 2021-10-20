@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 [outbreak.info](https://outbreak.info) is a platform to discover and explore
 COVID-19 data and variants. Our Variant Reports allow researchers to
 understand and track any emerging or known variant using customizable
-visualizations, enabling near real-time genomic surveillance, and our
+visualizations, enabling near real-time genomic surveillance. Our
 Epidemiology tools allow users to explore how COVID-19 cases and deaths are
 changing across locations.
 
@@ -38,7 +38,7 @@ from Johns Hopkins University and the New York Times and calculate derived stati
 ## Getting Started
 If you're getting started using **outbreakinfo**, we recommend starting with the tutorial [vignettes](https://outbreak-info.github.io/R-outbreak-info/docs/articles/index.html).
 
-Note that to access the genomics data (SARS-CoV-2 variant prevalences), you will
+Note that to access the genomic data (SARS-CoV-2 variant prevalences), you will
 need to **create an account on [GISAID](https://www.gisaid.org/registration/register/)**
 before being able to access the data. It may take a few days for the registration to become active.
 Before calling the genomics functions, you'll need to register your GISAID credentials:
@@ -53,12 +53,12 @@ API access for outbreak.info's [Research Library](https://outbreak.info/resource
 ---
 
 ## Examples
-### Genomics data
+### Genomic data
 
 #### Lineage | Mutation Tracker
 Provides access to the prevalence of a lineage, mutation(s), or lineage with
 additional mutations, to access the data underlying the
-[outbreak.info Variant Tracker](https://outbreak.info/situation-reports?muts=S%3AP681R). View the [Variant Tracker Vignette](articles/varianttracker.html) to explore more options.
+[outbreak.info Variant Tracker](https://outbreak.info/situation-reports) - in this example, mutation [S:P681R] (https://outbreak.info/situation-reports?muts=S%3AP681R). View the [Variant Tracker Vignette](articles/varianttracker.html) to explore more options.
 ``` {r variant_tracker, message = FALSE}
 library(outbreakinfo)
 #  Provide GISAID credentials using authenticateUser()
@@ -71,7 +71,7 @@ plotPrevalenceOverTime(P681R, title = "Prevalence of S:P681R in Kansas")
 
 #### Location Tracker
 Provides access to the prevalence of all lineages and variants in a country, state/province, or U.S. county, to access the data underlying the
-[outbreak.info Location Tracker](https://outbreak.info/location-reports?loc=USA_US-CA). View the [Location Tracker Vignette](articles/locationtracker.html) to explore more options.
+[outbreak.info Location Tracker](https://outbreak.info/location-reports) - in this example, [California] (https://outbreak.info/location-reports?loc=USA_US-CA). View the [Location Tracker Vignette](articles/locationtracker.html) to explore more options.
 ``` {r location_tracker, message = FALSE}
 library(outbreakinfo)
 #  Provide GISAID credentials using authenticateUser()
@@ -93,7 +93,7 @@ library(outbreakinfo)
 # Lookup which Pango lineages are associated with the Delta / B.1.617.2 Variant of Concern
 delta_lineages = lookupSublineages("Delta", returnQueryString = FALSE)
 
-# Get all mutations in the Delta lineages which at at leas 75% prevalent in one of the lineages.
+# Get all mutations in the Delta lineages with at least 75% prevalent in one of the lineages.
 delta_mutations = getMutationsByLineage(pangolin_lineage=delta_lineages, frequency=0.75, logInfo = FALSE)
 
 # Plot the mutations as a heatmap
@@ -101,7 +101,7 @@ plotMutationHeatmap(delta_mutations, title = "S-gene mutations in Delta lineages
 ```
 
 ### Cases & Deaths
-Replicates the daily confirmed cases visualization on [outbreak.info](https://outbreak.info/epidemiology?location=USA%3BMEX&log=false&variable=confirmed_rolling&xVariable=date&fixedY=false&percapita=true)
+Replicates the daily confirmed cases visualization on [outbreak.info](https://outbreak.info/epidemiology) - in this example, [the United States and Mexico](https://outbreak.info/epidemiology?location=USA%3BMEX&log=false&variable=confirmed_rolling&xVariable=date&fixedY=false&percapita=true)
 ```{r daily_cases}
 # Plots the daily confirmed cases per capita for the United States and Mexico.
 library(outbreakinfo)
@@ -116,15 +116,15 @@ For more examples, please view our [vignettes](https://outbreak-info.github.io/R
 
 ## Data Sources
 ### SARS-CoV-2 virus sequences
-We would like to thank the GISAID Initiative and are grateful to all of the data contributors, i.e.the Authors, the Originating laboratories responsible for obtaining the specimens, and the Submitting laboratories for generating the genetic sequence and metadata and sharing via the GISAID Initiative, on which this research is based. GISAID data provided on this website are subject to GISAID’s [Terms and Conditions](https://www.gisaid.org/registration/terms-of-use/).
+We would like to thank the GISAID Initiative and are grateful to all of the data contributors, i.e.the authors, the originating laboratories responsible for obtaining the specimens, and the submitting laboratories for generating the genetic sequences and metadata and sharing via the GISAID Initiative, on which this research is based. GISAID data provided on this website are subject to GISAID’s [Terms and Conditions](https://www.gisaid.org/registration/terms-of-use/).
 
 The GISAID Initiative promotes the rapid sharing of data from all influenza viruses and the coronavirus causing COVID-19. This includes genetic sequence and related clinical and epidemiological data associated with human viruses, and geographical as well as species-specific data associated with avian and other animal viruses, to help researchers understand how viruses evolve and spread during epidemics and pandemics.
 
-GISAID does so by overcoming disincentive hurdles and restrictions, which discourage or prevented sharing of virological data prior to formal publication.
+GISAID does so by overcoming disincentive hurdles and restrictions, which discourage or prevent sharing of virological data prior to formal publication.
 
-The Initiative ensures that open access to data in GISAID is provided free-of-charge to all individuals that agreed to identify themselves and agreed to uphold the GISAID sharing mechanism governed through its [Database Access Agreement](https://www.gisaid.org/registration/terms-of-use/).
+The Initiative ensures that open access to data in GISAID is provided free-of-charge to all individuals that agree to identify themselves and agree to uphold the GISAID sharing mechanism governed through its [Database Access Agreement](https://www.gisaid.org/registration/terms-of-use/).
 
 ### Cases & deaths
-Confirmed cases, recovered cases, and deaths over time for countries outside the United States, and provinces in Australia, Canada, and China are provided by [https://github.com/CSSEGISandData/COVID-19](Johns Hopkins University Center for Systems Science and Engineering). See [data FAQ](https://systems.jhu.edu/research/public-health/2019-ncov-map-faqs/).
+Confirmed cases, recovered cases, and deaths over time for countries outside the United States, and provinces in Australia, Canada, and China are provided by [Johns Hopkins University Center for Systems Science and Engineering](https://github.com/CSSEGISandData/COVID-19). See [data FAQ](https://systems.jhu.edu/research/public-health/2019-ncov-map-faqs/).
 
 Confirmed cases and deaths over time for the United States, U.S. States, U.S. Metropolitan Areas, U.S. cities and U.S. counties are provided by the [New York Times](https://github.com/nytimes/covid-19-data). Note that "New York City" refers to the combined totals for New York, Kings, Queens, Bronx and Richmond Counties; "Kansas City" refers to cases within the Missouri portion of the Kansas City Metropolitan area and values for Jackson, Cass, Clay, and Platte counties are the totals excluding the KCMO data; cities like St. Louis that are administered separately from their containing county are reported separately. See other [geographic exceptions](https://github.com/nytimes/covid-19-data#geographic-exceptions).

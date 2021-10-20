@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
-[Outbreak.info](https://outbreak.info) is a project to enable the tracking of SARS-CoV-2 Variants within the COVID-19 pandemic. This R package offers access to the data we have gathered and calculated along with visualizations to replicate the visualizations on outbreak.info. Here, we'll outline some of the basic functionality of the R package to access the genomic (SARS-CoV-2 variant) data and epidemiology data (COVID-19 cases and deaths).
+[Outbreak.info](https://outbreak.info) is a project to enable the tracking of SARS-CoV-2 Variants within the COVID-19 pandemic. This R package offers access to the data we have gathered and calculated to replicate the visualizations on outbreak.info. Here, we'll outline some of the basic functionality of the R package to access the genomic (SARS-CoV-2 variant) data and epidemiology data (COVID-19 cases and deaths).
 
 ## SARS-CoV-2 variant prevalence
 
@@ -26,7 +26,7 @@ The core functionality within the suite of [Variant Prevalence Functions](https:
 - [Calculating mutation prevalence within a variant](#muations-within-a-variant)
 
 ### Getting started
-Before we start, to we need to provide our GISAID credentials to access the genomic data.
+Before we start, we need to provide our GISAID credentials to access the genomic data.
 If you don't have a GISAID account, you can [register](https://www.gisaid.org/registration/register/)
 for one on their website. It may take a day or two for the account to become active.
 ```{r install, message = FALSE, results='hide', eval=FALSE}
@@ -51,7 +51,7 @@ authenticateUser()
 ---
 
 ### Prevalence over time
-One important aspect of a variant to track is how its prevalence is changing over time. We can calculate this prevalence for any lineage, mutation, combination of mutations, or lineage with added mutations. We'll access the data and then plot the results.
+Tracking how the prevalence of variants change over time is vital to understanding the evolution of SARS-CoV-2. We can calculate this prevalence for any lineage, mutation, combination of mutations, or lineage with added mutations. We'll access the data and then plot the results.
 
 #### Lineage over time: B.1.1.7
 ```{r prev-time}
@@ -64,6 +64,7 @@ t(b117_san_diego[1,])
 # Plotting it:
 plotPrevalenceOverTime(b117_san_diego, title = "B.1.1.7 prevalence in San Diego")
 ```
+
 Variables are described in the [Genomics Data Dictionary](https://outbreak-info.github.io/R-outbreak-info/reference/genomicsDataDictionary.html).
 
 #### Customizing variant inputs

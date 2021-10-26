@@ -34,7 +34,7 @@ getResourcesResponse = function(queryString = NULL, size = 10, fetchAll = FALSE,
   
   # add base query
   if(!is.null(queryString)){
-    query = str_c(queryStub, queryString)
+    query = str_c(queryStub, "q=", queryString)
   }
   
   
@@ -58,6 +58,7 @@ getResourcesResponse = function(queryString = NULL, size = 10, fetchAll = FALSE,
     query = str_c(query, "&facets=", facets, "&facet_size=", facet_size)
   }
   
+  
   # --- RUN THE QUERY(-IES) --
   if(fetchAll) {
     # Fetch all queries -- keep going till you hit the end
@@ -74,14 +75,15 @@ getResourcesResponse = function(queryString = NULL, size = 10, fetchAll = FALSE,
       df = df %>% bind_rows(res$hits)
       res = getResourcesQuery(query, res$id)
     }
+    
     pb$update(1)
     pb$terminate()
     
     # return statement
     if(!is.null(facets)) {
-      return(list(hits = df, total = res[["total"]], facets = res[["facets"]]))
+      results = list(hits = df, total = res[["total"]], facets = res[["facets"]])
     } else {
-      return(df)
+      results = list(hits = df)
     }
     
     

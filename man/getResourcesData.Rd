@@ -24,7 +24,7 @@ getResourcesData(
 
 \item{fetchAll}{(optional): Boolean whether to return all results for the query}
 
-\item{fields}{(optional): vector specifying which fields to return. Returns all by default}
+\item{fields}{(optional): vector specifying which fields to return. Returns all by default. See the \href{https://discovery.biothings.io/view/outbreak}{outbreak schema} for possible fields.}
 
 \item{sort}{(optional): field to sort by.  Add `-` to sort in descending order}
 

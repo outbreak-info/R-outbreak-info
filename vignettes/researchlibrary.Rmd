@@ -8,11 +8,18 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
-
-```{r setup, include = FALSE}
+  
+# Accessing the data in outbreak.info's Research Library
+Outbreak.info's Research Library allows you to track the vast amount of research being produced by the community on COVID-19, including publications, clinical trials, datasets, protocols, and more. The metadata for these resources are pulled every day across a series of [data sources](https://outbreak.info/sources#resources) and combined and standardized for easy searching across data asset.
+  
+Here, we'll show how to access and filter these metadata about COVID-19 and SARS-CoV-2 research.
+  
+## Before we start...
+Import the packages we'll use.
+  ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
+collapse = TRUE,
+comment = "#>"
 )
 ```
 
@@ -23,10 +30,13 @@ library(outbreakinfo)
 library(ggplot2)
 library(knitr)
 library(dplyr)
+library(purrr)
 library(lubridate)
 ```
 
-### Access how many resources are collected by date
+## Access how many resources are collected by date
+How has the amount of research changed over time? We can pull the resources added each week to understand the scale of the vast amount of COVID-19 research being produced since the beginning of the pandemic.
+
 ```{r resources_by_date}
 # query the API to get the resources by date. Filter to > 1 January 2020, to remove the weirdos that slipped through.
 resources_by_date = getResourcesData(query = "date:[2020-01-01 TO *]", fields = "date", fetchAll = TRUE)
@@ -46,7 +56,7 @@ resources_per_week = resources_by_date %>%
 fill_color = "#66c2a5"
 ggplot(resources_per_week, aes(x = iso_date, y = n)) +
   geom_bar(fill = fill_color, stat="identity") +
-  ggtitle("COVID-19 resources have rapidly proliferated", subtitle="Number of publications, datasets, clinical trials, and more added to outbreak.info's Research Library") +
+  ggtitle("COVID-19 resources have rapidly proliferated", subtitle="Number of publications, datasets, clinical trials, and more added each week to outbreak.info's Research Library") +
   theme_minimal() + 
   theme(
     text = element_text(family="DM Sans"),
@@ -59,7 +69,7 @@ ggplot(resources_per_week, aes(x = iso_date, y = n)) +
   scale_x_datetime(limits = c(min(resources_per_week$iso_date, na.rm = T), max(resources_per_week$iso_date, na.rm = T)), date_labels = "%b %Y")
 ```
 
-### Count how many resources there are by type
+## Count how many resources there are by type
 ```{r resources_by_type}
 # We COULD grab the resources by querying the index just to pull out the `@type` field, and then using dplyr to summarise the data.
 resources_by_type_slow_way = getResourcesData(fields="@type", fetchAll = TRUE)
@@ -75,10 +85,10 @@ resources_by_type = resources_by_type_response$facets$`@type`$terms
 knitr::kable(resources_by_type %>% select(term, count))
 ```
 
-### Count how many resources there are by type AND by data source
+## Count how many resources there are by type AND by data source
 ```{r}
 getSources = function(type) {
-  facets = getResourcesData(query=paste0('@type:"', type, '"'), facets="curatedBy.name", facet_size = 50, size = 0)
+  facets = getResourcesData(types=c(type), facets="curatedBy.name", facet_size = 50, size = 0)
   
   terms = facets$facets$curatedBy.name$terms %>% 
     mutate(type = type)
@@ -87,23 +97,148 @@ getSources = function(type) {
 resources_by_source = map_df(resources_by_type %>% pull(term), getSources)
 
 resources_by_curator =  getResourcesData(facets="curatedBy.name", facet_size = 50, size = 0)
-resources_by_curator = resources_by_curator$facets$curatedBy.name$terms$term %>% rev()
+resources_by_curator = resources_by_curator$facets$curatedBy.name$terms$term
 
-resources_by_source$type = factor(resources_by_source$type, resources_by_type %>% pull(term) %>% rev())
-resources_by_source$term = factor(resources_by_source$term, resources_by_curator)
+# Set the levels, so the bar plot sorts by order.
+resources_by_source$type = factor(resources_by_source$type, resources_by_type %>% pull(term))
+resources_by_source$term = factor(resources_by_source$term, resources_by_curator %>% rev())
+
+COLORPALETTE = c("#4E79A7", "#f28e2b", "#59a14f","#e15759", "#499894","#B6992D",  "#D37295", "#B07AA1","#9D7660", "#bcbd22",
+                 "#aecBe8", "#FFBE7D",  "#8CD17D", "#FF9D9A",  "#86BCB6", "#F1CE63","#FABFD2",  "#D4A6C8", "#D7B5A6",  "#79706E")
 
 ggplot(resources_by_source, aes(x = type, y = count, fill = term)) + 
   geom_bar(stat = "identity") +
   coord_flip() +
   scale_y_continuous(labels=scales::comma) +
-  theme_minimal()
+  scale_fill_manual(values = COLORPALETTE) +
+  theme_minimal() +
+  theme(legend.position = "bottom") 
+
+ggplot(resources_by_source, aes(x = term, y = count, fill = term)) + 
+  geom_bar(stat = "identity") +
+  coord_flip() +
+  scale_y_continuous(labels=scales::comma) +
+  scale_fill_manual(values = COLORPALETTE) +
+  theme_minimal() + 
+  facet_wrap(~type, scales="free_x") +
+  theme(legend.position = "bottom") 
 ```
 
 
 
-### Some notes on constructing queries
-The Lucene syntax that underlies Elasticsearch, which powers our API. As a result, there's a lot of different and complex queries you can run, if you know the right syntax. Here are a few examples of what you can do; see also the [Elasticsearch query syntax]({https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax) for more documentation.
-```{r query_examples}
+## Some notes on constructing queries
+Our API is built off Elasticsearch, which utilizes Lucene syntax to create queries. As a result, there's a lot of different and complex queries you can run, if you know the right syntax. Here are a few examples of what you can do; see also the [Elasticsearch query syntax](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax) for more documentation.
 
+### General queries
+This will search for any use of the term within all the metadata, including its name, description, authors, etc. You can also combine terms using `AND` and/or `OR`. Note that spaces, dashes, and other punctuation are automatically treated as `OR` combinations.  Adding quotes will search for that exact term. **Note that all searches are case insensitive, so looking for "Pfizer" or "pfizer" will give you the same results.**
+```{r query_example_basic}
+# Basic query: look for anything that mentions "Pfizer"
+query1 = getResourcesData(query = "Pfizer", fetchAll = TRUE)
+print(paste0("There are ", query1 %>% nrow() %>% format(big.mark=",")," resources containing the term 'Pfizer'"))
+
+# Slightly more complicated: lets look what happens when we search for "Pfizer-BioNTech".
+query2 = getResourcesData(query = "Pfizer-BioNTech", fetchAll = TRUE)
+print(paste0("There are ", query2 %>% nrow() %>% format(big.mark=",")," resources containing the term Pfizer-BioNTech. When a search isn't a single word (or is combined by punctuation like hyphens), the words are treated separately, so the results are for any document that has Pfizer OR BioNTech."))
+
+# Let's check that explicitly, by combining Pfizer and BioNTech by `OR`.
+query3 = getResourcesData(query = "Pfizer OR BioNTech", fetchAll = TRUE)
+print(paste0("There are ", query3 %>% nrow() %>% format(big.mark=",")," resources containing the term Pfizer or BioNTech. Search terms can be combined using ` OR ` to search for either Pfizer or BioNTech."))
+
+# We can fix this by encapsulating the search term in double quotes.  NOTE: don't use single quotes!  They'll be ignored.
+query4 = getResourcesData(query = '"Pfizer-BioNTech"', fetchAll = TRUE)
+print(paste0("There are ", query4 %>% nrow() %>% format(big.mark=",")," resources containing the exact term Pfizer-BioNTech. Use double (not single!) quotes to search for an exact phrase."))
+
+# Terms can also be combined using the word `AND` and using parentheses to group words together. You can create some complex queries that way, like if we were interested in the side effects of two of the approved COVID-19 vaccines.
+query5 = getResourcesData(query = '("Pfizer-BioNTech" OR Moderna) AND ("adverse event" OR "adverse events" OR "side effect" OR "side effects")', fetchAll = TRUE)
+
+print(paste0("There are ", query5 %>% nrow() %>% format(big.mark=",")," resources containing the terms Pfizer-BioNTech or Moderna and some form of adverse events/side effects. Combine search terms using AND or OR and put parentheses around them to group them."))
 ```
+
+### Adjusting other parameters
+In addition to specifying the query string, there are other API parameters you can use to adjust what information is returned. This includes some of the parameters we've already used in the examples above, like `fetchAll` which returns all the results for a given query. Here's the full list:
+
+* `types`: returns resources of a particular type, like Publication, ClinicalTrial, Dataset, Protocol, Analysis, and more.
+* `size`: how many results are retunred (top 10 by default)
+* `fetchAll`: if TRUE, returns all the results (regardless of what `size` is)
+* `fields`: which fields (variables) to include in the search results. By default, should be all thes fields. See our [schemas](https://discovery.biothings.io/view/outbreak) for the list of all the fields.
+* `sort`: what variable to sort by. Add `-` in front of the variable name to reverse the sort order (descending)
+* `facets`: counts by a particular variable, as shown in the counting of resource types.
+* `facet_size`: how many results to return in the facets. By default, only the top 10 most frequently observed options will be listed for a given field.
+```{r}
+# Return only the clinical trials on boosters
+query6 = getResourcesData(query = "booster", types=c("ClinicalTrial"), fetchAll = TRUE)
+
+print(paste0("There are ", query6 %>% nrow() %>% format(big.mark=",")," clinical trials involving boosters"))
+
+# Return the names of the top 20 results, sorted by the newest date
+query7 = getResourcesData(query = "booster", types=c("ClinicalTrial"), size = 5, fields=c("name", "date", "studyStatus.status", "studyLocation.studyLocationCountry"), sort = "-date")
+query7 %>% glimpse()
+
+
+# count what types of interventions are in those clinical trials. Returns the top 25 intervention categories
+query8 = getResourcesData(query = "booster", types=c("ClinicalTrial"), size = 0, facets = "interventions.category", facet_size = 25)
+query8$facets$interventions.category$terms %>%  kable()
+```
+
+
+### Using wildcards
+Sometimes you only want to search for part of a phrase. For instance, let's say you wanted to look for resources that have some information on any mutation occurring at position 484 in the spike protein. You can use the `*` wildcard to look for that term.
+```{r}
+query9 = getResourcesData(query = "E484*", fetchAll = TRUE)
+
+print(paste0("There are ", query9 %>% nrow() %>% format(big.mark=",")," resources mentioning a mutation at position E484."))
+```
+
+
+### Using regular expressions
+Even more generically than using a wildcard, you can also construct a query using regular expressions. See the [Elasticsearch documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/regexp-syntax.html) for how ES implements regex.
+
+
+### Searching specific terms
+So far, we've looked at searches that match any field (variable) within the resource. We might, however, want to look within a particular field rather than searching across everything. Note that nested objects can be queried using `.`.
+```{r}
+# find all publications in Nature
+query10 = getResourcesData(query = "journalName:Nature", fetchAll = TRUE)
+
+print(paste0("There are ", query10 %>% nrow() %>% format(big.mark=",")," COVID-19 publications from Nature."))
+
+# find all resources from Manar Alkuzweny. `author` is an object field, so to access `givenName`, you'll use dot notation
+query11 = getResourcesData(query = "author.givenName:Manar AND author.familyName:Alkuzweny.", fetchAll = TRUE)
+
+print(paste0("There are ", query11  %>% nrow() %>% format(big.mark=",")," resources authored by Manar."))
+```
+
+
+### Finding records where a term exists
+You might want to know whether or not a field (variable) is empty or populated with something. For instance, we can find all the publications which have some sort of correction associated with them, which could include a retraction or commentary. This is specified by the query parameter `_exists_`
+```{r}
+query12 = getResourcesData(query = "_exists_:correction", types = c("Publication"), size = 10, facets = "correction.correctionType", facet_size = 20)
+
+print(paste0("There are ", query12$total %>% format(big.mark=",")," publications which have been corrected. Here are the correction types:"))
+
+query12$facets$correction.correctionType$terms %>% kable()
+```
+
+
+### Range searching: dates
+Numeric values like dates can be searched for a specific value, or a range of values. Let's find the latest research on cytokine storms. With range queries, values in square brackets include those values, like `[2020-01-01 TO 2020-12-31]` (everything in 2020), curly braces *exclude* the value on the end, and `*` can be added to specify before a date or after a date.
+```{r}
+# Find all resources on cytokine storms
+query13 = getResourcesData(query = '"cytokine storm"', fetchAll = TRUE)
+
+# Find all cytokine storm research from 18 December 2020. Dates should be specified in YYYY-MM-DD format.
+query14 = getResourcesData(query = '"cytokine storm" AND date:2020-12-18', fetchAll = TRUE, fields = c("name", "date", "@type"))
+
+# Find all cytokine storm research in 2020
+query15 = getResourcesData(query = '"cytokine storm" AND date:[2020-01-01 TO 2020-12-31]', fetchAll = TRUE, fields = c("name", "date", "@type"))
+
+# Find all cytokine storm research after 2020. Note: all these queries are equivalent
+query16 = getResourcesData(query = '"cytokine storm" AND date:{2020-12-31 TO *]', fetchAll = TRUE, fields = c("name", "date", "@type"))
+query17 = getResourcesData(query = '"cytokine storm" AND date: >2020-12-31', fetchAll = TRUE, fields = c("name", "date", "@type"))
+query18 = getResourcesData(query = '"cytokine storm" AND date:[2021-01-01 TO *]', fetchAll = TRUE, fields = c("name", "date", "@type"))
+query19 = getResourcesData(query = '"cytokine storm" AND date:>=2021-01-01', fetchAll = TRUE, fields = c("name", "date", "@type"))
+
+print(paste0("There are ", query13  %>% nrow() %>% format(big.mark=",")," resources about cytokine storms in all time, ", query14  %>% nrow() %>% format(big.mark=","), " on 18 December 2020, ", query15  %>% nrow() %>% format(big.mark=","), " in 2020", ", and ", query16  %>% nrow() %>% format(big.mark=",")," since 1 January 2021."))
+```
+
 

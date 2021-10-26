@@ -112,44 +112,46 @@
 <h4 class="hasAnchor">
 <a href="#r-package-for-outbreakinfo" class="anchor"></a>R package for <a href="https://outbreak.info">outbreak.info</a>
 </h4>
-<p><a href="https://outbreak.info">outbreak.info</a> is a platform to discover and explore COVID-19 data and variants. Our Variant Reports allow researchers to understand and track any emerging or known variant using customizable visualizations, enabling near real-time genomic surveillance, and our Epidemiology tools allow users to explore how COVID-19 cases and deaths are changing across locations.</p>
-<p>The <strong>outbreakinfo</strong> R package provides access to the underlying genomic and epidemiology data on outbreak.info. This includes <strong>SARS-CoV-2 variant prevalence</strong> data calculated using the <a href="https://github.com/andersen-lab/bjorn/">Bjorn</a> package using data provided by GISAID. We also standardize <strong>COVID-19 case and death data</strong> from Johns Hopkins University and the New York Times and calculate derived statistics.</p>
+<p><a href="https://outbreak.info">outbreak.info</a> is a platform to discover and explore COVID-19 data and variants. Our <a href="https://outbreak.info/situation-reports">Variant Reports</a> allow researchers to track any emerging or known variant using customizable visualizations, enabling near real-time genomic surveillance. Our <a href="https://outbreak.info/epidemiology">Epidemiology tools</a> allow users to explore how COVID-19 cases and deaths are changing across locations.</p>
+<p>The <strong>outbreakinfo</strong> R package provides access to the underlying genomic and epidemiology data on outbreak.info. This includes <strong>SARS-CoV-2 variant prevalence</strong> data calculated using the <a href="https://github.com/andersen-lab/bjorn/">Bjorn</a> package using data provided by <a href="gisaid.org">GISAID</a>. We standardize <strong>COVID-19 case and death data</strong> from <a href="https://github.com/CSSEGISandData/COVID-19">Johns Hopkins University</a> and the <a href="https://github.com/nytimes/covid-19-data">New York Times</a> and calculate derived statistics.</p>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Install development version from GitHub</span>
-<span class="co"># devtools::install_github("outbreak-info/R-outbreak-info")</span></code></pre></div>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"outbreak-info/R-outbreak-info"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="getting-started" class="section level2">
 <h2 class="hasAnchor">
 <a href="#getting-started" class="anchor"></a>Getting Started</h2>
-<p>If you’re getting started using <strong>outbreakinfo</strong>, we recommend starting with the tutorial <a href="https://outbreak-info.github.io/R-outbreak-info/docs/articles/index.html">vignettes</a>.</p>
-<p>Note that to access the genomics data (SARS-CoV-2 variant prevalences), you will need to <strong>create an account on <a href="https://www.gisaid.org/registration/register/">GISAID</a></strong> before being able to access the data. It may take a few days for the registration to become active. Before calling the genomics functions, you’ll need to register your GISAID credentials:</p>
+<p>If you’re getting started using <strong>outbreakinfo</strong>, we recommend starting with our tutorial <a href="https://outbreak-info.github.io/R-outbreak-info/docs/articles/index.html">vignettes</a>.</p>
+<p>To access the genomic data (SARS-CoV-2 variant prevalences), you will need to <strong>create an account on <a href="https://www.gisaid.org/registration/register/">GISAID</a></strong> before being able to access the data. <em>It may take a few days for the registration to become active</em>. Before calling the genomics functions, you’ll need to register your GISAID credentials:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">outbreakinfo</span><span class="fu">::</span><span class="fu"><a href="reference/authenticateUser.html">authenticateUser</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p>Please view our <a href="https://outbreak-info.github.io/R-outbreak-info/docs/articles/index.html">vignettes</a> for examples of how to use the R package.</p>
 </div>
 <div id="related-projects" class="section level2">
 <h2 class="hasAnchor">
 <a href="#related-projects" class="anchor"></a>Related Projects</h2>
-<p>API access for outbreak.info’s <a href="https://outbreak.info/resources">Research Library</a>, which provides metadata on COVID-19 publications, pre-prints, clinical trials, datasets, protocols, and more is available on our <a href="https://api.outbreak.info/try/resources">API</a>. API access for the cases and deaths data is also available on our <a href="https://api.outbreak.info/try/covid19">API</a>. These API endpoints can be accessed through the <a href="https://httr.r-lib.org/">httr</a> R package or the the Python <a href="https://docs.python-requests.org/en/latest/">requests</a> package.</p>
+<p>API access for outbreak.info’s <a href="https://outbreak.info/resources">Research Library</a>, which provides metadata on COVID-19 publications, pre-prints, clinical trials, datasets, protocols, and more is available on our <a href="https://api.outbreak.info/try/resources">API</a>. API access for the cases and deaths data is also available on our <a href="https://api.outbreak.info/try/covid19">API</a>. In addition to this R package, the Research Library and Cases &amp; Deaths API endpoints can be accessed through the <a href="https://httr.r-lib.org/">httr</a> R package or the the Python <a href="https://docs.python-requests.org/en/latest/">requests</a> package.</p>
 <hr>
 </div>
 <div id="examples" class="section level2">
 <h2 class="hasAnchor">
 <a href="#examples" class="anchor"></a>Examples</h2>
-<div id="genomics-data" class="section level3">
+<div id="genomic-data" class="section level3">
 <h3 class="hasAnchor">
-<a href="#genomics-data" class="anchor"></a>Genomics data</h3>
+<a href="#genomic-data" class="anchor"></a>Genomic data</h3>
 <div id="lineage--mutation-tracker" class="section level4">
 <h4 class="hasAnchor">
 <a href="#lineage--mutation-tracker" class="anchor"></a>Lineage | Mutation Tracker</h4>
-<p>Provides access to the prevalence of a lineage, mutation(s), or lineage with additional mutations, to access the data underlying the <a href="https://outbreak.info/situation-reports?muts=S%3AP681R">outbreak.info Variant Tracker</a>. View the <a href="articles/varianttracker.html">Variant Tracker Vignette</a> to explore more options.</p>
+<p>Provides access to the prevalence of a lineage, mutation(s), or lineage with additional mutations, to access the data underlying the <a href="https://outbreak.info/situation-reports">outbreak.info Variant Tracker</a></p>
+<ul>
+<li>in this example, mutation <br><span class="math display"><em>S</em> : <em>P</em>681<em>R</em></span><br> (<a href="https://outbreak.info/situation-reports?muts=S%3AP681R" class="uri">https://outbreak.info/situation-reports?muts=S%3AP681R</a>). View the <a href="articles/varianttracker.html">Variant Tracker Vignette</a> to explore more options.</li>
+</ul>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://outbreak-info.github.io/R-outbreak-info/">outbreakinfo</a></span><span class="op">)</span>
-<span class="co">#&gt; Warning: replacing previous import 'jsonlite::flatten' by 'purrr::flatten' when</span>
-<span class="co">#&gt; loading 'outbreakinfo'</span>
 <span class="co">#  Provide GISAID credentials using authenticateUser()</span>
 <span class="co"># Get the prevalence of mutation P681R in the Spike protein in Kansas over time.</span>
 <span class="va">P681R</span> <span class="op">=</span> <span class="fu"><a href="reference/getPrevalence.html">getPrevalence</a></span><span class="op">(</span>mutations <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"S:P681R"</span><span class="op">)</span>, location <span class="op">=</span> <span class="st">"Kansas"</span>, logInfo <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
@@ -184,7 +186,7 @@
 <span class="co"># Lookup which Pango lineages are associated with the Delta / B.1.617.2 Variant of Concern</span>
 <span class="va">delta_lineages</span> <span class="op">=</span> <span class="fu"><a href="reference/lookupSublineages.html">lookupSublineages</a></span><span class="op">(</span><span class="st">"Delta"</span>, returnQueryString <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 
-<span class="co"># Get all mutations in the Delta lineages which at at leas 75% prevalent in one of the lineages.</span>
+<span class="co"># Get all mutations in the Delta lineages with at least 75% prevalent in one of the lineages.</span>
 <span class="va">delta_mutations</span> <span class="op">=</span> <span class="fu"><a href="reference/getMutationsByLineage.html">getMutationsByLineage</a></span><span class="op">(</span>pangolin_lineage<span class="op">=</span><span class="va">delta_lineages</span>, frequency<span class="op">=</span><span class="fl">0.75</span>, logInfo <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
 
 <span class="co"># Plot the mutations as a heatmap</span>
@@ -192,26 +194,66 @@
 <p><img src="reference/figures/lineage_comparison-1.png"><!-- --></p>
 </div>
 </div>
+<div id="research-library" class="section level3">
+<h3 class="hasAnchor">
+<a href="#research-library" class="anchor"></a>Research Library</h3>
+<p>Provides access to the metadata on COVID-19 research, including publications, clinical trials, datasets, protocols, and more.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://outbreak-info.github.io/R-outbreak-info/">outbreakinfo</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org">lubridate</a></span><span class="op">)</span>
+
+<span class="va">resources_by_date</span> <span class="op">=</span> <span class="fu"><a href="reference/getResourcesData.html">getResourcesData</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">"date:[2020-01-01 TO *]"</span>, types<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Publication"</span>, <span class="st">"ClinicalTrial"</span>, <span class="st">"Protocol"</span>, <span class="st">"Dataset"</span><span class="op">)</span>, fields <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"date"</span>, <span class="st">"@type"</span><span class="op">)</span>, fetchAll <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
+<span class="co"># roll up the number of resources by week</span>
+<span class="va">resources_by_date</span> <span class="op">=</span> <span class="va">resources_by_date</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/year.html">year</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span>,
+         iso_week <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/week.html">isoweek</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span><span class="op">)</span> 
+
+<span class="co"># count the number of new resources per week.</span>
+<span class="va">resources_per_week</span> <span class="op">=</span> <span class="va">resources_by_date</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">`@type`</span>, <span class="va">iso_week</span>, <span class="va">year</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="co"># convert from iso week back to a date</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>iso_date <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/parse_date_time.html">parse_date_time</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">year</span>,<span class="va">iso_week</span>, <span class="st">"Mon"</span>, sep<span class="op">=</span><span class="st">"-"</span><span class="op">)</span>, <span class="st">"Y-W-a"</span><span class="op">)</span><span class="op">)</span> 
+
+<span class="co"># Make it a bit prettier, by sorting by the relative proportion of resource types</span>
+<span class="va">type_frequency</span> <span class="op">=</span> <span class="va">resources_by_date</span> <span class="op">%&gt;%</span> 
+<span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">`@type`</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">`@type`</span><span class="op">)</span>
+
+<span class="va">resources_per_week</span><span class="op">$</span><span class="va">`@type`</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">resources_per_week</span><span class="op">$</span><span class="va">`@type`</span>, <span class="va">type_frequency</span><span class="op">)</span>
+
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">resources_per_week</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">iso_date</span>, y <span class="op">=</span> <span class="va">n</span>, fill <span class="op">=</span> <span class="va">`@type`</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat<span class="op">=</span><span class="st">"identity"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"COVID-19 resources have rapidly proliferated"</span>, subtitle<span class="op">=</span><span class="st">"Number of publications, datasets, clinical trials, and more added each week to outbreak.info's Research Library"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
+    text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>family<span class="op">=</span><span class="st">"DM Sans"</span><span class="op">)</span>,
+    axis.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,
+    axis.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">16</span><span class="op">)</span>,
+    plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span>,
+    plot.subtitle <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>colour<span class="op">=</span><span class="st">"#777777"</span>, size<span class="op">=</span><span class="fl">9</span><span class="op">)</span>
+  <span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_date.html">scale_x_datetime</a></span><span class="op">(</span>limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">resources_per_week</span><span class="op">$</span><span class="va">iso_date</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">resources_per_week</span><span class="op">$</span><span class="va">iso_date</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span>, date_labels <span class="op">=</span> <span class="st">"%b %Y"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>label<span class="op">=</span><span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/label_number.html">comma</a></span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>Publication <span class="op">=</span> <span class="st">"#e15759"</span>, ClinicalTrial <span class="op">=</span> <span class="st">"#b475a3"</span>, Dataset <span class="op">=</span> <span class="st">"#126b93"</span>, Protocol <span class="op">=</span> <span class="st">"#59a14f"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">`@type`</span>, scales <span class="op">=</span> <span class="st">"free_y"</span>, ncol <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span></code></pre></div>
+<p><img src="reference/figures/resources_by_date-1.png"><!-- --></p>
+</div>
 <div id="cases--deaths" class="section level3">
 <h3 class="hasAnchor">
 <a href="#cases--deaths" class="anchor"></a>Cases &amp; Deaths</h3>
-<p>Replicates the daily confirmed cases visualization on <a href="https://outbreak.info/epidemiology?location=USA%3BMEX&amp;log=false&amp;variable=confirmed_rolling&amp;xVariable=date&amp;fixedY=false&amp;percapita=true">outbreak.info</a></p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<p>Replicates the daily confirmed cases visualization on <a href="https://outbreak.info/epidemiology">outbreak.info</a> - in this example, <a href="https://outbreak.info/epidemiology?location=USA%3BMEX&amp;log=false&amp;variable=confirmed_rolling&amp;xVariable=date&amp;fixedY=false&amp;percapita=true">the United States and Mexico</a>.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Plots the daily confirmed cases per capita for the United States and Mexico.</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://outbreak-info.github.io/R-outbreak-info/">outbreakinfo</a></span><span class="op">)</span>
 <span class="fu"><a href="reference/plotEpiData.html">plotEpiData</a></span><span class="op">(</span>locations <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"United States of America"</span>, <span class="st">"Mexico"</span><span class="op">)</span>, variable <span class="op">=</span> <span class="st">"confirmed_rolling_per_100k"</span><span class="op">)</span></code></pre></div>
-</div>
-</div>
-<div id="section" class="section level2">
-<h2 class="hasAnchor">
-<a href="#section" class="anchor"></a><img src="reference/figures/daily_cases-1.png"><!-- -->
-</h2>
-</div>
-<div id="more-examples" class="section level2">
-<h2 class="hasAnchor">
-<a href="#more-examples" class="anchor"></a>More examples</h2>
-<p>For more examples, please view our <a href="https://outbreak-info.github.io/R-outbreak-info/docs/articles/index.html">vignettes</a>.</p>
+<p><img src="reference/figures/daily_cases-1.png"><!-- --></p>
 <hr>
+</div>
 </div>
 <div id="data-sources" class="section level2">
 <h2 class="hasAnchor">
@@ -227,7 +269,7 @@
 <div id="cases--deaths-1" class="section level3">
 <h3 class="hasAnchor">
 <a href="#cases--deaths-1" class="anchor"></a>Cases &amp; deaths</h3>
-<p>Confirmed cases, recovered cases, and deaths over time for countries outside the United States, and provinces in Australia, Canada, and China are provided by <a href="Johns%20Hopkins%20University%20Center%20for%20Systems%20Science%20and%20Engineering">https://github.com/CSSEGISandData/COVID-19</a>. See <a href="https://systems.jhu.edu/research/public-health/2019-ncov-map-faqs/">data FAQ</a>.</p>
+<p>Confirmed cases, recovered cases, and deaths over time for countries outside the United States, and provinces in Australia, Canada, and China are provided by <a href="https://github.com/CSSEGISandData/COVID-19">Johns Hopkins University Center for Systems Science and Engineering</a>. See <a href="https://systems.jhu.edu/research/public-health/2019-ncov-map-faqs/">data FAQ</a>.</p>
 <p>Confirmed cases and deaths over time for the United States, U.S. States, U.S. Metropolitan Areas, U.S. cities and U.S. counties are provided by the <a href="https://github.com/nytimes/covid-19-data">New York Times</a>. Note that “New York City” refers to the combined totals for New York, Kings, Queens, Bronx and Richmond Counties; “Kansas City” refers to cases within the Missouri portion of the Kansas City Metropolitan area and values for Jackson, Cass, Clay, and Platte counties are the totals excluding the KCMO data; cities like St. Louis that are administered separately from their containing county are reported separately. See other <a href="https://github.com/nytimes/covid-19-data#geographic-exceptions">geographic exceptions</a>.</p>
 </div>
 </div>

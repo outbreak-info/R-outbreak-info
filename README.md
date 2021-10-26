@@ -27,7 +27,7 @@ derived statistics.
 
 ``` r
 # Install development version from GitHub
-# devtools::install_github("outbreak-info/R-outbreak-info")
+devtools::install_github("outbreak-info/R-outbreak-info")
 ```
 
 ## Getting Started
@@ -36,7 +36,7 @@ If you’re getting started using **outbreakinfo**, we recommend starting
 with our tutorial
 [vignettes](https://outbreak-info.github.io/R-outbreak-info/docs/articles/index.html).
 
-To access the genomics data (SARS-CoV-2 variant prevalences), you will
+To access the genomic data (SARS-CoV-2 variant prevalences), you will
 need to **create an account on
 [GISAID](https://www.gisaid.org/registration/register/)** before being
 able to access the data. *It may take a few days for the registration to
@@ -47,6 +47,10 @@ register your GISAID credentials:
 outbreakinfo::authenticateUser()
 ```
 
+Please view our
+[vignettes](https://outbreak-info.github.io/R-outbreak-info/docs/articles/index.html)
+for examples of how to use the R package.
+
 ## Related Projects
 
 API access for outbreak.info’s [Research
@@ -55,7 +59,8 @@ COVID-19 publications, pre-prints, clinical trials, datasets, protocols,
 and more is available on our
 [API](https://api.outbreak.info/try/resources). API access for the cases
 and deaths data is also available on our
-[API](https://api.outbreak.info/try/covid19). These API endpoints can be
+[API](https://api.outbreak.info/try/covid19). In addition to this R
+package, the Research Library and Cases & Deaths API endpoints can be
 accessed through the [httr](https://httr.r-lib.org/) R package or the
 the Python [requests](https://docs.python-requests.org/en/latest/)
 package.
@@ -64,21 +69,20 @@ package.
 
 ## Examples
 
-### Genomics data
+### Genomic data
 
 #### Lineage | Mutation Tracker
 
 Provides access to the prevalence of a lineage, mutation(s), or lineage
 with additional mutations, to access the data underlying the
-[outbreak.info Variant
-Tracker](https://outbreak.info/situation-reports?muts=S%3AP681R). View
-the [Variant Tracker Vignette](articles/varianttracker.html) to explore
-more options.
+[outbreak.info Variant Tracker](https://outbreak.info/situation-reports)
+- in this example, mutation \[S:P681R\]
+(<https://outbreak.info/situation-reports?muts=S%3AP681R>). View the
+[Variant Tracker Vignette](articles/varianttracker.html) to explore more
+options.
 
 ``` r
 library(outbreakinfo)
-#> Warning: replacing previous import 'jsonlite::flatten' by 'purrr::flatten' when
-#> loading 'outbreakinfo'
 #  Provide GISAID credentials using authenticateUser()
 # Get the prevalence of mutation P681R in the Spike protein in Kansas over time.
 P681R = getPrevalence(mutations = c("S:P681R"), location = "Kansas", logInfo = FALSE)
@@ -124,7 +128,7 @@ library(outbreakinfo)
 # Lookup which Pango lineages are associated with the Delta / B.1.617.2 Variant of Concern
 delta_lineages = lookupSublineages("Delta", returnQueryString = FALSE)
 
-# Get all mutations in the Delta lineages which at at leas 75% prevalent in one of the lineages.
+# Get all mutations in the Delta lineages with at least 75% prevalent in one of the lineages.
 delta_mutations = getMutationsByLineage(pangolin_lineage=delta_lineages, frequency=0.75, logInfo = FALSE)
 
 # Plot the mutations as a heatmap
@@ -133,10 +137,64 @@ plotMutationHeatmap(delta_mutations, title = "S-gene mutations in Delta lineages
 
 ![](man/figures/lineage_comparison-1.png)<!-- -->
 
+### Research Library
+
+Provides access to the metadata on COVID-19 research, including
+publications, clinical trials, datasets, protocols, and more.
+
+``` r
+library(outbreakinfo)
+library(dplyr)
+library(ggplot2)
+library(lubridate)
+
+resources_by_date = getResourcesData(query = "date:[2020-01-01 TO *]", types=c("Publication", "ClinicalTrial", "Protocol", "Dataset"), fields = c("date", "@type"), fetchAll = TRUE)
+
+# roll up the number of resources by week
+resources_by_date = resources_by_date %>% 
+  mutate(year = lubridate::year(date),
+         iso_week = lubridate::isoweek(date)) 
+
+# count the number of new resources per week.
+resources_per_week = resources_by_date %>% 
+  count(`@type`, iso_week, year) %>% 
+  # convert from iso week back to a date
+  mutate(iso_date = lubridate::parse_date_time(paste(year,iso_week, "Mon", sep="-"), "Y-W-a")) 
+
+# Make it a bit prettier, by sorting by the relative proportion of resource types
+type_frequency = resources_by_date %>% 
+count(`@type`) %>% 
+  arrange(desc(n)) %>%
+  pull(`@type`)
+
+resources_per_week$`@type` = factor(resources_per_week$`@type`, type_frequency)
+
+ggplot(resources_per_week, aes(x = iso_date, y = n, fill = `@type`)) +
+  geom_bar(stat="identity") +
+  ggtitle("COVID-19 resources have rapidly proliferated", subtitle="Number of publications, datasets, clinical trials, and more added each week to outbreak.info's Research Library") +
+  theme_minimal() + 
+  theme(
+    text = element_text(family="DM Sans"),
+    axis.title = element_blank(),
+    axis.text = element_text(size = 16),
+    plot.title = element_text(size = 20),
+    plot.subtitle = element_text(colour="#777777", size=9)
+  ) +
+  scale_x_datetime(limits = c(min(resources_per_week$iso_date, na.rm = T), max(resources_per_week$iso_date, na.rm = T)), date_labels = "%b %Y") +
+  scale_y_continuous(label=scales::comma) +
+  scale_fill_manual(values = c(Publication = "#e15759", ClinicalTrial = "#b475a3", Dataset = "#126b93", Protocol = "#59a14f")) +
+  facet_wrap(~`@type`, scales = "free_y", ncol = 1) +
+  theme(legend.position = "none")
+```
+
+![](man/figures/resources_by_date-1.png)<!-- -->
+
 ### Cases & Deaths
 
 Replicates the daily confirmed cases visualization on
-[outbreak.info](https://outbreak.info/epidemiology?location=USA%3BMEX&log=false&variable=confirmed_rolling&xVariable=date&fixedY=false&percapita=true)
+[outbreak.info](https://outbreak.info/epidemiology) - in this example,
+[the United States and
+Mexico](https://outbreak.info/epidemiology?location=USA%3BMEX&log=false&variable=confirmed_rolling&xVariable=date&fixedY=false&percapita=true).
 
 ``` r
 # Plots the daily confirmed cases per capita for the United States and Mexico.
@@ -144,12 +202,7 @@ library(outbreakinfo)
 plotEpiData(locations = c("United States of America", "Mexico"), variable = "confirmed_rolling_per_100k")
 ```
 
-## ![](man/figures/daily_cases-1.png)<!-- -->
-
-## More examples
-
-For more examples, please view our
-[vignettes](https://outbreak-info.github.io/R-outbreak-info/docs/articles/index.html).
+![](man/figures/daily_cases-1.png)<!-- -->
 
 -----
 

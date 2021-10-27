@@ -108,7 +108,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Research Library</h1>
             
-            <h4 class="date">2021-10-25</h4>
+            <h4 class="date">2021-10-27</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/outbreak-info/R-outbreak-info/blob/master/vignettes/researchlibrary.Rmd"><code>vignettes/researchlibrary.Rmd</code></a></small>
       <div class="hidden name"><code>researchlibrary.Rmd</code></div>
@@ -120,7 +120,7 @@
 <div id="accessing-the-data-in-outbreak-infos-research-library" class="section level1">
 <h1 class="hasAnchor">
 <a href="#accessing-the-data-in-outbreak-infos-research-library" class="anchor"></a>Accessing the data in outbreak.info’s Research Library</h1>
-<p>Outbreak.info’s Research Library allows you to track the vast amount of research being produced by the community on COVID-19, including publications, clinical trials, datasets, protocols, and more. The metadata for these resources are pulled every day across a series of <a href="https://outbreak.info/sources#resources">data sources</a> and combined and standardized for easy searching across data asset.</p>
+<p>outbreak.info’s Research Library allows you to track the vast amount of research being produced by the community on COVID-19, including publications, clinical trials, datasets, protocols, and more. The metadata for these resources are pulled every day across a series of <a href="https://outbreak.info/sources#resources">data sources</a> and combined and standardized for easy searching across data asset.</p>
 <p>Here, we’ll show how to access and filter these metadata about COVID-19 and SARS-CoV-2 research.</p>
 <div id="before-we-start" class="section level2">
 <h2 class="hasAnchor">
@@ -147,15 +147,15 @@
 <span class="va">resources_by_date</span> <span class="op">=</span> <span class="fu"><a href="../reference/getResourcesData.html">getResourcesData</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">"date:[2020-01-01 TO *]"</span>, fields <span class="op">=</span> <span class="st">"date"</span>, fetchAll <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
 <span class="co"># roll up the number of resources by week</span>
-<span class="va">resources_by_date</span> <span class="op">=</span> <span class="va">resources_by_date</span> <span class="op">%&gt;%</span> 
+<span class="va">resources_by_date</span> <span class="op">=</span> <span class="va">resources_by_date</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/year.html">year</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span>,
-         iso_week <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/week.html">isoweek</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span><span class="op">)</span> 
+         iso_week <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/week.html">isoweek</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># count the number of new resources per week.</span>
-<span class="va">resources_per_week</span> <span class="op">=</span> <span class="va">resources_by_date</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">iso_week</span>, <span class="va">year</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+<span class="va">resources_per_week</span> <span class="op">=</span> <span class="va">resources_by_date</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html">count</a></span><span class="op">(</span><span class="va">iso_week</span>, <span class="va">year</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="co"># convert from iso week back to a date</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>iso_date <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/parse_date_time.html">parse_date_time</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">year</span>,<span class="va">iso_week</span>, <span class="st">"Mon"</span>, sep<span class="op">=</span><span class="st">"-"</span><span class="op">)</span>, <span class="st">"Y-W-a"</span><span class="op">)</span><span class="op">)</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>iso_date <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/parse_date_time.html">parse_date_time</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="va">year</span>,<span class="va">iso_week</span>, <span class="st">"Mon"</span>, sep<span class="op">=</span><span class="st">"-"</span><span class="op">)</span>, <span class="st">"Y-W-a"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Warning in strptime(.enclose(x), .enclose(fmt), tz): (0-based) yday 369 in year</span>
 <span class="co">#&gt; 2020 is invalid</span>
 <span class="co">#&gt; Warning in strptime(.enclose(x), .enclose(fmt), tz): (0-based) yday 367 in year</span>
@@ -179,7 +179,7 @@
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">resources_per_week</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">iso_date</span>, y <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">fill_color</span>, stat<span class="op">=</span><span class="st">"identity"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"COVID-19 resources have rapidly proliferated"</span>, subtitle<span class="op">=</span><span class="st">"Number of publications, datasets, clinical trials, and more added each week to outbreak.info's Research Library"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
     text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>family<span class="op">=</span><span class="st">"DM Sans"</span><span class="op">)</span>,
     axis.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,
@@ -191,7 +191,7 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_date.html">scale_x_datetime</a></span><span class="op">(</span>limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">min</a></span><span class="op">(</span><span class="va">resources_per_week</span><span class="op">$</span><span class="va">iso_date</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html">max</a></span><span class="op">(</span><span class="va">resources_per_week</span><span class="op">$</span><span class="va">iso_date</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span>, date_labels <span class="op">=</span> <span class="st">"%b %Y"</span><span class="op">)</span>
 <span class="co">#&gt; Warning: Removed 2 rows containing missing values (position_stack).</span>
 <span class="co">#&gt; Warning: Removed 2 rows containing missing values (geom_bar).</span></code></pre></div>
-<p><img src="researchlibrary_files/figure-html/resources_by_date-1.png" width="700"></p>
+<p><img src="researchlibrary_files/figure-html/resources_by_date-1.png" width="100%"></p>
 </div>
 <div id="count-how-many-resources-there-are-by-type" class="section level2">
 <h2 class="hasAnchor">
@@ -209,7 +209,7 @@
 <tbody>
 <tr class="odd">
 <td align="left">Publication</td>
-<td align="right">200061</td>
+<td align="right">200062</td>
 </tr>
 <tr class="even">
 <td align="left">ClinicalTrial</td>
@@ -217,7 +217,7 @@
 </tr>
 <tr class="odd">
 <td align="left">Dataset</td>
-<td align="right">3865</td>
+<td align="right">3857</td>
 </tr>
 <tr class="even">
 <td align="left">Protocol</td>
@@ -229,11 +229,11 @@
 </tr>
 <tr class="even">
 <td align="left">SoftwareSourceCode</td>
-<td align="right">196</td>
+<td align="right">193</td>
 </tr>
 <tr class="odd">
 <td align="left">CreativeWork</td>
-<td align="right">155</td>
+<td align="right">153</td>
 </tr>
 <tr class="even">
 <td align="left">PresentationDigitalDocument</td>
@@ -261,7 +261,7 @@
 </tr>
 <tr class="even">
 <td align="left">NA</td>
-<td align="right">8</td>
+<td align="right">9</td>
 </tr>
 <tr class="odd">
 <td align="left">Report</td>
@@ -306,7 +306,7 @@
 <tbody>
 <tr class="odd">
 <td align="left">Publication</td>
-<td align="right">200061</td>
+<td align="right">200062</td>
 </tr>
 <tr class="even">
 <td align="left">ClinicalTrial</td>
@@ -314,7 +314,7 @@
 </tr>
 <tr class="odd">
 <td align="left">Dataset</td>
-<td align="right">3865</td>
+<td align="right">3857</td>
 </tr>
 <tr class="even">
 <td align="left">Protocol</td>
@@ -326,11 +326,11 @@
 </tr>
 <tr class="even">
 <td align="left">SoftwareSourceCode</td>
-<td align="right">196</td>
+<td align="right">193</td>
 </tr>
 <tr class="odd">
 <td align="left">CreativeWork</td>
-<td align="right">155</td>
+<td align="right">153</td>
 </tr>
 <tr class="even">
 <td align="left">PresentationDigitalDocument</td>
@@ -389,42 +389,56 @@
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">getSources</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">type</span><span class="op">)</span> <span class="op">{</span>
   <span class="va">facets</span> <span class="op">=</span> <span class="fu"><a href="../reference/getResourcesData.html">getResourcesData</a></span><span class="op">(</span>types<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">type</span><span class="op">)</span>, facets<span class="op">=</span><span class="st">"curatedBy.name"</span>, facet_size <span class="op">=</span> <span class="fl">50</span>, size <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>
-  
-  <span class="va">terms</span> <span class="op">=</span> <span class="va">facets</span><span class="op">$</span><span class="va">facets</span><span class="op">$</span><span class="va">curatedBy.name</span><span class="op">$</span><span class="va">terms</span> <span class="op">%&gt;%</span> 
+
+  <span class="va">terms</span> <span class="op">=</span> <span class="va">facets</span><span class="op">$</span><span class="va">facets</span><span class="op">$</span><span class="va">curatedBy.name</span><span class="op">$</span><span class="va">terms</span> <span class="op">%&gt;%</span>
     <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>type <span class="op">=</span> <span class="va">type</span><span class="op">)</span>
 <span class="op">}</span>
 
+<span class="co"># Map over each of the types to get the source counts for each</span>
 <span class="va">resources_by_source</span> <span class="op">=</span> <span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span><span class="op">(</span><span class="va">resources_by_type</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">term</span><span class="op">)</span>, <span class="va">getSources</span><span class="op">)</span>
 
+<span class="co"># Get the resources by source, to order the totals</span>
 <span class="va">resources_by_curator</span> <span class="op">=</span>  <span class="fu"><a href="../reference/getResourcesData.html">getResourcesData</a></span><span class="op">(</span>facets<span class="op">=</span><span class="st">"curatedBy.name"</span>, facet_size <span class="op">=</span> <span class="fl">50</span>, size <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>
 <span class="va">resources_by_curator</span> <span class="op">=</span> <span class="va">resources_by_curator</span><span class="op">$</span><span class="va">facets</span><span class="op">$</span><span class="va">curatedBy.name</span><span class="op">$</span><span class="va">terms</span><span class="op">$</span><span class="va">term</span>
 
+<span class="co"># Group together fields into "other" category</span>
+<span class="va">resources_by_source_grouped</span> <span class="op">=</span> <span class="va">resources_by_source</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>type_grouped <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">type</span> <span class="op">%in%</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Publication"</span>, <span class="st">"ClinicalTrial"</span>, <span class="st">"Dataset"</span>, <span class="st">"Protocol"</span><span class="op">)</span>,
+                               <span class="va">type</span>, <span class="st">"Other"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">type_grouped</span>, <span class="va">term</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>count <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">count</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; `summarise()` has grouped output by 'type_grouped'. You can override using the `.groups` argument.</span>
+
+
 <span class="co"># Set the levels, so the bar plot sorts by order.</span>
-<span class="va">resources_by_source</span><span class="op">$</span><span class="va">type</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">resources_by_source</span><span class="op">$</span><span class="va">type</span>, <span class="va">resources_by_type</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">term</span><span class="op">)</span><span class="op">)</span>
-<span class="va">resources_by_source</span><span class="op">$</span><span class="va">term</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">resources_by_source</span><span class="op">$</span><span class="va">term</span>, <span class="va">resources_by_curator</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+<span class="va">types</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Other"</span>, <span class="va">resources_by_type</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">term</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
+
+<span class="va">resources_by_source_grouped</span><span class="op">$</span><span class="va">type_grouped</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">resources_by_source_grouped</span><span class="op">$</span><span class="va">type_grouped</span>, <span class="va">types</span><span class="op">)</span>
+<span class="va">resources_by_source_grouped</span><span class="op">$</span><span class="va">term</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html">factor</a></span><span class="op">(</span><span class="va">resources_by_source_grouped</span><span class="op">$</span><span class="va">term</span>, <span class="va">resources_by_curator</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/rev.html">rev</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span>
 
 <span class="va">COLORPALETTE</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"#4E79A7"</span>, <span class="st">"#f28e2b"</span>, <span class="st">"#59a14f"</span>,<span class="st">"#e15759"</span>, <span class="st">"#499894"</span>,<span class="st">"#B6992D"</span>,  <span class="st">"#D37295"</span>, <span class="st">"#B07AA1"</span>,<span class="st">"#9D7660"</span>, <span class="st">"#bcbd22"</span>,
                  <span class="st">"#aecBe8"</span>, <span class="st">"#FFBE7D"</span>,  <span class="st">"#8CD17D"</span>, <span class="st">"#FF9D9A"</span>,  <span class="st">"#86BCB6"</span>, <span class="st">"#F1CE63"</span>,<span class="st">"#FABFD2"</span>,  <span class="st">"#D4A6C8"</span>, <span class="st">"#D7B5A6"</span>,  <span class="st">"#79706E"</span><span class="op">)</span>
 
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">resources_by_source</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">type</span>, y <span class="op">=</span> <span class="va">count</span>, fill <span class="op">=</span> <span class="va">term</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"identity"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels<span class="op">=</span><span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/label_number.html">comma</a></span><span class="op">)</span> <span class="op">+</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">COLORPALETTE</span><span class="op">)</span> <span class="op">=</span> <span class="va">resources_by_curator</span>
+
+
+<span class="co"># Plot the results -- full scale to encapsulate the LitCovid responses</span>
+<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">resources_by_source_grouped</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">type_grouped</span> <span class="op">!=</span> <span class="st">"Other"</span><span class="op">)</span>, 
+       <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">type_grouped</span>, y <span class="op">=</span> <span class="va">count</span>, fill <span class="op">=</span> <span class="va">term</span>, colour <span class="op">=</span> <span class="va">term</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span>position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html">position_dodge2</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.9</span>, preserve <span class="op">=</span> <span class="st">"single"</span>, padding <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span>, width <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_text.html">geom_text</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">count</span> <span class="op">+</span> <span class="fl">1500</span>, label <span class="op">=</span> <span class="va">term</span><span class="op">)</span>, position <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/position_dodge.html">position_dodge2</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.9</span>, preserve <span class="op">=</span> <span class="st">"single"</span>, padding <span class="op">=</span> <span class="fl">0.2</span><span class="op">)</span>,
+            size <span class="op">=</span> <span class="fl">3</span>, hjust <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels<span class="op">=</span><span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/label_number.html">comma</a></span>, expand <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">100</span>, <span class="fl">0</span>, <span class="fl">20000</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_colour_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="va">COLORPALETTE</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="va">COLORPALETTE</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span> </code></pre></div>
-<p><img src="researchlibrary_files/figure-html/unnamed-chunk-1-1.png" width="700"></p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">resources_by_source</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">term</span>, y <span class="op">=</span> <span class="va">count</span>, fill <span class="op">=</span> <span class="va">term</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_bar</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"identity"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_continuous</a></span><span class="op">(</span>labels<span class="op">=</span><span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/label_number.html">comma</a></span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="va">COLORPALETTE</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"Resources in outbreak.info by resource type and source"</span>, subtitle <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"As of "</span>, <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.time</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"%d %B %Y"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">type</span>, scales<span class="op">=</span><span class="st">"free_x"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span> </code></pre></div>
-<p><img src="researchlibrary_files/figure-html/unnamed-chunk-1-2.png" width="700"></p>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span>, panel.grid.major.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>, axis.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,
+        axis.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">14</span><span class="op">)</span>,
+        plot.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">16</span><span class="op">)</span>,
+        plot.subtitle <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>colour<span class="op">=</span><span class="st">"#777777"</span>, size <span class="op">=</span> <span class="fl">10</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p><img src="researchlibrary_files/figure-html/resources_by_type_source-1.png" width="100%"></p>
 </div>
 <div id="some-notes-on-constructing-queries" class="section level2">
 <h2 class="hasAnchor">
@@ -434,7 +448,7 @@
 <h3 class="hasAnchor">
 <a href="#general-queries" class="anchor"></a>General queries</h3>
 <p>This will search for any use of the term within all the metadata, including its name, description, authors, etc. You can also combine terms using <code>AND</code> and/or <code>OR</code>. Note that spaces, dashes, and other punctuation are automatically treated as <code>OR</code> combinations. Adding quotes will search for that exact term. <strong>Note that all searches are case insensitive, so looking for “Pfizer” or “pfizer” will give you the same results.</strong></p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Basic query: look for anything that mentions "Pfizer"</span>
 <span class="va">query1</span> <span class="op">=</span> <span class="fu"><a href="../reference/getResourcesData.html">getResourcesData</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">"Pfizer"</span>, fetchAll <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"There are "</span>, <span class="va">query1</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span>big.mark<span class="op">=</span><span class="st">","</span><span class="op">)</span>,<span class="st">" resources containing the term 'Pfizer'"</span><span class="op">)</span><span class="op">)</span>
@@ -481,7 +495,7 @@
 <li>
 <code>facet_size</code>: how many results to return in the facets. By default, only the top 10 most frequently observed options will be listed for a given field.</li>
 </ul>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Return only the clinical trials on boosters</span>
 <span class="va">query6</span> <span class="op">=</span> <span class="fu"><a href="../reference/getResourcesData.html">getResourcesData</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">"booster"</span>, types<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"ClinicalTrial"</span><span class="op">)</span>, fetchAll <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
@@ -552,7 +566,7 @@
 <h3 class="hasAnchor">
 <a href="#using-wildcards" class="anchor"></a>Using wildcards</h3>
 <p>Sometimes you only want to search for part of a phrase. For instance, let’s say you wanted to look for resources that have some information on any mutation occurring at position 484 in the spike protein. You can use the <code><a href="https://rdrr.io/r/base/Arithmetic.html">*</a></code> wildcard to look for that term.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">query9</span> <span class="op">=</span> <span class="fu"><a href="../reference/getResourcesData.html">getResourcesData</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">"E484*"</span>, fetchAll <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"There are "</span>, <span class="va">query9</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span>big.mark<span class="op">=</span><span class="st">","</span><span class="op">)</span>,<span class="st">" resources mentioning a mutation at position E484."</span><span class="op">)</span><span class="op">)</span>
@@ -567,7 +581,7 @@
 <h3 class="hasAnchor">
 <a href="#searching-specific-terms" class="anchor"></a>Searching specific terms</h3>
 <p>So far, we’ve looked at searches that match any field (variable) within the resource. We might, however, want to look within a particular field rather than searching across everything. Note that nested objects can be queried using <code>.</code>.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># find all publications in Nature</span>
 <span class="va">query10</span> <span class="op">=</span> <span class="fu"><a href="../reference/getResourcesData.html">getResourcesData</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">"journalName:Nature"</span>, fetchAll <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
@@ -584,7 +598,7 @@
 <h3 class="hasAnchor">
 <a href="#finding-records-where-a-term-exists" class="anchor"></a>Finding records where a term exists</h3>
 <p>You might want to know whether or not a field (variable) is empty or populated with something. For instance, we can find all the publications which have some sort of correction associated with them, which could include a retraction or commentary. This is specified by the query parameter <code>_exists_</code></p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">query12</span> <span class="op">=</span> <span class="fu"><a href="../reference/getResourcesData.html">getResourcesData</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">"_exists_:correction"</span>, types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Publication"</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">10</span>, facets <span class="op">=</span> <span class="st">"correction.correctionType"</span>, facet_size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"There are "</span>, <span class="va">query12</span><span class="op">$</span><span class="va">total</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span>big.mark<span class="op">=</span><span class="st">","</span><span class="op">)</span>,<span class="st">" publications which have been corrected. Here are the correction types:"</span><span class="op">)</span><span class="op">)</span>
@@ -648,7 +662,7 @@
 <h3 class="hasAnchor">
 <a href="#range-searching-dates" class="anchor"></a>Range searching: dates</h3>
 <p>Numeric values like dates can be searched for a specific value, or a range of values. Let’s find the latest research on cytokine storms. With range queries, values in square brackets include those values, like <code>[2020-01-01 TO 2020-12-31]</code> (everything in 2020), curly braces <em>exclude</em> the value on the end, and <code><a href="https://rdrr.io/r/base/Arithmetic.html">*</a></code> can be added to specify before a date or after a date.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Find all resources on cytokine storms</span>
 <span class="va">query13</span> <span class="op">=</span> <span class="fu"><a href="../reference/getResourcesData.html">getResourcesData</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">'"cytokine storm"'</span>, fetchAll <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 

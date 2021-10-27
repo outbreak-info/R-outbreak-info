@@ -150,7 +150,14 @@ getResourcesQuery = function(query, scroll_id = NA) {
     } else {
       return(list(hits = results[["hits"]], id = results[["_scroll_id"]], total = results[["total"]], facets = results[["facets"]]))
     }
-  } else {
-    stop("Hmm. ", query, " isn't a recognized query. Try reformatting your query string or reach out to help@outbreak.info for help.")
+  } else if(resp$status_code == 429) {
+    warning("You have exceeded the API usage limit. Please limit the usage to 1 request/minute.\n")
+    return(NULL)
+  } else if(resp$status_code == 500){
+    stop("There was an internal server error. Please check your query (", query, ") or contact help@outbreak.info for further assistance.\n")
+  }
+  else {
+    stop("Hmm. Some unknown error happened. Please reach out to help@outbreak.info for help.")
+    return(NULL)
   }
 }

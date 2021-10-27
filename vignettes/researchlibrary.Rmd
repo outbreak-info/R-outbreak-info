@@ -37,7 +37,7 @@ library(lubridate)
 ## Access how many resources are collected by date
 How has the amount of research changed over time? We can pull the resources added each week to understand the scale of the vast amount of COVID-19 research being produced since the beginning of the pandemic.
 
-```{r resources_by_date}
+```{r resources_by_date, out.width = '100%'}
 # query the API to get the resources by date. Filter to > 1 January 2020, to remove the weirdos that slipped through.
 resources_by_date = getResourcesData(query = "date:[2020-01-01 TO *]", fields = "date", fetchAll = TRUE)
 
@@ -86,7 +86,7 @@ knitr::kable(resources_by_type %>% select(term, count))
 ```
 
 ## Count how many resources there are by type AND by data source
-```{r}
+```{r resources_by_type_source, out.width = '100%'}
 getSources = function(type) {
   facets = getResourcesData(types=c(type), facets="curatedBy.name", facet_size = 50, size = 0)
 
@@ -94,29 +94,49 @@ getSources = function(type) {
     mutate(type = type)
 }
 
+# Map over each of the types to get the source counts for each
 resources_by_source = map_df(resources_by_type %>% pull(term), getSources)
 
+# Get the resources by source, to order the totals
 resources_by_curator =  getResourcesData(facets="curatedBy.name", facet_size = 50, size = 0)
 resources_by_curator = resources_by_curator$facets$curatedBy.name$terms$term
 
+# Group together fields into "other" category
+resources_by_source_grouped = resources_by_source %>% 
+  mutate(type_grouped = ifelse(type %in% c("Publication", "ClinicalTrial", "Dataset", "Protocol"),
+                               type, "Other")) %>% 
+  group_by(type_grouped, term) %>% 
+  summarise(count = sum(count))
+
+
 # Set the levels, so the bar plot sorts by order.
-resources_by_source$type = factor(resources_by_source$type, resources_by_type %>% pull(term))
-resources_by_source$term = factor(resources_by_source$term, resources_by_curator %>% rev())
+types = c("Other", resources_by_type %>% pull(term) %>% rev())
+
+resources_by_source_grouped$type_grouped = factor(resources_by_source_grouped$type_grouped, types)
+resources_by_source_grouped$term = factor(resources_by_source_grouped$term, resources_by_curator %>% rev())
 
 COLORPALETTE = c("#4E79A7", "#f28e2b", "#59a14f","#e15759", "#499894","#B6992D",  "#D37295", "#B07AA1","#9D7660", "#bcbd22",
                  "#aecBe8", "#FFBE7D",  "#8CD17D", "#FF9D9A",  "#86BCB6", "#F1CE63","#FABFD2",  "#D4A6C8", "#D7B5A6",  "#79706E")
 
-ggplot(resources_by_source %>% filter(type %in% c("Publication", "ClinicalTrial", "Dataset", "Protocol")),
-       aes(x = type, y = count, fill = term, colour = term, label = term)) +
-  geom_col(position = position_dodge2(width = 0.95, preserve = "single"), width = 1) +
-  geom_text(aes(y = count + 1000), position = position_dodge2(width = 0.95, preserve = "single"), hjust = 0, vjust = 0.5) +
-  coord_flip() +
-  scale_y_continuous(labels=scales::comma, expand = c(0, 10000)) +
+names(COLORPALETTE) = resources_by_curator
+
+
+# Plot the results -- full scale to encapsulate the LitCovid responses
+ggplot(resources_by_source_grouped %>% filter(type_grouped != "Other"), 
+       aes(x = type_grouped, y = count, fill = term, colour = term)) +
+  geom_col(position = position_dodge2(width = 0.9, preserve = "single", padding = 0.2), width = 1) +
+  geom_text(aes(y = count + 1500, label = term), position = position_dodge2(width = 0.9, preserve = "single", padding = 0.2),
+            size = 3, hjust = 0) +
+  scale_y_continuous(labels=scales::comma, expand = c(0, 100, 0, 20000)) +
   scale_colour_manual(values = COLORPALETTE) +
   scale_fill_manual(values = COLORPALETTE) +
-  ggtitle("Resources in outbreak.info by resource type and source") +
-  theme_minimal() +
-  theme(legend.position = "none", panel.grid.major.y = element_blank(), axis.title = element_blank(), text = element_text(size = 18))
+  coord_flip() +
+  ggtitle("Resources in outbreak.info by resource type and source", subtitle = paste0("As of ", format(Sys.time(), "%d %B %Y"))) +
+  theme_minimal() + 
+  theme(legend.position = "none", panel.grid.major.y = element_blank(), axis.title = element_blank(),
+        axis.text = element_text(size = 14),
+        plot.title = element_text(size = 16),
+        plot.subtitle = element_text(colour="#777777", size = 10))
 ```
 
 

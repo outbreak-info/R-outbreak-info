@@ -8,12 +8,12 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
-  
+
 # Accessing the data in outbreak.info's Research Library
-Outbreak.info's Research Library allows you to track the vast amount of research being produced by the community on COVID-19, including publications, clinical trials, datasets, protocols, and more. The metadata for these resources are pulled every day across a series of [data sources](https://outbreak.info/sources#resources) and combined and standardized for easy searching across data asset.
-  
+outbreak.info's Research Library allows you to track the vast amount of research being produced by the community on COVID-19, including publications, clinical trials, datasets, protocols, and more. The metadata for these resources are pulled every day across a series of [data sources](https://outbreak.info/sources#resources) and combined and standardized for easy searching across data asset.
+
 Here, we'll show how to access and filter these metadata about COVID-19 and SARS-CoV-2 research.
-  
+
 ## Before we start...
 Import the packages we'll use.
   ```{r setup, include = FALSE}
@@ -42,22 +42,22 @@ How has the amount of research changed over time? We can pull the resources adde
 resources_by_date = getResourcesData(query = "date:[2020-01-01 TO *]", fields = "date", fetchAll = TRUE)
 
 # roll up the number of resources by week
-resources_by_date = resources_by_date %>% 
+resources_by_date = resources_by_date %>%
   mutate(year = lubridate::year(date),
-         iso_week = lubridate::isoweek(date)) 
+         iso_week = lubridate::isoweek(date))
 
 # count the number of new resources per week.
-resources_per_week = resources_by_date %>% 
-  count(iso_week, year) %>% 
+resources_per_week = resources_by_date %>%
+  count(iso_week, year) %>%
   # convert from iso week back to a date
-  mutate(iso_date = lubridate::parse_date_time(paste(year,iso_week, "Mon", sep="-"), "Y-W-a")) 
+  mutate(iso_date = lubridate::parse_date_time(paste(year,iso_week, "Mon", sep="-"), "Y-W-a"))
 
 # plot!
 fill_color = "#66c2a5"
 ggplot(resources_per_week, aes(x = iso_date, y = n)) +
   geom_bar(fill = fill_color, stat="identity") +
   ggtitle("COVID-19 resources have rapidly proliferated", subtitle="Number of publications, datasets, clinical trials, and more added each week to outbreak.info's Research Library") +
-  theme_minimal() + 
+  theme_minimal() +
   theme(
     text = element_text(family="DM Sans"),
     axis.title = element_blank(),
@@ -89,8 +89,8 @@ knitr::kable(resources_by_type %>% select(term, count))
 ```{r}
 getSources = function(type) {
   facets = getResourcesData(types=c(type), facets="curatedBy.name", facet_size = 50, size = 0)
-  
-  terms = facets$facets$curatedBy.name$terms %>% 
+
+  terms = facets$facets$curatedBy.name$terms %>%
     mutate(type = type)
 }
 
@@ -106,22 +106,17 @@ resources_by_source$term = factor(resources_by_source$term, resources_by_curator
 COLORPALETTE = c("#4E79A7", "#f28e2b", "#59a14f","#e15759", "#499894","#B6992D",  "#D37295", "#B07AA1","#9D7660", "#bcbd22",
                  "#aecBe8", "#FFBE7D",  "#8CD17D", "#FF9D9A",  "#86BCB6", "#F1CE63","#FABFD2",  "#D4A6C8", "#D7B5A6",  "#79706E")
 
-ggplot(resources_by_source, aes(x = type, y = count, fill = term)) + 
-  geom_bar(stat = "identity") +
+ggplot(resources_by_source %>% filter(type %in% c("Publication", "ClinicalTrial", "Dataset", "Protocol")),
+       aes(x = type, y = count, fill = term, colour = term, label = term)) +
+  geom_col(position = position_dodge2(width = 0.95, preserve = "single"), width = 1) +
+  geom_text(aes(y = count + 1000), position = position_dodge2(width = 0.95, preserve = "single"), hjust = 0, vjust = 0.5) +
   coord_flip() +
-  scale_y_continuous(labels=scales::comma) +
+  scale_y_continuous(labels=scales::comma, expand = c(0, 10000)) +
+  scale_colour_manual(values = COLORPALETTE) +
   scale_fill_manual(values = COLORPALETTE) +
+  ggtitle("Resources in outbreak.info by resource type and source") +
   theme_minimal() +
-  theme(legend.position = "bottom") 
-
-ggplot(resources_by_source, aes(x = term, y = count, fill = term)) + 
-  geom_bar(stat = "identity") +
-  coord_flip() +
-  scale_y_continuous(labels=scales::comma) +
-  scale_fill_manual(values = COLORPALETTE) +
-  theme_minimal() + 
-  facet_wrap(~type, scales="free_x") +
-  theme(legend.position = "bottom") 
+  theme(legend.position = "none", panel.grid.major.y = element_blank(), axis.title = element_blank(), text = element_text(size = 18))
 ```
 
 
@@ -240,5 +235,3 @@ query19 = getResourcesData(query = '"cytokine storm" AND date:>=2021-01-01', fet
 
 print(paste0("There are ", query13  %>% nrow() %>% format(big.mark=",")," resources about cytokine storms in all time, ", query14  %>% nrow() %>% format(big.mark=","), " on 18 December 2020, ", query15  %>% nrow() %>% format(big.mark=","), " in 2020", ", and ", query16  %>% nrow() %>% format(big.mark=",")," since 1 January 2021."))
 ```
-
-

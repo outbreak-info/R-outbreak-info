@@ -1,6 +1,6 @@
 Package: outbreakinfo
 Type: Package
-Title: Outbreak.info R Client
+Title: outbreak.info R Client
 Version: 0.2.0
 Authors@R: c(person("Manar", "Alkuzweny", email = "manaralkuzweny@gmail.com",
                   role = c("aut", "cre")),

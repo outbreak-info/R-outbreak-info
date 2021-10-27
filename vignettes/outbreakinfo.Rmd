@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
-[Outbreak.info](https://outbreak.info) is a project to enable the tracking of SARS-CoV-2 Variants within the COVID-19 pandemic. This R package offers access to the data we have gathered and calculated along with visualizations to replicate the visualizations on outbreak.info. Here, we'll outline some of the basic functionality of the R package to access the genomic (SARS-CoV-2 variant) data and epidemiology data (COVID-19 cases and deaths).
+[outbreak.info](https://outbreak.info) is a project to enable the tracking of SARS-CoV-2 Variants within the COVID-19 pandemic. This R package offers access to the data we have gathered and calculated along with visualizations to replicate the visualizations on outbreak.info. Here, we'll outline some of the basic functionality of the R package to access the genomic (SARS-CoV-2 variant) data and epidemiology data (COVID-19 cases and deaths).
 
 ## SARS-CoV-2 variant prevalence
 
@@ -40,7 +40,7 @@ library(outbreakinfo)
 
 # Not needed; just used to tidy some of the outputs
 library(dplyr)
-library(knitr) 
+library(knitr)
 ```
 
 ```{r auth, message = FALSE, results='hide', eval=FALSE}
@@ -78,10 +78,10 @@ To get the prevalence of a particular variant to compare between locations, you 
 b117_world = getCumulativeBySubadmin(pangolin_lineage = "B.1.1.7")
 
 # filtering down the data to view a few countries
-b117_world %>% 
+b117_world %>%
   filter(name %in% c("Canada", "United Kingdom", "Australia", "New Zealand")) %>%
-  select(name, proportion, proportion_ci_lower, proportion_ci_upper) %>% 
-  arrange(desc(proportion)) %>% 
+  select(name, proportion, proportion_ci_lower, proportion_ci_upper) %>%
+  arrange(desc(proportion)) %>%
   knitr::kable()
 ```
 

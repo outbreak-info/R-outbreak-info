@@ -8,7 +8,7 @@ vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
-  
+
   ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
 collapse = TRUE,
@@ -16,7 +16,7 @@ comment = "#>"
 )
 ```
 # Accessing the data in outbreak.info's Variant Tracker
-Outbreak.info's Variant Tracker allows you to view how combinations of lineages and mutations are changing over time. These reports allow you to answer questions like:
+outbreak.info's Variant Tracker allows you to view how combinations of lineages and mutations are changing over time. These reports allow you to answer questions like:
 
 - [What mutations are present within that lineage?](#what-mutations-are-characteristic-of-the-variant-)
 - [How prevalent is a variant overall?](#how-prevalent-is-a-variant-overall-)
@@ -67,7 +67,7 @@ gamma_mutations = getMutationsByLineage(pangolin_lineage=gamma_lineages, frequen
 # Plot!
 plotMutationHeatmap(gamma_mutations, title = "S-gene mutations in > 50% of Gamma sequences")
 
-# You can also change the gene you select by changing 
+# You can also change the gene you select by changing
 # plotMutationHeatmap(gamma_mutations, title = "ORF1a-gene mutations in Gamma lineages", gene2Plot="ORF1a")
 ```
 
@@ -78,7 +78,7 @@ To start with, let's get some basic information about the overall, cumulative pr
 locations = c("Brazil", "United States", "Illinois")
 
 worldwide_prevalence = getPrevalence(pangolin_lineage = "P.1", cumulative = TRUE)
-cumulative_prevalences = purrr::map_df(locations, function(loc) getPrevalence(pangolin_lineage = "P.1", location = loc, cumulative = TRUE)) %>% 
+cumulative_prevalences = purrr::map_df(locations, function(loc) getPrevalence(pangolin_lineage = "P.1", location = loc, cumulative = TRUE)) %>%
   arrange(desc(value.global_prevalence))
 
 cumulative_prevalences = worldwide_prevalence %>% dplyr::bind_rows(cumulative_prevalences)
@@ -131,11 +131,11 @@ plotPrevalenceOverTime(n501y_e484k, title = "Daily S:E484K & S:N501Y prevalence"
 lineages_n501y_e484k = getMutationAcrossLineage(mutations = c("S:E484K", "S:N501Y"))
 
 # We'll sort those lineages and take the top 5, of lineages with at least 1,000 sequences:
-lineages_n501y_e484k %>% 
-  select(pangolin_lineage, proportion, lineage_count) %>% 
-  filter(lineage_count >= 1000) %>% 
-  arrange(desc(proportion)) %>% 
-  slice(1:5) %>% 
+lineages_n501y_e484k %>%
+  select(pangolin_lineage, proportion, lineage_count) %>%
+  filter(lineage_count >= 1000) %>%
+  arrange(desc(proportion)) %>%
+  slice(1:5) %>%
   knitr::kable()
 
 # ... and you can combine mutations with a Pango lineage to look at how those mutations are prevalent in the P.1 backbone.
@@ -168,21 +168,21 @@ gadm_p1 = left_join(gadm, p1_by_country, by=c("GID_0" = "id"))
 plotChoropleth = function(df, fillVar = "proportion", title = NULL, proj4 = "+proj=wag7 +lon_0=11 +datum=WGS84 +units=m +no_defs") {
   # color palette: ColorBrewer's YlGnBu:https://colorbrewer2.org/#type=sequential&scheme=YlGnBu&n=9
   CHOROPLETH_PALETTE = c('#ffffd9','#edf8b1','#c7e9b4','#7fcdbb','#41b6c4','#1d91c0','#225ea8','#253494','#081d58')
-  
+
   # Reproject as Mollweide projection
   df_projected = st_transform(df, crs = proj4)
-  
+
   df_projected = df_projected %>%
     filter(NAME_0 != "Antarctica")
 
-  
+
   p = ggplot(df_projected, aes_string(fill = fillVar)) +
     geom_sf(size = 0.1, colour = "#555555") +
     scale_fill_gradientn(colours = CHOROPLETH_PALETTE, na.value = "#babab0", labels=scales::percent, limits = c(0,1)) +
     theme_void() +
-    theme(legend.position = "bottom") 
-  
-  if(!is.null(title)){ 
+    theme(legend.position = "bottom")
+
+  if(!is.null(title)){
     p = p +
       ggtitle(title)
   }

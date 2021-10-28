@@ -31,7 +31,7 @@ If you don't have a GISAID account, you can [register](https://www.gisaid.org/re
 for one on their website. It may take a day or two for the account to become active.
 ```{r install, message = FALSE, results='hide', eval=FALSE}
 # Install the package, if you haven't already, using devtools
-devtools::install_github("outbreak-info/R-outbreak-info")
+devtools::install_github("outbreak-info/R-outbreak-info/outbreakinfo")
 ```
 
 ```{r pkgs, message = FALSE, results='hide'}

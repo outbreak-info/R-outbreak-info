@@ -31,7 +31,7 @@ from [Johns Hopkins University](https://github.com/CSSEGISandData/COVID-19) and 
 ## Installation
 ```{r installation, eval = FALSE}
 # Install development version from GitHub
-devtools::install_github("outbreak-info/R-outbreak-info")
+devtools::install_github("outbreak-info/R-outbreak-info/outbreakinfo")
 ```
 
 ## Getting Started
@@ -113,19 +113,19 @@ library(lubridate)
 resources_by_date = getResourcesData(query = "date:[2020-01-01 TO *]", types=c("Publication", "ClinicalTrial", "Protocol", "Dataset"), fields = c("date", "@type"), fetchAll = TRUE)
 
 # roll up the number of resources by week
-resources_by_date = resources_by_date %>% 
+resources_by_date = resources_by_date %>%
   mutate(year = lubridate::year(date),
-         iso_week = lubridate::isoweek(date)) 
+         iso_week = lubridate::isoweek(date))
 
 # count the number of new resources per week.
-resources_per_week = resources_by_date %>% 
-  count(`@type`, iso_week, year) %>% 
+resources_per_week = resources_by_date %>%
+  count(`@type`, iso_week, year) %>%
   # convert from iso week back to a date
-  mutate(iso_date = lubridate::parse_date_time(paste(year,iso_week, "Mon", sep="-"), "Y-W-a")) 
+  mutate(iso_date = lubridate::parse_date_time(paste(year,iso_week, "Mon", sep="-"), "Y-W-a"))
 
 # Make it a bit prettier, by sorting by the relative proportion of resource types
-type_frequency = resources_by_date %>% 
-count(`@type`) %>% 
+type_frequency = resources_by_date %>%
+count(`@type`) %>%
   arrange(desc(n)) %>%
   pull(`@type`)
 
@@ -134,7 +134,7 @@ resources_per_week$`@type` = factor(resources_per_week$`@type`, type_frequency)
 ggplot(resources_per_week, aes(x = iso_date, y = n, fill = `@type`)) +
   geom_bar(stat="identity") +
   ggtitle("COVID-19 resources have rapidly proliferated", subtitle="Number of publications, datasets, clinical trials, and more added each week to outbreak.info's Research Library") +
-  theme_minimal() + 
+  theme_minimal() +
   theme(
     text = element_text(family="DM Sans"),
     axis.title = element_blank(),

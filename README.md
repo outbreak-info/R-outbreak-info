@@ -27,7 +27,7 @@ derived statistics.
 
 ``` r
 # Install development version from GitHub
-devtools::install_github("outbreak-info/R-outbreak-info/outbreakinfo")
+devtools::install_github("outbreak-info/R-outbreak-info")
 ```
 
 ## Getting Started
@@ -109,7 +109,7 @@ ca_lineages = getAllLineagesByLocation(location = "California", ndays = 90)
 
 # Plot the prevalence of the dominant lineages in California
 plotAllLineagesByLocation(location = "California", ndays = 90)
-#> Retrieving data... 
+#> Retrieving data...
 #> Plotting data...
 ```
 

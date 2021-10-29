@@ -15,9 +15,9 @@ library(outbreakinfo)
 # Accessing the data in outbreak.info's Variant Tracker
 Outbreak.info's Cases & Deaths Tracker allows you to compare trends in COVID-19 cases and deaths by location over time. We will walk you through how to run some essential queries. We can help you to answer questions like:
 
-- [How do I retrieve location names and codes?](#how-to-retrieve-location-names-and-codes-)
-- [How do I pull epidemiological data by location or according to my own specs?](#how-to-retrieve-epi-data-)
-- [How do I plot epidemiological data?](#how-to-plot-epi-data-)
+- [How do I retrieve location names and codes used in the epi functions?](#how-to-retrieve-location-names-and-codes)
+- [How do I pull epidemiological data by location or according to my own specs?](#how-to-retrieve-epi-data-1)
+- [How do I plot epidemiological data?](#how-to-plot-epi-data)
 
 ------
 
@@ -25,10 +25,6 @@ Outbreak.info's Cases & Deaths Tracker allows you to compare trends in COVID-19 
 Import the packages we'll use to access the data:
 ```{r pkgs, message = FALSE, results='hide'}
 # Package imports
-library(knitr)
-library(jsonlite)
-library(ggplot2)
-library(readr)
 library(outbreakinfo)
 
 ```

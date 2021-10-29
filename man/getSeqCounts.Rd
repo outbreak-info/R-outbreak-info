@@ -17,9 +17,14 @@ getSeqCounts(location = NULL, cumulative = NULL, subadmin = NULL)
 dataframe
 }
 \description{
-Retrieves number of sequences per day by location
+Retrieves number of sequences by location, by date of sample collection. 
+See \link[outbreakinfo]{getSubmissionDateByLocation} to view similar information by date of sequence submission.
 }
 \examples{
+# Retrieves the number of samples sequenced in the U.S. each day, by date of sample collection
 getSeqCounts(location="United States of America")
+
+# Returns the total number of global sequences in the outbreak.info API.
+getSeqCounts(cumulative=TRUE)
 
 }

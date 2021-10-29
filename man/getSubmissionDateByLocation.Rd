@@ -21,7 +21,8 @@ getSubmissionDateByLocation(
 dataframe
 }
 \description{
-Retrieve most recent submission date by location
+Retrieves number of sequences by location, by date of sequence submission. 
+See \link[outbreakinfo]{getSeqCounts} to view similar information by date of sample collection.
 }
 \examples{
 getSubmissionDateByLocation(pangolin_lineage="B.1.1.7", location="California")

@@ -196,10 +196,50 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Worldwide prevalence of B.1.1.7 by country</span>
 <span class='fu'>getCumulativeBySubadmin</span><span class='op'>(</span>pangolin_lineage<span class='op'>=</span><span class='st'>"B.1.1.7"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in getCumulativeBySubadmin(pangolin_lineage = "B.1.1.7") %&gt;% head(): could not find function "%&gt;%"</span></div><div class='input'>
+</div><div class='output co'>#&gt; Retrieving data... </div><div class='output co'>#&gt;           date             name   id total_count lineage_count cum_total_count
+#&gt; 47  2020-03-24             Cuba None           1             0               2
+#&gt; 158 2020-04-07     Saint Martin  MAF           1             0              10
+#&gt; 166 2020-09-08   Sint Eustatius  BES           3             0               4
+#&gt; 42  2021-01-10          Comoros  COM           3             0               6
+#&gt; 21  2021-01-12          Bermuda  BMU           1             0              40
+#&gt; 69  2021-01-14 French Polynesia  PYF           1             0              11
+#&gt;     cum_lineage_count proportion proportion_ci_lower proportion_ci_upper
+#&gt; 47                  0       0.00        2.169085e-04           0.6668218
+#&gt; 158                 0       0.00        4.789043e-05           0.2171963
+#&gt; 166                 0       0.00        1.153328e-04           0.4447626
+#&gt; 42                  0       0.00        7.849985e-05           0.3303889
+#&gt; 21                  2       0.05        1.053449e-02           0.1508651
+#&gt; 69                  0       0.00        4.363580e-05           0.1999946
+#&gt;     lineage
+#&gt; 47  B.1.1.7
+#&gt; 158 B.1.1.7
+#&gt; 166 B.1.1.7
+#&gt; 42  B.1.1.7
+#&gt; 21  B.1.1.7
+#&gt; 69  B.1.1.7</div><div class='input'>
 <span class='co'># County-level prevalence of B.1.1.7</span>
 <span class='fu'>getCumulativeBySubadmin</span><span class='op'>(</span>pangolin_lineage<span class='op'>=</span><span class='st'>"B.1.1.7"</span>, location<span class='op'>=</span><span class='st'>"California"</span><span class='op'>)</span> <span class='op'>%&gt;%</span> <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in getCumulativeBySubadmin(pangolin_lineage = "B.1.1.7", location = "California") %&gt;%     head(): could not find function "%&gt;%"</span></div><div class='input'>
+</div><div class='output co'>#&gt; Retrieving data... </div><div class='output co'>#&gt;           date                               name              id total_count
+#&gt; 63  2020-10-29 Napa, Solano, Yolo, Marin Counties  USA_US-CA_None           6
+#&gt; 26  2020-12-09                             Fresno USA_US-CA_06019           1
+#&gt; 7   2020-12-15                   Brentwood County USA_US-CA_06013           1
+#&gt; 72  2020-12-23                            Redding  USA_US-CA_None           2
+#&gt; 4   2020-12-25              Alexandria, VA County  USA_US-CA_None           1
+#&gt; 119 2020-12-27                             Sutter USA_US-CA_06101           1
+#&gt;     lineage_count cum_total_count cum_lineage_count proportion
+#&gt; 63              0              27                 0          0
+#&gt; 26              0               1                 0          0
+#&gt; 7               0               1                 0          0
+#&gt; 72              0               2                 0          0
+#&gt; 4               0               1                 0          0
+#&gt; 119             0               1                 0          0
+#&gt;     proportion_ci_lower proportion_ci_upper lineage
+#&gt; 63         0.0000180187          0.08805083 B.1.1.7
+#&gt; 26         0.0003855810          0.85325368 B.1.1.7
+#&gt; 7          0.0003855810          0.85325368 B.1.1.7
+#&gt; 72         0.0002169085          0.66682175 B.1.1.7
+#&gt; 4          0.0003855810          0.85325368 B.1.1.7
+#&gt; 119        0.0003855810          0.85325368 B.1.1.7</div><div class='input'>
 
 </div></pre>
   </div>

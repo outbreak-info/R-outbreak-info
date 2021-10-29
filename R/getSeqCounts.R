@@ -1,6 +1,7 @@
 #' @title Retrieve sequence count data
 #'
-#' @description Retrieves number of sequences per day by location
+#' @description Retrieves number of sequences by location, by date of sample collection. 
+#' See \link[outbreakinfo]{getSubmissionDateByLocation} to view similar information by date of sequence submission.
 #'
 #'@param location: (optional) a location name (if not specified, global total counts returned)
 #'@param cumulative: (optional) Boolean (T/F), T returns cumulative number of sequences to date
@@ -9,7 +10,11 @@
 #'@return dataframe
 #'
 #'@examples
+#' # Retrieves the number of samples sequenced in the U.S. each day, by date of sample collection
 #'getSeqCounts(location="United States of America")
+#'
+#' # Returns the total number of global sequences in the outbreak.info API.
+#'getSeqCounts(cumulative=TRUE)
 #'
 #' @export
 

@@ -35,7 +35,7 @@ devtools::install_github("outbreak-info/R-outbreak-info/outbreakinfo")
 ```
 
 ## Getting Started
-If you're getting started using **outbreakinfo**, we recommend starting with our tutorial [vignettes](https://outbreak-info.github.io/R-outbreak-info/docs/articles/index.html).
+If you're getting started using **outbreakinfo**, we recommend starting with our tutorial [vignettes](https://outbreak-info.github.io/R-outbreak-info/articles/index.html).
 
 To access the genomic data (SARS-CoV-2 variant prevalences), you will
 need to **create an account on [GISAID](https://www.gisaid.org/registration/register/)**
@@ -46,8 +46,7 @@ outbreakinfo::authenticateUser()
 ```
 
 
-Please view our [vignettes](https://outbreak-info.github.io/R-outbreak-info/docs/articles/index.html) for examples of how to use the R package.
-
+Please view our [vignettes](https://outbreak-info.github.io/R-outbreak-info/articles/index.html) for examples of how to use the R package.
 
 ## Related Projects
 API access for outbreak.info's [Research Library](https://outbreak.info/resources), which provides metadata on COVID-19 publications, pre-prints, clinical trials, datasets, protocols, and more is available on our [API](https://api.outbreak.info/try/resources). API access for the cases and deaths data is also available on our [API](https://api.outbreak.info/try/covid19). In addition to this R package, the Research Library and Cases & Deaths API endpoints can be accessed through the [httr](https://httr.r-lib.org/) R package or the the Python [requests](https://docs.python-requests.org/en/latest/) package.

@@ -34,7 +34,7 @@ devtools::install_github("outbreak-info/R-outbreak-info/outbreakinfo")
 
 If you’re getting started using **outbreakinfo**, we recommend starting
 with our tutorial
-[vignettes](https://outbreak-info.github.io/R-outbreak-info/docs/articles/index.html).
+[vignettes](https://outbreak-info.github.io/R-outbreak-info/articles/index.html).
 
 To access the genomic data (SARS-CoV-2 variant prevalences), you will
 need to **create an account on
@@ -48,7 +48,7 @@ outbreakinfo::authenticateUser()
 ```
 
 Please view our
-[vignettes](https://outbreak-info.github.io/R-outbreak-info/docs/articles/index.html)
+[vignettes](https://outbreak-info.github.io/R-outbreak-info/articles/index.html)
 for examples of how to use the R package.
 
 ## Related Projects
@@ -109,7 +109,7 @@ ca_lineages = getAllLineagesByLocation(location = "California", ndays = 90)
 
 # Plot the prevalence of the dominant lineages in California
 plotAllLineagesByLocation(location = "California", ndays = 90)
-#> Retrieving data...
+#> Retrieving data... 
 #> Plotting data...
 ```
 

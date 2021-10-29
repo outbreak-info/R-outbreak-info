@@ -15,7 +15,9 @@ outbreak.info's Research Library allows you to track the vast amount of research
 Here, we'll show how to access and filter these metadata about COVID-19 and SARS-CoV-2 research.
 
 ## Before we start...
-Import the packages we'll use.
+Import the packages we'll use. 
+
+Note that unlike the [SARS-CoV-2 Variant Prevalence functions](https://outbreak-info.github.io/R-outbreak-info/reference/index.html#section-sars-cov-variant-prevalence), none of the Research Library functions or anything in this vignette require GISAID authentication through the `authenticateUser()` function.
   ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
 collapse = TRUE,

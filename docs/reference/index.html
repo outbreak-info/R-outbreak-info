@@ -166,7 +166,7 @@
       <tr>
         <th colspan="2">
           <h2 id="section-sars-cov-variant-prevalence" class="hasAnchor"><a href="#section-sars-cov-variant-prevalence" class="anchor"></a>SARS-CoV-2 Variant Prevalence</h2>
-          <p class="section-desc"><p>Functions to track SARS-CoV-2 variant prevalence worldwide, by country, by state/province, or by U.S. county. All sequence data is provided by <a href="https://www.gisaid.org/">GISAID</a>.</p></p>
+          <p class="section-desc"><p>Functions to track SARS-CoV-2 variant prevalence worldwide, by country, by state/province, or by U.S. county. All sequence data is provided by <a href="https://www.gisaid.org/">GISAID</a>. Note that these functions require free <strong><a href="https://www.gisaid.org/registration/register/">registration with GISAID</a></strong>, and you’ll need to call <code><a href="../reference/authenticateUser.html">authenticateUser()</a></code> at the start of each session.</p></p>
         </th>
       </tr>
       
@@ -298,8 +298,33 @@
     </tbody><tbody>
       <tr>
         <th colspan="2">
+          <h2 id="section-research-library" class="hasAnchor"><a href="#section-research-library" class="anchor"></a>Research Library</h2>
+          <p class="section-desc"><p>Functions to track metadata of COVID-19 publications, clinical trials, datasets, protocols, and more. Note that unlike the variant prevalence functions, these functions <strong>do not require a GISAID account</strong> or a call to <code><a href="../reference/authenticateUser.html">authenticateUser()</a></code>to use them.</p></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
+        
+        <td>
+          <p><code><a href="getResourcesData.html">getResourcesData()</a></code> </p>
+        </td>
+        <td><p>Get COVID-19 resource metadata</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="getResourcesResponse.html">getResourcesResponse()</a></code> </p>
+        </td>
+        <td><p>Access outbreak.info Research Library API</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
           <h2 id="section-cases-deaths" class="hasAnchor"><a href="#section-cases-deaths" class="anchor"></a>Cases &amp; Deaths</h2>
-          <p class="section-desc"><p>Functions to track COVID-19 cases and deaths worldwide, by country, by state/province, or by U.S. county. All epidemiological data is provided by the <a href="https://github.com/CSSEGISandData/COVID-19">Center for Systems Science and Engineering (CSSE)</a> at Johns Hopkins University and the <a href="https://github.com/nytimes/covid-19-data">New York Times</a>.</p></p>
+          <p class="section-desc"><p>Functions to track COVID-19 cases and deaths worldwide, by country, by state/province, or by U.S. county. All epidemiological data is provided by the <a href="https://github.com/CSSEGISandData/COVID-19">Center for Systems Science and Engineering (CSSE)</a> at Johns Hopkins University and the <a href="https://github.com/nytimes/covid-19-data">New York Times</a>. Note that unlike the variant prevalence functions, these functions <strong>do not require a GISAID account</strong> or a call to <code><a href="../reference/authenticateUser.html">authenticateUser()</a></code> to use them.</p></p>
         </th>
       </tr>
       
@@ -385,31 +410,6 @@
           <p><code><a href="searchLocations.html">searchLocations()</a></code> </p>
         </td>
         <td><p>Get exact location names</p></td>
-      </tr>
-    </tbody><tbody>
-      <tr>
-        <th colspan="2">
-          <h2 id="section-research-library" class="hasAnchor"><a href="#section-research-library" class="anchor"></a>Research Library</h2>
-          <p class="section-desc"><p>Functions to track metadata of COVID-19 publications, clinical trials, datasets, protocols, and more.</p></p>
-        </th>
-      </tr>
-      
-      
-    </tbody><tbody>
-      
-      
-      <tr>
-        
-        <td>
-          <p><code><a href="getResourcesData.html">getResourcesData()</a></code> </p>
-        </td>
-        <td><p>Get COVID-19 resource metadata</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="getResourcesResponse.html">getResourcesResponse()</a></code> </p>
-        </td>
-        <td><p>Access outbreak.info Research Library API</p></td>
       </tr>
     </tbody>
     </table>

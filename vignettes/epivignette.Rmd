@@ -22,7 +22,9 @@ Outbreak.info's Cases & Deaths Tracker allows you to compare trends in COVID-19 
 ------
 
 ## Before we start...
-Import the packages we'll use to access the data:
+Import the packages we'll use to access the data.
+
+Note that unlike the [SARS-CoV-2 Variant Prevalence functions](https://outbreak-info.github.io/R-outbreak-info/reference/index.html#section-sars-cov-variant-prevalence), none of the Cases & Deaths functions or anything in this vignette require GISAID authentication through the `authenticateUser()` function.
 ```{r pkgs, message = FALSE, results='hide'}
 # Package imports
 library(outbreakinfo)

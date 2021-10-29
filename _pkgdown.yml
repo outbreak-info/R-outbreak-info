@@ -7,7 +7,9 @@ reference:
   desc: >
     Functions to track SARS-CoV-2 variant prevalence worldwide, by country,
     by state/province, or by U.S. county. All sequence data is provided by
-    [GISAID](https://www.gisaid.org/).
+    [GISAID](https://www.gisaid.org/). Note that these functions require free
+    **[registration with GISAID](https://www.gisaid.org/registration/register/)**, and 
+    you'll need to call `authenticateUser()` at the start of each session.
 - contents:
   - genomicsDataDictionary
   - authenticateUser
@@ -27,13 +29,22 @@ reference:
   - plotAllLineagesByLocation
   - plotMutationHeatmap
   - plotPrevalenceOverTime
+- title: "Research Library"
+  desc: >
+    Functions to track metadata of COVID-19 publications, clinical trials, datasets, protocols, and more. 
+    Note that unlike the variant prevalence functions, these functions **do not require a GISAID account**
+    or a call to `authenticateUser()`to use them.
+- contents:
+  - getResourcesData
+  - getResourcesResponse
 - title: "Cases & Deaths"
   desc: >
     Functions to track COVID-19 cases and deaths worldwide, by country,
     by state/province, or by U.S. county. All epidemiological data is provided by
     the [Center for Systems Science and Engineering (CSSE)](https://github.com/CSSEGISandData/COVID-19)
     at Johns Hopkins University
-    and the [New York Times](https://github.com/nytimes/covid-19-data).
+    and the [New York Times](https://github.com/nytimes/covid-19-data).  Note that unlike the variant prevalence functions, these functions **do not require a GISAID account**
+    or a call to `authenticateUser()` to use them.
 - contents:
   - starts_with("getAdm")
   - epidemiologyDataDictionary
@@ -45,9 +56,4 @@ reference:
   - getMetroByCountry
   - plotEpiData
   - searchLocations
-- title: "Research Library"
-  desc: >
-    Functions to track metadata of COVID-19 publications, clinical trials, datasets, protocols, and more.
-- contents:
-  - getResourcesData
-  - getResourcesResponse
+

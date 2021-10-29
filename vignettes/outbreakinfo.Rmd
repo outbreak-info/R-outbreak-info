@@ -1,7 +1,7 @@
 ---
 title: "Introduction to outbreakinfo"
 # author: "Laura Hughes"
-date: "`r format(Sys.Date(), "%d %B %Y")`"
+date: "`r format(Sys.Date(), '%d %B %Y')`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Introduction to outbreakinfo}
@@ -15,7 +15,7 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 ```
-[outbreak.info](https://outbreak.info) is a project to enable the tracking of SARS-CoV-2 Variants within the COVID-19 pandemic. This R package offers access to the data we have gathered and calculated to replicate the visualizations on outbreak.info. Here, we'll outline some of the basic functionality of the R package to access the genomic (SARS-CoV-2 variant) data and epidemiology data (COVID-19 cases and deaths).
+[outbreak.info](https://outbreak.info) is a project to enable the tracking of SARS-CoV-2 Variants within the COVID-19 pandemic. This R package offers access to the data we have gathered and calculated to replicate the visualizations on outbreak.info. Here, we'll outline some of the basic functionality of the R package to access the genomic (SARS-CoV-2 variant) data, research library, and epidemiology data (COVID-19 cases and deaths).
 
 ## SARS-CoV-2 variant prevalence
 
@@ -38,9 +38,11 @@ devtools::install_github("outbreak-info/R-outbreak-info/outbreakinfo")
 # Package imports
 library(outbreakinfo)
 
-# Not needed; just used to tidy some of the outputs
+# Not needed; just used to tidy / visualize some of the outputs
 library(dplyr)
 library(knitr)
+library(lubridate)
+library(ggplot2)
 ```
 
 ```{r auth, message = FALSE, results='hide', eval=FALSE}
@@ -100,10 +102,70 @@ plotMutationHeatmap(char_muts, title = "Mutations with at least 75% prevalence i
 All the [Variant Prevalence Functions](https://outbreak-info.github.io/R-outbreak-info/reference/index.html#section-sars-cov-variant-prevalence) provide documentation on their functionality and examples.
 
 
+
+---
+## Research Library
+The outbreak.info Research Library collects and standardizes metadata across COVID-19 research, including publications (including preprints), clinical trials, datasets, protocols, and more. These functions do not require a GISAID account or calling `authenticateUser()` before use.
+
+---
+### Accessing Research Library metadata
+All COVID-19 research metadata can be accessed through the main function `getResourcesData` which searches across a series of [COVID-19 resources](https://outbreak.info/sources#resources) of various types. For instance, you can find all research on seroprevalence, including publications, clinical trials, datasets, and more:
+```{r research, warning = FALSE}
+# Get the resources metadata
+# Use `fetchAll = TRUE` to get all the results, not just the first 10
+# Use  double quotes around "sero-prevalence" to look for that exact phrase. Without quotes, the query will search for "sero" or "prevalence", not their combination.
+# Combine terms using OR or AND (capitalization is required!)
+seroprevalence = getResourcesData(query = 'seroprevalence OR "sero-prevalence"', fetchAll = TRUE, fields = c("name", "description", "@type", "date", "curatedBy", "journalName", "funding", "url"))
+
+# Accessing just the first row:
+t(seroprevalence[1,])
+
+# Plot the increase in seroprevalence research over time
+# roll up the number of resources by week
+resources_by_date = seroprevalence %>%
+  mutate(year = lubridate::year(date),
+         iso_week = lubridate::isoweek(date))
+
+# count the number of new resources per week.
+resources_per_week = resources_by_date %>%
+  count(`@type`, iso_week, year) %>%
+  # convert from iso week back to a date
+  mutate(iso_date = lubridate::parse_date_time(paste(year,iso_week, "Mon", sep="-"), "Y-W-a"))
+
+ggplot(resources_per_week, aes(x = iso_date, y = n)) + 
+  geom_col(fill = "#66c2a5") +
+  scale_x_datetime(date_labels = "%b %Y", name = "week") + 
+  ggtitle("Seroprevalence research by week", subtitle = paste0("Number of resources in outbreak.info's Research Library as of ", format(Sys.Date(), "%d %B %Y")))
+
+
+# Visualize the breakdown of seroprevalence research
+resources_by_type =  seroprevalence %>% 
+  count(`@type`) %>% 
+  arrange(n)
+
+# order the levels in the bar chart
+resources_by_type$`@type` = factor(resources_by_type$`@type`, resources_by_type %>% pull(`@type`))
+
+ggplot(resources_by_type, aes(x = `@type`, y = n, fill=`@type`)) +
+  geom_col() +
+  coord_flip() + 
+  scale_fill_manual(values = c(Publication = "#e15759", ClinicalTrial = "#b475a3", Dataset = "#126b93", Protocol = "#59a14f")) +
+  ggtitle("Seroprevalence research by type of resource", subtitle = paste0("Number of resources in outbreak.info's Research Library as of ", format(Sys.Date(), "%d %B %Y"))) + 
+  theme_minimal() +
+  theme(axis.title = element_blank(), legend.position = "none", panel.grid.major.y = element_blank(), panel.grid.minor.y = element_blank())
+```
+
+### Customizing Research Library queries
+View the [Research Library vignette](researchlibrary.html) for more details on how to access these data and [Research Library schemas](https://discovery.biothings.io/view/outbreak) for information on the variables contained within the metadata.
+
+### Additional Research Library functions
+All the [Research Library Functions](https://outbreak-info.github.io/R-outbreak-info/reference/index.html#section-research-library) provide documentation on their functionality and examples.
+
 ---
 
 ## Cases & deaths data
-Epidemiology data in outbreak.info includes daily cases and death data for World Bank Regions, individual countries, states/provinces, U.S. Metropolitan areas, and U.S. counties.
+Epidemiology data in outbreak.info includes daily cases and death data for World Bank Regions, individual countries, states/provinces, U.S. Metropolitan areas, and U.S. counties. These functions do not require a GISAID account or calling `authenticateUser()` before use.
+
 
 ---
 
@@ -126,7 +188,7 @@ Variables are described in the [Epidemiology Data Dictionary](https://outbreak-i
 ---
 
 ### Customizing epidemiology features
-View the [Epidemiology vignette](outbreakvignette.html) for more details on how to access these data and [Epidemiology Data Dictionary](https://outbreak-info.github.io/R-outbreak-info/reference/epidemiologyDataDictionary.html) for information on the variables contained within the data.
+View the [Epidemiology vignette](epivignette.html) for more details on how to access these data and [Epidemiology Data Dictionary](https://outbreak-info.github.io/R-outbreak-info/reference/epidemiologyDataDictionary.html) for information on the variables contained within the data.
 
 ### Additional epidemiology functions
 All the [Cases & Deaths Functions](https://outbreak-info.github.io/R-outbreak-info/reference/index.html#section-cases-deaths) provide documentation on their functionality and examples.

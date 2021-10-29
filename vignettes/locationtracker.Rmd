@@ -1,7 +1,7 @@
 ---
 title: "Location Tracker"
 # author: "Laura Hughes"
-date: "`r format(Sys.Date(), "%d %B %Y")`"
+date: "`r format(Sys.Date(), '%d %B %Y')`"
 output: html_document
 ---
 # Accessing the data in outbreak.info's Location Tracker

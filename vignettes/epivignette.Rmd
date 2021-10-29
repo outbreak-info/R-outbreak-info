@@ -1,6 +1,6 @@
 ---
 title: "Cases & Deaths data"
-date: "April 26, 2021"
+date: "`r format(Sys.Date(), "%d %B %Y")`"
 output: html_document
 ---
 

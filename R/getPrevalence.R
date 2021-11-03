@@ -14,19 +14,21 @@
 #'
 #' @examples
 #' # lineage: P.1 in Brazil
-#' getPrevalence(pangolin_lineage = "P.1", location = "Brazil") %>% head()
+#' p1_brazil = getPrevalence(pangolin_lineage = "P.1", location = "Brazil")
 #'
-#' # AY.4 and B.1.617.2 in Brazil (AY.4, AY.34, and B.1.617.2 separately)
-#' getPrevalence(pangolin_lineage = c("AY.4", "AY.34", "B.1.617.2"), location = "Brazil") %>% filter(date == "2021-09-01")
+#' # AY.4, AY.34, and B.1.617.2 in Brazil (AY.4, AY.34, and B.1.617.2 separately)
+#' delta_and_brazil = getPrevalence(pangolin_lineage = c("AY.4", "AY.34", "B.1.617.2"), location = "Brazil")
+#' delta_and_brazil[delta_and_brazil$date == "2021-09-01",]
 #'
 #' # AY.4 OR B.1.617.2 in Brazil (AY.4, AY.34 and B.1.617.2 combined)
-#' getPrevalence(pangolin_lineage = "AY.4 OR AY.34 OR B.1.617.2", location = "Brazil") %>% filter(date == "2021-09-01")
+#' delta_or_brazil = getPrevalence(pangolin_lineage = "AY.4 OR AY.34 OR B.1.617.2", location = "Brazil")
+#' delta_or_brazil[delta_and_brazil$date == "2021-09-01",]
 #'
 #' # S:E484K mutation prevalence worldwide
-#' getPrevalence(mutations = c("S:E484K")) %>% head()
+#' se484k = getPrevalence(mutations = c("S:E484K"))
 #'
 #' # B.1.1.7 + S:E484K mutation worldwide
-#' getPrevalence(pangolin_lineage = "B.1.1.7", mutations = c("S:E484K")) %>% head()
+#' b117_se484k = getPrevalence(pangolin_lineage = "B.1.1.7", mutations = c("S:E484K"))
 #' @export
 
 

@@ -12,8 +12,8 @@
 #'
 #' @examples
 #' p1 = getMutationsByLineage(pangolin_lineage = "P.1", frequency = 0.5)
-#' plotMutationHeatmap(p1, gene2Plot = "Orf1a)
-#' 
+#' plotMutationHeatmap(p1, gene2Plot = "Orf1a")
+#'
 #' delta_lineages = lookupSublineages("Delta", returnQueryString = FALSE)
 #' delta_mutations = getMutationsByLineage(pangolin_lineage=delta_lineages, frequency=0.75)
 #' plotMutationHeatmap(delta_mutations, title = "S-gene mutations in Delta lineages")
@@ -21,24 +21,24 @@
 plotMutationHeatmap = function(df, gene2Plot = "S", title = NULL, lightBorders = TRUE) {
   MUTATIONPALETTE = c('#fff7f3','#fde0dd','#fcc5c0','#fa9fb5','#f768a1','#dd3497','#ae017e','#7a0177','#49006a')
   borderColour = ifelse(lightBorders, "#FFFFFF", "#555555")
-  
+
   # Filter down to one gene
   df = df %>% filter(gene == gene2Plot)
-  if(!is.null(df) & nrow(df) != 0){
-    df = df %>% 
-      rowwise() %>% 
-      mutate(mutation_simplified = toupper(str_split(mutation, ":")[[1]][2])) %>% 
+  if(!is.null(df) && nrow(df) != 0){
+    df = df %>%
+      rowwise() %>%
+      mutate(mutation_simplified = toupper(str_split(mutation, ":")[[1]][2])) %>%
       arrange(codon_num)
-    
+
     # create empty grid
     mutation_simplified = df %>% pull(mutation_simplified) %>% unique()
     lineage = df %>% pull(lineage) %>% unique()
     blank = crossing(lineage, mutation_simplified)
-    
+
     # refactor the mutations to sort them
     blank$mutation_simplified = factor(blank$mutation_simplified, levels = mutation_simplified)
     df$mutation_simplified = factor(df$mutation_simplified, levels = mutation_simplified)
-    
+
     p = ggplot(df, aes(x = mutation_simplified, y = lineage, fill = prevalence)) +
       geom_tile(colour = borderColour, fill = "#dedede", data = blank) +
       geom_tile(colour = borderColour) +
@@ -50,7 +50,7 @@ plotMutationHeatmap = function(df, gene2Plot = "S", title = NULL, lightBorders =
             panel.grid = element_blank(),
             legend.position = "bottom"
       )
-    
+
     if(!is.null(title)) {
       p = p + ggtitle(title)
     }

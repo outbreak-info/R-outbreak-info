@@ -23,9 +23,9 @@ getCumulativeBySubadmin <- function(pangolin_lineage, location=NULL, mutations=N
   df <- getGenomicData(query_url="lineage-by-sub-admin-most-recent", pangolin_lineage = pangolin_lineage, location = location, mutations = mutations, ndays = ndays)
   
   
-  if(!is.null(df) & nrow(df) != 0){
+  if(!is.null(df) && nrow(df) != 0){
     df <- df %>%
-      rename(lineage = query_key) 
+      rename(lineage = query_key)
   }
   
   return(df)

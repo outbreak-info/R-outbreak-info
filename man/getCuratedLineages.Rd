@@ -16,7 +16,7 @@ Variants Under Monitoring, and de-escalated variants maintained by the [outbreak
 \examples{
 curated = getCuratedLineages()
 # Pull out the curated lineages which are WHO-desginated
-curated \%>\% filter(!is.na(who_name)) \%>\% knitr::kable()
+curated[!is.na(curated$who_name),]
 # Pull out the Variants of Concern
-curated \%>\% filter(variantType == "Variant of Concern") \%>\% knitr::kable()
+curated[curated$variantType == "Variant of Concern",]
 }

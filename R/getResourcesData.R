@@ -15,6 +15,7 @@
 #' @export
 #'
 #' @examples
+#' library(dplyr)
 #' # Get the date latest date for every resource (newest of dateModified, dateCreated, datePublished)
 #' resources_by_date = getResourcesData(query = "date:[2020-01-01 TO *]", fields = "date")
 #' 

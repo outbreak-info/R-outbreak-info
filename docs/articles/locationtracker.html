@@ -145,18 +145,18 @@
 <a href="#accessing-the-data-prevalence-of-all-circulating-lineages-in-the-u-s-" class="anchor"></a>Accessing the data: prevalence of all circulating lineages in the U.S.</h3>
 <p>To be able to discover which lineages are currently circulating around the U.S., let’s grab the prevalence of all the lineages in the U.S. over the past 60 days.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">country</span> <span class="op">=</span> <span class="st">"United Kingdom"</span>
+<code class="sourceCode R"><span class="va">country</span> <span class="op">=</span> <span class="st">"United States"</span>
 <span class="va">usa_60d</span> <span class="op">=</span> <span class="fu"><a href="../reference/getAllLineagesByLocation.html">getAllLineagesByLocation</a></span><span class="op">(</span>location <span class="op">=</span> <span class="va">country</span>, other_threshold <span class="op">=</span> <span class="fl">0.03</span>, nday_threshold <span class="op">=</span> <span class="fl">5</span>, ndays <span class="op">=</span> <span class="fl">60</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># This ends up being a large data frame. Let's take a look at what's inside:</span>
 <span class="va">usa_60d</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## Rows: 2,086
+<pre><code>## Rows: 2,996
 ## Columns: 6
-## $ date               &lt;date&gt; 2020-01-29, 2020-01-30, 2020-01-31, 2020-02-01, 20…
-## $ total_count        &lt;int&gt; 4, 0, 0, 0, 0, 4, 0, 1, 0, 1, 3, 4, 0, 0, 1, 4, 4, …
-## $ lineage_count      &lt;int&gt; 4, 0, 0, 0, 0, 4, 0, 1, 0, 1, 3, 4, 0, 0, 1, 4, 4, …
+## $ date               &lt;date&gt; 2020-01-27, 2020-01-28, 2020-01-29, 2020-01-30, 20…
+## $ total_count        &lt;int&gt; 1, 2, 4, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0, …
+## $ lineage_count      &lt;int&gt; 1, 2, 4, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0, …
 ## $ lineage            &lt;chr&gt; "other", "other", "other", "other", "other", "other…
-## $ prevalence         &lt;dbl&gt; 1, 0, 0, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, …
+## $ prevalence         &lt;dbl&gt; 1, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, 0, …
 ## $ prevalence_rolling &lt;dbl&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …</code></pre>
 <p>You can get explanations of each of the variables by looking at the data dictionary (<code><a href="../reference/genomicsDataDictionary.html">outbreakinfo::genomicsDataDictionary()</a></code>). Let’s look at how prevalent each of the different Pango lineages are in the U.S.:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
@@ -175,29 +175,34 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">ay.4</td>
+<td align="left">b.1.617.2</td>
 <td align="right">0</td>
 <td align="right">1.0000000</td>
 </tr>
 <tr class="even">
-<td align="left">b.1.617.2</td>
+<td align="left">ay.44</td>
 <td align="right">0</td>
-<td align="right">0.2133293</td>
+<td align="right">0.2152284</td>
 </tr>
 <tr class="odd">
-<td align="left">ay.4.2</td>
+<td align="left">ay.25</td>
 <td align="right">0</td>
-<td align="right">0.1212888</td>
+<td align="right">0.1583756</td>
 </tr>
 <tr class="even">
-<td align="left">ay.5</td>
+<td align="left">ay.3</td>
 <td align="right">0</td>
-<td align="right">0.0530895</td>
+<td align="right">0.1239006</td>
 </tr>
 <tr class="odd">
-<td align="left">ay.43</td>
+<td align="left">ay.39</td>
 <td align="right">0</td>
-<td align="right">0.0445724</td>
+<td align="right">0.0552655</td>
+</tr>
+<tr class="even">
+<td align="left">ay.47</td>
+<td align="right">0</td>
+<td align="right">0.0337997</td>
 </tr>
 </tbody>
 </table>
@@ -276,7 +281,7 @@
 ## $ proportion_ci_lower   &lt;dbl&gt; 2.582495e-04, 2.075738e-04, 1.789930e-04, 1.5733…
 ## $ proportion_ci_upper   &lt;dbl&gt; 0.011126638, 0.008952861, 0.007724806, 0.0067930…
 ## $ lineage               &lt;chr&gt; "B.1.1.7 OR Q.1 OR Q.2 OR Q.3 OR Q.4 OR Q.5 OR Q…
-## $ location              &lt;chr&gt; "United Kingdom", "United Kingdom", "United King…</code></pre>
+## $ location              &lt;chr&gt; "United States", "United States", "United States…</code></pre>
 </div>
 <div id="plotting-specific-variants-over-time" class="section level3">
 <h3 class="hasAnchor">

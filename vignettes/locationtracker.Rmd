@@ -38,7 +38,7 @@ authenticateUser()
 To be able to discover which lineages are currently circulating around the U.S.,
 let's grab the prevalence of all the lineages in the U.S. over the past 60 days.
 ```{r all_lineages_data, results='hide'}
-country = "United Kingdom"
+country = "United States"
 usa_60d = getAllLineagesByLocation(location = country, other_threshold = 0.03, nday_threshold = 5, ndays = 60)
 ```
 

@@ -183,8 +183,28 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='va'>uk_b117</span> <span class='op'>=</span> <span class='fu'>getGenomicData</span><span class='op'>(</span>query_url<span class='op'>=</span><span class='st'>"prevalence-by-location"</span>, location<span class='op'>=</span><span class='st'>"United Kingdom"</span>, pangolin_lineage <span class='op'>=</span> <span class='st'>"B.1.1.7"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: Please authenticate by calling authenticateUser() to access the API.</span></div><div class='output co'>#&gt; <span class='error'>Error in invokeRestart("muffleWarning"): no 'restart' 'muffleWarning' found</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>uk_b117</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in head(uk_b117): object 'uk_b117' not found</span></div></pre>
+</div><div class='output co'>#&gt; Retrieving data... </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>uk_b117</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;         date total_count lineage_count total_count_rolling
+#&gt; 1 2020-03-20         412             2            276.5714
+#&gt; 2 2020-03-21         433             0            314.7143
+#&gt; 3 2020-03-22         390             0            347.0000
+#&gt; 4 2020-03-23         791             0            432.4286
+#&gt; 5 2020-03-24         734             0            495.7143
+#&gt; 6 2020-03-25         685             0            541.4286
+#&gt;   lineage_count_rolling   proportion proportion_ci_lower proportion_ci_upper
+#&gt; 1             0.2857143 0.0010330579        1.771087e-06         0.009019280
+#&gt; 2             0.2857143 0.0009078529        1.557602e-06         0.007936431
+#&gt; 3             0.2857143 0.0008233841        1.414065e-06         0.007207711
+#&gt; 4             0.2857143 0.0006607202        1.135996e-06         0.005794464
+#&gt; 5             0.2857143 0.0005763689        9.894897e-07         0.005049059
+#&gt; 6             0.2857143 0.0005277045        9.072227e-07         0.004630249
+#&gt;   query_key
+#&gt; 1   B.1.1.7
+#&gt; 2   B.1.1.7
+#&gt; 3   B.1.1.7
+#&gt; 4   B.1.1.7
+#&gt; 5   B.1.1.7
+#&gt; 6   B.1.1.7</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

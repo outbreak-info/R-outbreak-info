@@ -108,7 +108,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Research Library</h1>
             
-            <h4 class="date">2021-10-28</h4>
+            <h4 class="date">03 November 2021</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/outbreak-info/R-outbreak-info/blob/master/vignettes/researchlibrary.Rmd"><code>vignettes/researchlibrary.Rmd</code></a></small>
       <div class="hidden name"><code>researchlibrary.Rmd</code></div>
@@ -125,7 +125,8 @@
 <div id="before-we-start" class="section level2">
 <h2 class="hasAnchor">
 <a href="#before-we-start" class="anchor"></a>Before we start…</h2>
-<p>Import the packages we’ll use. Note that unlike the <a href="/reference/index.html#section-sars-cov-variant-prevalence">SARS-CoV-2 Variant Prevalence functions</a>, none of the Research Library functions or anything in this vignette require GISAID authentication through the <code><a href="../reference/authenticateUser.html">authenticateUser()</a></code> function.</p>
+<p>Import the packages we’ll use.</p>
+<p>Note that unlike the <a href="https://outbreak-info.github.io/R-outbreak-info/reference/index.html#section-sars-cov-variant-prevalence">SARS-CoV-2 Variant Prevalence functions</a>, none of the Research Library functions or anything in this vignette require GISAID authentication through the <code><a href="../reference/authenticateUser.html">authenticateUser()</a></code> function.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://outbreak-info.github.io/R-outbreak-info/">outbreakinfo</a></span><span class="op">)</span>
 <span class="co">#&gt; Warning: replacing previous import 'jsonlite::flatten' by 'purrr::flatten' when</span>
@@ -209,7 +210,7 @@
 <tbody>
 <tr class="odd">
 <td align="left">Publication</td>
-<td align="right">200064</td>
+<td align="right">200078</td>
 </tr>
 <tr class="even">
 <td align="left">ClinicalTrial</td>
@@ -217,7 +218,7 @@
 </tr>
 <tr class="odd">
 <td align="left">Dataset</td>
-<td align="right">3857</td>
+<td align="right">3868</td>
 </tr>
 <tr class="even">
 <td align="left">Protocol</td>
@@ -229,11 +230,11 @@
 </tr>
 <tr class="even">
 <td align="left">SoftwareSourceCode</td>
-<td align="right">193</td>
+<td align="right">197</td>
 </tr>
 <tr class="odd">
 <td align="left">CreativeWork</td>
-<td align="right">153</td>
+<td align="right">155</td>
 </tr>
 <tr class="even">
 <td align="left">PresentationDigitalDocument</td>
@@ -306,7 +307,7 @@
 <tbody>
 <tr class="odd">
 <td align="left">Publication</td>
-<td align="right">200064</td>
+<td align="right">200078</td>
 </tr>
 <tr class="even">
 <td align="left">ClinicalTrial</td>
@@ -314,7 +315,7 @@
 </tr>
 <tr class="odd">
 <td align="left">Dataset</td>
-<td align="right">3857</td>
+<td align="right">3868</td>
 </tr>
 <tr class="even">
 <td align="left">Protocol</td>
@@ -326,11 +327,11 @@
 </tr>
 <tr class="even">
 <td align="left">SoftwareSourceCode</td>
-<td align="right">193</td>
+<td align="right">197</td>
 </tr>
 <tr class="odd">
 <td align="left">CreativeWork</td>
-<td align="right">153</td>
+<td align="right">155</td>
 </tr>
 <tr class="even">
 <td align="left">PresentationDigitalDocument</td>
@@ -447,22 +448,22 @@
 <div id="general-queries" class="section level3">
 <h3 class="hasAnchor">
 <a href="#general-queries" class="anchor"></a>General queries</h3>
-<p>This will search for any use of the term within all the metadata, including its name, description, authors, etc. You can also combine terms using <code>AND</code> and/or <code>OR</code>. Note that spaces, dashes, and other punctuation are automatically treated as <code>OR</code> combinations. While periods <code>.</code> are used in field names to indicate object structure/nesting (like <code>journalName:Nature</code>; see <a href="#searching-specific-terms">“Searching specific terms”</a>), they will be treated as any other punctuation in general queries. Wildcards <code><a href="https://rdrr.io/r/base/Arithmetic.html">*</a></code> can be used (more on this <a href="#using-wildcards">later</a>). Adding quotes will search for that exact term. <strong>Note that all searches are case insensitive, so looking for “Pfizer” or “pfizer” will give you the same results.</strong></p>
+<p>This will search for any use of the term within all the metadata, including its name, description, authors, etc. You can also combine terms using <code>AND</code> and/or <code>OR</code> (must be capitalized). Note that spaces, dashes, and other punctuation are automatically treated as <code>OR</code> combinations. While periods <code>.</code> are used in field names to indicate object structure/nesting (like <code>journalName:Nature</code>; see <a href="#searching-specific-terms">“Searching specific terms”</a>), they will be treated as any other punctuation in general queries. Wildcards <code><a href="https://rdrr.io/r/base/Arithmetic.html">*</a></code> can be used (more on this <a href="#using-wildcards">later</a>). Adding quotes will search for that exact term. <strong>Note that all searches are case insensitive, so looking for “Pfizer” or “pfizer” will give you the same results.</strong></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Basic query: look for anything that mentions "Pfizer"</span>
 <span class="va">query1</span> <span class="op">=</span> <span class="fu"><a href="../reference/getResourcesData.html">getResourcesData</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">"Pfizer"</span>, fetchAll <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"There are "</span>, <span class="va">query1</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span>big.mark<span class="op">=</span><span class="st">","</span><span class="op">)</span>,<span class="st">" resources containing the term 'Pfizer'"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] "There are 1,183 resources containing the term 'Pfizer'"</span>
+<span class="co">#&gt; [1] "There are 1,184 resources containing the term 'Pfizer'"</span>
 
 <span class="co"># Slightly more complicated: lets look what happens when we search for "Pfizer-BioNTech".</span>
 <span class="va">query2</span> <span class="op">=</span> <span class="fu"><a href="../reference/getResourcesData.html">getResourcesData</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">"Pfizer-BioNTech"</span>, fetchAll <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"There are "</span>, <span class="va">query2</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span>big.mark<span class="op">=</span><span class="st">","</span><span class="op">)</span>,<span class="st">" resources containing the term Pfizer-BioNTech. When a search isn't a single word (or is combined by punctuation like hyphens), the words are treated separately, so the results are for any document that has Pfizer OR BioNTech."</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] "There are 1,226 resources containing the term Pfizer-BioNTech. When a search isn't a single word (or is combined by punctuation like hyphens), the words are treated separately, so the results are for any document that has Pfizer OR BioNTech."</span>
+<span class="co">#&gt; [1] "There are 1,227 resources containing the term Pfizer-BioNTech. When a search isn't a single word (or is combined by punctuation like hyphens), the words are treated separately, so the results are for any document that has Pfizer OR BioNTech."</span>
 
 <span class="co"># Let's check that explicitly, by combining Pfizer and BioNTech by `OR`.</span>
 <span class="va">query3</span> <span class="op">=</span> <span class="fu"><a href="../reference/getResourcesData.html">getResourcesData</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">"Pfizer OR BioNTech"</span>, fetchAll <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"There are "</span>, <span class="va">query3</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span>big.mark<span class="op">=</span><span class="st">","</span><span class="op">)</span>,<span class="st">" resources containing the term Pfizer or BioNTech. Search terms can be combined using ` OR ` to search for either Pfizer or BioNTech."</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; [1] "There are 1,226 resources containing the term Pfizer or BioNTech. Search terms can be combined using ` OR ` to search for either Pfizer or BioNTech."</span>
+<span class="co">#&gt; [1] "There are 1,227 resources containing the term Pfizer or BioNTech. Search terms can be combined using ` OR ` to search for either Pfizer or BioNTech."</span>
 
 <span class="co"># We can fix this by encapsulating the search term in double quotes.  NOTE: don't use single quotes!  They'll be ignored.</span>
 <span class="va">query4</span> <span class="op">=</span> <span class="fu"><a href="../reference/getResourcesData.html">getResourcesData</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">'"Pfizer-BioNTech"'</span>, fetchAll <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>

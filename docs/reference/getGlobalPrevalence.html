@@ -187,8 +187,21 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># B.1.1.7 lineage</span>
 <span class='va'>b117</span> <span class='op'>=</span> <span class='fu'>getGlobalPrevalence</span><span class='op'>(</span>pangolin_lineage <span class='op'>=</span> <span class='st'>"B.1.1.7"</span>, mutations <span class='op'>=</span> <span class='st'>"S:E484K"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Retrieving data... </div><div class='output co'>#&gt; <span class='warning'>Warning: Please authenticate by calling authenticateUser() to access the API.</span></div><div class='output co'>#&gt; <span class='error'>Error in invokeRestart("muffleWarning"): no 'restart' 'muffleWarning' found</span></div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>b117</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='error'>Error in head(b117): object 'b117' not found</span></div><div class='input'>
+</div><div class='output co'>#&gt; Retrieving data... </div><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='va'>b117</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;         date total_count lineage_count total_count_rolling
+#&gt; 1 2020-12-17        4704             1            5042.429
+#&gt; 2 2020-12-18        4606             1            5109.429
+#&gt; 3 2020-12-19        3013             0            5184.429
+#&gt; 4 2020-12-20        2893             0            5267.429
+#&gt; 5 2020-12-21        8655             0            5038.143
+#&gt; 6 2020-12-22        4095             0            4664.000
+#&gt;   lineage_count_rolling   proportion proportion_ci_lower proportion_ci_upper
+#&gt; 1             0.1428571 2.833102e-05        9.738401e-08        0.0004980549
+#&gt; 2             0.2857143 5.591903e-05        9.610697e-08        0.0004915253
+#&gt; 3             0.2857143 5.511008e-05        9.471660e-08        0.0004844162
+#&gt; 4             0.2857143 5.424170e-05        9.322408e-08        0.0004767847
+#&gt; 5             0.2857143 5.671024e-05        9.746133e-08        0.0004984503
+#&gt; 6             0.2857143 6.125950e-05        1.052762e-07        0.0005384074</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

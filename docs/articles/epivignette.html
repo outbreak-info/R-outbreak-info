@@ -108,7 +108,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Cases &amp; Deaths data</h1>
             
-            <h4 class="date">April 26, 2021</h4>
+            <h4 class="date">03 November 2021</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/outbreak-info/R-outbreak-info/blob/master/vignettes/epivignette.Rmd"><code>vignettes/epivignette.Rmd</code></a></small>
       <div class="hidden name"><code>epivignette.Rmd</code></div>
@@ -429,9 +429,9 @@
 <code class="sourceCode R"><span class="va">df</span><span class="op">=</span><span class="fu"><a href="../reference/getLocationData.html">getLocationData</a></span><span class="op">(</span>location_names<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Brazil"</span>, <span class="st">"Texas"</span>, <span class="st">"San Diego County"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">df</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/duplicated.html">duplicated</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">name</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"name"</span>, <span class="st">"date"</span>, <span class="st">"confirmed"</span><span class="op">)</span><span class="op">]</span></code></pre></div>
 <pre><code>##                 name       date confirmed
-## 947 San Diego County 2020-02-10         1
-## 179            Texas 2020-02-13         2
-## 665           Brazil 2020-02-26         1</code></pre>
+## 318            Texas 2020-02-13         2
+## 987 San Diego County 2020-02-13         1
+## 647           Brazil 2020-02-26         1</code></pre>
 <hr>
 </div>
 <div id="getadmn0" class="section level4">
@@ -449,7 +449,7 @@
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">world_df</span><span class="op">=</span><span class="fu"><a href="../reference/getAdmn0.html">getAdmn0</a></span><span class="op">(</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">world_df</span><span class="op">$</span><span class="va">name</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] 196</code></pre>
+<pre><code>## [1] 199</code></pre>
 <hr>
 </div>
 <div id="getcountrybyregion" class="section level4">
@@ -468,7 +468,7 @@
 <code class="sourceCode R"><span class="va">region_df</span><span class="op">=</span><span class="fu"><a href="../reference/getCountryByRegion.html">getCountryByRegion</a></span><span class="op">(</span><span class="st">"South Asia"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">region_df</span><span class="op">$</span><span class="va">name</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "Nepal"       "Sri Lanka"   "India"       "Afghanistan" "Pakistan"   
-## [6] "Bhutan"      "Bangladesh"  "Maldives"</code></pre>
+## [6] "Bhutan"      "Maldives"    "Bangladesh"</code></pre>
 <hr>
 </div>
 <div id="getadmn1bycountry" class="section level4">
@@ -486,17 +486,17 @@
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">state_df</span><span class="op">=</span><span class="fu"><a href="../reference/getAdmn1ByCountry.html">getAdmn1ByCountry</a></span><span class="op">(</span><span class="st">"India"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">state_df</span><span class="op">$</span><span class="va">name</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>##  [1] "Mizoram"             "Bihar"               "Andaman and Nicobar"
-##  [4] "Punjab"              "Arunachal Pradesh"   "Uttaranchal"        
-##  [7] "Jammu and Kashmir"   "Karnataka"           "Jharkhand"          
-## [10] "Andhra Pradesh"      "Chandigarh"          "Uttar Pradesh"      
-## [13] "Meghalaya"           "Sikkim"              "Himachal Pradesh"   
-## [16] "Gujarat"             "Manipur"             "Nagaland"           
-## [19] "Orissa"              "Tripura"             "Haryana"            
-## [22] "Delhi"               "West Bengal"         "Kerala"             
-## [25] "Assam"               "Maharashtra"         "Chhattisgarh"       
-## [28] "Rajasthan"           "Madhya Pradesh"      "Goa"                
-## [31] "Tamil Nadu"          "Lakshadweep"</code></pre>
+<pre><code>##  [1] "Delhi"               "Punjab"              "Rajasthan"          
+##  [4] "Andaman and Nicobar" "Jammu and Kashmir"   "Arunachal Pradesh"  
+##  [7] "Karnataka"           "Bihar"               "Goa"                
+## [10] "Madhya Pradesh"      "Andhra Pradesh"      "Assam"              
+## [13] "Chandigarh"          "Gujarat"             "Haryana"            
+## [16] "Orissa"              "Sikkim"              "Tripura"            
+## [19] "Tamil Nadu"          "Mizoram"             "Meghalaya"          
+## [22] "Jharkhand"           "Manipur"             "West Bengal"        
+## [25] "Uttaranchal"         "Nagaland"            "Kerala"             
+## [28] "Maharashtra"         "Uttar Pradesh"       "Himachal Pradesh"   
+## [31] "Chhattisgarh"        "Lakshadweep"</code></pre>
 <hr>
 </div>
 <div id="getmetrobycountry" class="section level4">
@@ -564,7 +564,7 @@
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">admin_df</span><span class="op">=</span><span class="fu"><a href="../reference/getByAdmnLevel.html">getByAdmnLevel</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">admin_df</span><span class="op">$</span><span class="va">name</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## [1] "North America"              "East Asia &amp; Pacific"       
+<pre><code>## [1] "East Asia &amp; Pacific"        "North America"             
 ## [3] "Europe &amp; Central Asia"      "South Asia"                
 ## [5] "Middle East &amp; North Africa" "Latin America &amp; Caribbean" 
 ## [7] "Sub-Saharan Africa"</code></pre>

@@ -16,6 +16,6 @@ dataframe
 Retrieve up-to-date COVID-19 data from outbreak.info for specified location(s)
 }
 \examples{
-getLocationData("California", "India")
+getLocationData(c("California", "India"))
 
 }

@@ -7,7 +7,7 @@
 #' @return dataframe
 #'
 #' @examples
-#' getLocationData("California", "India")
+#' getLocationData(c("California", "India"))
 #'
 #' @export
 

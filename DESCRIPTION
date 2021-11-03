@@ -15,6 +15,7 @@ Encoding: UTF-8
 LazyData: FALSE
 Imports:
     jsonlite,
+    RcppSimdJson,
     ggplot2,
     readr,
     progress,

@@ -29,20 +29,24 @@ plotPrevalenceOverTime <- function(df, colorVar = "lineage", title = "Prevalence
     df = df %>%
       mutate(lineage = ifelse(is.na(unname(labelDictionary[lineage])), lineage, unname(labelDictionary[lineage])))
   }
-
-  p <- ggplot(df, aes(x = date, y = proportion, colour = .data[[colorVar]], fill = .data[[colorVar]], group = .data[[colorVar]])) +
-    geom_ribbon(aes(ymin = proportion_ci_lower, ymax = proportion_ci_upper), alpha = 0.35, size = 0) +
-    geom_line(size = 1.25) +
-    scale_x_date(date_labels = "%b %Y", expand = c(0,0)) +
-    scale_y_continuous(labels = scales::percent, expand = c(0,0)) +
-    scale_colour_manual(values = COLORPALETTE[-1]) +
-    scale_fill_manual(values = COLORPALETTE[-1]) +
-    theme_minimal() +
-    theme(legend.position = "bottom", axis.title = element_blank())
-
-
-  if (!is.null(title)) {
-    p <- p + ggtitle(title)
+  
+  if(!is.null(df) && nrow(df) > 0){
+    p <- ggplot(df, aes(x = date, y = proportion, colour = .data[[colorVar]], fill = .data[[colorVar]], group = .data[[colorVar]])) +
+      geom_ribbon(aes(ymin = proportion_ci_lower, ymax = proportion_ci_upper), alpha = 0.35, size = 0) +
+      geom_line(size = 1.25) +
+      scale_x_date(date_labels = "%b %Y", expand = c(0,0)) +
+      scale_y_continuous(labels = scales::percent, expand = c(0,0)) +
+      scale_colour_manual(values = COLORPALETTE[-1]) +
+      scale_fill_manual(values = COLORPALETTE[-1]) +
+      theme_minimal() +
+      theme(legend.position = "bottom", axis.title = element_blank())
+    
+    
+    if (!is.null(title)) {
+      p <- p + ggtitle(title)
+    }
+    return(p)
+  } else {
+    warning("Dataframe is empty.")
   }
-  return(p)
 }

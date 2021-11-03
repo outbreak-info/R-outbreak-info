@@ -30,7 +30,7 @@ Here, we'll demonstrate how to access the data in the [P.1 Lineage Report](https
 ## Before we start...
 Import the packages we'll use and provide our GISAID credentials to access the data.
 If you don't have a GISAID account, you can [register](https://www.gisaid.org/registration/register/)
-for one on their website. It may take a day or two for the account to become active. 
+for one on their website. It may take a day or two for the account to become active.
 ```{r pkgs, message = FALSE, results='hide'}
 # Package imports
 library(dplyr)

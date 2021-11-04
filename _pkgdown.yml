@@ -28,6 +28,7 @@ reference:
   - lookupSublineages
   - plotAllLineagesByLocation
   - plotMutationHeatmap
+  - plotPrevalenceDotPlot
   - plotPrevalenceOverTime
 - title: "Research Library"
   desc: >

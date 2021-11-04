@@ -145,8 +145,8 @@
 <a href="#accessing-the-data-prevalence-of-all-circulating-lineages-in-the-u-s-" class="anchor"></a>Accessing the data: prevalence of all circulating lineages in the U.S.</h3>
 <p>To be able to discover which lineages are currently circulating around the U.S., let’s grab the prevalence of all the lineages in the U.S. over the past 60 days.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">country</span> <span class="op">=</span> <span class="st">"United States"</span>
-<span class="va">usa_60d</span> <span class="op">=</span> <span class="fu"><a href="../reference/getAllLineagesByLocation.html">getAllLineagesByLocation</a></span><span class="op">(</span>location <span class="op">=</span> <span class="va">country</span>, other_threshold <span class="op">=</span> <span class="fl">0.03</span>, nday_threshold <span class="op">=</span> <span class="fl">5</span>, ndays <span class="op">=</span> <span class="fl">60</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">locationName</span> <span class="op">=</span> <span class="st">"United States"</span>
+<span class="va">usa_60d</span> <span class="op">=</span> <span class="fu"><a href="../reference/getAllLineagesByLocation.html">getAllLineagesByLocation</a></span><span class="op">(</span>location <span class="op">=</span> <span class="va">locationName</span>, other_threshold <span class="op">=</span> <span class="fl">0.03</span>, nday_threshold <span class="op">=</span> <span class="fl">5</span>, ndays <span class="op">=</span> <span class="fl">60</span><span class="op">)</span></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># This ends up being a large data frame. Let's take a look at what's inside:</span>
 <span class="va">usa_60d</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html">glimpse</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
@@ -212,7 +212,7 @@
 <a href="#plotting-the-breakdown-of-lineages-in-the-u-s--over-time" class="anchor"></a>Plotting the breakdown of lineages in the U.S. over time</h3>
 <p>That gives an idea of what the range of prevalences for the lineages are, but not how they have changed over time. It’s easier to see this temporal behavior with a streamgraph which plots the relative prevalence of all the lineages over time. <code>plotAllLineagesByLocation</code> replicates these plots on outbreak.info:</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/plotAllLineagesByLocation.html">plotAllLineagesByLocation</a></span><span class="op">(</span><span class="va">country</span>, other_threshold <span class="op">=</span> <span class="fl">0.03</span>, nday_threshold <span class="op">=</span> <span class="fl">5</span>, ndays <span class="op">=</span> <span class="fl">60</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/plotAllLineagesByLocation.html">plotAllLineagesByLocation</a></span><span class="op">(</span><span class="va">locationName</span>, other_threshold <span class="op">=</span> <span class="fl">0.03</span>, nday_threshold <span class="op">=</span> <span class="fl">5</span>, ndays <span class="op">=</span> <span class="fl">60</span><span class="op">)</span></code></pre></div>
 <pre><code>## Retrieving data... 
 ## Plotting data...</code></pre>
 <p><img src="locationtracker_files/figure-html/all_lineages_streamgraph-1.png" width="700"></p>
@@ -232,7 +232,7 @@
 <p>… so for the example we ran before, we grouped all lineages which did not have a prevalence of at least 3% (<code>other_threshold = 0.03</code>) in at least 5 days (<code>nday_threshold = 5</code>) over the last 60 days (<code>ndays = 60</code>). If we want to look at more historic data, we can adjust these parameters. Let’s change the window to the last year (<code>ndays = 365</code>) and find all lineages which had a prevalence of at least 5% (<code>other_threshold = 0.05</code>) in 5 days (<code>nday_threshold = 5</code>) in that year. We can also make sure certain lineages, like A.1 which was circulating early on in the pandemic, are not grouped into the “other” category by specifying <code>other_exclude = "a.1"</code>.</p>
 <p>It’s easy then to see the trends over the last year – the North American lineages B.1 and B.1.2 appearing in 2020, the emergence of the California variants (B.1.427/B.1.429/Epsilon) and the New York variant (B.1.526/Iota) in early 2021, the rise of B.1.1.7/Alpha in the Spring of 2021, and Delta (B.1.617.2 + AY-lineages) outcompeting all lineages in summer 2021:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/plotAllLineagesByLocation.html">plotAllLineagesByLocation</a></span><span class="op">(</span><span class="va">country</span>, other_threshold <span class="op">=</span> <span class="fl">0.05</span>, nday_threshold <span class="op">=</span> <span class="fl">5</span>, ndays <span class="op">=</span> <span class="fl">365</span>, other_exclude <span class="op">=</span> <span class="st">"a.1"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="../reference/plotAllLineagesByLocation.html">plotAllLineagesByLocation</a></span><span class="op">(</span><span class="va">locationName</span>, other_threshold <span class="op">=</span> <span class="fl">0.05</span>, nday_threshold <span class="op">=</span> <span class="fl">5</span>, ndays <span class="op">=</span> <span class="fl">365</span>, other_exclude <span class="op">=</span> <span class="st">"a.1"</span><span class="op">)</span></code></pre></div>
 <pre><code>## Retrieving data... 
 ## Plotting data...</code></pre>
 <p><img src="locationtracker_files/figure-html/all_lineages_streamgraph_overload-1.png" width="700"></p>
@@ -263,7 +263,7 @@
 <span class="va">who_labels</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Alpha"</span>, <span class="st">"Epsilon"</span>, <span class="st">"Iota"</span>, <span class="st">"Delta"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">who_labels</span><span class="op">)</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">alpha_lineages</span>, <span class="va">epsilon_lineages</span>, <span class="va">iota_lineages</span>, <span class="va">delta_lineages</span><span class="op">)</span>
 
-<span class="va">who_prevalence</span> <span class="op">=</span> <span class="fu"><a href="../reference/getPrevalence.html">getPrevalence</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">alpha_lineages</span>, <span class="va">epsilon_lineages</span>, <span class="va">iota_lineages</span>, <span class="va">delta_lineages</span><span class="op">)</span>, location <span class="op">=</span> <span class="va">country</span><span class="op">)</span></code></pre></div>
+<span class="va">who_prevalence</span> <span class="op">=</span> <span class="fu"><a href="../reference/getPrevalence.html">getPrevalence</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="va">alpha_lineages</span>, <span class="va">epsilon_lineages</span>, <span class="va">iota_lineages</span>, <span class="va">delta_lineages</span><span class="op">)</span>, location <span class="op">=</span> <span class="va">locationName</span><span class="op">)</span></code></pre></div>
 <pre><code>## Retrieving data... 
 ## Retrieving data... 
 ## Retrieving data... 
@@ -295,13 +295,13 @@
 <a href="#more-advanced-options-specifying-variants-that-arent-lineages" class="anchor"></a>More advanced options: specifying variants that aren’t lineages</h3>
 <p>It’s easy to gather the prevalence over time for a specific Pango lineage, or a group of Pango lineages, like the ones that make up WHO Variants of Concern and Interest. You can also look at how a particular <strong>mutation</strong> is increasing or decreasing in prevalence or how a <strong>lineage with a specific mutation(s)</strong> is changing. Here, we’ll look at the changes in a particular mutation within Delta (S:Y145H) and compare it’s growth with the mutation S:E484K, which is often found in lineages like B.1.351/Beta and P.1/Gamma, and the combination of S:E484K and S:P681H, which is found in P.1.7.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">delta_y145H</span> <span class="op">=</span> <span class="fu"><a href="../reference/getPrevalence.html">getPrevalence</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="va">delta_lineages</span>, mutations<span class="op">=</span><span class="st">"S:Y145H"</span>, location <span class="op">=</span> <span class="va">country</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">delta_y145H</span> <span class="op">=</span> <span class="fu"><a href="../reference/getPrevalence.html">getPrevalence</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="va">delta_lineages</span>, mutations<span class="op">=</span><span class="st">"S:Y145H"</span>, location <span class="op">=</span> <span class="va">locationName</span><span class="op">)</span></code></pre></div>
 <pre><code>## Retrieving data...</code></pre>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">e484k</span> <span class="op">=</span> <span class="fu"><a href="../reference/getPrevalence.html">getPrevalence</a></span><span class="op">(</span>mutations<span class="op">=</span><span class="st">"S:E484K"</span>, location <span class="op">=</span> <span class="va">country</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">e484k</span> <span class="op">=</span> <span class="fu"><a href="../reference/getPrevalence.html">getPrevalence</a></span><span class="op">(</span>mutations<span class="op">=</span><span class="st">"S:E484K"</span>, location <span class="op">=</span> <span class="va">locationName</span><span class="op">)</span></code></pre></div>
 <pre><code>## Retrieving data...</code></pre>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">e484k_p618h</span> <span class="op">=</span> <span class="fu"><a href="../reference/getPrevalence.html">getPrevalence</a></span><span class="op">(</span>mutations<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"S:E484K"</span>, <span class="st">"S:P681H"</span><span class="op">)</span>, location <span class="op">=</span> <span class="va">country</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">e484k_p618h</span> <span class="op">=</span> <span class="fu"><a href="../reference/getPrevalence.html">getPrevalence</a></span><span class="op">(</span>mutations<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"S:E484K"</span>, <span class="st">"S:P681H"</span><span class="op">)</span>, location <span class="op">=</span> <span class="va">locationName</span><span class="op">)</span></code></pre></div>
 <pre><code>## Retrieving data...</code></pre>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">df</span> <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">delta_y145H</span>, <span class="va">e484k</span>, <span class="va">e484k_p618h</span><span class="op">)</span>
@@ -332,14 +332,119 @@
 <div id="what-mutations-are-contained-within-the-lineages-that-are-circulating-within-the-u-s-" class="section level2">
 <h2 class="hasAnchor">
 <a href="#what-mutations-are-contained-within-the-lineages-that-are-circulating-within-the-u-s-" class="anchor"></a>What mutations are contained within the lineages that are circulating within the U.S.?</h2>
+<p>Using the data we already calculated of the lineages currently circulating in the U.S. (<code>usa_60d</code>), we can compare what mutations commonly occur within these lineages?</p>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Get the names of the lineages that have been circulating in the U.S. in the past 60 days</span>
+<span class="va">lineages_60d</span> <span class="op">=</span> <span class="va">usa_60d</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html">pull</a></span><span class="op">(</span><span class="va">lineage</span><span class="op">)</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="co"># Get the mutations that are present in at least 75% of the sequences associated with those lineages.</span>
+<span class="va">mutations_60d</span> <span class="op">=</span> <span class="fu"><a href="../reference/getMutationsByLineage.html">getMutationsByLineage</a></span><span class="op">(</span>pangolin_lineage<span class="op">=</span><span class="va">lineages_60d</span>, frequency<span class="op">=</span><span class="fl">0.75</span>, logInfo <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>
+
+<span class="co"># Plot a heatmap to compare the mutation prevalence by lineage.</span>
+<span class="fu"><a href="../reference/plotMutationHeatmap.html">plotMutationHeatmap</a></span><span class="op">(</span><span class="va">mutations_60d</span><span class="op">)</span> <span class="op">+</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="st">"S-gene mutations in lineages circulating within the U.S. in the last 60 days"</span>, subtitle <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"As of "</span>, <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">'%d %B %Y'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p><img src="locationtracker_files/figure-html/mutation_heatmap-1.png" width="100%"></p>
 </div>
 <div id="how-prevalent-are-variants-of-concern-within-the-u-s-" class="section level2">
 <h2 class="hasAnchor">
 <a href="#how-prevalent-are-variants-of-concern-within-the-u-s-" class="anchor"></a>How prevalent are Variants of Concern within the U.S.?</h2>
+<p>We can also grab the cumulative prevalence of any variant since the variant was discovered.</p>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Get the </span>
+<span class="va">curated</span> <span class="op">=</span> <span class="fu"><a href="../reference/getCuratedLineages.html">getCuratedLineages</a></span><span class="op">(</span><span class="op">)</span>
+
+<span class="co"># Pull out the VOCs and the lineages associated with them</span>
+<span class="va">vocs</span> <span class="op">=</span> <span class="va">curated</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">variantType</span> <span class="op">==</span> <span class="st">"Variant of Concern"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">who_name</span>, <span class="va">char_muts_parent_query</span><span class="op">)</span>
+
+<span class="co"># Get the cumulative prevalence of each of the VOCs</span>
+<span class="va">voc_prev</span> <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span><span class="op">(</span><span class="va">vocs</span><span class="op">$</span><span class="va">char_muts_parent_query</span>, <span class="kw">function</span><span class="op">(</span><span class="va">variant</span><span class="op">)</span> <span class="fu"><a href="../reference/getPrevalence.html">getPrevalence</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="va">variant</span>, location <span class="op">=</span> <span class="va">locationName</span>, cumulative <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>## Retrieving data... 
+## Retrieving data... 
+## Retrieving data... 
+## Retrieving data...</code></pre>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Join back the WHO names, since they're prettier.</span>
+<span class="va">voc_prev</span> <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">full_join</a></span><span class="op">(</span><span class="va">voc_prev</span>, <span class="va">vocs</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"lineage"</span> <span class="op">=</span> <span class="st">"char_muts_parent_query"</span><span class="op">)</span><span class="op">)</span>
+<span class="va">voc_prev</span> <span class="op">%&gt;%</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">lineage</span><span class="op">)</span> <span class="op">%&gt;%</span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<table class="table">
+<colgroup>
+<col width="19%">
+<col width="14%">
+<col width="15%">
+<col width="16%">
+<col width="15%">
+<col width="11%">
+<col width="7%">
+</colgroup>
+<thead><tr class="header">
+<th align="right">value.global_prevalence</th>
+<th align="right">value.total_count</th>
+<th align="right">value.lineage_count</th>
+<th align="left">value.first_detected</th>
+<th align="left">value.last_detected</th>
+<th align="left">location</th>
+<th align="left">who_name</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="right">0.5255768</td>
+<td align="right">1394858</td>
+<td align="right">733105</td>
+<td align="left">2020-07-13</td>
+<td align="left">2021-10-27</td>
+<td align="left">United States</td>
+<td align="left">Delta</td>
+</tr>
+<tr class="even">
+<td align="right">0.1631675</td>
+<td align="right">1449572</td>
+<td align="right">236523</td>
+<td align="left">2020-03-15</td>
+<td align="left">2021-10-07</td>
+<td align="left">United States</td>
+<td align="left">Alpha</td>
+</tr>
+<tr class="odd">
+<td align="right">0.0026988</td>
+<td align="right">1422839</td>
+<td align="right">3840</td>
+<td align="left">2020-05-07</td>
+<td align="left">2021-09-22</td>
+<td align="left">United States</td>
+<td align="left">Beta</td>
+</tr>
+<tr class="even">
+<td align="right">0.0197472</td>
+<td align="right">1435240</td>
+<td align="right">28342</td>
+<td align="left">2020-04-07</td>
+<td align="left">2021-10-05</td>
+<td align="left">United States</td>
+<td align="left">Gamma</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="where-are-the-variants-of-concern-most-prevalent-within-the-u-s-" class="section level2">
 <h2 class="hasAnchor">
 <a href="#where-are-the-variants-of-concern-most-prevalent-within-the-u-s-" class="anchor"></a>Where are the Variants of Concern most prevalent within the U.S.?</h2>
+<p>… and we can break down the prevalence of each lineage by state/province, if you specify a country, or by county if you feed in a state. Let’s look at the prevalence of Delta by state and within California.</p>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Calculate the  prevalence of Delta in the U.S. over the last 90 days</span>
+<span class="va">delta_by_state</span> <span class="op">=</span> <span class="fu"><a href="../reference/getCumulativeBySubadmin.html">getCumulativeBySubadmin</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="va">delta_lineages</span>, location <span class="op">=</span> <span class="va">locationName</span>, ndays <span class="op">=</span> <span class="fl">90</span><span class="op">)</span></code></pre></div>
+<pre><code>## Retrieving data...</code></pre>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Calculate the  prevalence of Delta in California over the last 90 days</span>
+<span class="va">delta_in_california</span> <span class="op">=</span> <span class="fu"><a href="../reference/getCumulativeBySubadmin.html">getCumulativeBySubadmin</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="va">delta_lineages</span>, location <span class="op">=</span> <span class="st">"California"</span>, ndays <span class="op">=</span> <span class="fl">90</span><span class="op">)</span></code></pre></div>
+<pre><code>## Retrieving data...</code></pre>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># Plot the results</span>
+<span class="fu"><a href="../reference/plotPrevalenceDotPlot.html">plotPrevalenceDotPlot</a></span><span class="op">(</span><span class="va">delta_by_state</span>, <span class="st">"Delta prevalence over the last 90 days in the United States"</span>, subtitle <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"As of "</span>, <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">'%d %B %Y'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p><img src="locationtracker_files/figure-html/cum_prev_by_state-1.png" width="100%" height="700px"></p>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/plotPrevalenceDotPlot.html">plotPrevalenceDotPlot</a></span><span class="op">(</span><span class="va">delta_in_california</span>, <span class="st">"Delta prevalence over the last 90 days in the United States"</span>, subtitle <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span><span class="op">(</span><span class="st">"As of "</span>, <span class="fu"><a href="https://rdrr.io/r/base/format.html">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html">Sys.Date</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">'%d %B %Y'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p><img src="locationtracker_files/figure-html/cum_prev_by_state-2.png" width="100%" height="700px"></p>
 </div>
 </div>
   </div>

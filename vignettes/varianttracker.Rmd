@@ -157,7 +157,7 @@ The location names in the genomics data are standardized to the location ids con
 ```{r}
 library(sf)
 
-# Load in the spatial data
+# Load in the spatial data into a variable called gadm
 gadm = read_sf("../data/gadm36_0.shp")
 
 # join by the ISO3 ID

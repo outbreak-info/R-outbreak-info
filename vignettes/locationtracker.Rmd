@@ -38,8 +38,8 @@ authenticateUser()
 To be able to discover which lineages are currently circulating around the U.S.,
 let's grab the prevalence of all the lineages in the U.S. over the past 60 days.
 ```{r all_lineages_data, results='hide'}
-country = "United States"
-usa_60d = getAllLineagesByLocation(location = country, other_threshold = 0.03, nday_threshold = 5, ndays = 60)
+locationName = "United States"
+usa_60d = getAllLineagesByLocation(location = locationName, other_threshold = 0.03, nday_threshold = 5, ndays = 60)
 ```
 
 ``` {r all_lineages_exploration1}
@@ -63,7 +63,7 @@ usa_60d %>%
 That gives an idea of what the range of prevalences for the lineages are, but not how they have changed over time. It's easier to see this temporal behavior with a streamgraph
 which plots the relative prevalence of all the lineages over time. `plotAllLineagesByLocation` replicates these plots on outbreak.info:
 ```{r all_lineages_streamgraph}
-plotAllLineagesByLocation(country, other_threshold = 0.03, nday_threshold = 5, ndays = 60)
+plotAllLineagesByLocation(locationName, other_threshold = 0.03, nday_threshold = 5, ndays = 60)
 ```
 
 
@@ -82,7 +82,7 @@ the smaller lineages into this "other" category. Let's break down how these para
 
 It's easy then to see the trends over the last year -- the North American lineages B.1 and B.1.2 appearing in 2020, the emergence of the California variants (B.1.427/B.1.429/Epsilon) and the New York variant (B.1.526/Iota) in early 2021, the rise of B.1.1.7/Alpha in the Spring of 2021, and Delta (B.1.617.2 + AY-lineages) outcompeting all lineages in summer 2021:
 ```{r all_lineages_streamgraph_overload}
-plotAllLineagesByLocation(country, other_threshold = 0.05, nday_threshold = 5, ndays = 365, other_exclude = "a.1")
+plotAllLineagesByLocation(locationName, other_threshold = 0.05, nday_threshold = 5, ndays = 365, other_exclude = "a.1")
 ```
 
 ###  Remember: these are just estimates
@@ -108,7 +108,7 @@ delta_lineages = lookupSublineages("Delta", returnQueryString = TRUE)
 who_labels = c("Alpha", "Epsilon", "Iota", "Delta")
 names(who_labels) = c(alpha_lineages, epsilon_lineages, iota_lineages, delta_lineages)
 
-who_prevalence = getPrevalence(pangolin_lineage = c(alpha_lineages, epsilon_lineages, iota_lineages, delta_lineages), location = country)
+who_prevalence = getPrevalence(pangolin_lineage = c(alpha_lineages, epsilon_lineages, iota_lineages, delta_lineages), location = locationName)
 
 who_prevalence %>% glimpse()
 ```
@@ -121,9 +121,9 @@ plotPrevalenceOverTime(who_prevalence, labelDictionary = who_labels)
 ### More advanced options: specifying variants that aren't lineages
 It's easy to gather the prevalence over time for a specific Pango lineage, or a group of Pango lineages, like the ones that make up WHO Variants of Concern and Interest. You can also look at how a particular **mutation** is increasing or decreasing in prevalence or how a **lineage with a specific mutation(s)** is changing. Here, we'll look at the changes in a particular mutation within Delta (S:Y145H) and compare it's growth with the mutation S:E484K, which is often found in lineages like B.1.351/Beta and P.1/Gamma, and the combination of S:E484K and S:P681H, which is found in P.1.7.
 ```{r custom_variants}
-delta_y145H = getPrevalence(pangolin_lineage = delta_lineages, mutations="S:Y145H", location = country)
-e484k = getPrevalence(mutations="S:E484K", location = country)
-e484k_p618h = getPrevalence(mutations=c("S:E484K", "S:P681H"), location = country)
+delta_y145H = getPrevalence(pangolin_lineage = delta_lineages, mutations="S:Y145H", location = locationName)
+e484k = getPrevalence(mutations="S:E484K", location = locationName)
+e484k_p618h = getPrevalence(mutations=c("S:E484K", "S:P681H"), location = locationName)
 
 df = bind_rows(delta_y145H, e484k, e484k_p618h)
 
@@ -146,7 +146,51 @@ plotPrevalenceOverTime(delta_by_state %>% filter(date > "2021-04-01"), colorVar 
 
 
 ## What mutations are contained within the lineages that are circulating within the U.S.?
+Using the data we already calculated of the lineages currently circulating in the U.S. (`usa_60d`), we can compare what mutations commonly occur within these lineages?
+```{r mutation_heatmap, out.width = '100%'}
+# Get the names of the lineages that have been circulating in the U.S. in the past 60 days
+lineages_60d = usa_60d %>% pull(lineage) %>% unique()
+
+# Get the mutations that are present in at least 75% of the sequences associated with those lineages.
+mutations_60d = getMutationsByLineage(pangolin_lineage=lineages_60d, frequency=0.75, logInfo = FALSE)
+
+# Plot a heatmap to compare the mutation prevalence by lineage.
+plotMutationHeatmap(mutations_60d) + ggtitle("S-gene mutations in lineages circulating within the U.S. in the last 60 days", subtitle = paste0("As of ", format(Sys.Date(), '%d %B %Y')))
+```
 
 ## How prevalent are Variants of Concern within the U.S.?
+We can also grab the cumulative prevalence of any variant since the variant was discovered.
+```{r cum_prevalence}
+# Get the 
+curated = getCuratedLineages()
+
+# Pull out the VOCs and the lineages associated with them
+vocs = curated %>% 
+  filter(variantType == "Variant of Concern") %>% 
+  select(who_name, char_muts_parent_query)
+
+# Get the cumulative prevalence of each of the VOCs
+voc_prev = purrr::map_df(vocs$char_muts_parent_query, function(variant) getPrevalence(pangolin_lineage = variant, location = locationName, cumulative = TRUE))
+
+# Join back the WHO names, since they're prettier.
+voc_prev = dplyr::full_join(voc_prev, vocs, by = c("lineage" = "char_muts_parent_query"))
+voc_prev %>% select(-lineage) %>%  knitr::kable()
+```
+
 
 ## Where are the Variants of Concern most prevalent within the U.S.?
+... and we can break down the prevalence of each lineage by state/province, if you specify a country,
+or by county if you feed in a state. Let's look at the prevalence of Delta by state and within California.
+```{r cum_prev_by_state, out.width = '100%', out.height='700px'}
+# Calculate the  prevalence of Delta in the U.S. over the last 90 days
+delta_by_state = getCumulativeBySubadmin(pangolin_lineage = delta_lineages, location = locationName, ndays = 90)
+
+# Calculate the  prevalence of Delta in California over the last 90 days
+delta_in_california = getCumulativeBySubadmin(pangolin_lineage = delta_lineages, location = "California", ndays = 90)
+
+# Plot the results
+plotPrevalenceDotPlot(delta_by_state, "Delta prevalence over the last 90 days in the United States", subtitle = paste0("As of ", format(Sys.Date(), '%d %B %Y')))
+
+plotPrevalenceDotPlot(delta_in_california, "Delta prevalence over the last 90 days in the United States", subtitle = paste0("As of ", format(Sys.Date(), '%d %B %Y')))
+```
+

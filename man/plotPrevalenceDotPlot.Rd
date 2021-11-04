@@ -4,7 +4,7 @@
 \alias{plotPrevalenceDotPlot}
 \title{Plots a dot plot of prevalences of a variant in a specific location}
 \usage{
-plotPrevalenceDotPlot(df, title = NULL, subtitle = NULL)
+plotPrevalenceDotPlot(df, title = NULL, subtitle = NULL, dot_size = 3)
 }
 \arguments{
 \item{df}{Plots results from calling \link[outbreakinfo]{getCumulativeBySubadmin}}

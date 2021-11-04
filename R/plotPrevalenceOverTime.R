@@ -25,12 +25,12 @@
 #' @export
 
 plotPrevalenceOverTime <- function(df, colorVar = "lineage", title = "Prevalence over time", labelDictionary = NULL) {
-  if(!is.null(labelDictionary)) {
-    df = df %>%
-      mutate(lineage = ifelse(is.na(unname(labelDictionary[lineage])), lineage, unname(labelDictionary[lineage])))
-  }
-  
   if(!is.null(df) && nrow(df) > 0){
+    if(!is.null(labelDictionary)) {
+      df = df %>%
+        mutate(lineage = ifelse(is.na(unname(labelDictionary[lineage])), lineage, unname(labelDictionary[lineage])))
+    }
+    
     p <- ggplot(df, aes(x = date, y = proportion, colour = .data[[colorVar]], fill = .data[[colorVar]], group = .data[[colorVar]])) +
       geom_ribbon(aes(ymin = proportion_ci_lower, ymax = proportion_ci_upper), alpha = 0.35, size = 0) +
       geom_line(size = 1.25) +

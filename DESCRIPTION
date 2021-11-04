@@ -29,6 +29,7 @@ Imports:
 RoxygenNote: 7.1.2
 Suggests:
     testthat,
-    knitr
+    knitr,
+    lubridate
 URL: https://outbreak-info.github.io/R-outbreak-info/
 BugReports: https://github.com/outbreak-info/R-outbreak-info/issues

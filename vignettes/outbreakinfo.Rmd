@@ -64,7 +64,7 @@ b117_tx = getPrevalence(pangolin_lineage = "B.1.1.7", location="Texas")
 t(b117_tx[1,])
 
 # Plotting it:
-plotPrevalenceOverTime(b117_nyc, title = "B.1.1.7 prevalence in Texas")
+plotPrevalenceOverTime(b117_tx, title = "B.1.1.7 prevalence in Texas")
 ```
 Variables are described in the [Genomics Data Dictionary](https://outbreak-info.github.io/R-outbreak-info/reference/genomicsDataDictionary.html).
 

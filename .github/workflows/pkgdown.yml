@@ -28,8 +28,11 @@ jobs:
 
       - name: Authorize app
         run: |
-          x = "hi"
-          print(x)
-          Sys.setenv(OUTBREAK_INFO_TOKEN = ${{secrets.TEST}})
-          print(OUTBREAK_INFO_TOKEN)
+          Sys.setenv(OUTBREAK_INFO_TOKEN = ${{secrets.OUTBREAK_INFO_TOKEN}})
         shell: Rscript {0}
+
+      - name: Deploy package
+        run: |
+          git config --local user.name "$GITHUB_ACTOR"
+          git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          Rscript -e 'pkgdown::deploy_to_branch(new_process = FALSE)'

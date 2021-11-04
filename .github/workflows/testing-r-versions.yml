@@ -33,5 +33,7 @@ jobs:
           remotes::install_deps(dependencies = TRUE)
         shell: Rscript {0}
       - name: Check
-        run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")
+        run: |
+          Sys.setenv(OUTBREAK_INFO_TOKEN = ${{secrets.OUTBREAK_INFO_TOKEN}})
+          rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")
         shell: Rscript {0}

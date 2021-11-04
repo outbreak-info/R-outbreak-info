@@ -7,11 +7,13 @@
 plotPrevalenceDotPlot(df, title = NULL, subtitle = NULL, dot_size = 3)
 }
 \arguments{
-\item{df}{Plots results from calling \link[outbreakinfo]{getCumulativeBySubadmin}}
+\item{df}{Dataframe resulting from calling \link[outbreakinfo]{getCumulativeBySubadmin}}
 
-\item{title}{(optional)}
+\item{title}{(optional) Title to include on the plot}
 
-\item{subtitle}{(optional)}
+\item{subtitle}{(optional) Subtitle to include on the plot}
+
+\item{dot_size}{(optional) Dot plot size (in mm)}
 }
 \value{
 
@@ -20,6 +22,12 @@ plotPrevalenceDotPlot(df, title = NULL, subtitle = NULL, dot_size = 3)
 Plots a dot plot of prevalences of a variant in a specific location
 }
 \examples{
-delta_by_state = getCumulativeBySubadmin(pangolin_lineage = delta_lineages, location = locationName, ndays = 90)
+# Query to get the most recent lineages associated with Delta
+delta_lineages = lookupSublineages("Delta", returnQueryString = TRUE)
+
+# Calculate the proportion of sequences assigned to Delta by U.S. State
+delta_by_state = getCumulativeBySubadmin(pangolin_lineage = delta_lineages, location = "United States", ndays = 90)
+
+# Plot the results
 plotPrevalenceDotPlot(delta_by_state, "Delta prevalence over the last 90 days in the United States", subtitle = paste0("As of ", format(Sys.Date(), '\%d \%B \%Y')))
 }

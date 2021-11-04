@@ -181,7 +181,7 @@ voc_prev %>% select(-lineage) %>%  knitr::kable()
 ## Where are the Variants of Concern most prevalent within the U.S.?
 ... and we can break down the prevalence of each lineage by state/province, if you specify a country,
 or by county if you feed in a state. Let's look at the prevalence of Delta by state and within California.
-```{r cum_prev_by_state, out.width = '100%', out.height='700px'}
+```{r cum_prev_by_state, out.width = '100%', fig.asp=1}
 # Calculate the  prevalence of Delta in the U.S. over the last 90 days
 delta_by_state = getCumulativeBySubadmin(pangolin_lineage = delta_lineages, location = locationName, ndays = 90)
 

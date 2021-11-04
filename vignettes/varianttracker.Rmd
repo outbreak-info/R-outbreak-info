@@ -152,43 +152,24 @@ After seeing how P.1 prevalence changes in specific locations, a natural related
 p1_by_country = getCumulativeBySubadmin(pangolin_lineage = "P.1")
 ```
 
+```{r load_gadm, echo = FALSE}
+library(sf)
+# Load in the spatial data into a variable called gadm
+gadm_filename = Sys.getenv("GADM_FILE")
+gadm = read_sf(gadm_filename)
+```
+
 ### Making a choropleth
 The location names in the genomics data are standardized to the location ids contained in the  [GADM data](https://gadm.org/download_world.html). After downloading the shapefile from GADM, it's easy to make a choropleth using the [sf](https://r-spatial.github.io/sf/) package. Note: since GADM doesn't allow their data to be redistributed, you'll need to download the data yourself. But it's free to use! You might also want to run the data through [mapshaper](https://mapshaper.org/) to simplify the geometries, since the data is quite large.  Within the choropleth, it's easy to see that P.1 has been more prevalent across South America.
-```{r}
+```{r world_choropleth}
 library(sf)
+# You'll need to download and import the GADM Administrative level 1 data, with something like:
+# gadm = read_sf("gadm36_0.shp")
 
-# Load in the spatial data into a variable called gadm
-gadm = read_sf("../data/gadm36_0.shp")
-
-# join by the ISO3 ID
+# `gadm` is an sf object containing the GADM basemap. Geojoin the data by the ISO3 ID
 gadm_p1 = left_join(gadm, p1_by_country, by=c("GID_0" = "id"))
 
-# Create a quick little plotting function
-
-plotChoropleth = function(df, fillVar = "proportion", title = NULL, proj4 = "+proj=wag7 +lon_0=11 +datum=WGS84 +units=m +no_defs") {
-  # color palette: ColorBrewer's YlGnBu:https://colorbrewer2.org/#type=sequential&scheme=YlGnBu&n=9
-  CHOROPLETH_PALETTE = c('#ffffd9','#edf8b1','#c7e9b4','#7fcdbb','#41b6c4','#1d91c0','#225ea8','#253494','#081d58')
-
-  # Reproject as Mollweide projection
-  df_projected = st_transform(df, crs = proj4)
-
-  df_projected = df_projected %>%
-    filter(NAME_0 != "Antarctica")
-
-
-  p = ggplot(df_projected, aes_string(fill = fillVar)) +
-    geom_sf(size = 0.1, colour = "#555555") +
-    scale_fill_gradientn(colours = CHOROPLETH_PALETTE, na.value = "#babab0", labels=scales::percent, limits = c(0,1)) +
-    theme_void() +
-    theme(legend.position = "bottom")
-
-  if(!is.null(title)){
-    p = p +
-      ggtitle(title)
-  }
-  return(p)
-}
-
+# Use the basic plotting function
 plotChoropleth(gadm_p1, title="Cumulative P.1 prevalence")
 ```
 

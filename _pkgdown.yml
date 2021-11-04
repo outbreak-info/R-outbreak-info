@@ -27,6 +27,7 @@ reference:
   - getCuratedLineages
   - lookupSublineages
   - plotAllLineagesByLocation
+  - plotChoropleth
   - plotMutationHeatmap
   - plotPrevalenceDotPlot
   - plotPrevalenceOverTime

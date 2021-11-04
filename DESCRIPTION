@@ -30,6 +30,7 @@ RoxygenNote: 7.1.2
 Suggests:
     testthat,
     knitr,
-    lubridate
+    lubridate,
+    sf
 URL: https://outbreak-info.github.io/R-outbreak-info/
 BugReports: https://github.com/outbreak-info/R-outbreak-info/issues

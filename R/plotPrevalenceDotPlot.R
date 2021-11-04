@@ -24,7 +24,7 @@ plotPrevalenceDotPlot = function(df, title = NULL, subtitle = NULL, dot_size = 3
     
     
     ggplot(df, aes(x = proportion, y = name, fill = proportion)) + 
-      geom_segment(aes(x = proportion_ci_lower, xend = proportion_ci_upper, yend = name), alpha = 0.25, size = 3) + 
+      geom_segment(aes(x = proportion_ci_lower, xend = proportion_ci_upper, yend = name), alpha = 0.15, size = 3) + 
       geom_point(size = dot_size, shape = 21) +
       scale_x_continuous(limits = xlim, labels = scales::percent) +
       scale_fill_gradientn(values = xlim, colours = CHOROPLETH_PALETTE) + 

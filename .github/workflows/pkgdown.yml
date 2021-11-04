@@ -26,8 +26,8 @@ jobs:
           extra-packages: pkgdown
           needs: website
 
-      - name: Authorize app
+      - name: Authorize app & deploy package
         run: |
-          Sys.setenv(OUTBREAK_INFO_TOKEN = ${{secrets.TEST}})
-          print(OUTBREAK_INFO_TOKEN)
-        shell: Rscript {0}
+          git config --local user.name "$GITHUB_ACTOR"
+          git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          Rscript -e 'Sys.setenv(OUTBREAK_INFO_TOKEN = ${{secrets.OUTBREAK_INFO_TOKEN}}); pkgdown::deploy_to_branch(new_process = FALSE)'

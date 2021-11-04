@@ -28,6 +28,8 @@ jobs:
 
       - name: Authorize app
         run: |
+          x = "hi"
+          print(x)
           Sys.setenv(OUTBREAK_INFO_TOKEN = ${{secrets.TEST}})
           print(OUTBREAK_INFO_TOKEN)
         shell: Rscript {0}

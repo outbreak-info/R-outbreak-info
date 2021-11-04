@@ -7,7 +7,7 @@
 #' @param fields (optional) vector specifying which fields to return. Returns all by default. See the \href{https://discovery.biothings.io/view/outbreak}{outbreak schema} for possible fields.
 #' @param sort (optional) field to sort by.  Add `-` to sort in descending order
 #' @param facets (optional) field by which to aggregate (count) their frequency
-#' @param facet_size (optional) how many facet groups to include in the facet total (default = 10)
+#' @param facet_size (optional) how many facet groups to include in the facet total (default = 10, max = 1000)
 #' 
 #' @import stringr
 #' 

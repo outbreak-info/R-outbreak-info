@@ -26,7 +26,7 @@ getResourcesResponse(
 
 \item{facets}{(optional) field by which to aggregate (count) their frequency}
 
-\item{facet_size}{(optional) how many facet groups to include in the facet total (default = 10)}
+\item{facet_size}{(optional) how many facet groups to include in the facet total (default = 10, max = 1000)}
 
 \item{query}{(optional) constructs a query over ALL fields, or a fielded query searching within specific fields. Fielded query terms should be separated by ` AND ` or ` OR `. See \href{https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax}{Elasticserach query strings} for more info.}
 }

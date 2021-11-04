@@ -30,7 +30,7 @@ getResourcesData(
 
 \item{facets}{(optional) field by which to aggregate (count) their frequency}
 
-\item{facet_size}{(optional) how many facet groups to include in the facet total (default = 10)}
+\item{facet_size}{(optional) how many facet groups to include in the facet total (default = 10, max = 1000)}
 }
 \value{
 

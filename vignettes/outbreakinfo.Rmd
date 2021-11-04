@@ -57,14 +57,14 @@ Tracking how the prevalence of variants change over time is vital to understandi
 
 #### Lineage over time: B.1.1.7
 ```{r prev-time}
-# Function to grab all the data for the prevalence of B.1.1.7 in San Diego
-b117_san_diego = getPrevalence(pangolin_lineage = "B.1.1.7", location="San Diego")
+# Function to grab all the data for the prevalence of B.1.1.7 in Texas
+b117_tx = getPrevalence(pangolin_lineage = "B.1.1.7", location="Texas")
 
 # Accessing just the first row:
-t(b117_san_diego[1,])
+t(b117_tx[1,])
 
 # Plotting it:
-plotPrevalenceOverTime(b117_san_diego, title = "B.1.1.7 prevalence in San Diego")
+plotPrevalenceOverTime(b117_nyc, title = "B.1.1.7 prevalence in Texas")
 ```
 Variables are described in the [Genomics Data Dictionary](https://outbreak-info.github.io/R-outbreak-info/reference/genomicsDataDictionary.html).
 

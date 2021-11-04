@@ -10,7 +10,7 @@ Authors@R: c(person("Manar", "Alkuzweny", email = "manaralkuzweny@gmail.com",
                                     role = c("aut"))
                                     )
 Description: This package retrieves up-to-date COVID-19 epidemiological and genomic data from outbreak.info.
-License: use_mit_license()
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: FALSE
 Imports:

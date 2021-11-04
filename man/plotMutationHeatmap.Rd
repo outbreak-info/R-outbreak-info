@@ -9,11 +9,11 @@ plotMutationHeatmap(df, gene2Plot = "S", title = NULL, lightBorders = TRUE)
 \arguments{
 \item{df}{Resulting dataframe from calling \link[outbreakinfo]{getMutationsByLineage}}
 
-\item{gene2Plot:}{(optional) string containing which genes to include, e.g. "Orf1a" By default, will limit the mutations to those in the S-gene.}
+\item{gene2Plot}{(optional) string containing which genes to include, e.g. "Orf1a" By default, will limit the mutations to those in the S-gene.}
 
-\item{title:}{(optional) title to add to the plot}
+\item{title}{(optional) title to add to the plot}
 
-\item{lightBorders:}{(optional) boolean; whether the borders between grid items should be separated with a light or dark border.}
+\item{lightBorders}{(optional) boolean; whether the borders between grid items should be separated with a light or dark border.}
 }
 \value{
 

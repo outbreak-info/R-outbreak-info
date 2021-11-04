@@ -25,12 +25,12 @@ Imports:
     stringr,
     tidyr,
     httr,
-    yaml
+    yaml,
+    sf
 RoxygenNote: 7.1.2
 Suggests:
     testthat,
     knitr,
-    lubridate,
-    sf
+    lubridate
 URL: https://outbreak-info.github.io/R-outbreak-info/
 BugReports: https://github.com/outbreak-info/R-outbreak-info/issues

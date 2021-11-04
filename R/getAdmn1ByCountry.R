@@ -3,7 +3,7 @@
 #' @description Retrieve up-to-date COVID-19 data from outbreak.info for all states/provinces in one or more countries.
 #'
 #'
-#' @param countries: vector or list of country name(s)
+#' @param countries vector or list of country name(s)
 #'
 #' @return dataframe
 #'

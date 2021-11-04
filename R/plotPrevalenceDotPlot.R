@@ -4,6 +4,8 @@
 #' @param title (optional) Title to include on the plot
 #' @param subtitle (optional) Subtitle to include on the plot
 #' @param dot_size (optional) Dot plot size (in mm)
+#' 
+#' @import ggplot2
 #'
 #' @return
 #' @export

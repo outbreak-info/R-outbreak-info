@@ -7,9 +7,9 @@
 plotEpiData(locations, variable)
 }
 \arguments{
-\item{locations:}{a vector or list of location names}
+\item{locations}{a vector or list of location names}
 
-\item{variable:}{metric to plot}
+\item{variable}{metric to plot}
 }
 \value{
 ggplot2 object

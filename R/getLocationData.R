@@ -2,7 +2,7 @@
 #'
 #' @description Retrieve up-to-date COVID-19 data from outbreak.info for specified location(s)
 #'
-#' @param location_names: vector or list of location name(s)
+#' @param location_names vector or list of location name(s)
 #'
 #' @return dataframe
 #'

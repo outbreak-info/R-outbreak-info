@@ -3,9 +3,9 @@
 #' @description Retrieves number of sequences by location, by date of sequence submission. 
 #' See \link[outbreakinfo]{getSeqCounts} to view similar information by date of sample collection.
 #'
-#'@param pangolin_lineage: PANGO lineage name
-#'@param location: (optional) a location name (if not specified, submission date at the global level returned)
-#'@param mutations: (optional) a `vector` of mutation(s)
+#'@param pangolin_lineage PANGO lineage name
+#'@param location (optional) a location name (if not specified, submission date at the global level returned)
+#'@param mutations (optional) a `vector` of mutation(s)
 #'
 #'@return dataframe
 #'

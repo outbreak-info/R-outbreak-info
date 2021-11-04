@@ -1,6 +1,7 @@
-#' Title
+#' Title Compare mutation prevalences between lineages
+#' 
 #' @description Plots a heatamp of mutation prevalence across particular lineages.
-#' @param df: Resulting dataframe from calling \link[outbreakinfo]{getMutationsByLineage}
+#' @param df Resulting dataframe from calling \link[outbreakinfo]{getMutationsByLineage}
 #' @param gene2Plot: (optional) string containing which genes to include, e.g. "Orf1a" By default, will limit the mutations to those in the S-gene.
 #' @param title: (optional) title to add to the plot
 #' @param lightBorders: (optional) boolean; whether the borders between grid items should be separated with a light or dark border.

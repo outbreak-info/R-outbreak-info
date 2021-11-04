@@ -7,7 +7,7 @@
 getLocationData(location_names, ...)
 }
 \arguments{
-\item{location_names:}{vector or list of location name(s)}
+\item{location_names}{vector or list of location name(s)}
 }
 \value{
 dataframe

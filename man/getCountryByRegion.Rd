@@ -7,7 +7,7 @@
 getCountryByRegion(wb_regions, ...)
 }
 \arguments{
-\item{wb_regions:}{vector or list of World Bank region(s)}
+\item{wb_regions}{vector or list of World Bank region(s)}
 }
 \value{
 dataframe

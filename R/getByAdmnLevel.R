@@ -2,7 +2,7 @@
 #'
 #' @description Retrieve up-to-date COVID-19 data from outbreak.info for all locations at a given administrative level.
 #'
-#' @param admin_level: an integer representing an administrative level (World Bank regions = -1, countries = 0, states/provinces = 1, metropolitan areas = 1.5, counties = 2)
+#' @param admin_level an integer representing an administrative level (World Bank regions = -1, countries = 0, states/provinces = 1, metropolitan areas = 1.5, counties = 2)
 #'
 #' @return dataframe
 #'

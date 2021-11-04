@@ -7,7 +7,7 @@
 getAdmn1ByCountry(countries, ...)
 }
 \arguments{
-\item{countries:}{vector or list of country name(s)}
+\item{countries}{vector or list of country name(s)}
 }
 \value{
 dataframe

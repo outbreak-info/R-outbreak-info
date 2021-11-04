@@ -16,21 +16,21 @@ getResourcesData(
 )
 }
 \arguments{
-\item{query}{(optional): constructs a query over ALL fields, or a fielded query searching within specific fields. Fielded query terms should be separated by ` AND ` or ` OR `. See \href{https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax}{Elasticserach query strings} for more info.}
+\item{query}{(optional) constructs a query over ALL fields, or a fielded query searching within specific fields. Fielded query terms should be separated by ` AND ` or ` OR `. See \href{https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax}{Elasticserach query strings} for more info.}
 
-\item{types}{(optional): vector of resource type to return. The most frequent types include: "Publication", "ClinicalTrial", "Dataset", "Protocol", "SoftwareSourceCode", "Analysis".}
+\item{types}{(optional) vector of resource type to return. The most frequent types include: "Publication", "ClinicalTrial", "Dataset", "Protocol", "SoftwareSourceCode", "Analysis".}
 
-\item{size}{(optional): number of records to return (default = 10)}
+\item{size}{(optional) number of records to return (default = 10)}
 
-\item{fetchAll}{(optional): Boolean whether to return all results for the query}
+\item{fetchAll}{(optional) Boolean whether to return all results for the query}
 
-\item{fields}{(optional): vector specifying which fields to return. Returns all by default. See the \href{https://discovery.biothings.io/view/outbreak}{outbreak schema} for possible fields.}
+\item{fields}{(optional) vector specifying which fields to return. Returns all by default. See the \href{https://discovery.biothings.io/view/outbreak}{outbreak schema} for possible fields.}
 
-\item{sort}{(optional): field to sort by.  Add `-` to sort in descending order}
+\item{sort}{(optional) field to sort by.  Add `-` to sort in descending order}
 
-\item{facets}{(optional): field by which to aggregate (count) their frequency}
+\item{facets}{(optional) field by which to aggregate (count) their frequency}
 
-\item{facet_size}{(optional): how many facet groups to include in the facet total (default = 10)}
+\item{facet_size}{(optional) how many facet groups to include in the facet total (default = 10)}
 }
 \value{
 

@@ -2,8 +2,8 @@
 #'
 #' @description Get exact spelling of locations at the same administrative level.
 #'
-#' @param locations_to_search: vector or list of location (World Bank region, country, state/province, metropolitan area, county) name(s) at the same administrative level
-#' @param admin_level: an integer representing an administrative level (World Bank regions = -1, countries = 0, states/provinces = 1, metropolitan areas = 1.5, counties = 2)
+#' @param locations_to_search vector or list of location (World Bank region, country, state/province, metropolitan area, county) name(s) at the same administrative level
+#' @param admin_level an integer representing an administrative level (World Bank regions = -1, countries = 0, states/provinces = 1, metropolitan areas = 1.5, counties = 2)
 #'
 #' @return a vector or list of location names
 #'

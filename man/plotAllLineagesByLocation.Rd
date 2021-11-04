@@ -15,19 +15,19 @@ plotAllLineagesByLocation(
 )
 }
 \arguments{
-\item{location:}{a location name}
+\item{location}{a location name}
 
-\item{other_threshold:}{minimum prevalence threshold below which lineages are accumulated under "Other" (default=0.05)}
+\item{other_threshold}{minimum prevalence threshold below which lineages are accumulated under "Other" (default=0.05)}
 
-\item{nday_threshold:}{minimum number of days in which the prevalence of a lineage must be below other_threshold to be accumulated under "Other" (default=10)}
+\item{nday_threshold}{minimum number of days in which the prevalence of a lineage must be below other_threshold to be accumulated under "Other" (default=10)}
 
-\item{ndays:}{the number of days before the current date to be used as a window to accumulate lineages under "Other" (default=180)}
+\item{ndays}{the number of days before the current date to be used as a window to accumulate lineages under "Other" (default=180)}
 
-\item{other_exclude:}{(optional) lineage(s) that are NOT to be included under "Other" even if the conditions specified by the three thresholds above are met}
+\item{other_exclude}{(optional) lineage(s) that are NOT to be included under "Other" even if the conditions specified by the three thresholds above are met}
 
-\item{cumulative:}{`Boolean` (T/F), T returns cumulative prevalence of lineages (default=F)}
+\item{cumulative}{`Boolean` (T/F), T returns cumulative prevalence of lineages (default=F)}
 
-\item{include_title:}{`Boolean` (T/F), T returns plot with title, F returns plot without title (default=F)}
+\item{include_title}{`Boolean` (T/F), T returns plot with title, F returns plot without title (default=F)}
 }
 \value{
 ggplot2 object

@@ -7,7 +7,7 @@
 getLocationID_genomic(locations_to_search)
 }
 \arguments{
-\item{locations_to_search:}{a location name}
+\item{locations_to_search}{a location name}
 }
 \value{
 a location ID code (ISO3, FIPS)

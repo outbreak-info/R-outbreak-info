@@ -16,19 +16,19 @@ getResourcesResponse(
 )
 }
 \arguments{
-\item{size}{(optional): number of records to return (default = 10)}
+\item{size}{(optional) number of records to return (default = 10)}
 
-\item{fetchAll}{(optional): Boolean whether to return all results for the query}
+\item{fetchAll}{(optional) Boolean whether to return all results for the query}
 
-\item{fields}{(optional): vector specifying which fields to return. Returns all by default}
+\item{fields}{(optional) vector specifying which fields to return. Returns all by default}
 
-\item{sort}{(optional): field to sort by.  Add `-` to sort in descending order}
+\item{sort}{(optional) field to sort by.  Add `-` to sort in descending order}
 
-\item{facets}{(optional): field by which to aggregate (count) their frequency}
+\item{facets}{(optional) field by which to aggregate (count) their frequency}
 
-\item{facet_size}{(optional): how many facet groups to include in the facet total (default = 10)}
+\item{facet_size}{(optional) how many facet groups to include in the facet total (default = 10)}
 
-\item{query}{(optional): constructs a query over ALL fields, or a fielded query searching within specific fields. Fielded query terms should be separated by ` AND ` or ` OR `. See \href{https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax}{Elasticserach query strings} for more info.}
+\item{query}{(optional) constructs a query over ALL fields, or a fielded query searching within specific fields. Fielded query terms should be separated by ` AND ` or ` OR `. See \href{https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax}{Elasticserach query strings} for more info.}
 }
 \value{
 dataframe or list (for facetted queries) containing the response of the API query

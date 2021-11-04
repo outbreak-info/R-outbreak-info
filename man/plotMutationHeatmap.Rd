@@ -2,12 +2,12 @@
 % Please edit documentation in R/plotMutationHeatmap.R
 \name{plotMutationHeatmap}
 \alias{plotMutationHeatmap}
-\title{Title}
+\title{Title Compare mutation prevalences between lineages}
 \usage{
 plotMutationHeatmap(df, gene2Plot = "S", title = NULL, lightBorders = TRUE)
 }
 \arguments{
-\item{df:}{Resulting dataframe from calling \link[outbreakinfo]{getMutationsByLineage}}
+\item{df}{Resulting dataframe from calling \link[outbreakinfo]{getMutationsByLineage}}
 
 \item{gene2Plot:}{(optional) string containing which genes to include, e.g. "Orf1a" By default, will limit the mutations to those in the S-gene.}
 

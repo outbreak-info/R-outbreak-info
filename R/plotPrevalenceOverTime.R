@@ -2,12 +2,14 @@
 #'
 #' @description Plots the daily prevalence of a PANGO lineage by location
 #'
-#' @param df: result of the call to \link[outbreakinfo]{getPrevalence}
-#' @param colorVar: variable to used to color the line traces. `lineage` by default
-#' @param title: (optional): Title to add to the plot
-#' @param labelDictionary: (optional) a named list of values to replace in the plot legend.
+#' @param df result of the call to \link[outbreakinfo]{getPrevalence}
+#' @param colorVar variable to used to color the line traces. `lineage` by default
+#' @param title (optional) Title to add to the plot
+#' @param labelDictionary (optional) a named list of values to replace in the plot legend.
+#' 
+#' @import ggplot2
 #'
-#'@return ggplot2 object
+#' @return ggplot2 object
 #'
 #'@examples
 #'p1_brazil <- getPrevalence(pangolin_lineage = "P.1", location = "Brazil")

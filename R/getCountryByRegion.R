@@ -2,7 +2,7 @@
 #'
 #' @description Retrieve up-to-date COVID-19 data from outbreak.info for all countries in one or more World Bank region(s).
 #'
-#' @param wb_regions: vector or list of World Bank region(s)
+#' @param wb_regions vector or list of World Bank region(s)
 #'
 #' @return dataframe
 #'

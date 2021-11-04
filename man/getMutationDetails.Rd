@@ -7,7 +7,7 @@
 getMutationDetails(mutations)
 }
 \arguments{
-\item{mutations:}{a `vector` of mutation(s)}
+\item{mutations}{a `vector` of mutation(s)}
 }
 \value{
 dataframe

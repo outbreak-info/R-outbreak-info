@@ -7,9 +7,9 @@
 searchLocations(locations_to_search, admin_level)
 }
 \arguments{
-\item{locations_to_search:}{vector or list of location (World Bank region, country, state/province, metropolitan area, county) name(s) at the same administrative level}
+\item{locations_to_search}{vector or list of location (World Bank region, country, state/province, metropolitan area, county) name(s) at the same administrative level}
 
-\item{admin_level:}{an integer representing an administrative level (World Bank regions = -1, countries = 0, states/provinces = 1, metropolitan areas = 1.5, counties = 2)}
+\item{admin_level}{an integer representing an administrative level (World Bank regions = -1, countries = 0, states/provinces = 1, metropolitan areas = 1.5, counties = 2)}
 }
 \value{
 a vector or list of location names

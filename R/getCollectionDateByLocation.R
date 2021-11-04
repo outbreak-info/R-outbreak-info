@@ -2,9 +2,9 @@
 #'
 #' @description Retrieve most recent collection date by location
 #'
-#'@param pangolin_lineage: PANGO lineage name
-#'@param location: (optional) a location name (if not specified, collection date at the global level returned)
-#'@param mutations: (optional) a `vector` of mutation(s)
+#'@param pangolin_lineage PANGO lineage name
+#'@param location (optional) a location name (if not specified, collection date at the global level returned)
+#'@param mutations (optional) a `vector` of mutation(s)
 #'
 #'@return dataframe
 #'

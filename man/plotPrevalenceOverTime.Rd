@@ -12,13 +12,13 @@ plotPrevalenceOverTime(
 )
 }
 \arguments{
-\item{df:}{result of the call to \link[outbreakinfo]{getPrevalence}}
+\item{df}{result of the call to \link[outbreakinfo]{getPrevalence}}
 
-\item{colorVar:}{variable to used to color the line traces. `lineage` by default}
+\item{colorVar}{variable to used to color the line traces. `lineage` by default}
 
-\item{title:}{(optional): Title to add to the plot}
+\item{title}{(optional) Title to add to the plot}
 
-\item{labelDictionary:}{(optional) a named list of values to replace in the plot legend.}
+\item{labelDictionary}{(optional) a named list of values to replace in the plot legend.}
 }
 \value{
 ggplot2 object

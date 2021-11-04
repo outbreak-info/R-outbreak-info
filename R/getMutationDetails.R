@@ -2,7 +2,7 @@
 #'
 #' @description Retrieve details of specified mutation(s)
 #'
-#'@param mutations: a `vector` of mutation(s)
+#'@param mutations a `vector` of mutation(s)
 #'
 #'@return dataframe
 #'

@@ -2,7 +2,7 @@
 #'
 #' @description Get location ID code for countries, states/provinces, metropolitan areas, and/or counties from genomic API
 #'
-#' @param locations_to_search: a location name
+#' @param locations_to_search a location name
 #'
 #' @return a location ID code (ISO3, FIPS)
 #'

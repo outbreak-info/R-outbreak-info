@@ -2,17 +2,17 @@
 #'
 #' @description Retrieve up-to-date epidemiological data from outbreak.info according to user specifications
 #'
-#' @param name: vector of location names
-#' @param location_id: vector of ISO3 code representing locations
-#' @param wb_region: World Bank region name(s)
-#' @param country_name: country name(s)
-#' @param state_name: state name(s)
-#' @param admin_level: an integer representing an administrative level (World Bank regions = -1, countries = 0, states/provinces = 1, metropolitan areas = 1.5, counties = 2)
-#' @param date: date(s) (YYYY-MM-DD)
-#' @param mostRecent: T/F
-#' @param fields: vector of API fields to include in results
-#' @param sort: parameter to sort results by
-#' @param size: size
+#' @param name vector of location names
+#' @param location_id vector of ISO3 code representing locations
+#' @param wb_region World Bank region name(s)
+#' @param country_name country name(s)
+#' @param state_name state name(s)
+#' @param admin_level an integer representing an administrative level (World Bank regions = -1, countries = 0, states/provinces = 1, metropolitan areas = 1.5, counties = 2)
+#' @param date date(s) (YYYY-MM-DD)
+#' @param mostRecent T/F
+#' @param fields vector of API fields to include in results
+#' @param sort parameter to sort results by
+#' @param size size
 #'
 #' @return dataframe
 #'

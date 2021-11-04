@@ -2,7 +2,7 @@
 #'
 #' @description Get ISO3 codes for World Bank regions, countries, states/provinces, metropolitan areas, and/or counties.
 #'
-#' @param locations_to_search: vector or list of location (World Bank region, country, state/province, metropolitan area, county) name(s)
+#' @param locations_to_search vector or list of location (World Bank region, country, state/province, metropolitan area, county) name(s)
 #'
 #' @import jsonlite
 #'

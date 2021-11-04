@@ -7,7 +7,7 @@
 getLag(location = NULL)
 }
 \arguments{
-\item{location:}{(optional) a location name (if not specified, daily lag globally returned)}
+\item{location}{(optional) a location name (if not specified, daily lag globally returned)}
 }
 \value{
 dataframe

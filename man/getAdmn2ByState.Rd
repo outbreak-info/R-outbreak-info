@@ -7,7 +7,7 @@
 getAdmn2ByState(states, ...)
 }
 \arguments{
-\item{states:}{vector or list of state name(s)}
+\item{states}{vector or list of state name(s)}
 }
 \value{
 dataframe

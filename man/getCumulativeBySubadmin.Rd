@@ -12,13 +12,13 @@ getCumulativeBySubadmin(
 )
 }
 \arguments{
-\item{pangolin_lineage:}{PANGO lineage name}
+\item{pangolin_lineage}{PANGO lineage name}
 
-\item{location:}{(optional) a location name (if not specified, cumulative prevalence at the country level globally returned)}
+\item{location}{(optional) a location name (if not specified, cumulative prevalence at the country level globally returned)}
 
-\item{mutations:}{(optional) a `vector` of mutation(s)}
+\item{mutations}{(optional) a `vector` of mutation(s)}
 
-\item{ndays:}{(optional) an `integer` specifying number of days from current date to calculative cumuative counts (if not specified, no limit on window)}
+\item{ndays}{(optional) an `integer` specifying number of days from current date to calculative cumuative counts (if not specified, no limit on window)}
 }
 \value{
 dataframe

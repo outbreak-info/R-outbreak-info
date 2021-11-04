@@ -2,8 +2,8 @@
 #'
 #' @description Plot a metric of interest using up-to-date COVID-19 data from outbreak.info for location(s) of interest (World Bank region, country, state/province, metropolitan area, county).
 #'
-#'@param locations: a vector or list of location names
-#'@param variable: metric to plot
+#'@param locations a vector or list of location names
+#'@param variable metric to plot
 #'
 #' @return ggplot2 object
 #'

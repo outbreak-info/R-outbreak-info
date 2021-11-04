@@ -2,7 +2,7 @@
 #'
 #' @description Retrieve up-to-date COVID-19 data from outbreak.info for all counties in one or more states/provinces.
 #'
-#' @param states: vector or list of state name(s)
+#' @param states vector or list of state name(s)
 #'
 #' @return dataframe
 #'

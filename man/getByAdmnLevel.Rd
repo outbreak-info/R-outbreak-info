@@ -7,7 +7,7 @@
 getByAdmnLevel(admin_level, ...)
 }
 \arguments{
-\item{admin_level:}{an integer representing an administrative level (World Bank regions = -1, countries = 0, states/provinces = 1, metropolitan areas = 1.5, counties = 2)}
+\item{admin_level}{an integer representing an administrative level (World Bank regions = -1, countries = 0, states/provinces = 1, metropolitan areas = 1.5, counties = 2)}
 }
 \value{
 dataframe

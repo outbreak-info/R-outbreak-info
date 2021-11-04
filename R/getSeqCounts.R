@@ -3,9 +3,9 @@
 #' @description Retrieves number of sequences by location, by date of sample collection. 
 #' See \link[outbreakinfo]{getSubmissionDateByLocation} to view similar information by date of sequence submission.
 #'
-#'@param location: (optional) a location name (if not specified, global total counts returned)
-#'@param cumulative: (optional) Boolean (T/F), T returns cumulative number of sequences to date
-#'@param subadmin: (optional) Boolean (T/F), subadmin=T and cumulative=T returns cumulative number of sequences for next administrative level
+#'@param location (optional) a location name (if not specified, global total counts returned)
+#'@param cumulative (optional) Boolean (T/F), T returns cumulative number of sequences to date
+#'@param subadmin (optional) Boolean (T/F), subadmin=T and cumulative=T returns cumulative number of sequences for next administrative level
 #'
 #'@return dataframe
 #'

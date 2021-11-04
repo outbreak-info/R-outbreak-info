@@ -7,7 +7,7 @@
 getISO3(locations_to_search)
 }
 \arguments{
-\item{locations_to_search:}{vector or list of location (World Bank region, country, state/province, metropolitan area, county) name(s)}
+\item{locations_to_search}{vector or list of location (World Bank region, country, state/province, metropolitan area, county) name(s)}
 }
 \value{
 a vector or list of ISO3 codes

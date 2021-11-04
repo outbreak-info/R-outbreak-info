@@ -2,9 +2,9 @@
 #'
 #' @description Retrieve all mutations in a specified lineage above a threshold
 #'
-#'@param pangolin_lineage: PANGO lineage name or vector
-#'@param frequency: a number between 0 and 1 specifying the frequency threshold above which to return mutations (default=0.8)
-#' @param logInfo: (optional) `Boolean` (T/F), T logs helper messages during API calls.
+#'@param pangolin_lineage PANGO lineage name or vector
+#'@param frequency a number between 0 and 1 specifying the frequency threshold above which to return mutations (default=0.8)
+#' @param logInfo (optional) `Boolean` (T/F), T logs helper messages during API calls.
 #'
 #' @return dataframe
 #'

@@ -11,11 +11,11 @@ getCollectionDateByLocation(
 )
 }
 \arguments{
-\item{pangolin_lineage:}{PANGO lineage name}
+\item{pangolin_lineage}{PANGO lineage name}
 
-\item{location:}{(optional) a location name (if not specified, collection date at the global level returned)}
+\item{location}{(optional) a location name (if not specified, collection date at the global level returned)}
 
-\item{mutations:}{(optional) a `vector` of mutation(s)}
+\item{mutations}{(optional) a `vector` of mutation(s)}
 }
 \value{
 dataframe

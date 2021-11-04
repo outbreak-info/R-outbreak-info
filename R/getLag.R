@@ -2,7 +2,7 @@
 #'
 #' @description Retrieve daily lag between collection and submission by location
 #'
-#'@param location: (optional) a location name (if not specified, daily lag globally returned)
+#'@param location (optional) a location name (if not specified, daily lag globally returned)
 #'
 #'@return dataframe
 #'

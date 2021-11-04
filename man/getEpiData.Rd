@@ -19,27 +19,27 @@ getEpiData(
 )
 }
 \arguments{
-\item{name:}{vector of location names}
+\item{name}{vector of location names}
 
-\item{location_id:}{vector of ISO3 code representing locations}
+\item{location_id}{vector of ISO3 code representing locations}
 
-\item{wb_region:}{World Bank region name(s)}
+\item{wb_region}{World Bank region name(s)}
 
-\item{country_name:}{country name(s)}
+\item{country_name}{country name(s)}
 
-\item{state_name:}{state name(s)}
+\item{state_name}{state name(s)}
 
-\item{admin_level:}{an integer representing an administrative level (World Bank regions = -1, countries = 0, states/provinces = 1, metropolitan areas = 1.5, counties = 2)}
+\item{admin_level}{an integer representing an administrative level (World Bank regions = -1, countries = 0, states/provinces = 1, metropolitan areas = 1.5, counties = 2)}
 
-\item{date:}{date(s) (YYYY-MM-DD)}
+\item{date}{date(s) (YYYY-MM-DD)}
 
-\item{mostRecent:}{T/F}
+\item{mostRecent}{T/F}
 
-\item{fields:}{vector of API fields to include in results}
+\item{fields}{vector of API fields to include in results}
 
-\item{sort:}{parameter to sort results by}
+\item{sort}{parameter to sort results by}
 
-\item{size:}{size}
+\item{size}{size}
 }
 \value{
 dataframe

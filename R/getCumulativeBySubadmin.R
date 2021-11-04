@@ -2,10 +2,10 @@
 #'
 #' @description Retrieve cumulative prevalence of a PANGO lineage by the immediate administrative level of a location
 #'
-#'@param pangolin_lineage: PANGO lineage name
-#'@param location: (optional) a location name (if not specified, cumulative prevalence at the country level globally returned)
-#'@param mutations: (optional) a `vector` of mutation(s)
-#'@param ndays: (optional) an `integer` specifying number of days from current date to calculative cumuative counts (if not specified, no limit on window)
+#'@param pangolin_lineage PANGO lineage name
+#'@param location (optional) a location name (if not specified, cumulative prevalence at the country level globally returned)
+#'@param mutations (optional) a `vector` of mutation(s)
+#'@param ndays (optional) an `integer` specifying number of days from current date to calculative cumuative counts (if not specified, no limit on window)
 #'
 #'@return dataframe
 #'

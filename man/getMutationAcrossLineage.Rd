@@ -7,9 +7,9 @@
 getMutationAcrossLineage(mutations, location = NULL)
 }
 \arguments{
-\item{mutations:}{a `vector` of mutation(s)}
+\item{mutations}{a `vector` of mutation(s)}
 
-\item{location:}{(optional) a location name (if not specified, prevalence globally returned)}
+\item{location}{(optional) a location name (if not specified, prevalence globally returned)}
 }
 \value{
 dataframe

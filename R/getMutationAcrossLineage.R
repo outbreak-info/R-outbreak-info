@@ -2,8 +2,8 @@
 #'
 #' @description Retrieve prevalence of a specified mutation across all lineages by location
 #'
-#'@param mutations: a `vector` of mutation(s)
-#'@param location: (optional) a location name (if not specified, prevalence globally returned)
+#'@param mutations a `vector` of mutation(s)
+#'@param location (optional) a location name (if not specified, prevalence globally returned)
 #'
 #'@return dataframe
 #'

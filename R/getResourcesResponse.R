@@ -1,12 +1,12 @@
 #' Access outbreak.info Research Library API
 #'
-#' @param query (optional): constructs a query over ALL fields, or a fielded query searching within specific fields. Fielded query terms should be separated by ` AND ` or ` OR `. See \href{https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax}{Elasticserach query strings} for more info.
-#' @param size (optional): number of records to return (default = 10)
-#' @param fetchAll (optional): Boolean whether to return all results for the query
-#' @param fields (optional): vector specifying which fields to return. Returns all by default
-#' @param sort (optional): field to sort by.  Add `-` to sort in descending order
-#' @param facets (optional): field by which to aggregate (count) their frequency
-#' @param facet_size (optional): how many facet groups to include in the facet total (default = 10)
+#' @param query (optional) constructs a query over ALL fields, or a fielded query searching within specific fields. Fielded query terms should be separated by ` AND ` or ` OR `. See \href{https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax}{Elasticserach query strings} for more info.
+#' @param size (optional) number of records to return (default = 10)
+#' @param fetchAll (optional) Boolean whether to return all results for the query
+#' @param fields (optional) vector specifying which fields to return. Returns all by default
+#' @param sort (optional) field to sort by.  Add `-` to sort in descending order
+#' @param facets (optional) field by which to aggregate (count) their frequency
+#' @param facet_size (optional) how many facet groups to include in the facet total (default = 10)
 #'
 #' @import httr
 #' @import RcppSimdJson

@@ -30,4 +30,4 @@ jobs:
         run: |
           git config --local user.name "$GITHUB_ACTOR"
           git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
-          Rscript -e 'Sys.setenv(OUTBREAK_INFO_TOKEN = ${{secrets.OUTBREAK_INFO_TOKEN}}); pkgdown::deploy_to_branch(new_process = FALSE)'
+          Rscript -e 'Sys.setenv(OUTBREAK_INFO_TOKEN = ${{secrets.OUTBREAK_INFO_TOKEN}}, GADM_FILE = ${{secrets.GADM_FILE}}); pkgdown::deploy_to_branch(new_process = FALSE)'

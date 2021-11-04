@@ -26,6 +26,11 @@ jobs:
           extra-packages: pkgdown
           needs: website
 
+      - name: Authorize app
+        run: |
+          Sys.setenv(OUTBREAK_INFO_TOKEN = ${{secrets.TEST}})
+        shell: Rscript {0}
+        
       - name: Deploy package
         run: |
-          Rscript -e 'print(${{secrets.TEST}})'
+          Rscript -e 'print(OUTBREAK_INFO_TOKEN)'

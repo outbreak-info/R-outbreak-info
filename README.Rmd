@@ -87,7 +87,7 @@ plotAllLineagesByLocation(location = "California", ndays = 90)
 #### Lineage Comparison Tool
 Provides access to the mutations per lineage, to access the data underlying the
 [outbreak.info Lineage Comparison Tool](https://outbreak.info/compare-lineages?pango=P.1&gene=ORF1a&gene=ORF1b&gene=S&gene=E&gene=ORF3a&gene=M&gene=ORF10&gene=N&gene=ORF8&gene=ORF7b&gene=ORF7a&gene=ORF6&threshold=80&dark=true).
-``` {r lineage_comparison, message = FALSE, warning = FALSE}
+``` {r lineage_comparison, message = FALSE, warning = FALSE, fig.asp = 1.75, out.width="100%"}
 library(outbreakinfo)
 #  Provide GISAID credentials using authenticateUser()
 

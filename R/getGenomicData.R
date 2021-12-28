@@ -12,7 +12,7 @@
 
 getGenomicData <- function(query_url, location=NULL, cumulative=NULL, pangolin_lineage=NULL, mutations=NULL, ndays=NULL, frequency=NULL, subadmin=NULL, other_threshold=NULL, nday_threshold=NULL, other_exclude=NULL, logInfo=TRUE){
 
-    genomic_url <- "https://dev.outbreak.info/genomics/"
+    genomic_url <- "https://api.outbreak.info/genomics/"
 
     q <- c()
 

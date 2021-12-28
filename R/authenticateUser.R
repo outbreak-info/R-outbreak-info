@@ -1,4 +1,4 @@
-OUTBREAK_INFO_AUTH = "https://dev.outbreak.info/genomics/get-auth-token"
+OUTBREAK_INFO_AUTH = "https://api.outbreak.info/genomics/get-auth-token"
 
 #' @title Authenticate API
 #'

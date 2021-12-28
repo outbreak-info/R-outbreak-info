@@ -12,7 +12,7 @@
 #' @export
 
 getLocationID_genomic <- function(locations_to_search){
-    loc_url <- "https://dev.outbreak.info/genomics/location?"
+    loc_url <- "https://api.outbreak.info/genomics/location?"
     locs_of_interest=c()
     locs_not_found=c()
     for (i in locations_to_search){

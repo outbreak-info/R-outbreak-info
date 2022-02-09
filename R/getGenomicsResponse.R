@@ -19,19 +19,20 @@ getGenomicsResponse <- function(dataurl, logInfo = T, logWarning = T, logError =
         dataurl <- URLencode(dataurl)
         resp <- NULL
         tryCatch({
-            if(Sys.getenv("OUTBREAK_INFO_TOKEN") != ""){
+            authToken <- getAuthToken()
+            if(authToken != NULL){
                 resp <- GET(
                     dataurl,
-                    add_headers(Authorization = paste("Bearer", Sys.getenv("OUTBREAK_INFO_TOKEN"), sep=" "))
+                    add_headers(Authorization = paste("Bearer", authToken, sep=" "))
                 )
             } else {
                 resp <- GET(
                     dataurl
                 )
             }
-            auth_token = resp$headers$`x-auth-token`
-            if(!is.null(auth_token))
-                Sys.setenv(OUTBREAK_INFO_TOKEN = auth_token)
+            authToken = resp$headers$`x-auth-token`
+            if(!is.null(authToken))
+                setAuthToken(authToken)
             if(resp$status_code == 401){
                 warning("Please authenticate by calling authenticateUser() to access the API.\n")
             } else if (resp$status_code == 403) {
@@ -48,13 +49,13 @@ getGenomicsResponse <- function(dataurl, logInfo = T, logWarning = T, logError =
                 results[[length(results) + 1]] <- resp_df
                 scroll.id <- resp$'_scroll_id'
                 success <- resp$success
-                return(results);
+                return(results)
             }
         }, error = function(cond){
             if(logError){
                 message(cond)
             }
-            stop("Could not connect to API. Please check internet connection and try again.");
+            stop("Could not connect to API. Please check internet connection and try again.")
         }, warning = function(cond){
             if(logWarning){
                 message(cond)

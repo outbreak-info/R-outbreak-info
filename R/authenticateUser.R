@@ -16,8 +16,8 @@ authenticateUser <- function(){
     response <- POST(OUTBREAK_INFO_AUTH, body = '{}', encode = "raw")
     if (status_code(response) == 200) {
         response_content <- content(response)
-        auth_token <- response_content$authn_token
-        Sys.setenv(OUTBREAK_INFO_TOKEN = auth_token)
+        authToken <- response_content$authn_token
+        setAuthToken(authToken)
         cat(paste("Please open this url in a browser and authenticate with your GISAID credentials.", response_content$authn_url, sep="\n\n"))
         browseURL(response_content$authn_url)
     } else {
@@ -29,13 +29,13 @@ authenticateUser <- function(){
         cat("\n\nWaiting for authentication... [press CTRL-C to abort]")
         response <- GET(
             OUTBREAK_INFO_AUTH,
-            add_headers(Authorization = paste("Bearer", Sys.getenv("OUTBREAK_INFO_TOKEN"), sep=" "))
+            add_headers(Authorization = paste("Bearer", getAuthToken(), sep=" "))
         )
         if (response$status_code == 200){
             cat("\nAuthenticated successfully!\n")
-            auth_token = response$headers$`x-auth-token`
-            if(!is.null(auth_token))
-                Sys.setenv(OUTBREAK_INFO_TOKEN = auth_token)
+            authToken = response$headers$`x-auth-token`
+            if(!is.null(authToken))
+                setAuthToken(authToken)
             break
         } else if (response$status_code == 403){
             cat("\nAuthentication failed!\nTrying again in 5 seconds ... \n")

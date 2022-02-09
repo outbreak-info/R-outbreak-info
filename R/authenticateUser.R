@@ -33,6 +33,7 @@ authenticateUser <- function(){
         )
         if (response$status_code == 200){
             cat("\nAuthenticated successfully!\n")
+            printTerms()
             authToken = response$headers$`x-auth-token`
             if(!is.null(authToken))
                 setAuthToken(authToken)
@@ -48,4 +49,20 @@ authenticateUser <- function(){
             break;
         }
     }
+}
+
+printTerms <- function(){
+    termsText <- "
+        NOTICE AND REMINDER of TERMS OF USE:
+        The Terms of Use you agreed to when requesting access credentials to GISAID include the following:
+
+        1) You will not distribute data made available through GISAID (“Data in GISAID”) with others who have not agreed to the GISAID Terms of Use, and
+        2) You will not display the data in any form on a website without additional express written permission from GISAID, and
+        3) You will treat all data contained in these files consistent with other Data in GISAID and in accordance with the GISAID Terms of Use, and
+        4) You will provide proper attributions and acknowledgements consistent with the GISAID Terms of Use when using Data in GISAID in publications, manuscripts, and any other analyses.
+
+        You can see the full terms of use at https://www.gisaid.org/registration/terms-of-use/.
+
+        By using the outbreakinfo R package you reaffirm your understanding of these terms and the DAA.\n"
+    cat(termsText)
 }

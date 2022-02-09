@@ -20,9 +20,7 @@ getGenomicsResponse <- function(dataurl, logInfo = T, logWarning = T, logError =
         resp <- NULL
         tryCatch({
             authToken <- getAuthToken()
-            if(!(is.na(authToken) && authToken == '')){
-                print(authToken)
-                print(dataurl)
+            if(!(is.null(authToken) && authToken == '')){
                 resp <- GET(
                     dataurl,
                     add_headers(Authorization = paste("Bearer", authToken, sep=" "))

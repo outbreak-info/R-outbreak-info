@@ -45,6 +45,7 @@ Before calling the genomics functions, you'll need to register your GISAID crede
 outbreakinfo::authenticateUser()
 ```
 
+By using this R package you reaffirm your understanding of the terms of use and the DAA you agreed to while registering with GISAID. Please see [this section](#sars-cov-2-prevalence-data) for more details. 
 
 Please view our [vignettes](https://outbreak-info.github.io/R-outbreak-info/articles/index.html) for examples of how to use the R package.
 
@@ -163,13 +164,20 @@ plotEpiData(locations = c("United States of America", "Mexico"), variable = "con
 
 ## Data Sources
 ### SARS-CoV-2 virus sequences
-We would like to thank the GISAID Initiative and are grateful to all of the data contributors, i.e.the Authors, the Originating laboratories responsible for obtaining the specimens, and the Submitting laboratories for generating the genetic sequence and metadata and sharing via the GISAID Initiative, on which this research is based. GISAID data provided on this website are subject to GISAID’s [Terms and Conditions](https://www.gisaid.org/registration/terms-of-use/).
+We would like to thank the GISAID Initiative and are grateful to all of the data contributors, i.e.the Authors, the Originating laboratories responsible for obtaining the specimens, and the Submitting laboratories for generating the genetic sequence and metadata and sharing via the GISAID Initiative, on which this research is based. 
 
-The GISAID Initiative promotes the rapid sharing of data from all influenza viruses and the coronavirus causing COVID-19. This includes genetic sequence and related clinical and epidemiological data associated with human viruses, and geographical as well as species-specific data associated with avian and other animal viruses, to help researchers understand how viruses evolve and spread during epidemics and pandemics.
+NOTICE AND REMINDER of TERMS OF USE:
 
-GISAID does so by overcoming disincentive hurdles and restrictions, which discourage or prevented sharing of virological data prior to formal publication.
+The Terms of Use you agreed to when requesting access credentials to GISAID include the following terms:
 
-The Initiative ensures that open access to data in GISAID is provided free-of-charge to all individuals that agreed to identify themselves and agreed to uphold the GISAID sharing mechanism governed through its [Database Access Agreement](https://www.gisaid.org/registration/terms-of-use/).
+* You will not distribute data made available through GISAID (“Data in GISAID”) to any third party other than Authorized Users as contemplated by GISAID's Database Access Agreement;
+* You will not display the data in any form in a publication, preprint, manuscript, or any other media material including on a website, without additional express written permission from GISAID;
+* You will treat all data contained in these files consistent with other Data in GISAID and in accordance with GISAID's Database Access Agreement; and
+* You will provide proper attributions, acknowledgements, and efforts to collaborate with data submitters consistent with the GISAID's and Database Access Agreement when using Data in GISAID in publications, preprints, manuscripts, or any other analyses or media material.
+
+You can see the full terms of use at [https://www.gisaid.org/registration/terms-of-use/](https://www.gisaid.org/registration/terms-of-use/). By using the outbreak.info R package you reaffirm your understanding of these terms and the DAA.
+
+When using this data, please state, "This data was obtained from GISAID via the outbreak.info API". WE DO NOT SUPPORT THIRD PARTY APPLICATIONS. THIS PACKAGE IS MEANT FOR RESEARCH AND VISUALIZATION PURPOSES ONLY. If you want to build third party applications, please contact GISAID via [https://www.gisaid.org/help/contact/](https://www.gisaid.org/help/contact/).
 
 ### Cases & deaths
 Confirmed cases, recovered cases, and deaths over time for countries outside the United States, and provinces in Australia, Canada, and China are provided by [Johns Hopkins University Center for Systems Science and Engineering](https://github.com/CSSEGISandData/COVID-19). See [data FAQ](https://systems.jhu.edu/research/public-health/2019-ncov-map-faqs/).

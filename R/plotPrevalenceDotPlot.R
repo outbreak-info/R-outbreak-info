@@ -38,10 +38,12 @@ plotPrevalenceDotPlot = function(df, title = NULL, subtitle = NULL, dot_size = 3
       scale_x_continuous(limits = xlim, labels = scales::percent) +
       scale_fill_gradientn(values = xlim, colours = CHOROPLETH_PALETTE) + 
       ggtitle(title, subtitle = subtitle) +
+      labs(caption="Enabled by data from GISAID (https://gisaid.org/)") +
       theme_minimal() +
       theme(panel.grid.major.y = element_blank(), 
             panel.grid.minor.y = element_blank(), 
             axis.title.y = element_blank(),
-            legend.position = "bottom")
+            legend.position = "bottom",
+            plot.caption = element_text(size = 18))
   }
 }

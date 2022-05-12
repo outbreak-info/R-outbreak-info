@@ -40,10 +40,12 @@ plotAllLineagesByLocation <- function(location, other_threshold=0.05, nday_thres
     scale_y_continuous(labels = scales::percent, expand = c(0,0)) +
     scale_fill_manual(values = COLORPALETTE) +
     theme_minimal() +
+    labs(caption="Enabled by data from GISAID (https://gisaid.org/)") +
     theme(legend.position = "bottom", legend.background = element_rect(fill = "#eeeeec", colour = NA),
           panel.grid = element_blank(),
           axis.ticks = element_line(size = 0.5, colour = "#555555"), axis.ticks.length = unit(5, "points"),
-          axis.title = element_blank())
+          axis.title = element_blank()) +
+          theme(legend.position = "bottom", axis.title = element_blank(), plot.caption = element_text(size = 18))
 
   if (include_title == T){
     p <- p +

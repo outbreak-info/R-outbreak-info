@@ -50,9 +50,11 @@ plotMutationHeatmap = function(df, gene2Plot = "S", title = NULL, lightBorders =
       coord_fixed() +
       xlab("mutation") +
       scale_fill_gradientn(colours = MUTATIONPALETTE, limits = c(0,1), labels = scales::percent) +
+      labs(caption="Enabled by data from GISAID (https://gisaid.org/)") +
       theme(axis.text.x = element_text(angle = 45, vjust = 0.9, hjust=1),
             panel.grid = element_blank(),
-            legend.position = "bottom"
+            legend.position = "bottom",
+            plot.caption = element_text(size = 18)
       )
     
     if(!is.null(title)) {

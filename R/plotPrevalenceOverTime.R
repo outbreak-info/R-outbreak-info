@@ -41,7 +41,8 @@ plotPrevalenceOverTime <- function(df, colorVar = "lineage", title = "Prevalence
       scale_colour_manual(values = COLORPALETTE[-1]) +
       scale_fill_manual(values = COLORPALETTE[-1]) +
       theme_minimal() +
-      theme(legend.position = "bottom", axis.title = element_blank())
+      labs(caption="Enabled by data from GISAID (https://gisaid.org/)")
+      theme(legend.position = "bottom", axis.title = element_blank(), plot.caption = element_text(size = 18))
     
     
     if (!is.null(title)) {

@@ -27,9 +27,10 @@ plotChoropleth = function(df, fillVar = "proportion", title = NULL, subtitle = N
     p = ggplot(df_projected, aes_string(fill = fillVar)) +
       geom_sf(size = 0.1, colour = "#555555") +
       scale_fill_gradientn(colours = CHOROPLETH_PALETTE, na.value = "#babab0", labels=scales::percent, limits = c(0,1)) +
+      labs(caption="Enabled by data from GISAID (https://gisaid.org/)") +
       theme_void() +
       ggtitle(title, subtitle = subtitle) +
-      theme(legend.position = "bottom")
+      theme(legend.position = "bottom", plot.caption = element_text(size = 18))
     
     return(p)
   } else {

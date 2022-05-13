@@ -16,7 +16,6 @@
 #'
 #' @examples
 #' # WHO-designated lineages
-#' lookupSublineages("Delta")
 #' lookupSublineages("epsilon")
 #' lookupSublineages("epsilon", returnQueryString = TRUE)
 #' # Pango lineage

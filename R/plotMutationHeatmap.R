@@ -15,9 +15,6 @@
 #' p1 = getMutationsByLineage(pangolin_lineage = "P.1", frequency = 0.5)
 #' plotMutationHeatmap(p1, gene2Plot = "ORF1a")
 #'
-#' delta_lineages = lookupSublineages("Delta", returnQueryString = FALSE)
-#' delta_mutations = getMutationsByLineage(pangolin_lineage=delta_lineages, frequency=0.75)
-#' plotMutationHeatmap(delta_mutations, title = "S-gene mutations in Delta lineages")
 
 plotMutationHeatmap = function(df, gene2Plot = "S", title = NULL, lightBorders = TRUE) {
   MUTATIONPALETTE = c('#fff7f3','#fde0dd','#fcc5c0','#fa9fb5','#f768a1','#dd3497','#ae017e','#7a0177','#49006a')

@@ -58,7 +58,7 @@ locations_to_search: a `vector` or `list` of location (World Bank region, countr
 **Example:**
 
 ```{r}
-iso3=getISO3(c("Texas", "Brazil", "San Diego County"))
+iso3=getISO3(c("Texas", "Brazil"))
 print(iso3)
 ```
 

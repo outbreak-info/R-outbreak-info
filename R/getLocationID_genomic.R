@@ -7,11 +7,11 @@
 #' @return a location ID code (ISO3, FIPS)
 #'
 #' @examples
-#' getLocationID_genomic("San Diego")
+#' getLocationIdGenomic("San Diego")
 #'
 #' @export
 
-getLocationID_genomic <- function(locations_to_search){
+getLocationIdGenomic <- function(locations_to_search){
     loc_url <- "https://api.outbreak.info/genomics/location?"
     locs_of_interest=c()
     locs_not_found=c()

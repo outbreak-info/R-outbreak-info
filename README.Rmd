@@ -31,7 +31,7 @@ from [Johns Hopkins University](https://github.com/CSSEGISandData/COVID-19) and 
 ## Installation
 ```{r installation, eval = FALSE}
 # Install development version from GitHub
-devtools::install_github("outbreak-info/R-outbreak-info/outbreakinfo")
+devtools::install_github("outbreak-info/R-outbreak-info")
 ```
 
 ## Getting Started
@@ -92,14 +92,13 @@ Provides access to the mutations per lineage, to access the data underlying the
 library(outbreakinfo)
 #  Provide GISAID credentials using authenticateUser()
 
-# Lookup which Pango lineages are associated with the Delta / B.1.617.2 Variant of Concern
-delta_lineages = lookupSublineages("Delta", returnQueryString = FALSE)
+lineages_of_interest <- c("BA.2", "BA.2.12.1", "BA.4", "BA.5")
 
-# Get all mutations in the Delta lineages with at least 75% prevalent in one of the lineages.
-delta_mutations = getMutationsByLineage(pangolin_lineage=delta_lineages, frequency=0.75, logInfo = FALSE)
+# Get all mutations in the lineages of interest with at least 75% prevalent in one of the lineages.
+mutations = getMutationsByLineage(pangolin_lineage=lineages_of_interest, frequency=0.75, logInfo = FALSE)
 
 # Plot the mutations as a heatmap
-plotMutationHeatmap(delta_mutations, title = "S-gene mutations in Delta lineages")
+plotMutationHeatmap(mutations, title = "S-gene mutations in lineages")
 ```
 
 ### Research Library
@@ -166,18 +165,43 @@ plotEpiData(locations = c("United States of America", "Mexico"), variable = "con
 ### SARS-CoV-2 virus sequences
 We would like to thank the GISAID Initiative and are grateful to all of the data contributors, i.e.the Authors, the Originating laboratories responsible for obtaining the specimens, and the Submitting laboratories for generating the genetic sequence and metadata and sharing via the GISAID Initiative, on which this research is based. 
 
-NOTICE AND REMINDER of TERMS OF USE:
+```
+TERMS OF USE for R Package and
 
-The Terms of Use you agreed to when requesting access credentials to GISAID include the following terms:
+Reminder of GISAID's Database Access Agreement
 
-* You will not distribute data made available through GISAID (“Data in GISAID”) to any third party other than Authorized Users as contemplated by GISAID's Database Access Agreement;
-* You will not display the data in any form in a publication, preprint, manuscript, or any other media material including on a website, without additional express written permission from GISAID;
-* You will treat all data contained in these files consistent with other Data in GISAID and in accordance with GISAID's Database Access Agreement; and
-* You will provide proper attributions, acknowledgements, and efforts to collaborate with data submitters consistent with the GISAID's and Database Access Agreement when using Data in GISAID in publications, preprints, manuscripts, or any other analyses or media material.
+Your ability to access and use Data in GISAID, including your access and
+use of same via R Package, is subject to the terms and conditions of
+GISAID's Database Access Agreement (“DAA”) (which you agreed to
+when you requested access credentials to GISAID), as well as the
+following terms:
 
-You can see the full terms of use at [https://www.gisaid.org/registration/terms-of-use/](https://www.gisaid.org/registration/terms-of-use/). By using the outbreak.info R package you reaffirm your understanding of these terms and the DAA.
+1. You will treat all data contained in the R Package consistent with
+other Data in GISAID and in accordance with GISAID's Database Access
+Agreement;
+
+2. You will not distribute, or re-distribute Data made available through
+GISAID to any third party other than Authorized Users as contemplated by
+the DAA;
+
+3. USE OF R PACKAGE: Any visualizations, charts, graphs,
+graphics, pictographs, plots, or other displays you create via the R
+Package may be exclusively used for academic and research purposes.
+No other types of uses are allowed;
+
+4. Any use of visualizations, charts, graphs, graphics, pictographs,
+plots, or other displays created via the R Package in an academic or
+research publication, including in a paper, manuscript, preprint, website,
+web service, or any other media material must be in conformity with the
+GISAID Publishing Guidelines, available at https://www.gisaid.org/publish,
+and the DAA, available at https://www.gisaid.org/daa; and
+
+5. By using the R Package you reaffirm your understanding of these
+terms and the DAA.
 
 When using this data, please state, "This data was obtained from GISAID via the outbreak.info API". WE DO NOT SUPPORT THIRD PARTY APPLICATIONS. THIS PACKAGE IS MEANT FOR RESEARCH AND VISUALIZATION PURPOSES ONLY. If you want to build third party applications, please contact GISAID via [https://www.gisaid.org/help/contact/](https://www.gisaid.org/help/contact/).
+
+```
 
 ### Cases & deaths
 Confirmed cases, recovered cases, and deaths over time for countries outside the United States, and provinces in Australia, Canada, and China are provided by [Johns Hopkins University Center for Systems Science and Engineering](https://github.com/CSSEGISandData/COVID-19). See [data FAQ](https://systems.jhu.edu/research/public-health/2019-ncov-map-faqs/).

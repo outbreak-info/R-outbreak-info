@@ -16,38 +16,45 @@
 getISO3 <- function(locations_to_search){
   locs_of_interest=c()
   locs_not_found=c()
+  locations_to_search <- tolower(locations_to_search)
   for (i in locations_to_search){
     scroll.id <- NULL
-    location.ids <- paste0("(name:%22", paste(i, collapse="%22%20OR%20name:%22"), "%22)")
-    location.ids <- gsub("&", "%26", location.ids)
+    location.ids <- paste0("(name.lower:\"", paste(i, collapse="\" OR name.lower:\""), "\")")
     results <- list()
     success <- NULL
     while(is.null(success)){
-      dataurl <- paste0(api.url, "query?q=",location.ids,"%20AND%20mostRecent:true&fields=name,location_id,state_name&fetch_all=true")
-      dataurl <- gsub(" ", "+", dataurl)
+      dataurl <- paste0(api.url, "query?q=",location.ids," AND mostRecent:true&fields=name,location_id,state_name&fetch_all=true")
       dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
-      t <- try(fromJSON(dataurl, flatten=TRUE), silent=T)
-      if(grepl("Error in open.connection(con, \"rb\")", t[1], fixed=T)){
-        stop("Could not connect to API. Check internet connection and try again.")
-      }else{
-        resp <- fromJSON(dataurl, flatten=TRUE)
-        scroll.id <- resp$'_scroll_id'
-        results[[length(results) + 1]] <- resp$hits
-        success <- resp$success
-      }
-    }
-    t <- try(rbind_pages(results), silent=T)
-    if("try-error" %in% class(t)){
-      error=T
-      locs_not_found = c(locs_not_found, i)
-    }else{
-      hits <- rbind_pages(results)
-      df=(hits)
-      if (nrow(df)==1){
-        locs_of_interest=c(locs_of_interest, df$location_id)
-      }else{
-        locs_not_found=c(locs_not_found, i)
-      }
+      dataurl <- URLencode(dataurl)
+      tryCatch({
+        resp <- GET(dataurl)
+        if(resp$status_code == 400){
+          resp <- fromJSON(content(resp, "text"), flatten=TRUE)
+          success <- resp$success
+        } else if (resp$status_code == 200) {
+          resp <- fromJSON(content(resp, "text"), flatten=TRUE)
+          scroll.id <- ifelse(is.null(resp$'_scroll_id'), scroll.id, resp$'_scroll_id')
+          success <- resp$success
+          hits <- data.frame()
+          if(!is.null(resp$hits)) {
+            if(class(resp$hits) == "data.frame"){
+              results[[length(results) + 1]] <- resp$hits
+              hits <- rbind_pages(results)
+            }
+            if (nrow(hits)==1){
+              locs_of_interest=c(locs_of_interest, hits$location_id)
+            }else{
+              locs_not_found=c(locs_not_found, i)
+            }
+          }
+        } else {
+          stop("Could not connect to API. Check internet connection and try again.")
+        }
+      }, error = function(cond){
+        stop(cond)
+      }, warning = function(cibd){
+        stop(cond)
+      })
     }
   }
   if (length(locs_of_interest)==length(locations_to_search)){
@@ -66,29 +73,34 @@ getISO3 <- function(locations_to_search){
     }
     for (i in 1:length(locations)){
       scroll.id <- NULL
-      location.ids <- paste0("(name:", paste(locations[i], collapse="%20OR%20name:"), ")")
-      location.ids <- gsub("&", "%26", location.ids)
+      location.ids <- paste0("(name.lower:", paste(locations[i], collapse=" OR name.lower:"), ")")
       results <- list()
       success <- NULL
       while(is.null(success)){
-        dataurl <- paste0(api.url, "query?q=",location.ids,"%20AND%20mostRecent:true&fields=name,location_id,state_name,admin_level&fetch_all=true")
-        dataurl <- gsub(" ", "+", dataurl)
+        dataurl <- paste0(api.url, "query?q=",location.ids," AND mostRecent:true&fields=name,location_id,state_name,admin_level&fetch_all=true")
         dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
-        t <- try(fromJSON(dataurl, flatten=TRUE), silent=T)
-        if(grepl("Error in open.connection(con, \"rb\")", t[1], fixed=T)){
-          stop("Could not connect to API. Check internet connection and try again.")
-        }else{
-          resp <- fromJSON(dataurl, flatten=TRUE)
-          scroll.id <- resp$'_scroll_id'
-          results[[length(results) + 1]] <- resp$hits
-          success <- resp$success
-        }
+        dataurl <- URLencode(dataurl)
+        tryCatch({
+          resp <- GET(dataurl)
+          if(resp$status_code == 400){
+            resp <- fromJSON(content(resp, "text"), flatten=TRUE)
+            success <- resp$success
+          } else if (resp$status_code == 200) {
+            resp <- fromJSON(dataurl, flatten=TRUE)
+            scroll.id <- resp$'_scroll_id'
+            if(!is.null(resp$hits)){
+              if(class(resp$hits) == "data.frame"){
+                results[[length(results) + 1]] <- resp$hits
+              }
+            }
+            success <- resp$success
+          }
+        })
       }
-      t2 <- try(rbind_pages(results), silent=T)
-      if("try-error" %in% class(t2)){
+      if(length(results) == 0) {
         message(locs_not_found[i], " not found. Please check spelling.")
         next
-      }else{
+      } else{
         hits <- rbind_pages(results)
         df=(hits)
         df$name=apply(cbind(df$name, df$state_name), 1, function(x) paste(x[!is.na(x)], collapse = ", "))
@@ -100,7 +112,7 @@ getISO3 <- function(locations_to_search){
         df$fullname <- paste0(df$name, " (", df$admin_level, ")")
       }
       for (i in df$fullname){
-        cat(i)
+        cat(paste0(i, "\n"))
         loc_sel <- readline("Is this a location of interest? (Y/N): ")
         if ((loc_sel == "Y")|(loc_sel == "y")){
           locs_of_interest = c(locs_of_interest, df$location_id[df$fullname==i])
@@ -108,7 +120,7 @@ getISO3 <- function(locations_to_search){
         }
         if ((loc_sel != "Y")&(loc_sel != "y")&(loc_sel != "N")&(loc_sel != "n")){
           cat("Expected input is Y or N\n")
-          cat(i)
+          cat(paste0(i, "\n"))
           loc_sel <- readline("Is this a location of interest? (Y/N): ")
           if ((loc_sel == "Y")|(loc_sel == "y")){
             locs_of_interest = c(locs_of_interest, df$location_id[df$fullname==i])

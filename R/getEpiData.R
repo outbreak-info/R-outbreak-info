@@ -36,7 +36,7 @@ getEpiData <- function(name=NULL, location_id=NULL, wb_region=NULL, country_name
     q <- c(q, paste0("(country_name:\"", paste(country_name, collapse="\" OR country_name:\""), "\") AND "))
   }
   if(!is.null(state_name)){
-    q <- c(q, paste0("(state_name:\"", paste(state_name, collapse="\" OR state_name:\""), "\") AND "))
+    q <- c(q, paste0("(admin1:\"", paste(state_name, collapse="\" OR admin1:\""), "\") AND "))
   }
   if(!is.null(admin_level)){
     q <- c(q, paste0("(admin_level:\"", paste(admin_level, collapse="\" OR admin_level:\""), "\") AND "))

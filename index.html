@@ -201,30 +201,25 @@
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org" class="external-link">lubridate</a></span><span class="op">)</span>
 
 <span class="va">resources_by_date</span> <span class="op">=</span> <span class="fu"><a href="reference/getResourcesData.html">getResourcesData</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">"date:[2020-01-01 TO *]"</span>, types<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Publication"</span>, <span class="st">"ClinicalTrial"</span>, <span class="st">"Protocol"</span>, <span class="st">"Dataset"</span><span class="op">)</span>, fields <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"date"</span>, <span class="st">"@type"</span><span class="op">)</span>, fetchAll <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="co">#&gt; Error in getResourcesQuery(query, res$id): Hmm. Some unknown error happened. Please reach out to help@outbreak.info for help.</span>
 
 <span class="co"># roll up the number of resources by week</span>
 <span class="va">resources_by_date</span> <span class="op">=</span> <span class="va">resources_by_date</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/year.html" class="external-link">year</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span>,
          iso_week <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/week.html" class="external-link">isoweek</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; Error in mutate(., year = lubridate::year(date), iso_week = lubridate::isoweek(date)): object 'resources_by_date' not found</span>
 
 <span class="co"># count the number of new resources per week.</span>
 <span class="va">resources_per_week</span> <span class="op">=</span> <span class="va">resources_by_date</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count</a></span><span class="op">(</span><span class="va">`@type`</span>, <span class="va">iso_week</span>, <span class="va">year</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="co"># convert from iso week back to a date</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>iso_date <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/parse_date_time.html" class="external-link">parse_date_time</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">year</span>,<span class="va">iso_week</span>, <span class="st">"Mon"</span>, sep<span class="op">=</span><span class="st">"-"</span><span class="op">)</span>, <span class="st">"Y-W-a"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; Error in group_by(x, ..., .add = TRUE, .drop = .drop): object 'resources_by_date' not found</span>
 
 <span class="co"># Make it a bit prettier, by sorting by the relative proportion of resource types</span>
 <span class="va">type_frequency</span> <span class="op">=</span> <span class="va">resources_by_date</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
 <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count</a></span><span class="op">(</span><span class="va">`@type`</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">`@type`</span><span class="op">)</span>
-<span class="co">#&gt; Error in group_by(x, ..., .add = TRUE, .drop = .drop): object 'resources_by_date' not found</span>
 
 <span class="va">resources_per_week</span><span class="op">$</span><span class="va">`@type`</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">resources_per_week</span><span class="op">$</span><span class="va">`@type`</span>, <span class="va">type_frequency</span><span class="op">)</span>
-<span class="co">#&gt; Error in factor(resources_per_week$`@type`, type_frequency): object 'resources_per_week' not found</span>
 
 <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">resources_per_week</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">iso_date</span>, y <span class="op">=</span> <span class="va">n</span>, fill <span class="op">=</span> <span class="va">`@type`</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_bar</a></span><span class="op">(</span>stat<span class="op">=</span><span class="st">"identity"</span><span class="op">)</span> <span class="op">+</span>
@@ -242,7 +237,10 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>Publication <span class="op">=</span> <span class="st">"#e15759"</span>, ClinicalTrial <span class="op">=</span> <span class="st">"#b475a3"</span>, Dataset <span class="op">=</span> <span class="st">"#126b93"</span>, Protocol <span class="op">=</span> <span class="st">"#59a14f"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">`@type`</span>, scales <span class="op">=</span> <span class="st">"free_y"</span>, ncol <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span>
-<span class="co">#&gt; Error in ggplot(resources_per_week, aes(x = iso_date, y = n, fill = `@type`)): object 'resources_per_week' not found</span></code></pre></div>
+<span class="co">#&gt; Error in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : polygon edge not found</span></code></pre></div>
+<div class="figure">
+<img src="reference/figures/resources_by_date-1.png" alt=""><p class="caption">plot of chunk resources_by_date</p>
+</div>
 </div>
 <div class="section level3">
 <h3 id="cases--deaths">Cases &amp; Deaths<a class="anchor" aria-label="anchor" href="#cases--deaths"></a>
@@ -252,8 +250,8 @@
 <code class="sourceCode R"><span class="co"># Plots the daily confirmed cases per capita for the United States and Mexico.</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://outbreak-info.github.io/R-outbreak-info/" class="external-link">outbreakinfo</a></span><span class="op">)</span>
 <span class="fu"><a href="reference/plotEpiData.html">plotEpiData</a></span><span class="op">(</span>locations <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"United States of America"</span>, <span class="st">"Mexico"</span><span class="op">)</span>, variable <span class="op">=</span> <span class="st">"confirmed_rolling_per_100k"</span><span class="op">)</span>
-<span class="co">#&gt; Mexico (country)</span>
-<span class="co">#&gt;   downloading [=================&gt;------------]  61% eta: 15s  downloading [==============================] 100% eta:  0s</span></code></pre></div>
+<span class="co">#&gt; Mexico (metropolitan area)</span>
+<span class="co">#&gt;   downloading [==============================] 100% eta:  0s</span></code></pre></div>
 <div class="figure">
 <img src="reference/figures/daily_cases-1.png" alt=""><p class="caption">plot of chunk daily_cases</p>
 </div>

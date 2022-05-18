@@ -53,7 +53,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -88,7 +88,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/outbreak-info/R-outbreak-info/">
-    <span class="fab fa-github fa-lg"></span>
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -102,12 +102,13 @@
 
       
 
-      </header><script src="varianttracker_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="varianttracker_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="varianttracker_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+<script src="varianttracker_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Variant Tracker</h1>
             
-            <h4 class="date">10 November 2021</h4>
+            <h4 class="date">17 May 2022</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/outbreak-info/R-outbreak-info/blob/master/vignettes/varianttracker.Rmd"><code>vignettes/varianttracker.Rmd</code></a></small>
       <div class="hidden name"><code>varianttracker.Rmd</code></div>
@@ -135,12 +136,15 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Package imports</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
+<span class="co">#&gt; Warning: package 'dplyr' was built under R version 4.0.5</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://purrr.tidyverse.org">purrr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://outbreak-info.github.io/R-outbreak-info/">outbreakinfo</a></span><span class="op">)</span>
 <span class="co">#&gt; Warning: replacing previous import 'jsonlite::flatten' by 'purrr::flatten' when</span>
-<span class="co">#&gt; loading 'outbreakinfo'</span></code></pre></div>
+<span class="co">#&gt; loading 'outbreakinfo'</span>
+<span class="co">#&gt; Warning: replacing previous import 'ggplot2::%+%' by 'crayon::%+%' when loading</span>
+<span class="co">#&gt; 'outbreakinfo'</span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Authenticate yourself using your GISAID credentials.</span>
 <span class="fu"><a href="../reference/authenticateUser.html">authenticateUser</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
@@ -187,15 +191,15 @@
 
 <span class="va">worldwide_prevalence</span> <span class="op">=</span> <span class="fu"><a href="../reference/getPrevalence.html">getPrevalence</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="st">"P.1"</span>, cumulative <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#&gt; Retrieving data...</span>
-<span class="va">cumulative_prevalences</span> <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span><span class="op">(</span><span class="va">locations</span>, <span class="kw">function</span><span class="op">(</span><span class="va">loc</span><span class="op">)</span> <span class="fu"><a href="../reference/getPrevalence.html">getPrevalence</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="st">"P.1"</span>, location <span class="op">=</span> <span class="va">loc</span>, cumulative <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+<span class="va">cumulative_prevalences</span> <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span><span class="op">(</span><span class="va">locations</span>, <span class="kw">function</span><span class="op">(</span><span class="va">loc</span><span class="op">)</span> <span class="fu"><a href="../reference/getPrevalence.html">getPrevalence</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="st">"P.1"</span>, location <span class="op">=</span> <span class="va">loc</span>, cumulative <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">value.global_prevalence</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Retrieving data... </span>
 <span class="co">#&gt; Retrieving data... </span>
 <span class="co">#&gt; Retrieving data...</span>
 
-<span class="va">cumulative_prevalences</span> <span class="op">=</span> <span class="va">worldwide_prevalence</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">cumulative_prevalences</span><span class="op">)</span>
+<span class="va">cumulative_prevalences</span> <span class="op">=</span> <span class="va">worldwide_prevalence</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">cumulative_prevalences</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">cumulative_prevalences</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">location</span>, <span class="va">value.global_prevalence</span>, <span class="va">value.lineage_count</span>, <span class="va">value.first_detected</span>, <span class="va">value.last_detected</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">cumulative_prevalences</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">location</span>, <span class="va">value.global_prevalence</span>, <span class="va">value.lineage_count</span>, <span class="va">value.first_detected</span>, <span class="va">value.last_detected</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="14%">
@@ -214,31 +218,31 @@
 <tbody>
 <tr class="odd">
 <td align="left">Worldwide</td>
-<td align="right">0.0129459</td>
-<td align="right">58896</td>
+<td align="right">0.0065557</td>
+<td align="right">68360</td>
 <td align="left">2020-04-07</td>
-<td align="left">2021-10-16</td>
+<td align="left">2021-12-30</td>
 </tr>
 <tr class="even">
 <td align="left">Brazil</td>
-<td align="right">0.4905188</td>
-<td align="right">30007</td>
-<td align="left">2020-08-07</td>
-<td align="left">2021-10-01</td>
+<td align="right">0.2717690</td>
+<td align="right">37203</td>
+<td align="left">2020-05-06</td>
+<td align="left">2021-12-30</td>
 </tr>
 <tr class="odd">
 <td align="left">Illinois</td>
-<td align="right">0.0971624</td>
-<td align="right">3585</td>
+<td align="right">0.0477304</td>
+<td align="right">3553</td>
 <td align="left">2020-04-07</td>
 <td align="left">2021-08-20</td>
 </tr>
 <tr class="even">
 <td align="left">United States</td>
-<td align="right">0.0130173</td>
-<td align="right">18683</td>
+<td align="right">0.0060973</td>
+<td align="right">19711</td>
 <td align="left">2020-04-07</td>
-<td align="left">2021-10-02</td>
+<td align="left">2021-12-09</td>
 </tr>
 </tbody>
 </table>
@@ -303,11 +307,11 @@
 <span class="co">#&gt; Retrieving data...</span>
 
 <span class="co"># We'll sort those lineages and take the top 5, of lineages with at least 1,000 sequences:</span>
-<span class="va">lineages_n501y_e484k</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">pangolin_lineage</span>, <span class="va">proportion</span>, <span class="va">lineage_count</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">lineage_count</span> <span class="op">&gt;=</span> <span class="fl">1000</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">proportion</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+<span class="va">lineages_n501y_e484k</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">pangolin_lineage</span>, <span class="va">proportion</span>, <span class="va">lineage_count</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">lineage_count</span> <span class="op">&gt;=</span> <span class="fl">1000</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">proportion</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
@@ -317,29 +321,29 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">r.1</td>
-<td align="right">0.9983822</td>
-<td align="right">11126</td>
-</tr>
-<tr class="even">
-<td align="left">p.1.17.1</td>
-<td align="right">0.9982609</td>
-<td align="right">1150</td>
-</tr>
-<tr class="odd">
-<td align="left">p.1.17.1</td>
-<td align="right">0.9973913</td>
-<td align="right">1150</td>
+<td align="left">ba.2.2</td>
+<td align="right">0.9968388</td>
+<td align="right">2847</td>
 </tr>
 <tr class="even">
 <td align="left">b.1.619.1</td>
-<td align="right">0.9961464</td>
-<td align="right">1557</td>
+<td align="right">0.9962848</td>
+<td align="right">1615</td>
 </tr>
 <tr class="odd">
-<td align="left">b.1.620</td>
-<td align="right">0.9904398</td>
-<td align="right">1046</td>
+<td align="left">p.1.17.1</td>
+<td align="right">0.9933775</td>
+<td align="right">1208</td>
+</tr>
+<tr class="even">
+<td align="left">az.2</td>
+<td align="right">0.9928458</td>
+<td align="right">1258</td>
+</tr>
+<tr class="odd">
+<td align="left">ba.2.8</td>
+<td align="right">0.9927032</td>
+<td align="right">6030</td>
 </tr>
 </tbody>
 </table>
@@ -361,7 +365,8 @@
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">p1_by_country</span> <span class="op">=</span> <span class="fu"><a href="../reference/getCumulativeBySubadmin.html">getCumulativeBySubadmin</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="st">"P.1"</span><span class="op">)</span>
 <span class="co">#&gt; Retrieving data...</span></code></pre></div>
-<pre><code>#&gt; Linking to GEOS 3.8.0, GDAL 3.0.4, PROJ 6.3.1</code></pre>
+<pre><code>#&gt; Warning: package 'sf' was built under R version 4.0.5
+#&gt; Linking to GEOS 3.9.1, GDAL 3.4.0, PROJ 8.1.1; sf_use_s2() is TRUE</code></pre>
 </div>
 <div id="making-a-choropleth" class="section level3">
 <h3 class="hasAnchor">
@@ -376,7 +381,10 @@
 <span class="va">gadm_p1</span> <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">gadm</span>, <span class="va">p1_by_country</span>, by<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"GID_0"</span> <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># Use the basic plotting function</span>
-<span class="fu"><a href="../reference/plotChoropleth.html">plotChoropleth</a></span><span class="op">(</span><span class="va">gadm_p1</span>, title<span class="op">=</span><span class="st">"Cumulative P.1 prevalence"</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="../reference/plotChoropleth.html">plotChoropleth</a></span><span class="op">(</span><span class="va">gadm_p1</span>, title<span class="op">=</span><span class="st">"Cumulative P.1 prevalence"</span><span class="op">)</span>
+<span class="co">#&gt; Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :</span>
+<span class="co">#&gt; GDAL Error 1: PROJ: pipeline: Pipeline: A forward operation couldn't be</span>
+<span class="co">#&gt; constructed</span></code></pre></div>
 <p><img src="varianttracker_files/figure-html/world_choropleth-1.png" width="700"></p>
 </div>
 <div id="adjusting-the-time-window" class="section level3">

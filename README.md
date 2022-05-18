@@ -118,30 +118,25 @@ library(ggplot2)
 library(lubridate)
 
 resources_by_date = getResourcesData(query = "date:[2020-01-01 TO *]", types=c("Publication", "ClinicalTrial", "Protocol", "Dataset"), fields = c("date", "@type"), fetchAll = TRUE)
-#> Error in getResourcesQuery(query, res$id): Hmm. Some unknown error happened. Please reach out to help@outbreak.info for help.
 
 # roll up the number of resources by week
 resources_by_date = resources_by_date %>%
   mutate(year = lubridate::year(date),
          iso_week = lubridate::isoweek(date))
-#> Error in mutate(., year = lubridate::year(date), iso_week = lubridate::isoweek(date)): object 'resources_by_date' not found
 
 # count the number of new resources per week.
 resources_per_week = resources_by_date %>%
   count(`@type`, iso_week, year) %>%
   # convert from iso week back to a date
   mutate(iso_date = lubridate::parse_date_time(paste(year,iso_week, "Mon", sep="-"), "Y-W-a"))
-#> Error in group_by(x, ..., .add = TRUE, .drop = .drop): object 'resources_by_date' not found
 
 # Make it a bit prettier, by sorting by the relative proportion of resource types
 type_frequency = resources_by_date %>%
 count(`@type`) %>%
   arrange(desc(n)) %>%
   pull(`@type`)
-#> Error in group_by(x, ..., .add = TRUE, .drop = .drop): object 'resources_by_date' not found
 
 resources_per_week$`@type` = factor(resources_per_week$`@type`, type_frequency)
-#> Error in factor(resources_per_week$`@type`, type_frequency): object 'resources_per_week' not found
 
 ggplot(resources_per_week, aes(x = iso_date, y = n, fill = `@type`)) +
   geom_bar(stat="identity") +
@@ -159,8 +154,10 @@ ggplot(resources_per_week, aes(x = iso_date, y = n, fill = `@type`)) +
   scale_fill_manual(values = c(Publication = "#e15759", ClinicalTrial = "#b475a3", Dataset = "#126b93", Protocol = "#59a14f")) +
   facet_wrap(~`@type`, scales = "free_y", ncol = 1) +
   theme(legend.position = "none")
-#> Error in ggplot(resources_per_week, aes(x = iso_date, y = n, fill = `@type`)): object 'resources_per_week' not found
+#> Error in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, : polygon edge not found
 ```
+
+![plot of chunk resources_by_date](man/figures/resources_by_date-1.png)
 
 
 ### Cases & Deaths
@@ -170,8 +167,8 @@ Replicates the daily confirmed cases visualization on [outbreak.info](https://ou
 # Plots the daily confirmed cases per capita for the United States and Mexico.
 library(outbreakinfo)
 plotEpiData(locations = c("United States of America", "Mexico"), variable = "confirmed_rolling_per_100k")
-#> Mexico (country)
-#>   downloading [=================>------------]  61% eta: 15s  downloading [==============================] 100% eta:  0s
+#> Mexico (metropolitan area)
+#>   downloading [==============================] 100% eta:  0s
 ```
 
 ![plot of chunk daily_cases](man/figures/daily_cases-1.png)

@@ -33,6 +33,8 @@
 </script>
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -45,18 +47,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">outbreakinfo</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.0</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../articles/outbreakinfo.html">Get started</a>
 </li>
@@ -64,7 +60,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -87,8 +83,8 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/outbreak-info/R-outbreak-info/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+  <a href="https://github.com/outbreak-info/R-outbreak-info/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -102,24 +98,23 @@
 
       
 
-      </header><script src="varianttracker_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="varianttracker_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="varianttracker_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
+      </header><script src="varianttracker_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Variant Tracker</h1>
             
-            <h4 class="date">17 May 2022</h4>
+            <h4 data-toc-skip class="date">18 May 2022</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/outbreak-info/R-outbreak-info/blob/master/vignettes/varianttracker.Rmd"><code>vignettes/varianttracker.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/outbreak-info/R-outbreak-info/blob/HEAD/vignettes/varianttracker.Rmd" class="external-link"><code>vignettes/varianttracker.Rmd</code></a></small>
       <div class="hidden name"><code>varianttracker.Rmd</code></div>
 
     </div>
 
     
     
-<div id="accessing-the-data-in-outbreak-infos-variant-tracker" class="section level1">
-<h1 class="hasAnchor">
-<a href="#accessing-the-data-in-outbreak-infos-variant-tracker" class="anchor"></a>Accessing the data in outbreak.info’s Variant Tracker</h1>
+<div class="section level2">
+<h2 id="accessing-the-data-in-outbreak-infos-variant-tracker">Accessing the data in outbreak.info’s Variant Tracker<a class="anchor" aria-label="anchor" href="#accessing-the-data-in-outbreak-infos-variant-tracker"></a>
+</h2>
 <p>outbreak.info’s Variant Tracker allows you to view how combinations of lineages and mutations are changing over time. These reports allow you to answer questions like:</p>
 <ul>
 <li><a href="#what-mutations-are-characteristic-of-the-variant-">What mutations are present within that lineage?</a></li>
@@ -128,19 +123,18 @@
 <li><a href="#where-is-the-variant-most-prevalent-">Where is the variant most prevalent?</a></li>
 <li><a href="#what-do-we-know-about-the-variant-in-the-literature-">What is known about the variant in the research literature?</a></li>
 </ul>
-<p>Here, we’ll demonstrate how to access the data in the <a href="https://outbreak.info/situation-reports?pango=P.1&amp;loc=BRA&amp;loc=USA&amp;selected=Worldwide&amp;overlay=false">P.1 Lineage Report</a>. The P.1 / Gamma lineage was labeled a <a href="https://outbreak.info/situation-reports">Variant of Concern</a> by the WHO in January 2021 because it showed evidence of increased transmissibility, virulence, and/or decreased diagnostic, therapeutic, or vaccine efficacy.</p>
-<div id="before-we-start" class="section level2">
-<h2 class="hasAnchor">
-<a href="#before-we-start" class="anchor"></a>Before we start…</h2>
-<p>Import the packages we’ll use and provide our GISAID credentials to access the data. If you don’t have a GISAID account, you can <a href="https://www.gisaid.org/registration/register/">register</a> for one on their website. It may take a day or two for the account to become active.</p>
+<p>Here, we’ll demonstrate how to access the data in the <a href="https://outbreak.info/situation-reports?pango=P.1&amp;loc=BRA&amp;loc=USA&amp;selected=Worldwide&amp;overlay=false" class="external-link">P.1 Lineage Report</a>. The P.1 / Gamma lineage was labeled a <a href="https://outbreak.info/situation-reports" class="external-link">Variant of Concern</a> by the WHO in January 2021 because it showed evidence of increased transmissibility, virulence, and/or decreased diagnostic, therapeutic, or vaccine efficacy.</p>
+<div class="section level3">
+<h3 id="before-we-start">Before we start…<a class="anchor" aria-label="anchor" href="#before-we-start"></a>
+</h3>
+<p>Import the packages we’ll use and provide our GISAID credentials to access the data. If you don’t have a GISAID account, you can <a href="https://www.gisaid.org/registration/register/" class="external-link">register</a> for one on their website. It may take a day or two for the account to become active.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Package imports</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
-<span class="co">#&gt; Warning: package 'dplyr' was built under R version 4.0.5</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://purrr.tidyverse.org">purrr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://outbreak-info.github.io/R-outbreak-info/">outbreakinfo</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://purrr.tidyverse.org" class="external-link">purrr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/" class="external-link">knitr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://outbreak-info.github.io/R-outbreak-info/" class="external-link">outbreakinfo</a></span><span class="op">)</span>
 <span class="co">#&gt; Warning: replacing previous import 'jsonlite::flatten' by 'purrr::flatten' when</span>
 <span class="co">#&gt; loading 'outbreakinfo'</span>
 <span class="co">#&gt; Warning: replacing previous import 'ggplot2::%+%' by 'crayon::%+%' when loading</span>
@@ -149,22 +143,22 @@
 <code class="sourceCode R"><span class="co"># Authenticate yourself using your GISAID credentials.</span>
 <span class="fu"><a href="../reference/authenticateUser.html">authenticateUser</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 </div>
-<div id="what-mutations-are-characteristic-of-the-variant" class="section level2">
-<h2 class="hasAnchor">
-<a href="#what-mutations-are-characteristic-of-the-variant" class="anchor"></a>What mutations are characteristic of the variant?</h2>
+<div class="section level3">
+<h3 id="what-mutations-are-characteristic-of-the-variant">What mutations are characteristic of the variant?<a class="anchor" aria-label="anchor" href="#what-mutations-are-characteristic-of-the-variant"></a>
+</h3>
 <p>A very basic question: what is P.1? What mutations consistently appear in most sequences within the lineage?</p>
-<div id="grabbing-the-characteristic-mutations" class="section level3">
-<h3 class="hasAnchor">
-<a href="#grabbing-the-characteristic-mutations" class="anchor"></a>Grabbing the characteristic mutations</h3>
+<div class="section level4">
+<h4 id="grabbing-the-characteristic-mutations">Grabbing the characteristic mutations<a class="anchor" aria-label="anchor" href="#grabbing-the-characteristic-mutations"></a>
+</h4>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">p1</span> <span class="op">=</span> <span class="fu"><a href="../reference/getMutationsByLineage.html">getMutationsByLineage</a></span><span class="op">(</span>pangolin_lineage<span class="op">=</span><span class="st">"P.1"</span><span class="op">)</span>
 <span class="co">#&gt; Retrieving data...</span>
 <span class="fu"><a href="../reference/plotMutationHeatmap.html">plotMutationHeatmap</a></span><span class="op">(</span><span class="va">p1</span>, title<span class="op">=</span><span class="st">"Characteristic mutations of P.1 occurring in at least 75% of sequences"</span><span class="op">)</span></code></pre></div>
 <p><img src="varianttracker_files/figure-html/characteristic_mutations-1.png" width="700"></p>
 </div>
-<div id="comparing-to-other-lineages" class="section level3">
-<h3 class="hasAnchor">
-<a href="#comparing-to-other-lineages" class="anchor"></a>Comparing to other lineages</h3>
+<div class="section level4">
+<h4 id="comparing-to-other-lineages">Comparing to other lineages<a class="anchor" aria-label="anchor" href="#comparing-to-other-lineages"></a>
+</h4>
 <p>We can also compare how the mutations of P.1 compare to its sublineages, to look how any mutations may have been aquired or disappeared. We can also lower (or raise) the threshold for which mutations are included</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># First: find which sublineages are associated with P.1:</span>
@@ -182,24 +176,24 @@
 <span class="co"># plotMutationHeatmap(gamma_mutations, title = "ORF1a-gene mutations in Gamma lineages", gene2Plot="ORF1a")</span></code></pre></div>
 </div>
 </div>
-<div id="how-prevalent-is-a-variant-overall" class="section level2">
-<h2 class="hasAnchor">
-<a href="#how-prevalent-is-a-variant-overall" class="anchor"></a>How prevalent is a variant overall?</h2>
+<div class="section level3">
+<h3 id="how-prevalent-is-a-variant-overall">How prevalent is a variant overall?<a class="anchor" aria-label="anchor" href="#how-prevalent-is-a-variant-overall"></a>
+</h3>
 <p>To start with, let’s get some basic information about the overall, cumulative prevalence of P.1 in certain locations. We’ll look at the worldwide totals, in Brazil, in the United States, and in Illinois.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">locations</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Brazil"</span>, <span class="st">"United States"</span>, <span class="st">"Illinois"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">locations</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Brazil"</span>, <span class="st">"United States"</span>, <span class="st">"Illinois"</span><span class="op">)</span>
 
 <span class="va">worldwide_prevalence</span> <span class="op">=</span> <span class="fu"><a href="../reference/getPrevalence.html">getPrevalence</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="st">"P.1"</span>, cumulative <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#&gt; Retrieving data...</span>
-<span class="va">cumulative_prevalences</span> <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span><span class="op">(</span><span class="va">locations</span>, <span class="kw">function</span><span class="op">(</span><span class="va">loc</span><span class="op">)</span> <span class="fu"><a href="../reference/getPrevalence.html">getPrevalence</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="st">"P.1"</span>, location <span class="op">=</span> <span class="va">loc</span>, cumulative <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">value.global_prevalence</span><span class="op">)</span><span class="op">)</span>
+<span class="va">cumulative_prevalences</span> <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map_df</a></span><span class="op">(</span><span class="va">locations</span>, <span class="kw">function</span><span class="op">(</span><span class="va">loc</span><span class="op">)</span> <span class="fu"><a href="../reference/getPrevalence.html">getPrevalence</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="st">"P.1"</span>, location <span class="op">=</span> <span class="va">loc</span>, cumulative <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">value.global_prevalence</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Retrieving data... </span>
 <span class="co">#&gt; Retrieving data... </span>
 <span class="co">#&gt; Retrieving data...</span>
 
-<span class="va">cumulative_prevalences</span> <span class="op">=</span> <span class="va">worldwide_prevalence</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">cumulative_prevalences</span><span class="op">)</span>
+<span class="va">cumulative_prevalences</span> <span class="op">=</span> <span class="va">worldwide_prevalence</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html" class="external-link">bind_rows</a></span><span class="op">(</span><span class="va">cumulative_prevalences</span><span class="op">)</span>
 
-<span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">cumulative_prevalences</span> <span class="op">%&gt;%</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">location</span>, <span class="va">value.global_prevalence</span>, <span class="va">value.lineage_count</span>, <span class="va">value.first_detected</span>, <span class="va">value.last_detected</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">cumulative_prevalences</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">location</span>, <span class="va">value.global_prevalence</span>, <span class="va">value.lineage_count</span>, <span class="va">value.first_detected</span>, <span class="va">value.last_detected</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="14%">
@@ -248,13 +242,13 @@
 </table>
 <hr>
 </div>
-<div id="how-is-the-prevalence-of-a-variant-changing" class="section level2">
-<h2 class="hasAnchor">
-<a href="#how-is-the-prevalence-of-a-variant-changing" class="anchor"></a>How is the prevalence of a variant changing?</h2>
+<div class="section level3">
+<h3 id="how-is-the-prevalence-of-a-variant-changing">How is the prevalence of a variant changing?<a class="anchor" aria-label="anchor" href="#how-is-the-prevalence-of-a-variant-changing"></a>
+</h3>
 <p>We can access how the prevalence of a lineage, a group of lineages, a mutation, a group of mutations, or a lineage with additional mutations is changing, customizable to any of the over 2,000 countries, states/provinces, or U.S. counties.</p>
-<div id="lineage-queries" class="section level3">
-<h3 class="hasAnchor">
-<a href="#lineage-queries" class="anchor"></a>Lineage queries</h3>
+<div class="section level4">
+<h4 id="lineage-queries">Lineage queries<a class="anchor" aria-label="anchor" href="#lineage-queries"></a>
+</h4>
 <p>Let’s start with something simple: just the prevalence of P.1 across Brazil, where we see it becomes dominant in spring 2021 but then falls to near 0 prevalence.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">p1_brazil</span> <span class="op">=</span> <span class="fu"><a href="../reference/getPrevalence.html">getPrevalence</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="st">"P.1"</span>, location <span class="op">=</span> <span class="st">"Brazil"</span><span class="op">)</span>
@@ -262,22 +256,22 @@
 <span class="fu"><a href="../reference/plotPrevalenceOverTime.html">plotPrevalenceOverTime</a></span><span class="op">(</span><span class="va">p1_brazil</span>, title <span class="op">=</span> <span class="st">"Daily P.1 prevalence in Brazil"</span><span class="op">)</span></code></pre></div>
 <p><img src="varianttracker_files/figure-html/p1-1.png" width="700"></p>
 </div>
-<div id="comparing-lineage-queries-multiple-lineage-queries-" class="section level3">
-<h3 class="hasAnchor">
-<a href="#comparing-lineage-queries-multiple-lineage-queries-" class="anchor"></a>Comparing lineage queries &amp; multiple lineage queries.</h3>
+<div class="section level4">
+<h4 id="comparing-lineage-queries-multiple-lineage-queries-">Comparing lineage queries &amp; multiple lineage queries.<a class="anchor" aria-label="anchor" href="#comparing-lineage-queries-multiple-lineage-queries-"></a>
+</h4>
 <p>How does that compare to the appearance of Delta lineages in Brazil? Or to the proliferation of P.1 in the United States? Using the same functions with slightly different parameters, we can grab the data for the Delta lineages in Brazil and P.1 in the U.S. and see how they compare.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Multiple lineage queries should be separated by the parameter ` OR `. The `lookupSublinage` function is a convenient wrapper to look up what sublineages are associated with Delta (e.g. B.1.617.2 and all the AY sublineages) and collapse it into a string to be used in `getPrevalence`.</span>
 <span class="va">delta_lineages_string</span> <span class="op">=</span> <span class="fu"><a href="../reference/lookupSublineages.html">lookupSublineages</a></span><span class="op">(</span><span class="st">"Delta"</span>, returnQueryString <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 
 <span class="co"># the name of this lineage gets REALLY long, so we can change the name with a named dictionary:</span>
-<span class="va">delta_label</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"Delta"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">delta_label</span><span class="op">)</span> <span class="op">=</span> <span class="va">delta_lineages_string</span>
+<span class="va">delta_label</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Delta"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">delta_label</span><span class="op">)</span> <span class="op">=</span> <span class="va">delta_lineages_string</span>
 
 <span class="co"># Get Delta prevalence, combine into a single dataset, and plot</span>
 <span class="va">delta_brazil</span> <span class="op">=</span> <span class="fu"><a href="../reference/getPrevalence.html">getPrevalence</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="va">delta_lineages_string</span>, location <span class="op">=</span> <span class="st">"Brazil"</span><span class="op">)</span>
 <span class="co">#&gt; Retrieving data...</span>
-<span class="va">p1_delta_brazil</span> <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">p1_brazil</span>, <span class="va">delta_brazil</span><span class="op">)</span>
+<span class="va">p1_delta_brazil</span> <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html" class="external-link">bind_rows</a></span><span class="op">(</span><span class="va">p1_brazil</span>, <span class="va">delta_brazil</span><span class="op">)</span>
 <span class="fu"><a href="../reference/plotPrevalenceOverTime.html">plotPrevalenceOverTime</a></span><span class="op">(</span><span class="va">p1_delta_brazil</span>, title <span class="op">=</span> <span class="st">"Daily P.1 and Delta prevalence in Brazil"</span>, labelDictionary <span class="op">=</span> <span class="va">delta_label</span><span class="op">)</span></code></pre></div>
 <p><img src="varianttracker_files/figure-html/p1_comparison-1.png" width="700"></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
@@ -286,33 +280,33 @@
 <span class="co"># Comparing P.1 in the U.S. and Brazil. We also need to change what variable colors the traces.</span>
 <span class="va">p1_usa</span> <span class="op">=</span> <span class="fu"><a href="../reference/getPrevalence.html">getPrevalence</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="st">"P.1"</span>, location <span class="op">=</span> <span class="st">"United States"</span><span class="op">)</span>
 <span class="co">#&gt; Retrieving data...</span>
-<span class="va">p1</span> <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">p1_brazil</span>, <span class="va">p1_usa</span><span class="op">)</span>
+<span class="va">p1</span> <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html" class="external-link">bind_rows</a></span><span class="op">(</span><span class="va">p1_brazil</span>, <span class="va">p1_usa</span><span class="op">)</span>
 <span class="fu"><a href="../reference/plotPrevalenceOverTime.html">plotPrevalenceOverTime</a></span><span class="op">(</span><span class="va">p1</span>, title <span class="op">=</span> <span class="st">"Daily P.1 prevalence"</span>, colorVar <span class="op">=</span> <span class="st">"location"</span><span class="op">)</span></code></pre></div>
 <p><img src="varianttracker_files/figure-html/p1_comparison-2.png" width="700"></p>
 </div>
-<div id="mutation-queries" class="section level3">
-<h3 class="hasAnchor">
-<a href="#mutation-queries" class="anchor"></a>Mutation queries</h3>
+<div class="section level4">
+<h4 id="mutation-queries">Mutation queries<a class="anchor" aria-label="anchor" href="#mutation-queries"></a>
+</h4>
 <p>From the <a href="#grabbing-the-characteristic-mutations">Characteristic mutations</a> plots, two mutations of interest that pop up in the P.1 and Gamma sequences are N501Y and E484K in the Spike protein. Rather than look at the prevalence of a Pango lineage, you can also look at how the prevalence of these two mutations is changing. Be sure to add the gene in front of the mutation, like <code>S:N501Y</code>.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># With no location specified, the results for all samples (Worldwide) are returned.</span>
-<span class="va">n501y_e484k</span> <span class="op">=</span> <span class="fu"><a href="../reference/getPrevalence.html">getPrevalence</a></span><span class="op">(</span>mutations <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"S:E484K"</span>, <span class="st">"S:N501Y"</span><span class="op">)</span><span class="op">)</span>
+<span class="va">n501y_e484k</span> <span class="op">=</span> <span class="fu"><a href="../reference/getPrevalence.html">getPrevalence</a></span><span class="op">(</span>mutations <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"S:E484K"</span>, <span class="st">"S:N501Y"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Retrieving data...</span>
 <span class="fu"><a href="../reference/plotPrevalenceOverTime.html">plotPrevalenceOverTime</a></span><span class="op">(</span><span class="va">n501y_e484k</span>, title <span class="op">=</span> <span class="st">"Daily S:E484K &amp; S:N501Y prevalence"</span><span class="op">)</span></code></pre></div>
 <p><img src="varianttracker_files/figure-html/mutation_queries-1.png" width="700"></p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co"># You can also see how often those two combinations of mutations appear in lineages:</span>
-<span class="va">lineages_n501y_e484k</span> <span class="op">=</span> <span class="fu"><a href="../reference/getMutationAcrossLineage.html">getMutationAcrossLineage</a></span><span class="op">(</span>mutations <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"S:E484K"</span>, <span class="st">"S:N501Y"</span><span class="op">)</span><span class="op">)</span>
+<span class="va">lineages_n501y_e484k</span> <span class="op">=</span> <span class="fu"><a href="../reference/getMutationAcrossLineage.html">getMutationAcrossLineage</a></span><span class="op">(</span>mutations <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"S:E484K"</span>, <span class="st">"S:N501Y"</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Retrieving data...</span>
 
 <span class="co"># We'll sort those lineages and take the top 5, of lineages with at least 1,000 sequences:</span>
-<span class="va">lineages_n501y_e484k</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">pangolin_lineage</span>, <span class="va">proportion</span>, <span class="va">lineage_count</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">lineage_count</span> <span class="op">&gt;=</span> <span class="fl">1000</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">proportion</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<span class="va">lineages_n501y_e484k</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">pangolin_lineage</span>, <span class="va">proportion</span>, <span class="va">lineage_count</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">lineage_count</span> <span class="op">&gt;=</span> <span class="fl">1000</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">proportion</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">pangolin_lineage</th>
@@ -350,46 +344,42 @@
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
 <span class="co"># ... and you can combine mutations with a Pango lineage to look at how those mutations are prevalent in the P.1 backbone.</span>
-<span class="va">P1_n501y_e484k</span> <span class="op">=</span> <span class="fu"><a href="../reference/getPrevalence.html">getPrevalence</a></span><span class="op">(</span>mutations <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"S:E484K"</span>, <span class="st">"S:N501Y"</span><span class="op">)</span>, pangolin_lineage <span class="op">=</span> <span class="st">"P.1"</span><span class="op">)</span>
+<span class="va">P1_n501y_e484k</span> <span class="op">=</span> <span class="fu"><a href="../reference/getPrevalence.html">getPrevalence</a></span><span class="op">(</span>mutations <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"S:E484K"</span>, <span class="st">"S:N501Y"</span><span class="op">)</span>, pangolin_lineage <span class="op">=</span> <span class="st">"P.1"</span><span class="op">)</span>
 <span class="co">#&gt; Retrieving data...</span></code></pre></div>
 <hr>
 </div>
 </div>
-<div id="where-is-the-variant-most-prevalent" class="section level2">
-<h2 class="hasAnchor">
-<a href="#where-is-the-variant-most-prevalent" class="anchor"></a>Where is the variant most prevalent?</h2>
+<div class="section level3">
+<h3 id="where-is-the-variant-most-prevalent">Where is the variant most prevalent?<a class="anchor" aria-label="anchor" href="#where-is-the-variant-most-prevalent"></a>
+</h3>
 <p>After seeing how P.1 prevalence changes in specific locations, a natural related question is where is the prevalence of P.1 the greatest? We can access that data for the entire world, to look at how the prevalence varies by country, or we can look at how it varies within a country like Brazil.</p>
-<div id="getting-p-1-cumulative-prevalence-by-country" class="section level3">
-<h3 class="hasAnchor">
-<a href="#getting-p-1-cumulative-prevalence-by-country" class="anchor"></a>Getting P.1 cumulative prevalence by country</h3>
+<div class="section level4">
+<h4 id="getting-p-1-cumulative-prevalence-by-country">Getting P.1 cumulative prevalence by country<a class="anchor" aria-label="anchor" href="#getting-p-1-cumulative-prevalence-by-country"></a>
+</h4>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">p1_by_country</span> <span class="op">=</span> <span class="fu"><a href="../reference/getCumulativeBySubadmin.html">getCumulativeBySubadmin</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="st">"P.1"</span><span class="op">)</span>
 <span class="co">#&gt; Retrieving data...</span></code></pre></div>
-<pre><code>#&gt; Warning: package 'sf' was built under R version 4.0.5
-#&gt; Linking to GEOS 3.9.1, GDAL 3.4.0, PROJ 8.1.1; sf_use_s2() is TRUE</code></pre>
+<pre><code><span class="co">#&gt; Linking to GEOS 3.8.0, GDAL 3.0.4, PROJ 6.3.1; sf_use_s2() is TRUE</span></code></pre>
 </div>
-<div id="making-a-choropleth" class="section level3">
-<h3 class="hasAnchor">
-<a href="#making-a-choropleth" class="anchor"></a>Making a choropleth</h3>
-<p>The location names in the genomics data are standardized to the location ids contained in the <a href="https://gadm.org/download_world.html">GADM data</a>. After downloading the shapefile from GADM, it’s easy to make a choropleth using the <a href="https://r-spatial.github.io/sf/">sf</a> package. Note: since GADM doesn’t allow their data to be redistributed, you’ll need to download the data yourself. But it’s free to use! You might also want to run the data through <a href="https://mapshaper.org/">mapshaper</a> to simplify the geometries, since the data is quite large. Within the choropleth, it’s easy to see that P.1 has been more prevalent across South America.</p>
+<div class="section level4">
+<h4 id="making-a-choropleth">Making a choropleth<a class="anchor" aria-label="anchor" href="#making-a-choropleth"></a>
+</h4>
+<p>The location names in the genomics data are standardized to the location ids contained in the <a href="https://gadm.org/download_world.html" class="external-link">GADM data</a>. After downloading the shapefile from GADM, it’s easy to make a choropleth using the <a href="https://r-spatial.github.io/sf/" class="external-link">sf</a> package. Note: since GADM doesn’t allow their data to be redistributed, you’ll need to download the data yourself. But it’s free to use! You might also want to run the data through <a href="https://mapshaper.org/" class="external-link">mapshaper</a> to simplify the geometries, since the data is quite large. Within the choropleth, it’s easy to see that P.1 has been more prevalent across South America.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span>
 <span class="co"># You'll need to download and import the GADM Administrative level 1 data, with something like:</span>
 <span class="co"># gadm = read_sf("gadm36_0.shp")</span>
 
 <span class="co"># `gadm` is an sf object containing the GADM basemap. Geojoin the data by the ISO3 ID</span>
-<span class="va">gadm_p1</span> <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">gadm</span>, <span class="va">p1_by_country</span>, by<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"GID_0"</span> <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span><span class="op">)</span>
+<span class="va">gadm_p1</span> <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">gadm</span>, <span class="va">p1_by_country</span>, by<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GID_0"</span> <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span><span class="op">)</span>
 
 <span class="co"># Use the basic plotting function</span>
-<span class="fu"><a href="../reference/plotChoropleth.html">plotChoropleth</a></span><span class="op">(</span><span class="va">gadm_p1</span>, title<span class="op">=</span><span class="st">"Cumulative P.1 prevalence"</span><span class="op">)</span>
-<span class="co">#&gt; Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :</span>
-<span class="co">#&gt; GDAL Error 1: PROJ: pipeline: Pipeline: A forward operation couldn't be</span>
-<span class="co">#&gt; constructed</span></code></pre></div>
+<span class="fu"><a href="../reference/plotChoropleth.html">plotChoropleth</a></span><span class="op">(</span><span class="va">gadm_p1</span>, title<span class="op">=</span><span class="st">"Cumulative P.1 prevalence"</span><span class="op">)</span></code></pre></div>
 <p><img src="varianttracker_files/figure-html/world_choropleth-1.png" width="700"></p>
 </div>
-<div id="adjusting-the-time-window" class="section level3">
-<h3 class="hasAnchor">
-<a href="#adjusting-the-time-window" class="anchor"></a>Adjusting the time window</h3>
+<div class="section level4">
+<h4 id="adjusting-the-time-window">Adjusting the time window<a class="anchor" aria-label="anchor" href="#adjusting-the-time-window"></a>
+</h4>
 <p>The choropleth above shows the cumulative prevalence of P.1 since it was first detected. However, more recently, its prevalence has dropped. We can adjust this time window by modifying the <code>ndays</code> parameter to only calculate prevalence over the past 60 days. When we make that adjustment, we see there are a lot more countries that haven’t sequenced any samples in the last two months (show in grey), and overall, the prevalence of P.1 has been dropping as the Delta lineages spread across the world.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">p1_by_country_60days</span> <span class="op">=</span> <span class="fu"><a href="../reference/getCumulativeBySubadmin.html">getCumulativeBySubadmin</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="st">"P.1"</span>, ndays <span class="op">=</span> <span class="fl">60</span><span class="op">)</span>
@@ -397,17 +387,17 @@
 
 
 <span class="co"># join by the ISO3 ID</span>
-<span class="va">gadm_p1_60days</span> <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">gadm</span>, <span class="va">p1_by_country_60days</span>, by<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"GID_0"</span> <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span><span class="op">)</span>
+<span class="va">gadm_p1_60days</span> <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">gadm</span>, <span class="va">p1_by_country_60days</span>, by<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GID_0"</span> <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="../reference/plotChoropleth.html">plotChoropleth</a></span><span class="op">(</span><span class="va">gadm_p1_60days</span>, title<span class="op">=</span><span class="st">"Cumulative P.1 prevalence in the past 60 days"</span><span class="op">)</span></code></pre></div>
 <p><img src="varianttracker_files/figure-html/unnamed-chunk-1-1.png" width="700"></p>
 </div>
-<div id="specifying-a-location" class="section level3">
-<h3 class="hasAnchor">
-<a href="#specifying-a-location" class="anchor"></a>Specifying a location</h3>
+<div class="section level4">
+<h4 id="specifying-a-location">Specifying a location<a class="anchor" aria-label="anchor" href="#specifying-a-location"></a>
+</h4>
 <p>Instead of looking at the prevalence by country, you can also specify a location like Brazil, and look at the cumulative prevalence one administrative unit below that. So, for countries, you will get the prevalence at the state/province-level, and for states, you get the prevalnece at the county level. Note that the smaller the geographic area, it’s likely that the uncertainty in these estimates will increase, since there’s less sampling.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
 <span class="co"># P.1 prevalence by Brazilian states</span>
 <span class="va">p1_in_brazil</span> <span class="op">=</span> <span class="fu"><a href="../reference/getCumulativeBySubadmin.html">getCumulativeBySubadmin</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="st">"P.1"</span>, location <span class="op">=</span> <span class="st">"Brazil"</span><span class="op">)</span>
 <span class="co">#&gt; Retrieving data...</span>
@@ -418,10 +408,10 @@
 <hr>
 </div>
 </div>
-<div id="what-do-we-know-about-the-variant-in-the-literature" class="section level2">
-<h2 class="hasAnchor">
-<a href="#what-do-we-know-about-the-variant-in-the-literature" class="anchor"></a>What do we know about the variant in the literature?</h2>
-<p>The pace of research on COVID-19 has been staggering, with the research community publishing thousands of papers, clinical trials, datasets and more each week. The <a href="https://outbreak.info/resources/search?q=%22P.1%22">P.1 papers and other resources</a> can be found in outbreak.info’s Research Library. At this time, the R package does not provide access to these data, but they can be found in our <a href="https://api.outbreak.info/try/resources">resource API</a>.</p>
+<div class="section level3">
+<h3 id="what-do-we-know-about-the-variant-in-the-literature">What do we know about the variant in the literature?<a class="anchor" aria-label="anchor" href="#what-do-we-know-about-the-variant-in-the-literature"></a>
+</h3>
+<p>The pace of research on COVID-19 has been staggering, with the research community publishing thousands of papers, clinical trials, datasets and more each week. The <a href="https://outbreak.info/resources/search?q=%22P.1%22" class="external-link">P.1 papers and other resources</a> can be found in outbreak.info’s Research Library. At this time, the R package does not provide access to these data, but they can be found in our <a href="https://api.outbreak.info/try/resources" class="external-link">resource API</a>.</p>
 </div>
 </div>
   </div>
@@ -437,11 +427,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Manar Alkuzweny, Karthik Gangavarapu, Laura Hughes.</p>
+  <p></p>
+<p>Developed by Manar Alkuzweny, Karthik Gangavarapu, Laura Hughes.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
 </div>
 
       </footer>
@@ -449,6 +441,8 @@
 
   
 
+
+  
 
   </body>
 </html>

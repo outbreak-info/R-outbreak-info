@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>outbreak.info Variant Tracker • outbreakinfo</title>
+<title>Variant Tracker • outbreakinfo</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
-<meta property="og:title" content="outbreak.info Variant Tracker">
+<meta property="og:title" content="Variant Tracker">
 <meta property="og:description" content="outbreakinfo">
 <meta property="og:image" content="/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -71,13 +71,16 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/epivignette.html">outbreak.info R package: Epidemiological data</a>
+      <a href="../articles/epivignette.html">Cases &amp; Deaths data</a>
     </li>
     <li>
-      <a href="../articles/locationtracker.html">outbreak.info Location Tracker</a>
+      <a href="../articles/locationtracker.html">Location Tracker</a>
     </li>
     <li>
-      <a href="../articles/varianttracker.html">outbreak.info Variant Tracker</a>
+      <a href="../articles/researchlibrary.html">Research Library</a>
+    </li>
+    <li>
+      <a href="../articles/varianttracker.html">Variant Tracker</a>
     </li>
   </ul>
 </li>
@@ -103,9 +106,9 @@
 <script src="varianttracker_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>outbreak.info Variant Tracker</h1>
+      <h1 data-toc-skip>Variant Tracker</h1>
             
-            <h4 class="date">2021-10-11</h4>
+            <h4 class="date">17 May 2022</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/outbreak-info/R-outbreak-info/blob/master/vignettes/varianttracker.Rmd"><code>vignettes/varianttracker.Rmd</code></a></small>
       <div class="hidden name"><code>varianttracker.Rmd</code></div>
@@ -117,7 +120,7 @@
 <div id="accessing-the-data-in-outbreak-infos-variant-tracker" class="section level1">
 <h1 class="hasAnchor">
 <a href="#accessing-the-data-in-outbreak-infos-variant-tracker" class="anchor"></a>Accessing the data in outbreak.info’s Variant Tracker</h1>
-<p>Outbreak.info’s Variant Tracker allows you to view how combinations of lineages and mutations are changing over time. These reports allow you to answer questions like:</p>
+<p>outbreak.info’s Variant Tracker allows you to view how combinations of lineages and mutations are changing over time. These reports allow you to answer questions like:</p>
 <ul>
 <li><a href="#what-mutations-are-characteristic-of-the-variant-">What mutations are present within that lineage?</a></li>
 <li><a href="#how-prevalent-is-a-variant-overall-">How prevalent is a variant overall?</a></li>
@@ -133,12 +136,15 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Package imports</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
+<span class="co">#&gt; Warning: package 'dplyr' was built under R version 4.0.5</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://purrr.tidyverse.org">purrr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/">knitr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://outbreak-info.github.io/R-outbreak-info/">outbreakinfo</a></span><span class="op">)</span>
 <span class="co">#&gt; Warning: replacing previous import 'jsonlite::flatten' by 'purrr::flatten' when</span>
-<span class="co">#&gt; loading 'outbreakinfo'</span></code></pre></div>
+<span class="co">#&gt; loading 'outbreakinfo'</span>
+<span class="co">#&gt; Warning: replacing previous import 'ggplot2::%+%' by 'crayon::%+%' when loading</span>
+<span class="co">#&gt; 'outbreakinfo'</span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Authenticate yourself using your GISAID credentials.</span>
 <span class="fu"><a href="../reference/authenticateUser.html">authenticateUser</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
@@ -172,7 +178,7 @@
 <p><img src="varianttracker_files/figure-html/all_gamma_mutations-1.png" width="700"></p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
-<span class="co"># You can also change the gene you select by changing </span>
+<span class="co"># You can also change the gene you select by changing</span>
 <span class="co"># plotMutationHeatmap(gamma_mutations, title = "ORF1a-gene mutations in Gamma lineages", gene2Plot="ORF1a")</span></code></pre></div>
 </div>
 </div>
@@ -185,7 +191,7 @@
 
 <span class="va">worldwide_prevalence</span> <span class="op">=</span> <span class="fu"><a href="../reference/getPrevalence.html">getPrevalence</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="st">"P.1"</span>, cumulative <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#&gt; Retrieving data...</span>
-<span class="va">cumulative_prevalences</span> <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span><span class="op">(</span><span class="va">locations</span>, <span class="kw">function</span><span class="op">(</span><span class="va">loc</span><span class="op">)</span> <span class="fu"><a href="../reference/getPrevalence.html">getPrevalence</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="st">"P.1"</span>, location <span class="op">=</span> <span class="va">loc</span>, cumulative <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+<span class="va">cumulative_prevalences</span> <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html">map_df</a></span><span class="op">(</span><span class="va">locations</span>, <span class="kw">function</span><span class="op">(</span><span class="va">loc</span><span class="op">)</span> <span class="fu"><a href="../reference/getPrevalence.html">getPrevalence</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="st">"P.1"</span>, location <span class="op">=</span> <span class="va">loc</span>, cumulative <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">value.global_prevalence</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; Retrieving data... </span>
 <span class="co">#&gt; Retrieving data... </span>
@@ -212,31 +218,31 @@
 <tbody>
 <tr class="odd">
 <td align="left">Worldwide</td>
-<td align="right">0.0223519</td>
-<td align="right">72479</td>
+<td align="right">0.0065557</td>
+<td align="right">68360</td>
 <td align="left">2020-04-07</td>
-<td align="left">2021-09-01</td>
+<td align="left">2021-12-30</td>
 </tr>
 <tr class="even">
 <td align="left">Brazil</td>
-<td align="right">0.6412060</td>
-<td align="right">20332</td>
-<td align="left">2020-09-11</td>
-<td align="left">2021-09-01</td>
+<td align="right">0.2717690</td>
+<td align="right">37203</td>
+<td align="left">2020-05-06</td>
+<td align="left">2021-12-30</td>
 </tr>
 <tr class="odd">
 <td align="left">Illinois</td>
-<td align="right">0.1348530</td>
-<td align="right">3514</td>
+<td align="right">0.0477304</td>
+<td align="right">3553</td>
 <td align="left">2020-04-07</td>
-<td align="left">2021-07-31</td>
+<td align="left">2021-08-20</td>
 </tr>
 <tr class="even">
 <td align="left">United States</td>
-<td align="right">0.0238496</td>
-<td align="right">21194</td>
+<td align="right">0.0060973</td>
+<td align="right">19711</td>
 <td align="left">2020-04-07</td>
-<td align="left">2021-08-27</td>
+<td align="left">2021-12-09</td>
 </tr>
 </tbody>
 </table>
@@ -301,11 +307,11 @@
 <span class="co">#&gt; Retrieving data...</span>
 
 <span class="co"># We'll sort those lineages and take the top 5, of lineages with at least 1,000 sequences:</span>
-<span class="va">lineages_n501y_e484k</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">pangolin_lineage</span>, <span class="va">proportion</span>, <span class="va">lineage_count</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">lineage_count</span> <span class="op">&gt;=</span> <span class="fl">1000</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">proportion</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span> <span class="op">%&gt;%</span> 
+<span class="va">lineages_n501y_e484k</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">pangolin_lineage</span>, <span class="va">proportion</span>, <span class="va">lineage_count</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">lineage_count</span> <span class="op">&gt;=</span> <span class="fl">1000</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html">desc</a></span><span class="op">(</span><span class="va">proportion</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
@@ -315,29 +321,29 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
+<td align="left">ba.2.2</td>
+<td align="right">0.9968388</td>
+<td align="right">2847</td>
+</tr>
+<tr class="even">
 <td align="left">b.1.619.1</td>
-<td align="right">0.9966689</td>
-<td align="right">1501</td>
+<td align="right">0.9962848</td>
+<td align="right">1615</td>
+</tr>
+<tr class="odd">
+<td align="left">p.1.17.1</td>
+<td align="right">0.9933775</td>
+<td align="right">1208</td>
 </tr>
 <tr class="even">
 <td align="left">az.2</td>
-<td align="right">0.9949367</td>
-<td align="right">1185</td>
+<td align="right">0.9928458</td>
+<td align="right">1258</td>
 </tr>
 <tr class="odd">
-<td align="left">r.1</td>
-<td align="right">0.9937310</td>
-<td align="right">10528</td>
-</tr>
-<tr class="even">
-<td align="left">b.1.620</td>
-<td align="right">0.9933206</td>
-<td align="right">1048</td>
-</tr>
-<tr class="odd">
-<td align="left">q.2</td>
-<td align="right">0.9894737</td>
-<td align="right">1615</td>
+<td align="left">ba.2.8</td>
+<td align="right">0.9927032</td>
+<td align="right">6030</td>
 </tr>
 </tbody>
 </table>
@@ -359,55 +365,33 @@
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">p1_by_country</span> <span class="op">=</span> <span class="fu"><a href="../reference/getCumulativeBySubadmin.html">getCumulativeBySubadmin</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="st">"P.1"</span><span class="op">)</span>
 <span class="co">#&gt; Retrieving data...</span></code></pre></div>
+<pre><code>#&gt; Warning: package 'sf' was built under R version 4.0.5
+#&gt; Linking to GEOS 3.9.1, GDAL 3.4.0, PROJ 8.1.1; sf_use_s2() is TRUE</code></pre>
 </div>
 <div id="making-a-choropleth" class="section level3">
 <h3 class="hasAnchor">
 <a href="#making-a-choropleth" class="anchor"></a>Making a choropleth</h3>
 <p>The location names in the genomics data are standardized to the location ids contained in the <a href="https://gadm.org/download_world.html">GADM data</a>. After downloading the shapefile from GADM, it’s easy to make a choropleth using the <a href="https://r-spatial.github.io/sf/">sf</a> package. Note: since GADM doesn’t allow their data to be redistributed, you’ll need to download the data yourself. But it’s free to use! You might also want to run the data through <a href="https://mapshaper.org/">mapshaper</a> to simplify the geometries, since the data is quite large. Within the choropleth, it’s easy to see that P.1 has been more prevalent across South America.</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span>
-<span class="co">#&gt; Linking to GEOS 3.8.1, GDAL 3.1.4, PROJ 6.3.1</span>
+<span class="co"># You'll need to download and import the GADM Administrative level 1 data, with something like:</span>
+<span class="co"># gadm = read_sf("gadm36_0.shp")</span>
 
-<span class="co"># Load in the spatial data</span>
-<span class="va">gadm</span> <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_read.html">read_sf</a></span><span class="op">(</span><span class="st">"../data/gadm36_0.shp"</span><span class="op">)</span>
-
-<span class="co"># join by the ISO3 ID</span>
+<span class="co"># `gadm` is an sf object containing the GADM basemap. Geojoin the data by the ISO3 ID</span>
 <span class="va">gadm_p1</span> <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">gadm</span>, <span class="va">p1_by_country</span>, by<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"GID_0"</span> <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span><span class="op">)</span>
 
-<span class="co"># Create a quick little plotting function</span>
-
-<span class="va">plotChoropleth</span> <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">df</span>, <span class="va">fillVar</span> <span class="op">=</span> <span class="st">"proportion"</span>, <span class="va">title</span> <span class="op">=</span> <span class="cn">NULL</span>, <span class="va">proj4</span> <span class="op">=</span> <span class="st">"+proj=wag7 +lon_0=11 +datum=WGS84 +units=m +no_defs"</span><span class="op">)</span> <span class="op">{</span>
-  <span class="co"># color palette: ColorBrewer's YlGnBu:https://colorbrewer2.org/#type=sequential&amp;scheme=YlGnBu&amp;n=9</span>
-  <span class="va">CHOROPLETH_PALETTE</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'#ffffd9'</span>,<span class="st">'#edf8b1'</span>,<span class="st">'#c7e9b4'</span>,<span class="st">'#7fcdbb'</span>,<span class="st">'#41b6c4'</span>,<span class="st">'#1d91c0'</span>,<span class="st">'#225ea8'</span>,<span class="st">'#253494'</span>,<span class="st">'#081d58'</span><span class="op">)</span>
-  
-  <span class="co"># Reproject as Mollweide projection</span>
-  <span class="va">df_projected</span> <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_transform.html">st_transform</a></span><span class="op">(</span><span class="va">df</span>, crs <span class="op">=</span> <span class="va">proj4</span><span class="op">)</span>
-  
-  <span class="va">df_projected</span> <span class="op">=</span> <span class="va">df_projected</span> <span class="op">%&gt;%</span>
-    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">NAME_0</span> <span class="op">!=</span> <span class="st">"Antarctica"</span><span class="op">)</span>
-
-  
-  <span class="va">p</span> <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">df_projected</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_.html">aes_string</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="va">fillVar</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">0.1</span>, colour <span class="op">=</span> <span class="st">"#555555"</span><span class="op">)</span> <span class="op">+</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html">scale_fill_gradientn</a></span><span class="op">(</span>colours <span class="op">=</span> <span class="va">CHOROPLETH_PALETTE</span>, na.value <span class="op">=</span> <span class="st">"#babab0"</span>, labels<span class="op">=</span><span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/label_percent.html">percent</a></span>, limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>,<span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_void</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-    <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span> 
-  
-  <span class="kw">if</span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NULL.html">is.null</a></span><span class="op">(</span><span class="va">title</span><span class="op">)</span><span class="op">)</span><span class="op">{</span> 
-    <span class="va">p</span> <span class="op">=</span> <span class="va">p</span> <span class="op">+</span>
-      <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">ggtitle</a></span><span class="op">(</span><span class="va">title</span><span class="op">)</span>
-  <span class="op">}</span>
-  <span class="kw"><a href="https://rdrr.io/r/base/function.html">return</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span>
-<span class="op">}</span>
-
-<span class="fu">plotChoropleth</span><span class="op">(</span><span class="va">gadm_p1</span>, title<span class="op">=</span><span class="st">"Cumulative P.1 prevalence"</span><span class="op">)</span></code></pre></div>
-<p><img src="varianttracker_files/figure-html/unnamed-chunk-1-1.png" width="700"></p>
+<span class="co"># Use the basic plotting function</span>
+<span class="fu"><a href="../reference/plotChoropleth.html">plotChoropleth</a></span><span class="op">(</span><span class="va">gadm_p1</span>, title<span class="op">=</span><span class="st">"Cumulative P.1 prevalence"</span><span class="op">)</span>
+<span class="co">#&gt; Warning in CPL_transform(x, crs, aoi, pipeline, reverse, desired_accuracy, :</span>
+<span class="co">#&gt; GDAL Error 1: PROJ: pipeline: Pipeline: A forward operation couldn't be</span>
+<span class="co">#&gt; constructed</span></code></pre></div>
+<p><img src="varianttracker_files/figure-html/world_choropleth-1.png" width="700"></p>
 </div>
 <div id="adjusting-the-time-window" class="section level3">
 <h3 class="hasAnchor">
 <a href="#adjusting-the-time-window" class="anchor"></a>Adjusting the time window</h3>
 <p>The choropleth above shows the cumulative prevalence of P.1 since it was first detected. However, more recently, its prevalence has dropped. We can adjust this time window by modifying the <code>ndays</code> parameter to only calculate prevalence over the past 60 days. When we make that adjustment, we see there are a lot more countries that haven’t sequenced any samples in the last two months (show in grey), and overall, the prevalence of P.1 has been dropping as the Delta lineages spread across the world.</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">p1_by_country_60days</span> <span class="op">=</span> <span class="fu"><a href="../reference/getCumulativeBySubadmin.html">getCumulativeBySubadmin</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="st">"P.1"</span>, ndays <span class="op">=</span> <span class="fl">60</span><span class="op">)</span>
 <span class="co">#&gt; Retrieving data...</span>
 
@@ -415,14 +399,14 @@
 <span class="co"># join by the ISO3 ID</span>
 <span class="va">gadm_p1_60days</span> <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">gadm</span>, <span class="va">p1_by_country_60days</span>, by<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"GID_0"</span> <span class="op">=</span> <span class="st">"id"</span><span class="op">)</span><span class="op">)</span>
 
-<span class="fu">plotChoropleth</span><span class="op">(</span><span class="va">gadm_p1_60days</span>, title<span class="op">=</span><span class="st">"Cumulative P.1 prevalence in the past 60 days"</span><span class="op">)</span></code></pre></div>
-<p><img src="varianttracker_files/figure-html/unnamed-chunk-2-1.png" width="700"></p>
+<span class="fu"><a href="../reference/plotChoropleth.html">plotChoropleth</a></span><span class="op">(</span><span class="va">gadm_p1_60days</span>, title<span class="op">=</span><span class="st">"Cumulative P.1 prevalence in the past 60 days"</span><span class="op">)</span></code></pre></div>
+<p><img src="varianttracker_files/figure-html/unnamed-chunk-1-1.png" width="700"></p>
 </div>
 <div id="specifying-a-location" class="section level3">
 <h3 class="hasAnchor">
 <a href="#specifying-a-location" class="anchor"></a>Specifying a location</h3>
 <p>Instead of looking at the prevalence by country, you can also specify a location like Brazil, and look at the cumulative prevalence one administrative unit below that. So, for countries, you will get the prevalence at the state/province-level, and for states, you get the prevalnece at the county level. Note that the smaller the geographic area, it’s likely that the uncertainty in these estimates will increase, since there’s less sampling.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 <span class="co"># P.1 prevalence by Brazilian states</span>
 <span class="va">p1_in_brazil</span> <span class="op">=</span> <span class="fu"><a href="../reference/getCumulativeBySubadmin.html">getCumulativeBySubadmin</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="st">"P.1"</span>, location <span class="op">=</span> <span class="st">"Brazil"</span><span class="op">)</span>

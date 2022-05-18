@@ -58,7 +58,7 @@ locations_to_search: a `vector` or `list` of location (World Bank region, countr
 **Example:**
 
 ```{r}
-iso3=getISO3(c("Texas", "Brazil"))
+iso3=getISO3(c("United States of America", "Brazil"))
 print(iso3)
 ```
 
@@ -84,7 +84,7 @@ admin_level: an `integer` representing an administrative level (World Bank regio
 **Example:**
 
 ```{r}
-names=searchLocations(c("California", "Florida", "Texas"), admin_level=1)
+names=searchLocations(c("California", "Florida"), admin_level=1)
 print(names)
 ```
 
@@ -154,7 +154,7 @@ location_names: a `vector` or `list` of location (World Bank region, country, st
 **Example:**
 
 ```{r}
-df=getLocationData(location_names=c("Brazil", "Texas", "San Diego County"))
+df=getLocationData(location_names=c("Brazil", "San Diego"))
 df[!duplicated(df$name), c("name", "date", "confirmed")]
 ```
 
@@ -177,7 +177,7 @@ none
 
 **Example:**
 
-```{r}
+```{r, eval=F, echo=T}
 world_df=getAdmn0()
 length(unique(world_df$name))
 ```
@@ -348,7 +348,7 @@ variable: metric to plot
 **Example:**
 
 ```{r}
-p=plotEpiData(c("Texas", "Brazil", "San Diego County"), "confirmed_per_100k")
+p=plotEpiData(c("Brazil", "San Diego"), "confirmed_per_100k")
 show(p)
 ```
 

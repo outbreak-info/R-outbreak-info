@@ -68,25 +68,12 @@ getEpiData <- function(name=NULL, location_id=NULL, wb_region=NULL, country_name
   q <- c(q, paste0("&size=", paste(size)))
   q <- paste(q, sep="", collapse = "")
   q <- paste0(q, "&fetch_all=true")
-
-  dataurl <- paste0(api.url, "query?q=", q)
-  dataurl <- URLencode(dataurl)
-  resp <- GET(
-      dataurl
-  )
-  if(resp$status_code == 200){
-      resp <- fromJSON(content(resp, "text"), flatten=TRUE)
-  } else {
-      stop("Could not connect to API. Check internet connection and try again. If the problem persists please contact help@outbreak.info.")
-  }
-  max <- resp$total
+  
   scroll.id <- NULL
   results <- list()
   success <- NULL
-  pb <- progress_bar$new(
-    format = "  downloading [:bar] :percent eta: :eta",
-    total = max, clear = FALSE, width= 60)
-  pb$tick(0)
+  pb <- NULL
+  firstQuery = TRUE
   while(is.null(success)){
     dataurl <- paste0(api.url, "query?q=", q)
     dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
@@ -95,18 +82,34 @@ getEpiData <- function(name=NULL, location_id=NULL, wb_region=NULL, country_name
         dataurl
     )
     if(resp$status_code == 200){
-        resp <- fromJSON(content(resp, "text"), flatten=TRUE)
+      resp <- fromJSON(content(resp, "text"), flatten=TRUE)
+      scroll.id <- resp$'_scroll_id'
+      if(!is.null(resp$hits)) {
+        if(class(resp$hits) == "data.frame") {
+          results[[length(results) + 1]] <- resp$hits
+        }
+      }
+      success <- resp$success
+    } else if (resp$status_code == 400) {
+      resp <- fromJSON(content(resp, "text"), flatten=TRUE)
+      success <- resp$success
     } else {
         stop("Could not connect to API. Check internet connection and try again. If the problem persists please contact help@outbreak.info.")
     }
-    resp <- fromJSON(dataurl, flatten=TRUE)
-    scroll.id <- resp$'_scroll_id'
-    results[[length(results) + 1]] <- resp$hits
-    success <- resp$success
+    if(firstQuery){
+      max = resp$total
+      if(max == 0)
+        return(data.frame())
+      pb <- progress_bar$new(
+        format = "  downloading [:bar] :percent eta: :eta",
+        total = max, clear = FALSE, width= 60)
+      pb$tick(0)
+      firstQuery = FALSE
+    }
     if (is.null(success)){
-        pb$tick(size)
+      pb$tick(size)
     } else {
-        pb$finished <- T
+      pb$finished <- T
     }
   }
   pb$terminate()

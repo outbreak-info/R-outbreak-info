@@ -30,7 +30,6 @@ getGenomicsResponse <- function(dataurl, logInfo = T, logWarning = T, logError =
                     dataurl
                 )
             }
-            print(dataurl)
             authToken = resp$headers$`x-auth-token`
             if(!is.null(authToken))
                 setAuthToken(authToken)

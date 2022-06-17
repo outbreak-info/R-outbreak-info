@@ -30,6 +30,7 @@ getGenomicsResponse <- function(dataurl, logInfo = T, logWarning = T, logError =
                     dataurl
                 )
             }
+            print(dataurl)
             authToken = resp$headers$`x-auth-token`
             if(!is.null(authToken))
                 setAuthToken(authToken)
@@ -83,6 +84,7 @@ convert_list_to_dataframe <- function(list_obj){
     res <- lapply(query_keys,
                   function(query_key) {
                       d <- list_obj[[query_key]]
+                      d <- d[!sapply(testd, is.null)]
                       if(class(d) == "data.frame"){
                           d$query_key <- query_key
                       } else {

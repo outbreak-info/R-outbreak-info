@@ -8,7 +8,7 @@ reference:
     Functions to track SARS-CoV-2 variant prevalence worldwide, by country,
     by state/province, or by U.S. county. All sequence data is provided by
     [GISAID](https://www.gisaid.org/). Note that these functions require free
-    **[registration with GISAID](https://www.gisaid.org/registration/register/)**, and 
+    **[registration with GISAID](https://www.gisaid.org/registration/register/)**, and
     you'll need to call `authenticateUser()` at the start of each session.
 - contents:
   - genomicsDataDictionary
@@ -17,7 +17,7 @@ reference:
   - getCollectionDateByLocation
   - getGenomicData
   - getGlobalPrevalence
-  - getLocationID_genomic
+  - getLocationIdGenomic
   - getLag
   - starts_with("getMutation")
   - getPrevalence
@@ -33,7 +33,7 @@ reference:
   - plotPrevalenceOverTime
 - title: "Research Library"
   desc: >
-    Functions to track metadata of COVID-19 publications, clinical trials, datasets, protocols, and more. 
+    Functions to track metadata of COVID-19 publications, clinical trials, datasets, protocols, and more.
     Note that unlike the variant prevalence functions, these functions **do not require a GISAID account**
     or a call to `authenticateUser()`to use them.
 - contents:
@@ -58,4 +58,3 @@ reference:
   - getMetroByCountry
   - plotEpiData
   - searchLocations
-

@@ -91,14 +91,21 @@ See <a href="getSeqCounts.html">getSeqCounts</a> to view similar information by 
     <h2>Arguments</h2>
     <dl><dt>pangolin_lineage</dt>
 <dd><p>PANGO lineage name</p></dd>
+
+
 <dt>location</dt>
 <dd><p>(optional) a location name (if not specified, submission date at the global level returned)</p></dd>
+
+
 <dt>mutations</dt>
 <dd><p>(optional) a `vector` of mutation(s)</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>dataframe</p>
+    
+
+<p>dataframe</p>
     </div>
 
     <div id="ref-examples">
@@ -106,8 +113,8 @@ See <a href="getSeqCounts.html">getSeqCounts</a> to view similar information by 
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">getSubmissionDateByLocation</span><span class="op">(</span>pangolin_lineage<span class="op">=</span><span class="st">"B.1.1.7"</span>, location<span class="op">=</span><span class="st">"California"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Retrieving data... </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>          key      value</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1       date 2022-05-13</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 date_count         26</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1       date 2022-06-01</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 date_count          1</span>
 <span class="r-in"></span>
 </code></pre></div>
     </div>
@@ -123,7 +130,7 @@ See <a href="getSeqCounts.html">getSeqCounts</a> to view similar information by 
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

@@ -103,7 +103,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Cases &amp; Deaths data</h1>
             
-            <h4 data-toc-skip class="date">18 May 2022</h4>
+            <h4 data-toc-skip class="date">24 June 2022</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/outbreak-info/R-outbreak-info/blob/HEAD/vignettes/epivignette.Rmd" class="external-link"><code>vignettes/epivignette.Rmd</code></a></small>
       <div class="hidden name"><code>epivignette.Rmd</code></div>
@@ -405,7 +405,7 @@
 <code class="sourceCode R"><span class="va">df</span><span class="op">=</span><span class="fu"><a href="../reference/getEpiData.html">getEpiData</a></span><span class="op">(</span>name<span class="op">=</span><span class="st">"United States of America"</span>, date<span class="op">=</span><span class="st">"2020-07-01"</span><span class="op">)</span>
 <span class="va">df</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/duplicated.html" class="external-link">duplicated</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">name</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"name"</span>, <span class="st">"date"</span>, <span class="st">"confirmed"</span>, <span class="st">"dead"</span><span class="op">)</span><span class="op">]</span></code></pre></div>
 <pre><code><span class="co">##                       name       date confirmed   dead</span>
-<span class="co">## 1 United States of America 2020-07-01   2694213 128083</span></code></pre>
+<span class="co">## 1 United States of America 2020-07-01   2694213 128140</span></code></pre>
 <hr>
 </div>
 <div class="section level5">
@@ -424,8 +424,8 @@
 <code class="sourceCode R"><span class="va">df</span><span class="op">=</span><span class="fu"><a href="../reference/getLocationData.html">getLocationData</a></span><span class="op">(</span>location_names<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Brazil"</span>, <span class="st">"San Diego"</span><span class="op">)</span><span class="op">)</span>
 <span class="va">df</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/duplicated.html" class="external-link">duplicated</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">name</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"name"</span>, <span class="st">"date"</span>, <span class="st">"confirmed"</span><span class="op">)</span><span class="op">]</span></code></pre></div>
 <pre><code><span class="co">##          name       date confirmed</span>
-<span class="co">## 137 San Diego 2020-02-12         1</span>
-<span class="co">## 296    Brazil 2020-02-12         0</span></code></pre>
+<span class="co">## 202 San Diego 2020-02-12         1</span>
+<span class="co">## 341    Brazil 2020-02-12         0</span></code></pre>
 <hr>
 </div>
 <div class="section level5">
@@ -460,8 +460,8 @@
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">region_df</span><span class="op">=</span><span class="fu"><a href="../reference/getCountryByRegion.html">getCountryByRegion</a></span><span class="op">(</span><span class="st">"South Asia"</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">region_df</span><span class="op">$</span><span class="va">name</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## [1] "Bangladesh"  "Bhutan"      "Afghanistan" "Nepal"       "India"      </span>
-<span class="co">## [6] "Pakistan"    "Sri Lanka"</span></code></pre>
+<pre><code><span class="co">## [1] "Bangladesh"  "Afghanistan" "Bhutan"      "Nepal"       "India"      </span>
+<span class="co">## [6] "Sri Lanka"   "Pakistan"</span></code></pre>
 <hr>
 </div>
 <div class="section level5">
@@ -549,8 +549,8 @@
 <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">admin_df</span><span class="op">$</span><span class="va">name</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## [1] "Sub-Saharan Africa"         "Europe &amp; Central Asia"     </span>
 <span class="co">## [3] ""                           "East Asia &amp; Pacific"       </span>
-<span class="co">## [5] "North America"              "South Asia"                </span>
-<span class="co">## [7] "Latin America &amp; Caribbean"  "Middle East &amp; North Africa"</span></code></pre>
+<span class="co">## [5] "North America"              "Middle East &amp; North Africa"</span>
+<span class="co">## [7] "South Asia"                 "Latin America &amp; Caribbean"</span></code></pre>
 <hr>
 </div>
 </div>
@@ -597,7 +597,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer>

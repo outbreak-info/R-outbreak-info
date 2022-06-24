@@ -94,24 +94,41 @@
     <h2>Arguments</h2>
     <dl><dt>query</dt>
 <dd><p>(optional) constructs a query over ALL fields, or a fielded query searching within specific fields. Fielded query terms should be separated by ` AND ` or ` OR `. See <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax" class="external-link">Elasticserach query strings</a> for more info.</p></dd>
+
+
 <dt>types</dt>
 <dd><p>(optional) vector of resource type to return. The most frequent types include: "Publication", "ClinicalTrial", "Dataset", "Protocol", "SoftwareSourceCode", "Analysis".</p></dd>
+
+
 <dt>size</dt>
 <dd><p>(optional) number of records to return (default = 10)</p></dd>
+
+
 <dt>fetchAll</dt>
 <dd><p>(optional) Boolean whether to return all results for the query</p></dd>
+
+
 <dt>fields</dt>
 <dd><p>(optional) vector specifying which fields to return. Returns all by default. See the <a href="https://discovery.biothings.io/view/outbreak" class="external-link">outbreak schema</a> for possible fields.</p></dd>
+
+
 <dt>sort</dt>
 <dd><p>(optional) field to sort by.  Add `-` to sort in descending order</p></dd>
+
+
 <dt>facets</dt>
 <dd><p>(optional) field by which to aggregate (count) their frequency</p></dd>
+
+
 <dt>facet_size</dt>
 <dd><p>(optional) how many facet groups to include in the facet total (default = 10, max = 1000)</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
     
+
+
     </div>
 
     <div id="ref-examples">
@@ -134,9 +151,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 7 × 2</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   `@type`                         n</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                       <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Publication                  <span style="text-decoration: underline;">2</span>406</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> ClinicalTrial                 423</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Dataset                        54</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Publication                  <span style="text-decoration: underline;">2</span>744</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> ClinicalTrial                 451</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Dataset                        55</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> ImageObject                    14</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Protocol                       13</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> MediaObject                     2</span>
@@ -148,8 +165,8 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 2 × 2</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   `@type`           n</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> ClinicalTrial   423</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Dataset          54</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> ClinicalTrial   451</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Dataset          55</span>
 </code></pre></div>
     </div>
   </div>
@@ -164,7 +181,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

@@ -90,16 +90,25 @@
     <h2>Arguments</h2>
     <dl><dt>pangolin_lineage</dt>
 <dd><p>PANGO lineage name</p></dd>
+
+
 <dt>location</dt>
 <dd><p>(optional) a location name (if not specified, cumulative prevalence at the country level globally returned)</p></dd>
+
+
 <dt>mutations</dt>
 <dd><p>(optional) a `vector` of mutation(s)</p></dd>
+
+
 <dt>ndays</dt>
 <dd><p>(optional) an `integer` specifying number of days from current date to calculative cumuative counts (if not specified, no limit on window)</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>dataframe</p>
+    
+
+<p>dataframe</p>
     </div>
 
     <div id="ref-examples">
@@ -110,42 +119,42 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>           date              name  id total_count lineage_count cum_total_count</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 46  2020-03-24              Cuba CUB           1             0               2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 79  2021-02-05     Guinea-Bissau GNB           3             2              48</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 171 2021-03-05           Somalia SOM           1             1              30</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 200 2021-03-26           Vanuatu VUT           1             0               2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 203 2021-04-19 Wallis and Futuna WLF           1             1              10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 173 2021-03-05           Somalia SOM           1             1              30</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 202 2021-03-26           Vanuatu VUT           1             0               2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 205 2021-04-19 Wallis and Futuna WLF           1             1              10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 62  2021-05-04     Faroe Islands FRO           1             1              42</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     cum_lineage_count proportion proportion_ci_lower proportion_ci_upper</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 46                  0 0.00000000        0.0002169085           0.6668218</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 79                 32 0.66666667        0.5266543998           0.7872517</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 171                 7 0.23333333        0.1109209072           0.4043999</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 200                 1 0.50000000        0.0608302759           0.9391697</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 203                10 1.00000000        0.7828037325           0.9999521</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 173                 7 0.23333333        0.1109209072           0.4043999</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 202                 1 0.50000000        0.0608302759           0.9391697</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 205                10 1.00000000        0.7828037325           0.9999521</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 62                  2 0.04761905        0.0100261415           0.1441004</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     lineage</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 46  B.1.1.7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 79  B.1.1.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 171 B.1.1.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 200 B.1.1.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 203 B.1.1.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 173 B.1.1.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 202 B.1.1.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 205 B.1.1.7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 62  B.1.1.7</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># County-level prevalence of B.1.1.7</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">getCumulativeBySubadmin</span><span class="op">(</span>pangolin_lineage<span class="op">=</span><span class="st">"B.1.1.7"</span>, location<span class="op">=</span><span class="st">"California"</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Retrieving data... </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          date   name              id total_count lineage_count cum_total_count</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 26 2021-03-09  Modoc USA_US-CA_06049           1             0               5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3  2021-09-14 Alpine USA_US-CA_06003           1             0               2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19 2021-09-14 Lassen USA_US-CA_06035         113             0             136</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 47 2021-12-01 Sierra USA_US-CA_06091           1             0               8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 33 2021-12-10 Plumas USA_US-CA_06063           1             0              10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 15 2021-12-25   Inyo USA_US-CA_06027           1             0              75</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>          date    name              id total_count lineage_count cum_total_count</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 26 2021-03-09   Modoc USA_US-CA_06049           1             0               5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3  2021-09-14  Alpine USA_US-CA_06003           1             0               2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19 2021-09-14  Lassen USA_US-CA_06035         113             0             137</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 47 2021-12-01  Sierra USA_US-CA_06091           1             0               8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 15 2021-12-25    Inyo USA_US-CA_06027           1             0              75</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 54 2022-01-05 Trinity USA_US-CA_06105           2             0              46</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    cum_lineage_count proportion proportion_ci_lower proportion_ci_upper lineage</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 26                 0 0.00000000        0.0000934206          0.37937714 B.1.1.7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3                  0 0.00000000        0.0002169085          0.66682175 B.1.1.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 19                 2 0.01470588        0.0030681956          0.04633378 B.1.1.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19                 2 0.01459854        0.0030457104          0.04600164 B.1.1.7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 47                 0 0.00000000        0.0000594903          0.26221725 B.1.1.7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 33                 1 0.10000000        0.0110116738          0.38131477 B.1.1.7</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 15                 2 0.02666667        0.0055819955          0.08279463 B.1.1.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 54                 3 0.06521739        0.0187092403          0.16391923 B.1.1.7</span>
 <span class="r-in"></span>
 <span class="r-in"></span>
 </code></pre></div>
@@ -162,7 +171,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

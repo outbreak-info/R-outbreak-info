@@ -91,18 +91,29 @@
     <h2>Arguments</h2>
     <dl><dt>pangolin_lineage</dt>
 <dd><p>(optional) PANGO lineage name or vector of PANGO lineage names. Either `pangolin_lineage` or `mutations` needs to be specified. A list of lineages will return a long dataframe with `lineage` as a variable; if you want to calculate the prevalence of lineage1 or lineage2 together, enter the lineages separated by " OR ". For instance, to calculate the prevalence of Delta, you'll need to supply `"B.1.617.2 OR AY.1 OR AY.2 OR ..."` **Be sure to include the space around "OR" and it must be capitalized.**</p></dd>
+
+
 <dt>location</dt>
 <dd><p>(optional) a location name</p></dd>
+
+
 <dt>mutations</dt>
 <dd><p>(optional) a `vector` of mutation(s). Either `pangolin_lineage` or `mutations` needs to be specified. Mutations should be specified in the format `gene:mutation`, like "S:E484K"</p></dd>
+
+
 <dt>cumulative</dt>
 <dd><p>(optional) `Boolean` (T/F), T returns cumulative prevalence since first day of detection</p></dd>
+
+
 <dt>logInfo</dt>
 <dd><p>(optional) `Boolean` (T/F), T logs helper messages during API calls.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>dataframe</p>
+    
+
+<p>dataframe</p>
     </div>
 
     <div id="ref-examples">
@@ -118,33 +129,33 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> Retrieving data... </span>
 <span class="r-in"><span class="va">delta_and_brazil</span><span class="op">[</span><span class="va">delta_and_brazil</span><span class="op">$</span><span class="va">date</span> <span class="op">==</span> <span class="st">"2021-09-01"</span>,<span class="op">]</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           date total_count lineage_count total_count_rolling</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 48  2021-09-01         532             0            408.4286</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 319 2021-09-01         532             0            408.4286</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 694 2021-09-01         532             1            408.4286</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 48  2021-09-01         539             0                 410</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 363 2021-09-01         539             0                 410</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 783 2021-09-01         539             2                 410</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     lineage_count_rolling   proportion proportion_ci_lower proportion_ci_upper</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 48              0.0000000 0.0000000000        1.202778e-06         0.006134059</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 319             0.0000000 0.0000000000        1.202778e-06         0.006134059</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 694             0.2857143 0.0006995453        1.202778e-06         0.006134059</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 48              0.0000000 0.0000000000        1.196914e-06         0.006104247</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 363             0.1428571 0.0003484321        1.196914e-06         0.006104247</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 783             0.5714286 0.0013937282        2.632910e-04         0.011342640</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       lineage location</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 48       AY.4   Brazil</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 319     AY.34   Brazil</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 694 B.1.617.2   Brazil</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 363     AY.34   Brazil</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 783 B.1.617.2   Brazil</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># AY.4 OR B.1.617.2 in Brazil (AY.4, AY.34 and B.1.617.2 combined)</span></span>
 <span class="r-in"><span class="va">delta_or_brazil</span> <span class="op">=</span> <span class="fu">getPrevalence</span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="st">"AY.4 OR AY.34 OR B.1.617.2"</span>, location <span class="op">=</span> <span class="st">"Brazil"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Retrieving data... </span>
 <span class="r-in"><span class="va">delta_or_brazil</span><span class="op">[</span><span class="va">delta_and_brazil</span><span class="op">$</span><span class="va">date</span> <span class="op">==</span> <span class="st">"2021-09-01"</span>,<span class="op">]</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>           date total_count lineage_count total_count_rolling</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 48  2021-06-02         430             0            374.8571</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 319 2022-02-28         116             0            140.8571</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 48  2021-06-01         606             0           368.42857</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 363 2022-04-12         120             0            90.57143</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> NA        &lt;NA&gt;          NA            NA                  NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     lineage_count_rolling proportion proportion_ci_lower proportion_ci_upper</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 48                      0          0        1.308552e-06         0.006671693</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 319                     0          0        3.476339e-06         0.017626399</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 48                      0          0        1.333426e-06         0.006798082</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 363                     0          0        5.381166e-06         0.027152428</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> NA                     NA         NA                  NA                  NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                        lineage location</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 48  AY.4 OR AY.34 OR B.1.617.2   Brazil</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 319 AY.4 OR AY.34 OR B.1.617.2   Brazil</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 363 AY.4 OR AY.34 OR B.1.617.2   Brazil</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> NA                        &lt;NA&gt;     &lt;NA&gt;</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co"># S:E484K mutation prevalence worldwide</span></span>
@@ -168,7 +179,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

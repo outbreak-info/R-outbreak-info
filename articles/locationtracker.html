@@ -103,7 +103,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Location Tracker</h1>
             
-            <h4 data-toc-skip class="date">18 May 2022</h4>
+            <h4 data-toc-skip class="date">24 June 2022</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/outbreak-info/R-outbreak-info/blob/HEAD/vignettes/locationtracker.Rmd" class="external-link"><code>vignettes/locationtracker.Rmd</code></a></small>
       <div class="hidden name"><code>locationtracker.Rmd</code></div>
@@ -147,7 +147,7 @@
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># This ends up being a large data frame. Let's take a look at what's inside:</span>
 <span class="va">usa_60d</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## Rows: 2,216</span>
+<pre><code><span class="co">## Rows: 2,791</span>
 <span class="co">## Columns: 6</span>
 <span class="co">## $ date               <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2020-01-26, 2020-01-27, 2020-01-28, 2020-01-29, 20…</span>
 <span class="co">## $ total_count        <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 3, 1, 2, 4, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 1, 1, …</span>
@@ -172,34 +172,34 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">ba.1.1</td>
-<td align="right">0.00e+00</td>
-<td align="right">0.6575094</td>
+<td align="left">ba.2.12.1</td>
+<td align="right">0</td>
+<td align="right">0.6749271</td>
 </tr>
 <tr class="even">
 <td align="left">ba.2</td>
-<td align="right">1.08e-05</td>
-<td align="right">0.4787350</td>
+<td align="right">0</td>
+<td align="right">0.4540270</td>
 </tr>
 <tr class="odd">
-<td align="left">ba.2.12.1</td>
-<td align="right">0.00e+00</td>
-<td align="right">0.3860000</td>
+<td align="left">ba.5</td>
+<td align="right">0</td>
+<td align="right">0.2244898</td>
 </tr>
 <tr class="even">
-<td align="left">ba.2.3</td>
-<td align="right">0.00e+00</td>
-<td align="right">0.1000000</td>
+<td align="left">ba.4</td>
+<td align="right">0</td>
+<td align="right">0.1156069</td>
 </tr>
 <tr class="odd">
-<td align="left">ba.2.12</td>
-<td align="right">0.00e+00</td>
-<td align="right">0.0706667</td>
+<td align="left">ba.2.3</td>
+<td align="right">0</td>
+<td align="right">0.0960133</td>
 </tr>
 <tr class="even">
 <td align="left">ba.2.9</td>
-<td align="right">0.00e+00</td>
-<td align="right">0.0682952</td>
+<td align="right">0</td>
+<td align="right">0.0724280</td>
 </tr>
 </tbody>
 </table>
@@ -267,16 +267,16 @@
 <span class="co">## Retrieving data...</span></code></pre>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">who_prevalence</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## Rows: 3,217</span>
+<pre><code><span class="co">## Rows: 3,377</span>
 <span class="co">## Columns: 10</span>
 <span class="co">## $ date                  <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2020-03-15, 2020-03-16, 2020-03-17, 2020-03-18,…</span>
-<span class="co">## $ total_count           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 997, 930, 767, 828, 679, 591, 459, 376, 626, 720…</span>
+<span class="co">## $ total_count           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 999, 933, 770, 828, 684, 593, 459, 383, 626, 720…</span>
 <span class="co">## $ lineage_count         <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 5, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …</span>
-<span class="co">## $ total_count_rolling   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 440.0000, 545.4286, 627.8571, 711.8571, 754.4286…</span>
+<span class="co">## $ total_count_rolling   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 440.4286, 546.2857, 629.1429, 713.1429, 756.4286…</span>
 <span class="co">## $ lineage_count_rolling <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.7142857, 0.7142857, 0.7142857, 0.7142857, 0.85…</span>
-<span class="co">## $ proportion            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.0016233766, 0.0013095862, 0.0011376564, 0.0010…</span>
-<span class="co">## $ proportion_ci_lower   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2.453313e-04, 1.980486e-04, 1.718652e-04, 1.5158…</span>
-<span class="co">## $ proportion_ci_upper   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.010572943, 0.008543750, 0.007418311, 0.0065456…</span>
+<span class="co">## $ proportion            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.0016217970, 0.0013075314, 0.0011353315, 0.0010…</span>
+<span class="co">## $ proportion_ci_lower   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2.453313e-04, 1.976857e-04, 1.715919e-04, 1.5137…</span>
+<span class="co">## $ proportion_ci_upper   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.010572943, 0.008528162, 0.007406556, 0.0065365…</span>
 <span class="co">## $ lineage               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "B.1.1.7 OR Q.1 OR Q.2 OR Q.3 OR Q.4 OR Q.5 OR Q…</span>
 <span class="co">## $ location              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "United States", "United States", "United States…</span></code></pre>
 </div>
@@ -357,9 +357,6 @@
 <span class="co"># Get the cumulative prevalence of each of the VOCs</span>
 <span class="va">voc_prev</span> <span class="op">=</span> <span class="fu">purrr</span><span class="fu">::</span><span class="fu"><a href="https://purrr.tidyverse.org/reference/map.html" class="external-link">map_df</a></span><span class="op">(</span><span class="va">vocs</span><span class="op">$</span><span class="va">char_muts_parent_query</span>, <span class="kw">function</span><span class="op">(</span><span class="va">variant</span><span class="op">)</span> <span class="fu"><a href="../reference/getPrevalence.html">getPrevalence</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="va">variant</span>, location <span class="op">=</span> <span class="va">locationName</span>, cumulative <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code><span class="co">## Retrieving data... </span>
-<span class="co">## Retrieving data... </span>
-<span class="co">## Retrieving data... </span>
-<span class="co">## Retrieving data... </span>
 <span class="co">## Retrieving data...</span></code></pre>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Join back the WHO names, since they're prettier.</span>
@@ -367,13 +364,13 @@
 <span class="va">voc_prev</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">lineage</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <colgroup>
-<col width="19%">
-<col width="14%">
-<col width="15%">
 <col width="16%">
-<col width="15%">
-<col width="11%">
-<col width="7%">
+<col width="12%">
+<col width="14%">
+<col width="14%">
+<col width="14%">
+<col width="9%">
+<col width="17%">
 </colgroup>
 <thead><tr class="header">
 <th align="right">value.global_prevalence</th>
@@ -386,49 +383,22 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="right">0.2743863</td>
-<td align="right">3234932</td>
-<td align="right">887621</td>
+<td align="right">0.3347660</td>
+<td align="right">3467580</td>
+<td align="right">1160828</td>
 <td align="left">2020-04-03</td>
-<td align="left">2022-05-09</td>
+<td align="left">2022-06-17</td>
 <td align="left">United States</td>
 <td align="left">Omicron</td>
 </tr>
 <tr class="even">
-<td align="right">0.4525710</td>
-<td align="right">3249207</td>
-<td align="right">1470497</td>
-<td align="left">2020-03-12</td>
-<td align="left">2022-04-19</td>
+<td align="right">0.0889217</td>
+<td align="right">3467580</td>
+<td align="right">308343</td>
+<td align="left">2020-04-03</td>
+<td align="left">2022-06-17</td>
 <td align="left">United States</td>
-<td align="left">Delta</td>
-</tr>
-<tr class="odd">
-<td align="right">0.0757923</td>
-<td align="right">3247746</td>
-<td align="right">246154</td>
-<td align="left">2020-03-15</td>
-<td align="left">2022-03-14</td>
-<td align="left">United States</td>
-<td align="left">Alpha</td>
-</tr>
-<tr class="even">
-<td align="right">0.0009788</td>
-<td align="right">3219145</td>
-<td align="right">3151</td>
-<td align="left">2020-05-07</td>
-<td align="left">2021-12-09</td>
-<td align="left">United States</td>
-<td align="left">Beta</td>
-</tr>
-<tr class="odd">
-<td align="right">0.0092521</td>
-<td align="right">3232766</td>
-<td align="right">29910</td>
-<td align="left">2020-04-07</td>
-<td align="left">2021-12-09</td>
-<td align="left">United States</td>
-<td align="left">Gamma</td>
+<td align="left">BA.2* [Omicron (BA.2.X)]</td>
 </tr>
 </tbody>
 </table>
@@ -448,11 +418,11 @@
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Plot the results</span>
 <span class="fu"><a href="../reference/plotPrevalenceDotPlot.html">plotPrevalenceDotPlot</a></span><span class="op">(</span><span class="va">delta_by_state</span>, <span class="st">"Delta prevalence over the last 90 days in the United States"</span>, subtitle <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"As of "</span>, <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.Date</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">'%d %B %Y'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## Warning: Removed 16 rows containing missing values (geom_segment).</span></code></pre>
+<pre><code><span class="co">## Warning: Removed 31 rows containing missing values (geom_segment).</span></code></pre>
 <p><img src="locationtracker_files/figure-html/cum_prev_by_state-1.png" width="100%"></p>
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/plotPrevalenceDotPlot.html">plotPrevalenceDotPlot</a></span><span class="op">(</span><span class="va">delta_in_california</span>, <span class="st">"Delta prevalence over the last 90 days in the United States"</span>, subtitle <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"As of "</span>, <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.Date</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">'%d %B %Y'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## Warning: Removed 29 rows containing missing values (geom_segment).</span></code></pre>
+<pre><code><span class="co">## Warning: Removed 41 rows containing missing values (geom_segment).</span></code></pre>
 <p><img src="locationtracker_files/figure-html/cum_prev_by_state-2.png" width="100%"></p>
 </div>
 </div>
@@ -475,7 +445,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer>

@@ -91,12 +91,17 @@ Variants Under Monitoring, and de-escalated variants maintained by the [outbreak
     <h2>Arguments</h2>
     <dl><dt>lineage</dt>
 <dd><p>String with the name of a Pango lineage or WHO name</p></dd>
+
+
 <dt>returnQueryString</dt>
 <dd><p>Boolean to return a query string to be piped into functions like <a href="getPrevalence.html">getPrevalence</a> (collapses vector by `"OR"`)</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>list containing the sublineages associated with that lineage or WHO designation</p>
+    
+
+<p>list containing the sublineages associated with that lineage or WHO designation</p>
     </div>
 
     <div id="ref-examples">
@@ -140,20 +145,20 @@ Variants Under Monitoring, and de-escalated variants maintained by the [outbreak
 <span class="r-out co"><span class="r-pr">#&gt;</span> [171] "AY.85"      "AY.86"      "AY.87"      "AY.88"      "AY.89"     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [176] "AY.90"      "AY.91"      "AY.91.1"    "AY.92"      "AY.93"     </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [181] "AY.94"      "AY.95"      "AY.96"      "AY.97"      "AY.98"     </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [186] "AY.98.1"    "AY.99"      "AY.99.1"    "AY.99.2"    "AY.100"    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [191] "AY.101"     "AY.102"     "AY.102.1"   "AY.102.2"   "AY.103"    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [196] "AY.103.1"   "AY.103.2"   "AY.104"     "AY.105"     "AY.106"    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [201] "AY.107"     "AY.108"     "AY.109"     "AY.110"     "AY.111"    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [206] "AY.112"     "AY.112.1"   "AY.112.2"   "AY.112.3"   "AY.113"    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [211] "AY.114"     "AY.115"     "AY.116"     "AY.116.1"   "AY.117"    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [216] "AY.118"     "AY.119"     "AY.119.1"   "AY.119.2"   "AY.120"    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [221] "AY.120.1"   "AY.120.2"   "AY.120.2.1" "AY.121"     "AY.121.1"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [226] "AY.122"     "AY.122.1"   "AY.122.2"   "AY.122.3"   "AY.122.4"  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [231] "AY.122.5"   "AY.122.6"   "AY.123"     "AY.123.1"   "AY.124"    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [236] "AY.124.1"   "AY.124.1.1" "AY.125"     "AY.125.1"   "AY.126"    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [241] "AY.127"     "AY.127.1"   "AY.127.2"   "AY.127.3"   "AY.128"    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [246] "AY.129"     "AY.130"     "AY.131"     "AY.132"     "AY.133"    </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [251] "AY.134"     "B.1.617.2" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [186] "AY.98.1"    "AY.98.1.1"  "AY.99"      "AY.99.1"    "AY.99.2"   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [191] "AY.100"     "AY.101"     "AY.102"     "AY.102.1"   "AY.102.2"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [196] "AY.103"     "AY.103.1"   "AY.103.2"   "AY.104"     "AY.105"    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [201] "AY.106"     "AY.107"     "AY.108"     "AY.109"     "AY.110"    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [206] "AY.111"     "AY.112"     "AY.112.1"   "AY.112.2"   "AY.112.3"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [211] "AY.113"     "AY.114"     "AY.115"     "AY.116"     "AY.116.1"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [216] "AY.117"     "AY.118"     "AY.119"     "AY.119.1"   "AY.119.2"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [221] "AY.120"     "AY.120.1"   "AY.120.2"   "AY.120.2.1" "AY.121"    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [226] "AY.121.1"   "AY.122"     "AY.122.1"   "AY.122.2"   "AY.122.3"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [231] "AY.122.4"   "AY.122.5"   "AY.122.6"   "AY.123"     "AY.123.1"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [236] "AY.124"     "AY.124.1"   "AY.124.1.1" "AY.125"     "AY.125.1"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [241] "AY.126"     "AY.127"     "AY.127.1"   "AY.127.2"   "AY.127.3"  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [246] "AY.128"     "AY.129"     "AY.130"     "AY.131"     "AY.132"    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [251] "AY.133"     "AY.134"     "B.1.617.2" </span>
 <span class="r-in"><span class="fu">lookupSublineages</span><span class="op">(</span><span class="st">"epsilon"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "B.1.427"   "B.1.429"   "B.1.429.1"</span>
 <span class="r-in"><span class="fu">lookupSublineages</span><span class="op">(</span><span class="st">"epsilon"</span>, returnQueryString <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -180,7 +185,7 @@ Variants Under Monitoring, and de-escalated variants maintained by the [outbreak
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
 </div>
 
       </footer></div>

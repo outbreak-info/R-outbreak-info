@@ -5,6 +5,7 @@ OUTBREAK_INFO_AUTH = "https://api.outbreak.info/genomics/get-auth-token"
 #' @description Authenticate API to get access to genomics data
 #'
 #' @import httr
+#' @import crayon
 #'
 #' @return url
 #'

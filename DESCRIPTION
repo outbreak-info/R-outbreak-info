@@ -26,6 +26,7 @@ Imports:
     tidyr,
     httr,
     yaml,
+    crayon,
     sf
 RoxygenNote: 7.1.2
 Suggests:

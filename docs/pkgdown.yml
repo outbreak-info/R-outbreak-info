@@ -1,5 +1,5 @@
-pandoc: 2.7.3
-pkgdown: 1.6.1
+pandoc: 2.17.1.1
+pkgdown: 2.0.5
 pkgdown_sha: ~
 articles:
   epivignette: epivignette.html
@@ -7,5 +7,5 @@ articles:
   outbreakinfo: outbreakinfo.html
   researchlibrary: researchlibrary.html
   varianttracker: varianttracker.html
-last_built: 2021-11-03T19:21Z
+last_built: 2022-06-24T16:19Z
 

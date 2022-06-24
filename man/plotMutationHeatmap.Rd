@@ -15,9 +15,6 @@ plotMutationHeatmap(df, gene2Plot = "S", title = NULL, lightBorders = TRUE)
 
 \item{lightBorders}{(optional) boolean; whether the borders between grid items should be separated with a light or dark border.}
 }
-\value{
-
-}
 \description{
 Plots a heatamp of mutation prevalence across particular lineages.
 }
@@ -25,7 +22,4 @@ Plots a heatamp of mutation prevalence across particular lineages.
 p1 = getMutationsByLineage(pangolin_lineage = "P.1", frequency = 0.5)
 plotMutationHeatmap(p1, gene2Plot = "ORF1a")
 
-delta_lineages = lookupSublineages("Delta", returnQueryString = FALSE)
-delta_mutations = getMutationsByLineage(pangolin_lineage=delta_lineages, frequency=0.75)
-plotMutationHeatmap(delta_mutations, title = "S-gene mutations in Delta lineages")
 }

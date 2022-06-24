@@ -22,7 +22,7 @@ See \link[outbreakinfo]{getSubmissionDateByLocation} to view similar information
 }
 \examples{
 # Retrieves the number of samples sequenced in the U.S. each day, by date of sample collection
-getSeqCounts(location="United States of America")
+getSeqCounts(location="United States")
 
 # Returns the total number of global sequences in the outbreak.info API.
 getSeqCounts(cumulative=TRUE)

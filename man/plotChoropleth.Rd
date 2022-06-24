@@ -21,10 +21,7 @@ plotChoropleth(
 
 \item{subtitle}{(optional) Subtitle to include on plot}
 
-\item{proj4}{(optional) PROJ4 projection string used to project geographic coordinates. \href{Wagner VII}{https://proj.org/operations/projections/wag7.html}, appropriate for World maps, is used by default}
-}
-\value{
-
+\item{proj4}{(optional) PROJ4 projection string used to project geographic coordinates. \href[Wagner VII]{https://proj.org/operations/projections/wag7.html}, appropriate for World maps, is used by default}
 }
 \description{
 Basic plotting function to create a choropleth (map with areas shaded by prevalence)

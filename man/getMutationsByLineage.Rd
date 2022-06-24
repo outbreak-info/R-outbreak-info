@@ -22,11 +22,4 @@ Retrieve all mutations in a specified lineage above a threshold
 \examples{
 p1 = getMutationsByLineage(pangolin_lineage="P.1", frequency=0.5)
 
-# get all mutations in at least 80\% of the combined delta lineages
-delta_lineages_combined = lookupSublineages("Delta", returnQueryString = TRUE)
-delta_mutations_combined = getMutationsByLineage(pangolin_lineage=delta_lineages_combined, frequency=0.75)
-
-# get all mutations in at least 80\% of one of the delta lineages
-delta_lineages = lookupSublineages("Delta", returnQueryString = FALSE)
-delta_mutations = getMutationsByLineage(pangolin_lineage=delta_lineages, frequency=0.75)
 }

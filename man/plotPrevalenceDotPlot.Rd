@@ -15,19 +15,14 @@ plotPrevalenceDotPlot(df, title = NULL, subtitle = NULL, dot_size = 3)
 
 \item{dot_size}{(optional) Dot plot size (in mm)}
 }
-\value{
-
-}
 \description{
 Plots a dot plot of prevalences of a variant in a specific location
 }
 \examples{
-# Query to get the most recent lineages associated with Delta
-delta_lineages = lookupSublineages("Delta", returnQueryString = TRUE)
 
-# Calculate the proportion of sequences assigned to Delta by U.S. State
-delta_by_state = getCumulativeBySubadmin(pangolin_lineage = delta_lineages, location = "United States", ndays = 90)
+# Calculate the proportion of sequences assigned to BA.2 or BA.2.12.1 by U.S. State
+prev_by_state = getCumulativeBySubadmin(pangolin_lineage = c("BA.2", "BA.2.12.1"), location = "United States", ndays = 90)
 
 # Plot the results
-plotPrevalenceDotPlot(delta_by_state, "Delta prevalence over the last 90 days in the United States", subtitle = paste0("As of ", format(Sys.Date(), '\%d \%B \%Y')))
+plotPrevalenceDotPlot(prev_by_state, "Prevalence over the last 90 days in the United States", subtitle = paste0("As of ", format(Sys.Date(), '\%d \%B \%Y')))
 }

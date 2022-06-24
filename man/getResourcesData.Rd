@@ -32,9 +32,6 @@ getResourcesData(
 
 \item{facet_size}{(optional) how many facet groups to include in the facet total (default = 10, max = 1000)}
 }
-\value{
-
-}
 \description{
 Get COVID-19 resource metadata
 }

@@ -22,7 +22,6 @@ Variants Under Monitoring, and de-escalated variants maintained by the [outbreak
 }
 \examples{
 # WHO-designated lineages
-lookupSublineages("Delta")
 lookupSublineages("epsilon")
 lookupSublineages("epsilon", returnQueryString = TRUE)
 # Pango lineage

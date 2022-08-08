@@ -8,8 +8,8 @@
 
 getGenomicsResponse <- function(dataurl, logInfo = T, logWarning = T, logError = T){
   # add a check if the URL is too long
-  if(nchar(dataurl) > 3000) {
-    warning("Your requested API URL is too long (> 3000 characters). This commonly happens when you add too many lineages and/or locations. Try breaking your request up into pieces.")
+  if(nchar(dataurl) > 2000) {
+    warning("Your requested API URL is too long (> 2000 characters). This commonly happens when you add too many lineages and/or locations. Try breaking your request up into pieces.")
   }
   
   scroll.id <- NULL

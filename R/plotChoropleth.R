@@ -4,7 +4,7 @@
 #' @param fillVar (optional) Which variable within `df` that should be used to fill the location areas. (`proportion` by default)
 #' @param title (optional) Title to include on plot
 #' @param subtitle (optional) Subtitle to include on plot
-#' @param proj4 (optional) PROJ4 projection string used to project geographic coordinates. \href[Wagner VII]{https://proj.org/operations/projections/wag7.html}, appropriate for World maps, is used by default
+#' @param proj4 (optional) PROJ4 projection string used to project geographic coordinates. \href{Wagner VII}{https://proj.org/operations/projections/wag7.html}, appropriate for World maps, is used by default
 #'
 #' @import sf
 #' @return

@@ -7,11 +7,7 @@
 #' @export
 
 getGenomicsResponse <- function(dataurl, logInfo = T, logWarning = T, logError = T){
-  # add a check if the URL is too long
-  if(nchar(dataurl) > 2000) {
-    warning("Your requested API URL is too long (> 2000 characters). This commonly happens when you add too many lineages and/or locations. Try breaking your request up into pieces.")
-  }
-  
+
   scroll.id <- NULL
   results <- list()
   success <- NULL
@@ -48,6 +44,8 @@ getGenomicsResponse <- function(dataurl, logInfo = T, logWarning = T, logError =
         warning("You have exceeded the API usage limit. Please limit the usage to 1 request/minute.\n")
       } else if (resp$status_code == 400){
         warning("Malformed token. Please reauthenticate by calling the authenticateUser() function.\n")
+      } else if (resp$status_code == 414){
+        warning("Your requested API URL is too long (> 2000 characters). This commonly happens when you add too many lineages and/or locations. Please try breaking up a single call into multiple requests.\n")
       } else if(resp$status_code == 200){
         resp <- fromJSON(content(resp, "text"), flatten=TRUE)
         if(length(resp$results) > 0) resp_df <- convert_list_to_dataframe(resp$results) else resp_df <- data.frame()

@@ -78,19 +78,19 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">getEpiData</span><span class="op">(</span>
-  name <span class="op">=</span> <span class="cn">NULL</span>,
-  location_id <span class="op">=</span> <span class="cn">NULL</span>,
-  wb_region <span class="op">=</span> <span class="cn">NULL</span>,
-  country_name <span class="op">=</span> <span class="cn">NULL</span>,
-  state_name <span class="op">=</span> <span class="cn">NULL</span>,
-  admin_level <span class="op">=</span> <span class="cn">NULL</span>,
-  date <span class="op">=</span> <span class="cn">NULL</span>,
-  mostRecent <span class="op">=</span> <span class="cn">NULL</span>,
-  fields <span class="op">=</span> <span class="cn">NULL</span>,
-  sort <span class="op">=</span> <span class="cn">NULL</span>,
-  size <span class="op">=</span> <span class="fl">1000</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">getEpiData</span><span class="op">(</span></span>
+<span>  name <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  location_id <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  wb_region <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  country_name <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  state_name <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  admin_level <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  date <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  mostRecent <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  fields <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  sort <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  size <span class="op">=</span> <span class="fl">1000</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -148,55 +148,55 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu">getEpiData</span><span class="op">(</span>name<span class="op">=</span><span class="st">"United States of America"</span>, date<span class="op">=</span><span class="st">"2020-07-01"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   CBSA FIPS            ID State                    X_id X_score admin1 admin2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   NA   60 USA_None_None    NA USA_None_None2020-07-01 15.2304   None   None</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">getEpiData</span><span class="op">(</span>name<span class="op">=</span><span class="st">"United States of America"</span>, date<span class="op">=</span><span class="st">"2020-07-01"</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   CBSA FIPS            ID State                    X_id  X_score admin1 admin2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   NA   60 USA_None_None    NA USA_None_None2020-07-01 15.27916   None   None</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   admin_level confirmed confirmed_doublingRate confirmed_numIncrease</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1           0   2694213               19.89252                 49123</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1           0   2694211               19.89222                 49121</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   confirmed_numIncrease_per_100k confirmed_pctIncrease confirmed_per_100k</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                       14.74122              1.823278           808.5009</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                       14.74062              1.823205           808.5003</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                                               confirmed_per_100k_breaks</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.000, 1322.746, 3885.187, 6948.298, 10509.018, 15072.861, 21909.317, 31666.216, 42082.310, 56272.820</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.000, 1776.635, 5123.324, 8943.491, 13635.721, 20764.190, 29990.744, 39440.162, 48546.725, 59437.656</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   confirmed_rolling confirmed_rolling_14days_ago</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1          44609.43                     27388.43</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1          44609.29                     27388.14</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   confirmed_rolling_14days_ago_diff</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                             17221</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                confirmed_rolling_14days_ago_diff_breaks</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -556204.438, -283666.570, -104463.644, -38131.287, -7707.072, 9200.357, 42645.143, 108713.430, 313010.289, 482448.844</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                          17221.14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                         confirmed_rolling_14days_ago_diff_breaks</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -555621.562, -355640.930, -148866.359, -79153.859, -32728.000, -7599.643, 13391.429, 65217.215, 316367.859, 482412.844, 482413.844, 482414.844</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   confirmed_rolling_14days_ago_diff_per_100k</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                   5.167815</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                   5.167858</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                                        confirmed_rolling_14days_ago_diff_per_100k_breaks</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -804.5878, -360.2803, -189.5981, -95.1710, -37.1021, -8.8567, 19.5585, 94.8180, 243.7197, 751.8091, 752.8091, 753.8091</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -804.5878, -426.6777, -210.4439, -97.6454, -38.0168, -9.1269, 22.2441, 96.1383, 256.5845, 751.8091, 752.8091, 753.8091</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   confirmed_rolling_14days_ago_per_100k</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                              8.218938</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                            confirmed_rolling_breaks</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -42703.000, 4982.786, 18521.214, 42691.787, 80701.644, 136301.930, 211335.000, 311731.656, 506757.500, 807809.438</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                              8.218852</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                           confirmed_rolling_breaks</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -42703.000, 4048.286, 14837.571, 32500.500, 59172.428, 99924.859, 155669.070, 242144.148, 488040.078, 807741.000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   confirmed_rolling_per_100k</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                   13.38675</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                  confirmed_rolling_per_100k_breaks</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -65.4454, 11.3006, 36.1998, 75.6166, 138.6043, 223.9377, 320.0984, 436.2022, 628.5648, 1177.3400</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                   13.38671</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                confirmed_rolling_per_100k_breaks</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -65.4454, 8.8072, 27.3020, 56.1225, 97.3670, 160.1014, 254.8099, 382.7647, 584.9748, 1177.3400</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               country_name       date   dead dead_doublingRate dead_numIncrease</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 United States of America 2020-07-01 128140         -25.54317              710</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 United States of America 2020-07-01 128083         -25.04468              701</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   dead_numIncrease_per_100k dead_pctIncrease dead_per_100k</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                 0.2130625        0.5540815      38.45327</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                 0.2103617        0.5473014      38.43617</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                                            dead_per_100k_breaks</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.0000, 16.0601, 47.9801, 87.7952, 133.1028, 185.0807, 248.1171, 342.4812, 496.1445, 647.2947</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.0000, 16.4026, 48.5592, 88.3316, 135.6602, 191.9037, 255.4183, 348.8707, 494.2044, 650.4944</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   dead_rolling dead_rolling_14days_ago dead_rolling_14days_ago_diff</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1     520.8571                761.5714                    -240.7143</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                dead_rolling_14days_ago_diff_breaks</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -2940.1428, -1768.0001, -814.5000, -443.2143, -186.6429, -49.3571, 64.2857, 307.9286, 1032.2143, 1962.4286, 1963.4286, 1964.4286</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1          518                763.1429                    -245.1429</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                               dead_rolling_14days_ago_diff_breaks</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -2940.1428, -1799.8572, -864.2857, -409.0714, -164.5714, -43.0000, 64.5714, 294.0000, 920.9286, 1962.4286, 1963.4286, 1964.4286</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   dead_rolling_14days_ago_diff_per_100k</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                           -0.07223546</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                           -0.07356443</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                          dead_rolling_14days_ago_diff_per_100k_breaks</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -8.7659, -5.3931, -1.1454, -0.3801, -0.0984, 0.0804, 0.3687, 1.2110, 5.3457, 8.2600</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -8.7659, -5.9543, -0.7436, -0.2936, -0.0776, 0.0711, 0.3178, 0.9953, 5.1173, 8.2600</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   dead_rolling_14days_ago_per_100k</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                        0.2285384</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1                          0.22901</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                      dead_rolling_breaks</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -232.1429, 44.6429, 150.9286, 325.7857, 565.5714, 902.0000, 1505.5714, 2275.1428, 3482.1429, 4190.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -232.1429, 43.6429, 152.2857, 330.6429, 570.7143, 895.2857, 1402.9286, 2075.5714, 2965.9286, 4190.0000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   dead_rolling_per_100k</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1              0.156303</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1             0.1554456</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                      dead_rolling_per_100k_breaks</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.9656, 0.0663, 0.2025, 0.3970, 0.6494, 0.9634, 1.3960, 2.0217, 5.5182, 8.9378</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.9656, 0.0647, 0.1961, 0.3888, 0.6436, 0.9641, 1.3956, 2.0094, 5.4006, 8.9378</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   iso3     lat location_id     long mostRecent                     name</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  USA -14.271         USA -170.132      FALSE United States of America</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   num_subnational population     wb_region</span>
@@ -205,7 +205,7 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 -122.84000, -120.00000, -117.03121, -116.04818, -113.00000, -110.05000, -107.05000, -104.04826, -100.65000, -97.22872, -95.15907, -95.15609, -94.81758, -94.64000, -94.32914, -93.63087, -92.61000, -91.64000, -90.83000, -89.60000, -89.27292, -88.37811, -87.43979, -86.46199, -85.65236, -84.87608, -84.77924, -84.54375, -84.60490, -84.33670, -84.14212, -84.09185, -83.89077, -83.61613, -83.46955, -83.59285, -82.55092, -82.33776, -82.13764, -82.43000, -82.90000, -83.12000, -83.14200, -83.02981, -82.69009, -82.43928, -81.27775, -80.24745, -78.93936, -78.92000, -79.01000, -79.17167, -78.72028, -77.73789, -76.82003, -76.50000, -76.37500, -75.31821, -74.86700, -73.34783, -71.50506, -71.40500, -71.08482, -70.66000, -70.30500, -69.99997, -69.23722, -68.90500, -68.23444, -67.79046, -67.79134, -67.13741, -66.96466, -68.03252, -69.06000, -70.11617, -70.64548, -70.81489, -70.82500, -70.49500, -70.08000, -70.18500, -69.88497, -69.96503, -70.64000, -71.12039, -71.86000, -72.29500, -72.87643, -73.71000, -72.24126, -71.94500, -73.34500, -73.98200, -73.95233, -74.25671, -73.96244, -74.17838, -74.90604, -74.98041, -75.20002, -75.52805, -75.32000, -75.07183, -75.05673, -75.37747, -75.94023, -76.03127, -75.72205, -76.23287, -76.35000, -76.54273, -76.32933, -76.99000, -76.30162, -76.25874, -75.97180, -75.86804, -75.72749, -76.36318, -77.39763, -78.05496, -78.55435, -79.06067, -79.20357, -80.30133, -80.86498, -81.33629, -81.49042, -81.31371, -80.98000, -80.53558, -80.53000, -80.05654, -80.08801, -80.13156, -80.38103, -80.68000, -81.17213, -81.33000, -81.71000, -82.24000, -82.70515, -82.85526, -82.65000, -82.93000, -83.70959, -84.10000, -85.10882, -85.28784, -85.77310, -86.40000, -87.53036, -88.41782, -89.18049, -89.59383, -89.41374, -89.43000, -89.21767, -89.40823, -89.77928, -90.15463, -90.88022, -91.62678, -92.49906, -93.22637, -93.84842, -94.69000, -95.60026, -96.59404, -97.14000, -97.37000, -97.38000, -97.33000, -97.14000, -97.53000, -98.24000, -99.02000, -99.30000, -99.52000, -100.11000, -100.45584, -100.95760, -101.66240, -102.48000, -103.11000, -103.94000, -104.45697, -104.70575, -105.03737, -105.63159, -106.14290, -106.50759, -108.24000, -108.24194, -109.03500, -111.02361, -113.30498, -114.81500, -114.72139, -115.99135, -117.12776, -117.29594, -117.94400, -118.41060, -118.51989, -119.08100, -119.43884, -120.36778, -120.62286, -120.74433, -121.71457, -122.54747, -122.51201, -122.95319, -123.72720, -123.86517, -124.39807, -124.17886, -124.21370, -124.53284, -124.14214, -124.02053, -123.89893, -124.07963, -124.39567, -124.68721, -124.56610, -123.12000, -122.58736, -122.34000, -122.50000, -122.84000, 49.00000, 49.00000, 49.00000, 49.00000, 49.00000, 49.00000, 49.00000, 48.99986, 49.00000, 49.00070, 49.00000, 49.38425, 49.38905, 48.84000, 48.67074, 48.60926, 48.45000, 48.14000, 48.27000, 48.01000, 48.01981, 48.30292, 47.94000, 47.55334, 47.22022, 46.90008, 46.63710, 46.53868, 46.43960, 46.40877, 46.51223, 46.27542, 46.11693, 46.11693, 45.99469, 45.81689, 45.34752, 44.44000, 43.57109, 42.98000, 42.43000, 42.08000, 41.97568, 41.83280, 41.67511, 41.67511, 42.20903, 42.36620, 42.86361, 42.96500, 43.27000, 43.46634, 43.62509, 43.62906, 43.62878, 44.01846, 44.09631, 44.81645, 45.00048, 45.00738, 45.00820, 45.25500, 45.30524, 45.46000, 45.91500, 46.69307, 47.44778, 47.18500, 47.35486, 47.06636, 45.70281, 45.13753, 44.80970, 44.32520, 43.98000, 43.68405, 43.09024, 42.86530, 42.33500, 41.80500, 41.78000, 42.14500, 41.92283, 41.63717, 41.47500, 41.49445, 41.32000, 41.27000, 41.22065, 40.93110, 41.11948, 40.93000, 40.63000, 40.62800, 40.75075, 40.47351, 40.42763, 39.70926, 38.93954, 39.19640, 39.24845, 39.49850, 38.96000, 38.78203, 38.40412, 38.01551, 37.21689, 37.25660, 37.93705, 38.31921, 39.15000, 38.71762, 38.08326, 38.23999, 37.91795, 36.96640, 36.89726, 36.55125, 35.55074, 34.80854, 34.51201, 33.92547, 33.86133, 33.49395, 33.15839, 32.50935, 32.03330, 31.44049, 30.72999, 30.03552, 29.18000, 28.47213, 28.04000, 26.88000, 26.20576, 25.81677, 25.20616, 25.08000, 25.20126, 25.64000, 25.87000, 26.73000, 27.49504, 27.88624, 28.55000, 29.10000, 29.93656, 30.09000, 29.63615, 29.68612, 30.15261, 30.40000, 30.27433, 30.38490, 30.31598, 30.15999, 29.89419, 29.48864, 29.29108, 29.15961, 29.30714, 29.11743, 29.14853, 29.67700, 29.55230, 29.78375, 29.71363, 29.48000, 28.73863, 28.30748, 27.83000, 27.38000, 26.69000, 26.21000, 25.87000, 25.84000, 26.06000, 26.37000, 26.84000, 27.54000, 28.11000, 28.69612, 29.38071, 29.77930, 29.76000, 28.97000, 29.27000, 29.57196, 30.12173, 30.64402, 31.08383, 31.39995, 31.75452, 31.75485, 31.34222, 31.34194, 31.33472, 32.03914, 32.52528, 32.72083, 32.61239, 32.53534, 33.04622, 33.62124, 33.74091, 34.02778, 34.07800, 34.34848, 34.44711, 34.60855, 35.15686, 36.16153, 37.55176, 37.78339, 38.11371, 38.95166, 39.76699, 40.31320, 41.14202, 41.99964, 42.76599, 43.70838, 44.61590, 45.52341, 46.86475, 47.72017, 48.18443, 48.37971, 48.04000, 47.09600, 47.36000, 48.18000, 49.00000, -155.40214, -155.22452, -155.06226, -154.80741, -154.83147, -155.22217, -155.54211, -155.68817, -155.93665, -155.90806, -156.07347, -156.02368, -155.85008, -155.91907, -155.86108, -155.78505, -155.40214, 20.07975, 19.99302, 19.85910, 19.50871, 19.45328, 19.23972, 19.08348, 18.91619, 19.05939, 19.33888, 19.70294, 19.81422, 19.97729, 20.17395, 20.26721, 20.24870, 20.07975, -155.99566, -156.07926, -156.41445, -156.58673, -156.70167, -156.71055, -156.61258, -156.25711, -155.99566, 20.76404, 20.64397, 20.57241, 20.78300, 20.86430, 20.92676, 21.01249, 20.91745, 20.76404, -156.75824, -156.78933, -157.32521, -157.25027, -156.75824, 21.17684, 21.06873, 21.09777, 21.21958, 21.17684, -158.02520, -157.94161, -157.65283, -157.70703, -157.77860, -158.12667, -158.25380, -158.29265, -158.02520, 21.71696, 21.65272, 21.32217, 21.26442, 21.27729, 21.31244, 21.53919, 21.57912, 21.71696, -159.36569, -159.34512, -159.46372, -159.80051, -159.74877, -159.59620, -159.36569, 22.21494, 21.98200, 21.88299, 22.06533, 22.13820, 22.23618, 22.21494, -166.46779, -165.67443, -165.57916, -166.19277, -166.84834, -167.45528, -166.46779, 60.38417, 60.29361, 59.90999, 59.75444, 59.94141, 60.21307, 60.38417, -153.22873, -152.56479, -152.14115, -153.00631, -154.00509, -154.51640, -154.67099, -153.76278, -153.22873, 57.96897, 57.90143, 57.59106, 57.11584, 56.73468, 56.99275, 57.46120, 57.81657, 57.96897, -140.98599, -140.98600, -140.99250, -140.99778, -140.01300, -139.03900, -138.34089, -137.45250, -136.47972, -135.47583, -134.94500, -134.27111, -133.35556, -132.73042, -131.70781, -130.00778, -129.98000, -130.53611, -130.53611, -130.53611, -131.08582, -131.96721, -132.25001, -133.53918, -134.07806, -135.03821, -136.62806, -137.80001, -139.86779, -140.82527, -142.57444, -143.95888, -145.92556, -147.11437, -148.22431, -148.01807, -148.57082, -149.72786, -150.60824, -151.71639, -151.85943, -151.40972, -150.34694, -150.62111, -151.89584, -152.57833, -154.01917, -153.28751, -154.23249, -155.30749, -156.30833, -156.55610, -158.11722, -158.43332, -159.60333, -160.28972, -161.22305, -162.23777, -163.06945, -164.78557, -164.94223, -163.84834, -162.87000, -161.80417, -160.56360, -160.07056, -158.68444, -158.46110, -157.72277, -157.55027, -157.04167, -158.19473, -158.51722, -159.05861, -159.71167, -159.98129, -160.35527, -161.35500, -161.96889, -162.05499, -161.87417, -162.51806, -163.81834, -164.66222, -165.34639, -165.35083, -166.12138, -165.73445, -164.91918, -164.56251, -163.75333, -163.06722, -162.26056, -161.53445, -160.77251, -160.95834, -161.51807, -160.77778, -161.39193, -162.45305, -162.75779, -163.54639, -164.96083, -166.42529, -166.84500, -168.11056, -166.70527, -164.47471, -163.65251, -163.78860, -161.67777, -162.48971, -163.71972, -164.43099, -165.39029, -166.76444, -166.20471, -164.43081, -163.16861, -162.93057, -161.90890, -160.93480, -159.03918, -158.11972, -156.58082, -155.06779, -154.34417, -153.90001, -152.21001, -152.27000, -150.73999, -149.72000, -147.61336, -145.68999, -144.92001, -143.58945, -142.07251, -140.98599, -140.98599, 69.71200, 69.71200, 66.00003, 60.30639, 60.27682, 60.00000, 59.56211, 58.90500, 59.46389, 59.78778, 59.27056, 58.86111, 58.41028, 57.69289, 56.55212, 55.91583, 55.28500, 54.80278, 54.80275, 54.80275, 55.17891, 55.49778, 56.37000, 57.17889, 58.12307, 58.18771, 58.21221, 58.50000, 59.53776, 59.72752, 60.08445, 59.99918, 60.45861, 60.88466, 60.67299, 59.97833, 59.91417, 59.70566, 59.36821, 59.15582, 59.74498, 60.72580, 61.03359, 61.28442, 60.72720, 60.06166, 59.35028, 58.86473, 58.14637, 57.72779, 57.42277, 56.97998, 56.46361, 55.99415, 55.56669, 55.64358, 55.36473, 55.02419, 54.68974, 54.40417, 54.57222, 55.03943, 55.34804, 55.89499, 56.00805, 56.41806, 57.01668, 57.21692, 57.57000, 58.32833, 58.91888, 58.61580, 58.78778, 58.42419, 58.93139, 58.57255, 59.07112, 58.67084, 58.67166, 59.26693, 59.63362, 59.98972, 59.79806, 60.26748, 60.50750, 61.07390, 61.50002, 62.07500, 62.63308, 63.14638, 63.21945, 63.05946, 63.54194, 63.45582, 63.76611, 64.22280, 64.40279, 64.78860, 64.77724, 64.55944, 64.33861, 64.55916, 64.44695, 64.68667, 65.08890, 65.67000, 66.08832, 66.57666, 66.57666, 66.07721, 66.11612, 66.73557, 67.11639, 67.61634, 68.04277, 68.35888, 68.88303, 68.91554, 69.37111, 69.85806, 70.33333, 70.44769, 70.89164, 70.82472, 71.35776, 71.14778, 70.69641, 70.88999, 70.82999, 70.60001, 70.43002, 70.53001, 70.21403, 70.12001, 69.98999, 70.15251, 69.85194, 69.71200, 69.71200, -171.73166, -171.11443, -170.49111, -169.68251, -168.68944, -168.77194, -169.52944, -170.29056, -170.67139, -171.55306, -171.79111, -171.73166, 63.78252, 63.59219, 63.69498, 63.43112, 63.29751, 63.18860, 62.97693, 63.19444, 63.37582, 63.31779, 63.40585, 63.78252</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   geometry.type</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  MultiPolygon</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -220,7 +220,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

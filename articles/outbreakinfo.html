@@ -103,7 +103,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Introduction to outbreakinfo</h1>
             
-            <h4 data-toc-skip class="date">24 June 2022</h4>
+            <h4 data-toc-skip class="date">09 August 2022</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/outbreak-info/R-outbreak-info/blob/HEAD/vignettes/outbreakinfo.Rmd" class="external-link"><code>vignettes/outbreakinfo.Rmd</code></a></small>
       <div class="hidden name"><code>outbreakinfo.Rmd</code></div>
@@ -127,24 +127,24 @@
 </h3>
 <p>Before we start, we need to provide our GISAID credentials to access the genomic data. If you don’t have a GISAID account, you can <a href="https://www.gisaid.org/registration/register/" class="external-link">register</a> for one on their website. It may take a day or two for the account to become active.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Install the package, if you haven't already, using devtools</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"outbreak-info/R-outbreak-info"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Install the package, if you haven't already, using devtools</span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"outbreak-info/R-outbreak-info"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Package imports</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://outbreak-info.github.io/R-outbreak-info/" class="external-link">outbreakinfo</a></span><span class="op">)</span>
-<span class="co">#&gt; Warning: replacing previous import 'crayon::%+%' by 'ggplot2::%+%' when loading</span>
-<span class="co">#&gt; 'outbreakinfo'</span>
-<span class="co">#&gt; Warning: replacing previous import 'jsonlite::flatten' by 'purrr::flatten' when</span>
-<span class="co">#&gt; loading 'outbreakinfo'</span>
-
-<span class="co"># Not needed; just used to tidy / visualize some of the outputs</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/" class="external-link">knitr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org" class="external-link">lubridate</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Package imports</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://outbreak-info.github.io/R-outbreak-info/" class="external-link">outbreakinfo</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: replacing previous import 'crayon::%+%' by 'ggplot2::%+%' when loading</span></span>
+<span><span class="co">#&gt; 'outbreakinfo'</span></span>
+<span><span class="co">#&gt; Warning: replacing previous import 'jsonlite::flatten' by 'purrr::flatten' when</span></span>
+<span><span class="co">#&gt; loading 'outbreakinfo'</span></span>
+<span></span>
+<span><span class="co"># Not needed; just used to tidy / visualize some of the outputs</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/" class="external-link">knitr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org" class="external-link">lubridate</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Authenticate yourself using your GISAID credentials.</span>
-<span class="fu"><a href="../reference/authenticateUser.html">authenticateUser</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Authenticate yourself using your GISAID credentials.</span></span>
+<span><span class="fu"><a href="../reference/authenticateUser.html">authenticateUser</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <hr>
 </div>
 <div class="section level3">
@@ -155,26 +155,26 @@
 <h4 id="lineage-over-time-b-1-1-7">Lineage over time: B.1.1.7<a class="anchor" aria-label="anchor" href="#lineage-over-time-b-1-1-7"></a>
 </h4>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Function to grab all the data for the prevalence of B.1.1.7 in Texas</span>
-<span class="va">b117_tx</span> <span class="op">=</span> <span class="fu"><a href="../reference/getPrevalence.html">getPrevalence</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="st">"B.1.1.7"</span>, location<span class="op">=</span><span class="st">"Texas"</span><span class="op">)</span>
-<span class="co">#&gt; Retrieving data...</span>
-
-<span class="co"># Accessing just the first row:</span>
-<span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">b117_tx</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span><span class="op">)</span>
-<span class="co">#&gt;                       1             </span>
-<span class="co">#&gt; date                  "2020-07-21"  </span>
-<span class="co">#&gt; total_count           "439"         </span>
-<span class="co">#&gt; lineage_count         "1"           </span>
-<span class="co">#&gt; total_count_rolling   "379"         </span>
-<span class="co">#&gt; lineage_count_rolling "0.1428571"   </span>
-<span class="co">#&gt; proportion            "0.0003769318"</span>
-<span class="co">#&gt; proportion_ci_lower   "1.294751e-06"</span>
-<span class="co">#&gt; proportion_ci_upper   "0.006601559" </span>
-<span class="co">#&gt; lineage               "B.1.1.7"     </span>
-<span class="co">#&gt; location              "Texas"</span>
-
-<span class="co"># Plotting it:</span>
-<span class="fu"><a href="../reference/plotPrevalenceOverTime.html">plotPrevalenceOverTime</a></span><span class="op">(</span><span class="va">b117_tx</span>, title <span class="op">=</span> <span class="st">"B.1.1.7 prevalence in Texas"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Function to grab all the data for the prevalence of B.1.1.7 in Texas</span></span>
+<span><span class="va">b117_tx</span> <span class="op">=</span> <span class="fu"><a href="../reference/getPrevalence.html">getPrevalence</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="st">"B.1.1.7"</span>, location<span class="op">=</span><span class="st">"Texas"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Retrieving data...</span></span>
+<span></span>
+<span><span class="co"># Accessing just the first row:</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">b117_tx</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt;                       1             </span></span>
+<span><span class="co">#&gt; date                  "2020-07-21"  </span></span>
+<span><span class="co">#&gt; total_count           "439"         </span></span>
+<span><span class="co">#&gt; lineage_count         "1"           </span></span>
+<span><span class="co">#&gt; total_count_rolling   "379"         </span></span>
+<span><span class="co">#&gt; lineage_count_rolling "0.1428571"   </span></span>
+<span><span class="co">#&gt; proportion            "0.0003769318"</span></span>
+<span><span class="co">#&gt; proportion_ci_lower   "1.294751e-06"</span></span>
+<span><span class="co">#&gt; proportion_ci_upper   "0.006601559" </span></span>
+<span><span class="co">#&gt; lineage               "B.1.1.7"     </span></span>
+<span><span class="co">#&gt; location              "Texas"</span></span>
+<span></span>
+<span><span class="co"># Plotting it:</span></span>
+<span><span class="fu"><a href="../reference/plotPrevalenceOverTime.html">plotPrevalenceOverTime</a></span><span class="op">(</span><span class="va">b117_tx</span>, title <span class="op">=</span> <span class="st">"B.1.1.7 prevalence in Texas"</span><span class="op">)</span></span></code></pre></div>
 <p><img src="outbreakinfo_files/figure-html/prev-time-1.png" width="700"> Variables are described in the <a href="https://outbreak-info.github.io/R-outbreak-info/reference/genomicsDataDictionary.html" class="external-link">Genomics Data Dictionary</a>.</p>
 </div>
 <div class="section level4">
@@ -189,16 +189,16 @@
 </h3>
 <p>To get the prevalence of a particular variant to compare between locations, you can access the data through the <code>getCumulativeBySubadmin</code> function. Note that there are options to supply a location, like <code>"United States"</code> to view the prevalence broken down by U.S. state, and/or over the past <code>n</code> days. See the <a href="varianttracker.html">Variant Tracker Vignette</a> for more details.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Calculate cumulative prevalence of B.1.1.7 by country</span>
-<span class="va">b117_world</span> <span class="op">=</span> <span class="fu"><a href="../reference/getCumulativeBySubadmin.html">getCumulativeBySubadmin</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="st">"B.1.1.7"</span><span class="op">)</span>
-<span class="co">#&gt; Retrieving data...</span>
-
-<span class="co"># filtering down the data to view a few countries</span>
-<span class="va">b117_world</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">name</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Canada"</span>, <span class="st">"United Kingdom"</span>, <span class="st">"Australia"</span>, <span class="st">"New Zealand"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">proportion</span>, <span class="va">proportion_ci_lower</span>, <span class="va">proportion_ci_upper</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">proportion</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Calculate cumulative prevalence of B.1.1.7 by country</span></span>
+<span><span class="va">b117_world</span> <span class="op">=</span> <span class="fu"><a href="../reference/getCumulativeBySubadmin.html">getCumulativeBySubadmin</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="st">"B.1.1.7"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Retrieving data...</span></span>
+<span></span>
+<span><span class="co"># filtering down the data to view a few countries</span></span>
+<span><span class="va">b117_world</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">name</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Canada"</span>, <span class="st">"United Kingdom"</span>, <span class="st">"Australia"</span>, <span class="st">"New Zealand"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">name</span>, <span class="va">proportion</span>, <span class="va">proportion_ci_lower</span>, <span class="va">proportion_ci_upper</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/desc.html" class="external-link">desc</a></span><span class="op">(</span><span class="va">proportion</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">name</th>
@@ -209,27 +209,27 @@
 <tbody>
 <tr class="odd">
 <td align="left">Canada</td>
-<td align="right">0.1198103</td>
-<td align="right">0.1187725</td>
-<td align="right">0.1208540</td>
+<td align="right">0.1126771</td>
+<td align="right">0.1117080</td>
+<td align="right">0.1136517</td>
 </tr>
 <tr class="even">
 <td align="left">United Kingdom</td>
-<td align="right">0.0982495</td>
-<td align="right">0.0978953</td>
-<td align="right">0.0986045</td>
+<td align="right">0.0957668</td>
+<td align="right">0.0954211</td>
+<td align="right">0.0961134</td>
 </tr>
 <tr class="odd">
 <td align="left">New Zealand</td>
-<td align="right">0.0123387</td>
-<td align="right">0.0105020</td>
-<td align="right">0.0144044</td>
+<td align="right">0.0092519</td>
+<td align="right">0.0078729</td>
+<td align="right">0.0108038</td>
 </tr>
 <tr class="even">
 <td align="left">Australia</td>
-<td align="right">0.0049702</td>
-<td align="right">0.0045792</td>
-<td align="right">0.0053857</td>
+<td align="right">0.0043736</td>
+<td align="right">0.0040300</td>
+<td align="right">0.0047387</td>
 </tr>
 </tbody>
 </table>
@@ -240,12 +240,12 @@
 </h3>
 <p>When we say a lineage, like B.1.1.7, what does that actually mean? The <code>getMutationsByLineage</code> function allows you to pull the prevalence of all the mutations within all the sequences assigned to B.1.1.7 or other lineages, and <code>plotMutationHeatmap</code> allows you to compare their prevalence in a heatmap:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">char_muts</span> <span class="op">=</span> <span class="fu"><a href="../reference/getMutationsByLineage.html">getMutationsByLineage</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"B.1.1.7"</span>, <span class="st">"B.1.351"</span>, <span class="st">"B.1.617.2"</span>, <span class="st">"P.1"</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; Retrieving data... </span>
-<span class="co">#&gt; Retrieving data... </span>
-<span class="co">#&gt; Retrieving data... </span>
-<span class="co">#&gt; Retrieving data...</span>
-<span class="fu"><a href="../reference/plotMutationHeatmap.html">plotMutationHeatmap</a></span><span class="op">(</span><span class="va">char_muts</span>, title <span class="op">=</span> <span class="st">"Mutations with at least 75% prevalence in Variants of Concern"</span>, lightBorders <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">char_muts</span> <span class="op">=</span> <span class="fu"><a href="../reference/getMutationsByLineage.html">getMutationsByLineage</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"B.1.1.7"</span>, <span class="st">"B.1.351"</span>, <span class="st">"B.1.617.2"</span>, <span class="st">"P.1"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Retrieving data... </span></span>
+<span><span class="co">#&gt; Retrieving data... </span></span>
+<span><span class="co">#&gt; Retrieving data... </span></span>
+<span><span class="co">#&gt; Retrieving data...</span></span>
+<span><span class="fu"><a href="../reference/plotMutationHeatmap.html">plotMutationHeatmap</a></span><span class="op">(</span><span class="va">char_muts</span>, title <span class="op">=</span> <span class="st">"Mutations with at least 75% prevalence in Variants of Concern"</span>, lightBorders <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="outbreakinfo_files/figure-html/characteristic_mutations-1.png" width="700"></p>
 <hr>
 </div>
@@ -259,60 +259,60 @@
 </h3>
 <p>All COVID-19 research metadata can be accessed through the main function <code>getResourcesData</code> which searches across a series of <a href="https://outbreak.info/sources#resources" class="external-link">COVID-19 resources</a> of various types. For instance, you can find all research on seroprevalence, including publications, clinical trials, datasets, and more:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Get the resources metadata</span>
-<span class="co"># Use `fetchAll = TRUE` to get all the results, not just the first 10</span>
-<span class="co"># Use  double quotes around "sero-prevalence" to look for that exact phrase. Without quotes, the query will search for "sero" or "prevalence", not their combination.</span>
-<span class="co"># Combine terms using OR or AND (capitalization is required!)</span>
-<span class="va">seroprevalence</span> <span class="op">=</span> <span class="fu"><a href="../reference/getResourcesData.html">getResourcesData</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">'seroprevalence OR "sero-prevalence"'</span>, fetchAll <span class="op">=</span> <span class="cn">TRUE</span>, fields <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"name"</span>, <span class="st">"description"</span>, <span class="st">"@type"</span>, <span class="st">"date"</span>, <span class="st">"curatedBy"</span>, <span class="st">"journalName"</span>, <span class="st">"funding"</span>, <span class="st">"url"</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># Accessing just the first row:</span>
-<span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">seroprevalence</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span><span class="op">)</span>
-<span class="co">#&gt;             [,1]                                                                                      </span>
-<span class="co">#&gt; @type       "ClinicalTrial"                                                                           </span>
-<span class="co">#&gt; _id         "CTRI/2020/09/028040"                                                                     </span>
-<span class="co">#&gt; curatedBy   list,6                                                                                    </span>
-<span class="co">#&gt; date        18955                                                                                     </span>
-<span class="co">#&gt; description "NA"                                                                                      </span>
-<span class="co">#&gt; funding     data.frame,1                                                                              </span>
-<span class="co">#&gt; name        "Sero-prevalence and Clinical profile of SARS-CoV-2 infection in children - Covid 19 kids"</span>
-<span class="co">#&gt; url         "http://www.ctri.nic.in/Clinicaltrials/pmaindet2.php?trialid=47809"                       </span>
-<span class="co">#&gt; journalName "NA"</span>
-
-<span class="co"># Plot the increase in seroprevalence research over time</span>
-<span class="co"># roll up the number of resources by week</span>
-<span class="va">resources_by_date</span> <span class="op">=</span> <span class="va">seroprevalence</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/year.html" class="external-link">year</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span>,
-         iso_week <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/week.html" class="external-link">isoweek</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># count the number of new resources per week.</span>
-<span class="va">resources_per_week</span> <span class="op">=</span> <span class="va">resources_by_date</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count</a></span><span class="op">(</span><span class="va">`@type`</span>, <span class="va">iso_week</span>, <span class="va">year</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
-  <span class="co"># convert from iso week back to a date</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>iso_date <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/parse_date_time.html" class="external-link">parse_date_time</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">year</span>,<span class="va">iso_week</span>, <span class="st">"Mon"</span>, sep<span class="op">=</span><span class="st">"-"</span><span class="op">)</span>, <span class="st">"Y-W-a"</span><span class="op">)</span><span class="op">)</span>
-
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">resources_per_week</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">iso_date</span>, y <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_col</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#66c2a5"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_date.html" class="external-link">scale_x_datetime</a></span><span class="op">(</span>date_labels <span class="op">=</span> <span class="st">"%b %Y"</span>, name <span class="op">=</span> <span class="st">"week"</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Seroprevalence research by week"</span>, subtitle <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"Number of resources in outbreak.info's Research Library as of "</span>, <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.Date</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"%d %B %Y"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Get the resources metadata</span></span>
+<span><span class="co"># Use `fetchAll = TRUE` to get all the results, not just the first 10</span></span>
+<span><span class="co"># Use  double quotes around "sero-prevalence" to look for that exact phrase. Without quotes, the query will search for "sero" or "prevalence", not their combination.</span></span>
+<span><span class="co"># Combine terms using OR or AND (capitalization is required!)</span></span>
+<span><span class="va">seroprevalence</span> <span class="op">=</span> <span class="fu"><a href="../reference/getResourcesData.html">getResourcesData</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">'seroprevalence OR "sero-prevalence"'</span>, fetchAll <span class="op">=</span> <span class="cn">TRUE</span>, fields <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"name"</span>, <span class="st">"description"</span>, <span class="st">"@type"</span>, <span class="st">"date"</span>, <span class="st">"curatedBy"</span>, <span class="st">"journalName"</span>, <span class="st">"funding"</span>, <span class="st">"url"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Accessing just the first row:</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">seroprevalence</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt;             [,1]                                                                                      </span></span>
+<span><span class="co">#&gt; @type       "ClinicalTrial"                                                                           </span></span>
+<span><span class="co">#&gt; _id         "CTRI/2020/09/028040"                                                                     </span></span>
+<span><span class="co">#&gt; curatedBy   list,6                                                                                    </span></span>
+<span><span class="co">#&gt; date        18955                                                                                     </span></span>
+<span><span class="co">#&gt; description "NA"                                                                                      </span></span>
+<span><span class="co">#&gt; funding     data.frame,1                                                                              </span></span>
+<span><span class="co">#&gt; name        "Sero-prevalence and Clinical profile of SARS-CoV-2 infection in children - Covid 19 kids"</span></span>
+<span><span class="co">#&gt; url         "http://www.ctri.nic.in/Clinicaltrials/pmaindet2.php?trialid=47809"                       </span></span>
+<span><span class="co">#&gt; journalName "NA"</span></span>
+<span></span>
+<span><span class="co"># Plot the increase in seroprevalence research over time</span></span>
+<span><span class="co"># roll up the number of resources by week</span></span>
+<span><span class="va">resources_by_date</span> <span class="op">=</span> <span class="va">seroprevalence</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>year <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/year.html" class="external-link">year</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span>,</span>
+<span>         iso_week <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/week.html" class="external-link">isoweek</a></span><span class="op">(</span><span class="va">date</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># count the number of new resources per week.</span></span>
+<span><span class="va">resources_per_week</span> <span class="op">=</span> <span class="va">resources_by_date</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count</a></span><span class="op">(</span><span class="va">`@type`</span>, <span class="va">iso_week</span>, <span class="va">year</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="co"># convert from iso week back to a date</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>iso_date <span class="op">=</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/parse_date_time.html" class="external-link">parse_date_time</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">year</span>,<span class="va">iso_week</span>, <span class="st">"Mon"</span>, sep<span class="op">=</span><span class="st">"-"</span><span class="op">)</span>, <span class="st">"Y-W-a"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">resources_per_week</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">iso_date</span>, y <span class="op">=</span> <span class="va">n</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_col</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="st">"#66c2a5"</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_date.html" class="external-link">scale_x_datetime</a></span><span class="op">(</span>date_labels <span class="op">=</span> <span class="st">"%b %Y"</span>, name <span class="op">=</span> <span class="st">"week"</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Seroprevalence research by week"</span>, subtitle <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"Number of resources in outbreak.info's Research Library as of "</span>, <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.Date</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"%d %B %Y"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="outbreakinfo_files/figure-html/research-1.png" width="700"></p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R">
-
-<span class="co"># Visualize the breakdown of seroprevalence research</span>
-<span class="va">resources_by_type</span> <span class="op">=</span>  <span class="va">seroprevalence</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count</a></span><span class="op">(</span><span class="va">`@type`</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span>
-
-<span class="co"># order the levels in the bar chart</span>
-<span class="va">resources_by_type</span><span class="op">$</span><span class="va">`@type`</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">resources_by_type</span><span class="op">$</span><span class="va">`@type`</span>, <span class="va">resources_by_type</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">`@type`</span><span class="op">)</span><span class="op">)</span>
-
-<span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">resources_by_type</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">`@type`</span>, y <span class="op">=</span> <span class="va">n</span>, fill<span class="op">=</span><span class="va">`@type`</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_col</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html" class="external-link">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>Publication <span class="op">=</span> <span class="st">"#e15759"</span>, ClinicalTrial <span class="op">=</span> <span class="st">"#b475a3"</span>, Dataset <span class="op">=</span> <span class="st">"#126b93"</span>, Protocol <span class="op">=</span> <span class="st">"#59a14f"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Seroprevalence research by type of resource"</span>, subtitle <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"Number of resources in outbreak.info's Research Library as of "</span>, <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.Date</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"%d %B %Y"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>axis.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>, legend.position <span class="op">=</span> <span class="st">"none"</span>, panel.grid.major.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>, panel.grid.minor.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span></span>
+<span></span>
+<span><span class="co"># Visualize the breakdown of seroprevalence research</span></span>
+<span><span class="va">resources_by_type</span> <span class="op">=</span>  <span class="va">seroprevalence</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/count.html" class="external-link">count</a></span><span class="op">(</span><span class="va">`@type`</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">n</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># order the levels in the bar chart</span></span>
+<span><span class="va">resources_by_type</span><span class="op">$</span><span class="va">`@type`</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">resources_by_type</span><span class="op">$</span><span class="va">`@type`</span>, <span class="va">resources_by_type</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/pull.html" class="external-link">pull</a></span><span class="op">(</span><span class="va">`@type`</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">resources_by_type</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">`@type`</span>, y <span class="op">=</span> <span class="va">n</span>, fill<span class="op">=</span><span class="va">`@type`</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_col</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_flip.html" class="external-link">coord_flip</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>Publication <span class="op">=</span> <span class="st">"#e15759"</span>, ClinicalTrial <span class="op">=</span> <span class="st">"#b475a3"</span>, Dataset <span class="op">=</span> <span class="st">"#126b93"</span>, Protocol <span class="op">=</span> <span class="st">"#59a14f"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">ggtitle</a></span><span class="op">(</span><span class="st">"Seroprevalence research by type of resource"</span>, subtitle <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"Number of resources in outbreak.info's Research Library as of "</span>, <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.Date</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"%d %B %Y"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>axis.title <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>, legend.position <span class="op">=</span> <span class="st">"none"</span>, panel.grid.major.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>, panel.grid.minor.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><img src="outbreakinfo_files/figure-html/research-2.png" width="700"></p>
 </div>
 <div class="section level3">
@@ -337,19 +337,19 @@
 </h3>
 <p>All cases and death data can be accessed through the main function <code>getEpiData</code> and plotted with <code>plotEpiData</code>. For instance, you can compare the cases per capita in a few major metropolitan areas:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Get the epi data</span>
-<span class="va">epi_metro</span> <span class="op">=</span> <span class="fu"><a href="../reference/getEpiData.html">getEpiData</a></span><span class="op">(</span>name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Detroit-Warren-Dearborn, MI"</span>, <span class="st">"New Orleans-Metairie, LA"</span><span class="op">)</span><span class="op">)</span>
-
-<span class="co"># Accessing just the first row:</span>
-<span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">epi_metro</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span><span class="op">)</span>
-<span class="co">#&gt;      NA</span>
-
-<span class="co"># Get the epi data and plot it.</span>
-<span class="fu"><a href="../reference/plotEpiData.html">plotEpiData</a></span><span class="op">(</span>locations <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Detroit-Warren-Dearborn, MI"</span>, <span class="st">"New Orleans-Metairie, LA"</span><span class="op">)</span>, variable <span class="op">=</span> <span class="st">"confirmed_rolling_per_100k"</span><span class="op">)</span>
-<span class="co">#&gt; detroit-warren-dearborn, mi not found. Please check spelling.</span>
-<span class="co">#&gt; new orleans-metairie, la not found. Please check spelling.</span>
-<span class="co">#&gt; [1] "confirmed_rolling_per_100k is not a valid API field"</span>
-<span class="co">#&gt; NULL</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Get the epi data</span></span>
+<span><span class="va">epi_metro</span> <span class="op">=</span> <span class="fu"><a href="../reference/getEpiData.html">getEpiData</a></span><span class="op">(</span>name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Detroit-Warren-Dearborn, MI"</span>, <span class="st">"New Orleans-Metairie, LA"</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Accessing just the first row:</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">epi_metro</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt;      NA</span></span>
+<span></span>
+<span><span class="co"># Get the epi data and plot it.</span></span>
+<span><span class="fu"><a href="../reference/plotEpiData.html">plotEpiData</a></span><span class="op">(</span>locations <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Detroit-Warren-Dearborn, MI"</span>, <span class="st">"New Orleans-Metairie, LA"</span><span class="op">)</span>, variable <span class="op">=</span> <span class="st">"confirmed_rolling_per_100k"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; detroit-warren-dearborn, mi not found. Please check spelling.</span></span>
+<span><span class="co">#&gt; new orleans-metairie, la not found. Please check spelling.</span></span>
+<span><span class="co">#&gt; [1] "confirmed_rolling_per_100k is not a valid API field"</span></span>
+<span><span class="co">#&gt; NULL</span></span></code></pre></div>
 <p>Variables are described in the <a href="https://outbreak-info.github.io/R-outbreak-info/reference/epidemiologyDataDictionary.html" class="external-link">Epidemiology Data Dictionary</a>.</p>
 <hr>
 </div>
@@ -383,7 +383,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>

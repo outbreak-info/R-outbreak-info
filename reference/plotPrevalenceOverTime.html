@@ -78,12 +78,12 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">plotPrevalenceOverTime</span><span class="op">(</span>
-  <span class="va">df</span>,
-  colorVar <span class="op">=</span> <span class="st">"lineage"</span>,
-  title <span class="op">=</span> <span class="st">"Prevalence over time"</span>,
-  labelDictionary <span class="op">=</span> <span class="cn">NULL</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plotPrevalenceOverTime</span><span class="op">(</span></span>
+<span>  <span class="va">df</span>,</span>
+<span>  colorVar <span class="op">=</span> <span class="st">"lineage"</span>,</span>
+<span>  title <span class="op">=</span> <span class="st">"Prevalence over time"</span>,</span>
+<span>  labelDictionary <span class="op">=</span> <span class="cn">NULL</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -113,27 +113,27 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">p1_brazil</span> <span class="op">&lt;-</span> <span class="fu"><a href="getPrevalence.html">getPrevalence</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="st">"P.1"</span>, location <span class="op">=</span> <span class="st">"Brazil"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">p1_brazil</span> <span class="op">&lt;-</span> <span class="fu"><a href="getPrevalence.html">getPrevalence</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="st">"P.1"</span>, location <span class="op">=</span> <span class="st">"Brazil"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Retrieving data... </span>
-<span class="r-in"><span class="fu">plotPrevalenceOverTime</span><span class="op">(</span><span class="va">p1_brazil</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">plotPrevalenceOverTime</span><span class="op">(</span><span class="va">p1_brazil</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plotPrevalenceOverTime-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">us</span> <span class="op">&lt;-</span> <span class="fu"><a href="getPrevalence.html">getPrevalence</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"B.1.1.7"</span>, <span class="st">"B.1.427 OR B.1.429"</span>, <span class="st">"B.1.617.2"</span><span class="op">)</span>, location <span class="op">=</span> <span class="st">"United States"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">us</span> <span class="op">&lt;-</span> <span class="fu"><a href="getPrevalence.html">getPrevalence</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"B.1.1.7"</span>, <span class="st">"B.1.427 OR B.1.429"</span>, <span class="st">"B.1.617.2"</span><span class="op">)</span>, location <span class="op">=</span> <span class="st">"United States"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Retrieving data... </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Retrieving data... </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Retrieving data... </span>
-<span class="r-in"><span class="fu">plotPrevalenceOverTime</span><span class="op">(</span><span class="va">us</span>, labelDictionary <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"B.1.427 OR B.1.429"</span> <span class="op">=</span> <span class="st">"Epsilon"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">plotPrevalenceOverTime</span><span class="op">(</span><span class="va">us</span>, labelDictionary <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"B.1.427 OR B.1.429"</span> <span class="op">=</span> <span class="st">"Epsilon"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plotPrevalenceOverTime-2.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Overlay locations</span></span>
-<span class="r-in"><span class="va">b117_india</span> <span class="op">=</span> <span class="fu"><a href="getPrevalence.html">getPrevalence</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="st">"B.1.1.7"</span>, location <span class="op">=</span> <span class="st">"India"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Overlay locations</span></span></span>
+<span class="r-in"><span><span class="va">b117_india</span> <span class="op">=</span> <span class="fu"><a href="getPrevalence.html">getPrevalence</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="st">"B.1.1.7"</span>, location <span class="op">=</span> <span class="st">"India"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Retrieving data... </span>
-<span class="r-in"><span class="va">b117_us</span> <span class="op">=</span> <span class="fu"><a href="getPrevalence.html">getPrevalence</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="st">"B.1.1.7"</span>, location <span class="op">=</span> <span class="st">"United States"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">b117_us</span> <span class="op">=</span> <span class="fu"><a href="getPrevalence.html">getPrevalence</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="st">"B.1.1.7"</span>, location <span class="op">=</span> <span class="st">"United States"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Retrieving data... </span>
-<span class="r-in"><span class="va">b117_uk</span> <span class="op">=</span> <span class="fu"><a href="getPrevalence.html">getPrevalence</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="st">"B.1.1.7"</span>, location <span class="op">=</span> <span class="st">"United Kingdom"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">b117_uk</span> <span class="op">=</span> <span class="fu"><a href="getPrevalence.html">getPrevalence</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="st">"B.1.1.7"</span>, location <span class="op">=</span> <span class="st">"United Kingdom"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Retrieving data... </span>
-<span class="r-in"><span class="va">b117</span> <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html" class="external-link">bind_rows</a></span><span class="op">(</span><span class="va">b117_uk</span>, <span class="va">b117_india</span>, <span class="va">b117_us</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">plotPrevalenceOverTime</span><span class="op">(</span><span class="va">b117</span>, colorVar <span class="op">=</span> <span class="st">"location"</span>, title<span class="op">=</span><span class="st">"B.1.1.7 prevalence over time"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="va">b117</span> <span class="op">=</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html" class="external-link">bind_rows</a></span><span class="op">(</span><span class="va">b117_uk</span>, <span class="va">b117_india</span>, <span class="va">b117_us</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">plotPrevalenceOverTime</span><span class="op">(</span><span class="va">b117</span>, colorVar <span class="op">=</span> <span class="st">"location"</span>, title<span class="op">=</span><span class="st">"B.1.1.7 prevalence over time"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plotPrevalenceOverTime-3.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
@@ -149,7 +149,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

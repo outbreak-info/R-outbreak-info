@@ -78,7 +78,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">plotPrevalenceDotPlot</span><span class="op">(</span><span class="va">df</span>, title <span class="op">=</span> <span class="cn">NULL</span>, subtitle <span class="op">=</span> <span class="cn">NULL</span>, dot_size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plotPrevalenceDotPlot</span><span class="op">(</span><span class="va">df</span>, title <span class="op">=</span> <span class="cn">NULL</span>, subtitle <span class="op">=</span> <span class="cn">NULL</span>, dot_size <span class="op">=</span> <span class="fl">3</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -99,17 +99,23 @@
 <dd><p>(optional) Dot plot size (in mm)</p></dd>
 
 </dl></div>
+    <div id="value">
+    <h2>Value</h2>
+    
+
+
+    </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"></span>
-<span class="r-in"><span class="co"># Calculate the proportion of sequences assigned to BA.2 or BA.2.12.1 by U.S. State</span></span>
-<span class="r-in"><span class="va">prev_by_state</span> <span class="op">=</span> <span class="fu"><a href="getCumulativeBySubadmin.html">getCumulativeBySubadmin</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"BA.2"</span>, <span class="st">"BA.2.12.1"</span><span class="op">)</span>, location <span class="op">=</span> <span class="st">"United States"</span>, ndays <span class="op">=</span> <span class="fl">90</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Calculate the proportion of sequences assigned to BA.2 or BA.2.12.1 by U.S. State</span></span></span>
+<span class="r-in"><span><span class="va">prev_by_state</span> <span class="op">=</span> <span class="fu"><a href="getCumulativeBySubadmin.html">getCumulativeBySubadmin</a></span><span class="op">(</span>pangolin_lineage <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"BA.2"</span>, <span class="st">"BA.2.12.1"</span><span class="op">)</span>, location <span class="op">=</span> <span class="st">"United States"</span>, ndays <span class="op">=</span> <span class="fl">90</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Retrieving data... </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co"># Plot the results</span></span>
-<span class="r-in"><span class="fu">plotPrevalenceDotPlot</span><span class="op">(</span><span class="va">prev_by_state</span>, <span class="st">"Prevalence over the last 90 days in the United States"</span>, subtitle <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"As of "</span>, <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.Date</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">'%d %B %Y'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 1 rows containing missing values (geom_segment).</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Plot the results</span></span></span>
+<span class="r-in"><span><span class="fu">plotPrevalenceDotPlot</span><span class="op">(</span><span class="va">prev_by_state</span>, <span class="st">"Prevalence over the last 90 days in the United States"</span>, subtitle <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"As of "</span>, <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.Date</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">'%d %B %Y'</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Removed 4 rows containing missing values (geom_segment).</span>
 <span class="r-plt img"><img src="plotPrevalenceDotPlot-1.png" alt="" width="700" height="433"></span>
 </code></pre></div>
     </div>
@@ -125,7 +131,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

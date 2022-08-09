@@ -78,20 +78,20 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">getGenomicData</span><span class="op">(</span>
-  <span class="va">query_url</span>,
-  location <span class="op">=</span> <span class="cn">NULL</span>,
-  cumulative <span class="op">=</span> <span class="cn">NULL</span>,
-  pangolin_lineage <span class="op">=</span> <span class="cn">NULL</span>,
-  mutations <span class="op">=</span> <span class="cn">NULL</span>,
-  ndays <span class="op">=</span> <span class="cn">NULL</span>,
-  frequency <span class="op">=</span> <span class="cn">NULL</span>,
-  subadmin <span class="op">=</span> <span class="cn">NULL</span>,
-  other_threshold <span class="op">=</span> <span class="cn">NULL</span>,
-  nday_threshold <span class="op">=</span> <span class="cn">NULL</span>,
-  other_exclude <span class="op">=</span> <span class="cn">NULL</span>,
-  logInfo <span class="op">=</span> <span class="cn">TRUE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">getGenomicData</span><span class="op">(</span></span>
+<span>  <span class="va">query_url</span>,</span>
+<span>  location <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  cumulative <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  pangolin_lineage <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  mutations <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  ndays <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  frequency <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  subadmin <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  other_threshold <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  nday_threshold <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  other_exclude <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  logInfo <span class="op">=</span> <span class="cn">TRUE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="value">
@@ -103,9 +103,9 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">uk_b117</span> <span class="op">=</span> <span class="fu">getGenomicData</span><span class="op">(</span>query_url<span class="op">=</span><span class="st">"prevalence-by-location"</span>, location<span class="op">=</span><span class="st">"United Kingdom"</span>, pangolin_lineage <span class="op">=</span> <span class="st">"B.1.1.7"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">uk_b117</span> <span class="op">=</span> <span class="fu">getGenomicData</span><span class="op">(</span>query_url<span class="op">=</span><span class="st">"prevalence-by-location"</span>, location<span class="op">=</span><span class="st">"United Kingdom"</span>, pangolin_lineage <span class="op">=</span> <span class="st">"B.1.1.7"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Retrieving data... </span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">uk_b117</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">uk_b117</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         date total_count lineage_count total_count_rolling</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 2020-03-20         411             1            276.7143</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2 2020-03-21         434             0            315.0000</span>
@@ -141,7 +141,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

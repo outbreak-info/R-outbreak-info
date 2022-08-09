@@ -103,7 +103,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Cases &amp; Deaths data</h1>
             
-            <h4 data-toc-skip class="date">24 June 2022</h4>
+            <h4 data-toc-skip class="date">09 August 2022</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/outbreak-info/R-outbreak-info/blob/HEAD/vignettes/epivignette.Rmd" class="external-link"><code>vignettes/epivignette.Rmd</code></a></small>
       <div class="hidden name"><code>epivignette.Rmd</code></div>
@@ -128,11 +128,11 @@
 <p>Import the packages we’ll use to access the data.</p>
 <p>Note that unlike the <a href="https://outbreak-info.github.io/R-outbreak-info/reference/index.html#section-sars-cov-variant-prevalence" class="external-link">SARS-CoV-2 Variant Prevalence functions</a>, none of the Cases &amp; Deaths functions or anything in this vignette require GISAID authentication through the <code><a href="../reference/authenticateUser.html">authenticateUser()</a></code> function.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Package imports</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://outbreak-info.github.io/R-outbreak-info/" class="external-link">outbreakinfo</a></span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Package imports</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://outbreak-info.github.io/R-outbreak-info/" class="external-link">outbreakinfo</a></span><span class="op">)</span></span></code></pre></div>
 <p>The following is a data dictionary for your reference:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="../reference/epidemiologyDataDictionary.html">epidemiologyDataDictionary</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="../reference/epidemiologyDataDictionary.html">epidemiologyDataDictionary</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="18%">
@@ -346,14 +346,14 @@
 <p>Get ISO3 codes for World Bank regions, countries, states/provinces, metropolitan areas, and/or counties.</p>
 <p><strong>Usage:</strong></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/getISO3.html">getISO3</a></span><span class="op">(</span><span class="va">locations_to_search</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/getISO3.html">getISO3</a></span><span class="op">(</span><span class="va">locations_to_search</span><span class="op">)</span></span></code></pre></div>
 <p><strong>Arguments:</strong></p>
 <p>locations_to_search: a <code>vector</code> or <code>list</code> of location (World Bank region, country, state/province, metropolitan area, county) name(s)</p>
 <p><strong>Example:</strong></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">iso3</span><span class="op">=</span><span class="fu"><a href="../reference/getISO3.html">getISO3</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"United States of America"</span>, <span class="st">"Brazil"</span><span class="op">)</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">iso3</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## [1] "USA" "BRA"</span></code></pre>
+<code class="sourceCode R"><span><span class="va">iso3</span><span class="op">=</span><span class="fu"><a href="../reference/getISO3.html">getISO3</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"United States of America"</span>, <span class="st">"Brazil"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">iso3</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "USA" "BRA"</span></span></code></pre>
 <hr>
 </div>
 <div class="section level5">
@@ -364,15 +364,15 @@
 <p>Get exact spelling of locations at the same administrative level.</p>
 <p><strong>Usage:</strong></p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/searchLocations.html">searchLocations</a></span><span class="op">(</span><span class="va">locations_to_search</span>, <span class="va">admin_level</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/searchLocations.html">searchLocations</a></span><span class="op">(</span><span class="va">locations_to_search</span>, <span class="va">admin_level</span><span class="op">)</span></span></code></pre></div>
 <p><strong>Arguments:</strong></p>
 <p>locations_to_search: a <code>vector</code> or <code>list</code> of location (World Bank region, country, state/province, metropolitan area, county) name(s) at the same administrative level</p>
 <p>admin_level: an <code>integer</code> representing an administrative level (World Bank regions = -1, countries = 0, states/provinces = 1, metropolitan areas = 1.5, counties = 2)</p>
 <p><strong>Example:</strong></p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">names</span><span class="op">=</span><span class="fu"><a href="../reference/searchLocations.html">searchLocations</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"California"</span>, <span class="st">"Florida"</span><span class="op">)</span>, admin_level<span class="op">=</span><span class="fl">1</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">names</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## [1] "California" "Florida"</span></code></pre>
+<code class="sourceCode R"><span><span class="va">names</span><span class="op">=</span><span class="fu"><a href="../reference/searchLocations.html">searchLocations</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"California"</span>, <span class="st">"Florida"</span><span class="op">)</span>, admin_level<span class="op">=</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">names</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "California" "Florida"</span></span></code></pre>
 <hr>
 </div>
 </div>
@@ -387,7 +387,7 @@
 <p>Retrieve a <code>dataframe</code> of up-to-date COVID-19 data from <a href="https://outbreak.info/" class="external-link">outbreak.info</a> according to user specifications.</p>
 <p><strong>Usage:</strong></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/getEpiData.html">getEpiData</a></span><span class="op">(</span>name<span class="op">=</span><span class="cn">NULL</span>, location_id<span class="op">=</span><span class="cn">NULL</span>, wb_region<span class="op">=</span><span class="cn">NULL</span>, country_name<span class="op">=</span><span class="cn">NULL</span>, state_name<span class="op">=</span><span class="cn">NULL</span>, admin_level<span class="op">=</span><span class="cn">NULL</span>, date<span class="op">=</span><span class="cn">NULL</span>, mostRecent<span class="op">=</span><span class="cn">NULL</span>, fields<span class="op">=</span><span class="cn">NULL</span>, <span class="va">sort</span>, size<span class="op">=</span><span class="fl">1000</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/getEpiData.html">getEpiData</a></span><span class="op">(</span>name<span class="op">=</span><span class="cn">NULL</span>, location_id<span class="op">=</span><span class="cn">NULL</span>, wb_region<span class="op">=</span><span class="cn">NULL</span>, country_name<span class="op">=</span><span class="cn">NULL</span>, state_name<span class="op">=</span><span class="cn">NULL</span>, admin_level<span class="op">=</span><span class="cn">NULL</span>, date<span class="op">=</span><span class="cn">NULL</span>, mostRecent<span class="op">=</span><span class="cn">NULL</span>, fields<span class="op">=</span><span class="cn">NULL</span>, <span class="va">sort</span>, size<span class="op">=</span><span class="fl">1000</span><span class="op">)</span></span></code></pre></div>
 <p><strong>Arguments:</strong></p>
 <p>name: a <code>vector</code> or <code>list</code> of location (World Bank region, country, state/province, metropolitan area, county) name(s)</p>
 <p>location_id: a <code>vector</code> or <code>list</code> of ISO3 codes representing locations (World Bank region, country, state/province, metropolitan area, county)</p>
@@ -402,10 +402,10 @@
 <p>size: an <code>integer</code> representing size</p>
 <p><strong>Example:</strong></p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df</span><span class="op">=</span><span class="fu"><a href="../reference/getEpiData.html">getEpiData</a></span><span class="op">(</span>name<span class="op">=</span><span class="st">"United States of America"</span>, date<span class="op">=</span><span class="st">"2020-07-01"</span><span class="op">)</span>
-<span class="va">df</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/duplicated.html" class="external-link">duplicated</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">name</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"name"</span>, <span class="st">"date"</span>, <span class="st">"confirmed"</span>, <span class="st">"dead"</span><span class="op">)</span><span class="op">]</span></code></pre></div>
-<pre><code><span class="co">##                       name       date confirmed   dead</span>
-<span class="co">## 1 United States of America 2020-07-01   2694213 128140</span></code></pre>
+<code class="sourceCode R"><span><span class="va">df</span><span class="op">=</span><span class="fu"><a href="../reference/getEpiData.html">getEpiData</a></span><span class="op">(</span>name<span class="op">=</span><span class="st">"United States of America"</span>, date<span class="op">=</span><span class="st">"2020-07-01"</span><span class="op">)</span></span>
+<span><span class="va">df</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/duplicated.html" class="external-link">duplicated</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">name</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"name"</span>, <span class="st">"date"</span>, <span class="st">"confirmed"</span>, <span class="st">"dead"</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">##                       name       date confirmed   dead</span></span>
+<span><span class="co">## 1 United States of America 2020-07-01   2694211 128083</span></span></code></pre>
 <hr>
 </div>
 <div class="section level5">
@@ -416,16 +416,16 @@
 <p>Retrieve a <code>dataframe</code> of up-to-date COVID-19 data from <a href="https://outbreak.info/" class="external-link">outbreak.info</a> for specified locaton(s) (World Bank region, country, state/province, metropolitan area, county).</p>
 <p><strong>Usage:</strong></p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/getLocationData.html">getLocationData</a></span><span class="op">(</span><span class="va">location_names</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/getLocationData.html">getLocationData</a></span><span class="op">(</span><span class="va">location_names</span><span class="op">)</span></span></code></pre></div>
 <p><strong>Arguments:</strong></p>
 <p>location_names: a <code>vector</code> or <code>list</code> of location (World Bank region, country, state/province, metropolitan area, county) name(s)</p>
 <p><strong>Example:</strong></p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">df</span><span class="op">=</span><span class="fu"><a href="../reference/getLocationData.html">getLocationData</a></span><span class="op">(</span>location_names<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Brazil"</span>, <span class="st">"San Diego"</span><span class="op">)</span><span class="op">)</span>
-<span class="va">df</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/duplicated.html" class="external-link">duplicated</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">name</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"name"</span>, <span class="st">"date"</span>, <span class="st">"confirmed"</span><span class="op">)</span><span class="op">]</span></code></pre></div>
-<pre><code><span class="co">##          name       date confirmed</span>
-<span class="co">## 202 San Diego 2020-02-12         1</span>
-<span class="co">## 341    Brazil 2020-02-12         0</span></code></pre>
+<code class="sourceCode R"><span><span class="va">df</span><span class="op">=</span><span class="fu"><a href="../reference/getLocationData.html">getLocationData</a></span><span class="op">(</span>location_names<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Brazil"</span>, <span class="st">"San Diego"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="va">df</span><span class="op">[</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/duplicated.html" class="external-link">duplicated</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">name</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"name"</span>, <span class="st">"date"</span>, <span class="st">"confirmed"</span><span class="op">)</span><span class="op">]</span></span></code></pre></div>
+<pre><code><span><span class="co">##          name       date confirmed</span></span>
+<span><span class="co">## 16  San Diego 2020-02-12         1</span></span>
+<span><span class="co">## 468    Brazil 2020-02-12         0</span></span></code></pre>
 <hr>
 </div>
 <div class="section level5">
@@ -436,13 +436,13 @@
 <p>Retrieve a <code>dataframe</code> of up-to-date COVID-19 data from <a href="https://outbreak.info/" class="external-link">outbreak.info</a> for all countries.</p>
 <p><strong>Usage:</strong></p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/getAdmn0.html">getAdmn0</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/getAdmn0.html">getAdmn0</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><strong>Arguments:</strong></p>
 <p>none</p>
 <p><strong>Example:</strong></p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">world_df</span><span class="op">=</span><span class="fu"><a href="../reference/getAdmn0.html">getAdmn0</a></span><span class="op">(</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">world_df</span><span class="op">$</span><span class="va">name</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">world_df</span><span class="op">=</span><span class="fu"><a href="../reference/getAdmn0.html">getAdmn0</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">world_df</span><span class="op">$</span><span class="va">name</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <hr>
 </div>
 <div class="section level5">
@@ -453,15 +453,15 @@
 <p>Retrieve a <code>dataframe</code> of up-to-date COVID-19 data from <a href="https://outbreak.info/" class="external-link">outbreak.info</a> for all countries in one or more World Bank regions.</p>
 <p><strong>Usage:</strong></p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/getCountryByRegion.html">getCountryByRegion</a></span><span class="op">(</span><span class="va">wb_regions</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/getCountryByRegion.html">getCountryByRegion</a></span><span class="op">(</span><span class="va">wb_regions</span><span class="op">)</span></span></code></pre></div>
 <p><strong>Arguments:</strong></p>
 <p>wb_regions: a <code>vector</code> or <code>list</code> of World Bank region names</p>
 <p><strong>Example:</strong></p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">region_df</span><span class="op">=</span><span class="fu"><a href="../reference/getCountryByRegion.html">getCountryByRegion</a></span><span class="op">(</span><span class="st">"South Asia"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">region_df</span><span class="op">$</span><span class="va">name</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## [1] "Bangladesh"  "Afghanistan" "Bhutan"      "Nepal"       "India"      </span>
-<span class="co">## [6] "Sri Lanka"   "Pakistan"</span></code></pre>
+<code class="sourceCode R"><span><span class="va">region_df</span><span class="op">=</span><span class="fu"><a href="../reference/getCountryByRegion.html">getCountryByRegion</a></span><span class="op">(</span><span class="st">"South Asia"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">region_df</span><span class="op">$</span><span class="va">name</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "Bangladesh"  "Bhutan"      "Nepal"       "Afghanistan" "India"      </span></span>
+<span><span class="co">## [6] "Sri Lanka"   "Pakistan"</span></span></code></pre>
 <hr>
 </div>
 <div class="section level5">
@@ -472,14 +472,14 @@
 <p>Retrieve a <code>dataframe</code> of up-to-date COVID-19 data from <a href="https://outbreak.info/" class="external-link">outbreak.info</a> for all states/provinces in one or more countries.</p>
 <p><strong>Usage:</strong></p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/getAdmn1ByCountry.html">getAdmn1ByCountry</a></span><span class="op">(</span><span class="va">countries</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/getAdmn1ByCountry.html">getAdmn1ByCountry</a></span><span class="op">(</span><span class="va">countries</span><span class="op">)</span></span></code></pre></div>
 <p><strong>Arguments:</strong></p>
 <p>countries: a <code>vector</code> or <code>list</code> of country names</p>
 <p><strong>Example:</strong></p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">state_df</span><span class="op">=</span><span class="fu"><a href="../reference/getAdmn1ByCountry.html">getAdmn1ByCountry</a></span><span class="op">(</span><span class="st">"India"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">state_df</span><span class="op">$</span><span class="va">name</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## NULL</span></code></pre>
+<code class="sourceCode R"><span><span class="va">state_df</span><span class="op">=</span><span class="fu"><a href="../reference/getAdmn1ByCountry.html">getAdmn1ByCountry</a></span><span class="op">(</span><span class="st">"India"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">state_df</span><span class="op">$</span><span class="va">name</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## NULL</span></span></code></pre>
 <hr>
 </div>
 <div class="section level5">
@@ -490,12 +490,12 @@
 <p>Retrieve a <code>dataframe</code> of up-to-date COVID-19 data from <a href="https://outbreak.info/" class="external-link">outbreak.info</a> for all metropolitan areas in the United States of America.</p>
 <p><strong>Usage:</strong></p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/getMetroByCountry.html">getMetroByCountry</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/getMetroByCountry.html">getMetroByCountry</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><strong>Arguments:</strong></p>
 <p>none</p>
 <p><strong>Example:</strong></p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">metro_df</span><span class="op">=</span><span class="fu"><a href="../reference/getMetroByCountry.html">getMetroByCountry</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">metro_df</span><span class="op">=</span><span class="fu"><a href="../reference/getMetroByCountry.html">getMetroByCountry</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <hr>
 </div>
 <div class="section level5">
@@ -506,12 +506,12 @@
 <p>Retrieve a <code>dataframe</code> of up-to-date COVID-19 data from <a href="https://outbreak.info/" class="external-link">outbreak.info</a> for all counties in the United States of America.</p>
 <p><strong>Usage:</strong></p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/getAdmn2ByCountry.html">getAdmn2ByCountry</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/getAdmn2ByCountry.html">getAdmn2ByCountry</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><strong>Arguments:</strong></p>
 <p>none</p>
 <p><strong>Example:</strong></p>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">county_df</span><span class="op">=</span><span class="fu"><a href="../reference/getAdmn2ByCountry.html">getAdmn2ByCountry</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">county_df</span><span class="op">=</span><span class="fu"><a href="../reference/getAdmn2ByCountry.html">getAdmn2ByCountry</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <hr>
 </div>
 <div class="section level5">
@@ -522,14 +522,14 @@
 <p>Retrieve a <code>dataframe</code> of up-to-date COVID-19 data from <a href="https://outbreak.info/" class="external-link">outbreak.info</a> for all counties in given state(s).</p>
 <p><strong>Usage:</strong></p>
 <div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/getAdmn2ByState.html">getAdmn2ByState</a></span><span class="op">(</span><span class="va">states</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/getAdmn2ByState.html">getAdmn2ByState</a></span><span class="op">(</span><span class="va">states</span><span class="op">)</span></span></code></pre></div>
 <p><strong>Arguments:</strong></p>
 <p>states: a <code>vector</code> or <code>list</code> of state names</p>
 <p><strong>Example:</strong></p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">ca_df</span><span class="op">=</span><span class="fu"><a href="../reference/getAdmn2ByState.html">getAdmn2ByState</a></span><span class="op">(</span><span class="st">"California"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">ca_df</span><span class="op">$</span><span class="va">name</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## [1] 59</span></code></pre>
+<code class="sourceCode R"><span><span class="va">ca_df</span><span class="op">=</span><span class="fu"><a href="../reference/getAdmn2ByState.html">getAdmn2ByState</a></span><span class="op">(</span><span class="st">"California"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">ca_df</span><span class="op">$</span><span class="va">name</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] 59</span></span></code></pre>
 <hr>
 </div>
 <div class="section level5">
@@ -540,17 +540,17 @@
 <p>Retrieve a <code>dataframe</code> of up-to-date COVID-19 data from <a href="https://outbreak.info/" class="external-link">outbreak.info</a> for all locations at a specified administrative level.</p>
 <p><strong>Usage:</strong></p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/getByAdmnLevel.html">getByAdmnLevel</a></span><span class="op">(</span><span class="va">admin_level</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/getByAdmnLevel.html">getByAdmnLevel</a></span><span class="op">(</span><span class="va">admin_level</span><span class="op">)</span></span></code></pre></div>
 <p><strong>Arguments:</strong></p>
 <p>admin_level: an <code>integer</code> representing an administrative level (World Bank regions = -1, countries = 0, states/provinces = 1, metropolitan areas = 1.5, counties = 2)</p>
 <p><strong>Example:</strong></p>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">admin_df</span><span class="op">=</span><span class="fu"><a href="../reference/getByAdmnLevel.html">getByAdmnLevel</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">admin_df</span><span class="op">$</span><span class="va">name</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code><span class="co">## [1] "Sub-Saharan Africa"         "Europe &amp; Central Asia"     </span>
-<span class="co">## [3] ""                           "East Asia &amp; Pacific"       </span>
-<span class="co">## [5] "North America"              "Middle East &amp; North Africa"</span>
-<span class="co">## [7] "South Asia"                 "Latin America &amp; Caribbean"</span></code></pre>
+<code class="sourceCode R"><span><span class="va">admin_df</span><span class="op">=</span><span class="fu"><a href="../reference/getByAdmnLevel.html">getByAdmnLevel</a></span><span class="op">(</span><span class="op">-</span><span class="fl">1</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">admin_df</span><span class="op">$</span><span class="va">name</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "Sub-Saharan Africa"         "Europe &amp; Central Asia"     </span></span>
+<span><span class="co">## [3] ""                           "East Asia &amp; Pacific"       </span></span>
+<span><span class="co">## [5] "North America"              "Latin America &amp; Caribbean" </span></span>
+<span><span class="co">## [7] "Middle East &amp; North Africa" "South Asia"</span></span></code></pre>
 <hr>
 </div>
 </div>
@@ -565,14 +565,14 @@
 <p>Plot a metric of interest using up-to-date COVID-19 data using data from <a href="https://outbreak.info/" class="external-link">outbreak.info</a> for location(s) of interest (World Bank region, country, state/province, metropolitan area, county)</p>
 <p><strong>Usage:</strong></p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/plotEpiData.html">plotEpiData</a></span><span class="op">(</span><span class="va">locations</span>, <span class="va">variable</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plotEpiData.html">plotEpiData</a></span><span class="op">(</span><span class="va">locations</span>, <span class="va">variable</span><span class="op">)</span></span></code></pre></div>
 <p><strong>Arguments:</strong></p>
 <p>location: a <code>vector</code> or <code>list</code> of location name(s)</p>
 <p>variable: metric to plot</p>
 <p><strong>Example:</strong></p>
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">p</span><span class="op">=</span><span class="fu"><a href="../reference/plotEpiData.html">plotEpiData</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Brazil"</span>, <span class="st">"San Diego"</span><span class="op">)</span>, <span class="st">"confirmed_per_100k"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/methods/show.html" class="external-link">show</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">p</span><span class="op">=</span><span class="fu"><a href="../reference/plotEpiData.html">plotEpiData</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Brazil"</span>, <span class="st">"San Diego"</span><span class="op">)</span>, <span class="st">"confirmed_per_100k"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/methods/show.html" class="external-link">show</a></span><span class="op">(</span><span class="va">p</span><span class="op">)</span></span></code></pre></div>
 <p><img src="epivignette_files/figure-html/unnamed-chunk-25-1.png" width="700"></p>
 <hr>
 </div>
@@ -597,7 +597,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>

@@ -21,6 +21,9 @@
 plotPrevalenceDotPlot = function(df, title = NULL, subtitle = NULL, dot_size = 3) {
   if(!is.null(df) && nrow(df) > 0){
     xlim = c(0, max(df$proportion))
+
+    if(length(unique(xlim)) == 1)
+      xlim <- c(0,1)
     
     # Sort the values, so they're arranged from high to low prevalence
     sorted_locations = df %>% arrange(proportion) %>% pull(name)

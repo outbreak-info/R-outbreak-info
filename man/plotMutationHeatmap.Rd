@@ -15,6 +15,9 @@ plotMutationHeatmap(df, gene2Plot = "S", title = NULL, lightBorders = TRUE)
 
 \item{lightBorders}{(optional) boolean; whether the borders between grid items should be separated with a light or dark border.}
 }
+\value{
+
+}
 \description{
 Plots a heatamp of mutation prevalence across particular lineages.
 }

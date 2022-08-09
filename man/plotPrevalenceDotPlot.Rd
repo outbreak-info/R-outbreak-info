@@ -15,6 +15,9 @@ plotPrevalenceDotPlot(df, title = NULL, subtitle = NULL, dot_size = 3)
 
 \item{dot_size}{(optional) Dot plot size (in mm)}
 }
+\value{
+
+}
 \description{
 Plots a dot plot of prevalences of a variant in a specific location
 }

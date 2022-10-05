@@ -147,7 +147,7 @@ ggplot(resources_by_source_grouped %>% filter(type_grouped != "Other"),
 Our API is built off Elasticsearch, which utilizes Lucene syntax to create queries. As a result, there's a lot of different and complex queries you can run, if you know the right syntax. Here are a few examples of what you can do; see also the [Elasticsearch query syntax](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax) for more documentation.
 
 ### General queries
-This will search for any use of the term within all the metadata, including its name, description, authors, etc. You can also combine terms using `AND` and/or `OR` (must be capitalized). Note that spaces, dashes, and other punctuation are automatically treated as `OR` combinations.  While periods `.` are used in field names to indicate object structure/nesting (like `journalName:Nature`; see ["Searching specific terms"](#searching-specific-terms)), they will be treated as any other punctuation in general queries. Wildcards `*` can be used (more on this [later](#using-wildcards)). Adding quotes will search for that exact term. **Note that all searches are case insensitive, so looking for "Pfizer" or "pfizer" will give you the same results.**
+This will search for any use of the term within all the metadata, including its name, description, authors, etc. You can also combine terms using `AND` and/or `OR` (must be capitalized). Note that spaces, dashes, and other punctuation are automatically treated as `AND` combinations.  While periods `.` are used in field names to indicate object structure/nesting (like `journalName:Nature`; see ["Searching specific terms"](#searching-specific-terms)), they will be treated as any other punctuation in general queries. Wildcards `*` can be used (more on this [later](#using-wildcards)). Adding quotes will search for that exact term. **Note that all searches are case insensitive, so looking for "Pfizer" or "pfizer" will give you the same results.**
 ```{r query_example_basic}
 # Basic query: look for anything that mentions "Pfizer"
 query1 = getResourcesData(query = "Pfizer", fetchAll = TRUE)
@@ -155,7 +155,7 @@ print(paste0("There are ", query1 %>% nrow() %>% format(big.mark=",")," resource
 
 # Slightly more complicated: lets look what happens when we search for "Pfizer-BioNTech".
 query2 = getResourcesData(query = "Pfizer-BioNTech", fetchAll = TRUE)
-print(paste0("There are ", query2 %>% nrow() %>% format(big.mark=",")," resources containing the term Pfizer-BioNTech. When a search isn't a single word (or is combined by punctuation like hyphens), the words are treated separately, so the results are for any document that has Pfizer OR BioNTech."))
+print(paste0("There are ", query2 %>% nrow() %>% format(big.mark=",")," resources containing the term Pfizer-BioNTech. When a search isn't a single word (or is combined by punctuation like hyphens), the words are treated separately, so the results are for any document that has Pfizer AND BioNTech."))
 
 # Let's check that explicitly, by combining Pfizer and BioNTech by `OR`.
 query3 = getResourcesData(query = "Pfizer OR BioNTech", fetchAll = TRUE)
@@ -177,7 +177,7 @@ In addition to specifying the query string, there are other API parameters you c
 * `types`: returns resources of a particular type, like Publication, ClinicalTrial, Dataset, Protocol, Analysis, and more.
 * `size`: how many results are retunred (top 10 by default)
 * `fetchAll`: if TRUE, returns all the results (regardless of what `size` is)
-* `fields`: which fields (variables) to include in the search results. By default, should be all thes fields. See our [schemas](https://discovery.biothings.io/view/outbreak) for the list of all the fields.
+* `fields`: which fields (variables) to include in the search results. By default, should be all these fields. See our [schemas](https://discovery.biothings.io/view/outbreak) for the list of all the fields.
 * `sort`: what variable to sort by. Add `-` in front of the variable name to reverse the sort order (descending)
 * `facets`: counts by a particular variable, as shown in the counting of resource types.
 * `facet_size`: how many results to return in the facets. By default, only the top 10 most frequently observed options will be listed for a given field.

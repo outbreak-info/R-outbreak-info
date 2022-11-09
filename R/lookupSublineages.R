@@ -41,7 +41,7 @@ lookupSublineages = function (lineage, returnQueryString = FALSE) {
 }
 
 getSublineages = function(lineage) {
-  SUBLINEAGE_URL = "https://raw.githubusercontent.com/cov-lineages/lineages-website/master/_data/lineages.yml"
+  SUBLINEAGE_URL = "https://raw.githubusercontent.com/outbreak-info/outbreak.info/master/curated_reports_prep/lineages.yml"
 
   tryCatch({
     sublineages_resp = GET(SUBLINEAGE_URL)

@@ -150,53 +150,53 @@
     <h2>Examples</h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">getEpiData</span><span class="op">(</span>name<span class="op">=</span><span class="st">"United States of America"</span>, date<span class="op">=</span><span class="st">"2020-07-01"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   CBSA FIPS            ID State                    X_id  X_score admin1 admin2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1   NA   60 USA_None_None    NA USA_None_None2020-07-01 15.36231   None   None</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   NA   60 USA_None_None    NA USA_None_None2020-07-01 15.38026   None   None</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   admin_level confirmed confirmed_doublingRate confirmed_numIncrease</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1           0   2698251               19.85561                 49346</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   confirmed_numIncrease_per_100k confirmed_pctIncrease confirmed_per_100k</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                       14.80814              1.828814           809.7127</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                                               confirmed_per_100k_breaks</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.000, 1615.380, 4688.053, 8346.589, 13082.994, 20242.449, 29400.889, 39305.129, 49339.326, 60259.926</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.000, 1651.202, 4808.428, 8464.335, 12811.497, 18938.992, 26685.491, 36965.391, 48385.428, 60355.457</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   confirmed_rolling confirmed_rolling_14days_ago</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1             44737                     27441.86</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   confirmed_rolling_14days_ago_diff</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                          17295.14</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                confirmed_rolling_14days_ago_diff_breaks</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -554859.312, -277857.219, -118955.359, -46108.072, -10282.643, 8033.071, 37462.000, 92397.074, 320750.430, 488387.844</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                         confirmed_rolling_14days_ago_diff_breaks</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -554867.125, -352976.578, -146485.789, -57172.500, -19861.214, -4361.357, 12467.072, 67671.713, 283851.641, 488390.719, 488391.719, 488392.719</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   confirmed_rolling_14days_ago_diff_per_100k</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                                   5.190064</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                     confirmed_rolling_14days_ago_diff_per_100k_breaks</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -804.5878, -344.6434, -169.0837, -68.0690, -16.3044, 12.3573, 55.8630, 137.9377, 471.5435, 751.8091</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -804.5878, -382.0687, -163.3670, -64.4442, -15.6984, 16.3711, 74.4580, 181.0563, 390.5299, 751.8091</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   confirmed_rolling_14days_ago_per_100k</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                              8.234971</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                  confirmed_rolling_breaks</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -42703.00, 6534.00, 23014.21, 49513.71, 92131.71, 156601.43, 261936.86, 469067.58, 636155.56, 806993.69</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                 confirmed_rolling_breaks</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -42703.00, 4038.50, 14293.50, 30922.29, 53748.00, 92002.50, 156563.50, 262548.43, 469719.56, 806999.56</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   confirmed_rolling_per_100k</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                   13.42504</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                                confirmed_rolling_per_100k_breaks</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -65.4454, 8.6727, 26.5522, 53.4290, 92.9791, 156.5660, 255.9710, 389.8235, 601.9466, 1177.3400</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -65.4454, 8.5661, 26.4172, 55.1133, 98.5968, 164.9721, 261.0829, 393.6608, 630.4254, 1177.3400</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>               country_name       date   dead dead_doublingRate dead_numIncrease</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 United States of America 2020-07-01 128117         -25.50985              701</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   dead_numIncrease_per_100k dead_pctIncrease dead_per_100k</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                 0.2103617        0.5471561      38.44637</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                                            dead_per_100k_breaks</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.0000, 16.6522, 49.8556, 91.1438, 139.5652, 197.7621, 263.5904, 355.1405, 499.2268, 656.6996</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 0.0000, 16.5598, 49.0523, 89.5444, 137.1951, 194.8193, 262.0329, 354.8344, 498.3315, 657.7642</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   dead_rolling dead_rolling_14days_ago dead_rolling_14days_ago_diff</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1     517.5714                757.1429                    -239.5714</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                               dead_rolling_14days_ago_diff_breaks</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -2940.1428, -2129.5715, -999.7857, -406.0000, -152.0000, -38.3571, 59.6429, 282.8571, 968.5000, 1962.4286, 1963.4286, 1964.4286</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                                dead_rolling_14days_ago_diff_breaks</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -2940.1428, -1983.3572, -947.7857, -417.5000, -158.9286, -42.0000, 60.7857, 310.2857, 1031.0714, 1962.4286, 1963.4286, 1964.4286</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   dead_rolling_14days_ago_diff_per_100k</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                           -0.07189251</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                            dead_rolling_14days_ago_diff_per_100k_breaks</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -8.7659, -5.9728, -1.6052, -0.6247, -0.2651, -0.0664, 0.1620, 0.8275, 5.0489, 8.2600, 9.2600, 10.2600</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -8.7659, -5.3886, -1.5704, -0.5924, -0.2416, -0.0583, 0.1544, 0.8354, 5.0886, 8.2600, 9.2600, 10.2600</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   dead_rolling_14days_ago_per_100k</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                        0.2272095</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                                                      dead_rolling_breaks</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -232.1429, 42.0714, 146.5000, 321.7143, 568.1429, 916.5000, 1466.4286, 2179.5000, 3228.5000, 4190.0000</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -232.1429, 41.9286, 148.2857, 328.0714, 566.8571, 889.4286, 1409.6429, 2109.7142, 2935.0714, 4190.0000</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   dead_rolling_per_100k</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1              0.155317</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                      dead_rolling_per_100k_breaks</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.9656, 0.0655, 0.1996, 0.3905, 0.6400, 0.9574, 1.3921, 2.0347, 5.3787, 8.9378</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 -0.9656, 0.0660, 0.2029, 0.4017, 0.6674, 0.9959, 1.4422, 2.0970, 5.2785, 8.9378</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   iso3     lat location_id     long mostRecent                     name</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  USA -14.271         USA -170.132      FALSE United States of America</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   num_subnational population     wb_region</span>

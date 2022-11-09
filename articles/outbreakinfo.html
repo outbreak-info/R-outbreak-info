@@ -103,7 +103,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Introduction to outbreakinfo</h1>
             
-            <h4 data-toc-skip class="date">05 October 2022</h4>
+            <h4 data-toc-skip class="date">09 November 2022</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/outbreak-info/R-outbreak-info/blob/HEAD/vignettes/outbreakinfo.Rmd" class="external-link"><code>vignettes/outbreakinfo.Rmd</code></a></small>
       <div class="hidden name"><code>outbreakinfo.Rmd</code></div>
@@ -209,27 +209,27 @@
 <tbody>
 <tr class="odd">
 <td align="left">Canada</td>
-<td align="right">0.1047929</td>
-<td align="right">0.1038876</td>
-<td align="right">0.1057033</td>
+<td align="right">0.1027896</td>
+<td align="right">0.1019009</td>
+<td align="right">0.1036834</td>
 </tr>
 <tr class="even">
 <td align="left">United Kingdom</td>
-<td align="right">0.0944307</td>
-<td align="right">0.0940896</td>
-<td align="right">0.0947727</td>
+<td align="right">0.0940095</td>
+<td align="right">0.0936698</td>
+<td align="right">0.0943500</td>
 </tr>
 <tr class="odd">
 <td align="left">New Zealand</td>
-<td align="right">0.0072004</td>
-<td align="right">0.0061262</td>
-<td align="right">0.0084096</td>
+<td align="right">0.0063029</td>
+<td align="right">0.0053623</td>
+<td align="right">0.0073619</td>
 </tr>
 <tr class="even">
 <td align="left">Australia</td>
-<td align="right">0.0039056</td>
-<td align="right">0.0035987</td>
-<td align="right">0.0042317</td>
+<td align="right">0.0037831</td>
+<td align="right">0.0034859</td>
+<td align="right">0.0040990</td>
 </tr>
 </tbody>
 </table>
@@ -267,16 +267,17 @@
 <span></span>
 <span><span class="co"># Accessing just the first row:</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">seroprevalence</span><span class="op">[</span><span class="fl">1</span>,<span class="op">]</span><span class="op">)</span></span>
-<span><span class="co">#&gt;             [,1]                                                                                      </span></span>
-<span><span class="co">#&gt; @type       "ClinicalTrial"                                                                           </span></span>
-<span><span class="co">#&gt; _id         "CTRI/2020/09/028040"                                                                     </span></span>
-<span><span class="co">#&gt; curatedBy   list,6                                                                                    </span></span>
-<span><span class="co">#&gt; date        18955                                                                                     </span></span>
-<span><span class="co">#&gt; description "NA"                                                                                      </span></span>
-<span><span class="co">#&gt; funding     data.frame,1                                                                              </span></span>
-<span><span class="co">#&gt; name        "Sero-prevalence and Clinical profile of SARS-CoV-2 infection in children - Covid 19 kids"</span></span>
-<span><span class="co">#&gt; url         "http://www.ctri.nic.in/Clinicaltrials/pmaindet2.php?trialid=47809"                       </span></span>
-<span><span class="co">#&gt; journalName "NA"</span></span>
+<span><span class="co">#&gt;             [,1]                                                            </span></span>
+<span><span class="co">#&gt; @type       "Publication"                                                   </span></span>
+<span><span class="co">#&gt; _id         "pmid35317419"                                                  </span></span>
+<span><span class="co">#&gt; curatedBy   list,4                                                          </span></span>
+<span><span class="co">#&gt; date        19023                                                           </span></span>
+<span><span class="co">#&gt; journalName "Health science reports"                                        </span></span>
+<span><span class="co">#&gt; name        "Sero-prevalence of SARS-CoV-2 in certain cities of Kazakhstan."</span></span>
+<span><span class="co">#&gt; url         "https://www.doi.org/10.1002/hsr2.562"                          </span></span>
+<span><span class="co">#&gt; funding     NA                                                              </span></span>
+<span><span class="co">#&gt; description "NA"                                                            </span></span>
+<span><span class="co">#&gt; _ignored    NA</span></span>
 <span></span>
 <span><span class="co"># Plot the increase in seroprevalence research over time</span></span>
 <span><span class="co"># roll up the number of resources by week</span></span>

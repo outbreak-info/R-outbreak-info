@@ -103,7 +103,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Research Library</h1>
             
-            <h4 data-toc-skip class="date">05 October 2022</h4>
+            <h4 data-toc-skip class="date">09 November 2022</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/outbreak-info/R-outbreak-info/blob/HEAD/vignettes/researchlibrary.Rmd" class="external-link"><code>vignettes/researchlibrary.Rmd</code></a></small>
       <div class="hidden name"><code>researchlibrary.Rmd</code></div>
@@ -133,7 +133,7 @@
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/" class="external-link">knitr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://purrr.tidyverse.org" class="external-link">purrr</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://purrr.tidyverse.org/" class="external-link">purrr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://lubridate.tidyverse.org" class="external-link">lubridate</a></span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
@@ -183,8 +183,8 @@
 <span>  <span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span>label<span class="op">=</span><span class="fu">scales</span><span class="fu">::</span><span class="va"><a href="https://scales.r-lib.org/reference/comma.html" class="external-link">comma</a></span><span class="op">)</span> <span class="op">+</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_date.html" class="external-link">scale_x_datetime</a></span><span class="op">(</span>limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">min</a></span><span class="op">(</span><span class="va">resources_per_week</span><span class="op">$</span><span class="va">iso_date</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">resources_per_week</span><span class="op">$</span><span class="va">iso_date</span>, na.rm <span class="op">=</span> <span class="cn">T</span><span class="op">)</span><span class="op">)</span>, date_labels <span class="op">=</span> <span class="st">"%b %Y"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Warning: Removed 2 rows containing missing values (position_stack).</span></span>
-<span><span class="co">#&gt; Warning: Removed 2 rows containing missing values (geom_bar).</span></span></code></pre></div>
+<span><span class="co">#&gt; Warning: Removed 2 rows containing missing values (`position_stack()`).</span></span>
+<span><span class="co">#&gt; Warning: Removed 2 rows containing missing values (`geom_bar()`).</span></span></code></pre></div>
 <p><img src="researchlibrary_files/figure-html/resources_by_date-1.png" width="100%"></p>
 </div>
 <div class="section level3">
@@ -203,47 +203,71 @@
 <tbody>
 <tr class="odd">
 <td align="left">Publication</td>
-<td align="right">322597</td>
+<td align="right">331679</td>
 </tr>
 <tr class="even">
 <td align="left">ClinicalTrial</td>
-<td align="right">16173</td>
+<td align="right">16825</td>
 </tr>
 <tr class="odd">
 <td align="left">Dataset</td>
-<td align="right">8515</td>
+<td align="right">11605</td>
 </tr>
 <tr class="even">
+<td align="left">ScholarlyArticle</td>
+<td align="right">1586</td>
+</tr>
+<tr class="odd">
 <td align="left">Protocol</td>
-<td align="right">1276</td>
+<td align="right">1307</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">ImageObject</td>
-<td align="right">1152</td>
-</tr>
-<tr class="even">
-<td align="left">PresentationDigitalDocument</td>
-<td align="right">119</td>
+<td align="right">1179</td>
 </tr>
 <tr class="odd">
-<td align="left">MediaObject</td>
-<td align="right">107</td>
-</tr>
-<tr class="even">
-<td align="left">Website</td>
-<td align="right">68</td>
-</tr>
-<tr class="odd">
-<td align="left">Conference Contribution</td>
-<td align="right">35</td>
+<td align="left">ComputationalTool</td>
+<td align="right">541</td>
 </tr>
 <tr class="even">
 <td align="left">CreativeWork</td>
-<td align="right">23</td>
+<td align="right">263</td>
 </tr>
 <tr class="odd">
+<td align="left">PresentationDigitalDocument</td>
+<td align="right">219</td>
+</tr>
+<tr class="even">
 <td align="left">Report</td>
-<td align="right">21</td>
+<td align="right">187</td>
+</tr>
+<tr class="odd">
+<td align="left">MediaObject</td>
+<td align="right">128</td>
+</tr>
+<tr class="even">
+<td align="left">Poster</td>
+<td align="right">96</td>
+</tr>
+<tr class="odd">
+<td align="left">Website</td>
+<td align="right">68</td>
+</tr>
+<tr class="even">
+<td align="left">Conference Contribution</td>
+<td align="right">35</td>
+</tr>
+<tr class="odd">
+<td align="left">Book</td>
+<td align="right">32</td>
+</tr>
+<tr class="even">
+<td align="left">Chapter</td>
+<td align="right">29</td>
+</tr>
+<tr class="odd">
+<td align="left">TechArticle</td>
+<td align="right">18</td>
 </tr>
 <tr class="even">
 <td align="left">SoftwareSourceCode</td>
@@ -254,8 +278,8 @@
 <td align="right">12</td>
 </tr>
 <tr class="even">
-<td align="left">Chapter</td>
-<td align="right">2</td>
+<td align="left">Collection</td>
+<td align="right">1</td>
 </tr>
 <tr class="odd">
 <td align="left">Composition</td>
@@ -280,47 +304,71 @@
 <tbody>
 <tr class="odd">
 <td align="left">Publication</td>
-<td align="right">322597</td>
+<td align="right">331679</td>
 </tr>
 <tr class="even">
 <td align="left">ClinicalTrial</td>
-<td align="right">16173</td>
+<td align="right">16825</td>
 </tr>
 <tr class="odd">
 <td align="left">Dataset</td>
-<td align="right">8515</td>
+<td align="right">11605</td>
 </tr>
 <tr class="even">
+<td align="left">ScholarlyArticle</td>
+<td align="right">1586</td>
+</tr>
+<tr class="odd">
 <td align="left">Protocol</td>
-<td align="right">1276</td>
+<td align="right">1307</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">ImageObject</td>
-<td align="right">1152</td>
-</tr>
-<tr class="even">
-<td align="left">PresentationDigitalDocument</td>
-<td align="right">119</td>
+<td align="right">1179</td>
 </tr>
 <tr class="odd">
-<td align="left">MediaObject</td>
-<td align="right">107</td>
-</tr>
-<tr class="even">
-<td align="left">Website</td>
-<td align="right">68</td>
-</tr>
-<tr class="odd">
-<td align="left">Conference Contribution</td>
-<td align="right">35</td>
+<td align="left">ComputationalTool</td>
+<td align="right">541</td>
 </tr>
 <tr class="even">
 <td align="left">CreativeWork</td>
-<td align="right">23</td>
+<td align="right">263</td>
 </tr>
 <tr class="odd">
+<td align="left">PresentationDigitalDocument</td>
+<td align="right">219</td>
+</tr>
+<tr class="even">
 <td align="left">Report</td>
-<td align="right">21</td>
+<td align="right">187</td>
+</tr>
+<tr class="odd">
+<td align="left">MediaObject</td>
+<td align="right">128</td>
+</tr>
+<tr class="even">
+<td align="left">Poster</td>
+<td align="right">96</td>
+</tr>
+<tr class="odd">
+<td align="left">Website</td>
+<td align="right">68</td>
+</tr>
+<tr class="even">
+<td align="left">Conference Contribution</td>
+<td align="right">35</td>
+</tr>
+<tr class="odd">
+<td align="left">Book</td>
+<td align="right">32</td>
+</tr>
+<tr class="even">
+<td align="left">Chapter</td>
+<td align="right">29</td>
+</tr>
+<tr class="odd">
+<td align="left">TechArticle</td>
+<td align="right">18</td>
 </tr>
 <tr class="even">
 <td align="left">SoftwareSourceCode</td>
@@ -331,8 +379,8 @@
 <td align="right">12</td>
 </tr>
 <tr class="even">
-<td align="left">Chapter</td>
-<td align="right">2</td>
+<td align="left">Collection</td>
+<td align="right">1</td>
 </tr>
 <tr class="odd">
 <td align="left">Composition</td>
@@ -411,28 +459,28 @@
 <code class="sourceCode R"><span><span class="co"># Basic query: look for anything that mentions "Pfizer"</span></span>
 <span><span class="va">query1</span> <span class="op">=</span> <span class="fu"><a href="../reference/getResourcesData.html">getResourcesData</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">"Pfizer"</span>, fetchAll <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"There are "</span>, <span class="va">query1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span>big.mark<span class="op">=</span><span class="st">","</span><span class="op">)</span>,<span class="st">" resources containing the term 'Pfizer'"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "There are 3,410 resources containing the term 'Pfizer'"</span></span>
+<span><span class="co">#&gt; [1] "There are 3,555 resources containing the term 'Pfizer'"</span></span>
 <span></span>
 <span><span class="co"># Slightly more complicated: lets look what happens when we search for "Pfizer-BioNTech".</span></span>
 <span><span class="va">query2</span> <span class="op">=</span> <span class="fu"><a href="../reference/getResourcesData.html">getResourcesData</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">"Pfizer-BioNTech"</span>, fetchAll <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"There are "</span>, <span class="va">query2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span>big.mark<span class="op">=</span><span class="st">","</span><span class="op">)</span>,<span class="st">" resources containing the term Pfizer-BioNTech. When a search isn't a single word (or is combined by punctuation like hyphens), the words are treated separately, so the results are for any document that has Pfizer AND BioNTech."</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "There are 2,212 resources containing the term Pfizer-BioNTech. When a search isn't a single word (or is combined by punctuation like hyphens), the words are treated separately, so the results are for any document that has Pfizer AND BioNTech."</span></span>
+<span><span class="co">#&gt; [1] "There are 2,294 resources containing the term Pfizer-BioNTech. When a search isn't a single word (or is combined by punctuation like hyphens), the words are treated separately, so the results are for any document that has Pfizer AND BioNTech."</span></span>
 <span></span>
 <span><span class="co"># Let's check that explicitly, by combining Pfizer and BioNTech by `OR`.</span></span>
 <span><span class="va">query3</span> <span class="op">=</span> <span class="fu"><a href="../reference/getResourcesData.html">getResourcesData</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">"Pfizer OR BioNTech"</span>, fetchAll <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"There are "</span>, <span class="va">query3</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span>big.mark<span class="op">=</span><span class="st">","</span><span class="op">)</span>,<span class="st">" resources containing the term Pfizer or BioNTech. Search terms can be combined using ` OR ` to search for either Pfizer or BioNTech."</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "There are 3,523 resources containing the term Pfizer or BioNTech. Search terms can be combined using ` OR ` to search for either Pfizer or BioNTech."</span></span>
+<span><span class="co">#&gt; [1] "There are 3,675 resources containing the term Pfizer or BioNTech. Search terms can be combined using ` OR ` to search for either Pfizer or BioNTech."</span></span>
 <span></span>
 <span><span class="co"># We can fix this by encapsulating the search term in double quotes.  NOTE: don't use single quotes!  They'll be ignored.</span></span>
 <span><span class="va">query4</span> <span class="op">=</span> <span class="fu"><a href="../reference/getResourcesData.html">getResourcesData</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">'"Pfizer-BioNTech"'</span>, fetchAll <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"There are "</span>, <span class="va">query4</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span>big.mark<span class="op">=</span><span class="st">","</span><span class="op">)</span>,<span class="st">" resources containing the exact term Pfizer-BioNTech. Use double (not single!) quotes to search for an exact phrase."</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "There are 1,966 resources containing the exact term Pfizer-BioNTech. Use double (not single!) quotes to search for an exact phrase."</span></span>
+<span><span class="co">#&gt; [1] "There are 2,040 resources containing the exact term Pfizer-BioNTech. Use double (not single!) quotes to search for an exact phrase."</span></span>
 <span></span>
 <span><span class="co"># Terms can also be combined using the word `AND` and using parentheses to group words together. You can create some complex queries that way, like if we were interested in the side effects of two of the approved COVID-19 vaccines.</span></span>
 <span><span class="va">query5</span> <span class="op">=</span> <span class="fu"><a href="../reference/getResourcesData.html">getResourcesData</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">'("Pfizer-BioNTech" OR Moderna) AND ("adverse event" OR "adverse events" OR "side effect" OR "side effects")'</span>, fetchAll <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"There are "</span>, <span class="va">query5</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span>big.mark<span class="op">=</span><span class="st">","</span><span class="op">)</span>,<span class="st">" resources containing the terms Pfizer-BioNTech or Moderna and some form of adverse events/side effects. Combine search terms using AND or OR and put parentheses around them to group them."</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "There are 774 resources containing the terms Pfizer-BioNTech or Moderna and some form of adverse events/side effects. Combine search terms using AND or OR and put parentheses around them to group them."</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "There are 813 resources containing the terms Pfizer-BioNTech or Moderna and some form of adverse events/side effects. Combine search terms using AND or OR and put parentheses around them to group them."</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="adjusting-other-parameters">Adjusting other parameters<a class="anchor" aria-label="anchor" href="#adjusting-other-parameters"></a>
@@ -459,18 +507,18 @@
 <span><span class="va">query6</span> <span class="op">=</span> <span class="fu"><a href="../reference/getResourcesData.html">getResourcesData</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">"booster"</span>, types<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ClinicalTrial"</span><span class="op">)</span>, fetchAll <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"There are "</span>, <span class="va">query6</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span>big.mark<span class="op">=</span><span class="st">","</span><span class="op">)</span>,<span class="st">" clinical trials involving boosters"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "There are 512 clinical trials involving boosters"</span></span>
+<span><span class="co">#&gt; [1] "There are 551 clinical trials involving boosters"</span></span>
 <span></span>
 <span><span class="co"># Return the names of the top 20 results, sorted by the newest date</span></span>
 <span><span class="va">query7</span> <span class="op">=</span> <span class="fu"><a href="../reference/getResourcesData.html">getResourcesData</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">"booster"</span>, types<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ClinicalTrial"</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">5</span>, fields<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"name"</span>, <span class="st">"date"</span>, <span class="st">"studyStatus.status"</span>, <span class="st">"studyLocation.studyLocationCountry"</span><span class="op">)</span>, sort <span class="op">=</span> <span class="st">"-date"</span><span class="op">)</span></span>
 <span><span class="va">query7</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://pillar.r-lib.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Rows: 5</span></span>
 <span><span class="co">#&gt; Columns: 5</span></span>
-<span><span class="co">#&gt; $ `_id`         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "NCT05430958", "NCT05472038", "NCT04889209", "NCT0508498…</span></span>
-<span><span class="co">#&gt; $ date          <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2022-10-04, 2022-10-03, 2022-09-30, 2022-09-30, 2022-09…</span></span>
-<span><span class="co">#&gt; $ name          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Phase 1 Open Label Study to Evaluate the Safety, Tolera…</span></span>
-<span><span class="co">#&gt; $ studyStatus   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> ["not yet recruiting"], ["recruiting"], ["recruiting"],…</span></span>
-<span><span class="co">#&gt; $ studyLocation <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> NA, [&lt;data.frame[32 x 1]&gt;], [&lt;data.frame[12 x 1]&gt;], [&lt;d…</span></span>
+<span><span class="co">#&gt; $ `_id`         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "NCT05078905", "NCT05602558", "NCT05602961", "NCT0484705…</span></span>
+<span><span class="co">#&gt; $ date          <span style="color: #949494; font-style: italic;">&lt;date&gt;</span> 2022-11-02, 2022-11-02, 2022-11-02, 2022-11-01, 2022-11…</span></span>
+<span><span class="co">#&gt; $ name          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "Longitudinal Observations of Vaccine Responses to SARS-…</span></span>
+<span><span class="co">#&gt; $ studyLocation <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> [&lt;data.frame[1 x 1]&gt;], NA, NA, [&lt;data.frame[1 x 1]&gt;], […</span></span>
+<span><span class="co">#&gt; $ studyStatus   <span style="color: #949494; font-style: italic;">&lt;list&gt;</span> ["recruiting"], ["not yet recruiting"], ["not yet recru…</span></span>
 <span></span>
 <span></span>
 <span><span class="co"># count what types of interventions are in those clinical trials. Returns the top 25 intervention categories</span></span>
@@ -483,19 +531,19 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="right">253</td>
+<td align="right">263</td>
 <td align="left">biological</td>
 </tr>
 <tr class="even">
-<td align="right">52</td>
+<td align="right">53</td>
 <td align="left">other</td>
 </tr>
 <tr class="odd">
-<td align="right">39</td>
+<td align="right">42</td>
 <td align="left">drug</td>
 </tr>
 <tr class="even">
-<td align="right">32</td>
+<td align="right">37</td>
 <td align="left">behavioral</td>
 </tr>
 <tr class="odd">
@@ -507,7 +555,7 @@
 <td align="left">dietary supplement</td>
 </tr>
 <tr class="odd">
-<td align="right">3</td>
+<td align="right">4</td>
 <td align="left">device</td>
 </tr>
 <tr class="even">
@@ -529,7 +577,7 @@
 <code class="sourceCode R"><span><span class="va">query9</span> <span class="op">=</span> <span class="fu"><a href="../reference/getResourcesData.html">getResourcesData</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">"E484*"</span>, fetchAll <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"There are "</span>, <span class="va">query9</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span>big.mark<span class="op">=</span><span class="st">","</span><span class="op">)</span>,<span class="st">" resources mentioning a mutation at position E484."</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "There are 697 resources mentioning a mutation at position E484."</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "There are 707 resources mentioning a mutation at position E484."</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="using-regular-expressions">Using regular expressions<a class="anchor" aria-label="anchor" href="#using-regular-expressions"></a>
@@ -545,7 +593,7 @@
 <span><span class="va">query10</span> <span class="op">=</span> <span class="fu"><a href="../reference/getResourcesData.html">getResourcesData</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">"journalName:Nature"</span>, fetchAll <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"There are "</span>, <span class="va">query10</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span>big.mark<span class="op">=</span><span class="st">","</span><span class="op">)</span>,<span class="st">" COVID-19 publications from Nature."</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "There are 1,558 COVID-19 publications from Nature."</span></span>
+<span><span class="co">#&gt; [1] "There are 1,574 COVID-19 publications from Nature."</span></span>
 <span></span>
 <span><span class="co"># find all resources from Manar Alkuzweny. `author` is an object field, so to access `givenName`, you'll use dot notation</span></span>
 <span><span class="va">query11</span> <span class="op">=</span> <span class="fu"><a href="../reference/getResourcesData.html">getResourcesData</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">"author.givenName:Manar AND author.familyName:Alkuzweny."</span>, fetchAll <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
@@ -561,7 +609,7 @@
 <code class="sourceCode R"><span><span class="va">query12</span> <span class="op">=</span> <span class="fu"><a href="../reference/getResourcesData.html">getResourcesData</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">"_exists_:correction"</span>, types <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Publication"</span><span class="op">)</span>, size <span class="op">=</span> <span class="fl">10</span>, facets <span class="op">=</span> <span class="st">"correction.correctionType"</span>, facet_size <span class="op">=</span> <span class="fl">20</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"There are "</span>, <span class="va">query12</span><span class="op">$</span><span class="va">total</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span>big.mark<span class="op">=</span><span class="st">","</span><span class="op">)</span>,<span class="st">" publications which have been corrected. Here are the correction types:"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "There are 32,802 publications which have been corrected. Here are the correction types:"</span></span>
+<span><span class="co">#&gt; [1] "There are 32,958 publications which have been corrected. Here are the correction types:"</span></span>
 <span></span>
 <span><span class="va">query12</span><span class="op">$</span><span class="va">facets</span><span class="op">$</span><span class="va">correction.correctionType</span><span class="op">$</span><span class="va">terms</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
@@ -571,15 +619,15 @@
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="right">14800</td>
+<td align="right">14847</td>
 <td align="left">comment on</td>
 </tr>
 <tr class="even">
-<td align="right">12180</td>
+<td align="right">12199</td>
 <td align="left">comment in</td>
 </tr>
 <tr class="odd">
-<td align="right">2759</td>
+<td align="right">2767</td>
 <td align="left">erratum in</td>
 </tr>
 <tr class="even">
@@ -587,11 +635,11 @@
 <td align="left">peer-reviewed version</td>
 </tr>
 <tr class="odd">
-<td align="right">2030</td>
+<td align="right">2077</td>
 <td align="left">erratum for</td>
 </tr>
 <tr class="even">
-<td align="right">1850</td>
+<td align="right">1892</td>
 <td align="left">update of</td>
 </tr>
 <tr class="odd">
@@ -599,7 +647,7 @@
 <td align="left">retraction in</td>
 </tr>
 <tr class="even">
-<td align="right">83</td>
+<td align="right">84</td>
 <td align="left">retraction of</td>
 </tr>
 <tr class="odd">
@@ -646,7 +694,7 @@
 <span><span class="va">query19</span> <span class="op">=</span> <span class="fu"><a href="../reference/getResourcesData.html">getResourcesData</a></span><span class="op">(</span>query <span class="op">=</span> <span class="st">'"cytokine storm" AND date:&gt;=2021-01-01'</span>, fetchAll <span class="op">=</span> <span class="cn">TRUE</span>, fields <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"name"</span>, <span class="st">"date"</span>, <span class="st">"@type"</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="st">"There are "</span>, <span class="va">query13</span>  <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span>big.mark<span class="op">=</span><span class="st">","</span><span class="op">)</span>,<span class="st">" resources about cytokine storms in all time, "</span>, <span class="va">query14</span>  <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span>big.mark<span class="op">=</span><span class="st">","</span><span class="op">)</span>, <span class="st">" on 18 December 2020, "</span>, <span class="va">query15</span>  <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span>big.mark<span class="op">=</span><span class="st">","</span><span class="op">)</span>, <span class="st">" in 2020"</span>, <span class="st">", and "</span>, <span class="va">query16</span>  <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span>big.mark<span class="op">=</span><span class="st">","</span><span class="op">)</span>,<span class="st">" since 1 January 2021."</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "There are 4,583 resources about cytokine storms in all time, 188 on 18 December 2020, 1,284 in 2020, and 3,299 since 1 January 2021."</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "There are 4,697 resources about cytokine storms in all time, 188 on 18 December 2020, 1,289 in 2020, and 3,381 since 1 January 2021."</span></span></code></pre></div>
 </div>
 </div>
 </div>

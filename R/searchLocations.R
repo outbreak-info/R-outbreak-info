@@ -54,7 +54,7 @@ searchLocations <- function(locations_to_search, admin_level){
         }
       }, error = function(cond){
         stop(cond)
-      }, warning = function(cibd){
+      }, warning = function(cond){
         stop(cond)
       })
     }
@@ -79,7 +79,7 @@ searchLocations <- function(locations_to_search, admin_level){
       results <- list()
       success <- NULL
       while(is.null(success)){
-         dataurl <- paste0(api.url, "query?q=", location.ids, " AND ", "admin_level:\"", admin_level, "\"", " AND mostRecent:true&fields=name,location_id,state_name&fetch_all=true")
+        dataurl <- paste0(api.url, "query?q=", location.ids, " AND ", "admin_level:\"", admin_level, "\"", " AND mostRecent:true&fields=name,location_id,State&fetch_all=true")
         dataurl <- ifelse(is.null(scroll.id), dataurl, paste0(dataurl, "&scroll_id=", scroll.id))
         dataurl <- URLencode(dataurl)
         tryCatch({
@@ -105,15 +105,9 @@ searchLocations <- function(locations_to_search, admin_level){
       } else{
         hits <- rbind_pages(results)
         df=(hits)
-        df$name=apply(cbind(df$name, df$state_name), 1, function(x) paste(x[!is.na(x)], collapse = ", "))
-        df$admin_level[df$admin_level == "-1"] <- "World Bank Region"
-        df$admin_level[df$admin_level == "0"] <- "country"
-        df$admin_level[df$admin_level == "1"] <- "state/province"
-        df$admin_level[df$admin_level == "1.5"] <- "metropolitan area"
-        df$admin_level[df$admin_level == "2"] <- "county"
-        df$fullname <- paste0(df$name, " (", df$admin_level, ")")
+        df$name=apply(cbind(df$name, df$State), 1, function(x) paste(x[!is.na(x)], collapse = ", "))
       }
-      for (i in df$fullname){
+      for (i in df$name){
         cat(paste0(i, "\n"))
         loc_sel <- readline("Is this a location of interest? (Y/N): ")
         if ((loc_sel == "Y")|(loc_sel == "y")){

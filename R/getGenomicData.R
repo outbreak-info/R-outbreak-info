@@ -44,9 +44,9 @@ getGenomicData <- function(query_url, location=NULL, cumulative=NULL, pangolin_l
         q <- c(q, paste0("pangolin_lineage=", pangolin_lineage, "&"))
     }
     if(!is.null(mutations)){
-        check_cond <- grepl("[A-Za-z0-9]+:[A-Za-z][0-9]+[A-Za-z]", mutations)
+        check_cond <- grepl("[A-Za-z0-9]+:[A-Za-z][0-9]+[A-Za-z]|[A-Za-z0-9]+:DEL[0-9]+/[0-9]+", mutations)
         if(!all(check_cond))
-            warning(paste0("Mutations should be specified in the format gene:mutation, like \"S:E484K\". The following mutations are not in the specified format: ",  paste(mutations[!check_cond], collapse=", ")))
+            warning(paste0("Mutations should be specified in the format gene:mutation, like \"S:E484K\" or \"ORF1a:DEL3675/3677\". The following mutations are not in the specified format: ",  paste(mutations[!check_cond], collapse=", ")))
         mutations <- paste(mutations, collapse=" AND ")
         q <- c(q, paste0("mutations=", mutations, "&"))
     }
